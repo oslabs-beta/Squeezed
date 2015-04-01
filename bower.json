@@ -1,0 +1,15 @@
+{
+  "name": "lowdash",
+  "version": "0.0.0",
+  "authors": [
+    "Alex Zai <azai91@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
