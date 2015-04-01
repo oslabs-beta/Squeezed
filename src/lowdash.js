@@ -1,5 +1,33 @@
 var _ = {};
 
+// Utilities
+
+_.identity = function() {
+
+}
+
+_.isArray = function() {
+
+}
+
+_.isNumber = function() {
+
+}
+
+_.isString = function() {
+
+}
+
+_.isFunction = function() {
+
+}
+
+_.size = function() {
+
+}
+
+//Array
+
 // Returns the first element of an array.
 // Returns undefined if array is empty
 _.first = function(array) {
@@ -11,6 +39,7 @@ _.last = function(array) {
 
 }
 
+//Array
 
 _.forEach = function(collection, iteratee) {
 
@@ -44,10 +73,6 @@ _.pluck = function(collection, key) {
 
 }
 
-_.invoke = function() {
-
-}
-
 _.reduce = function() {
 
 }
@@ -68,39 +93,7 @@ _.some = function() {
 
 }
 
-_.extend = function() {
-
-}
-
-_.defaults = function() {
-
-}
-
-_.once = function() {
-
-}
-
-_.memoize = function() {
-
-}
-
-_.delay = function() {
-
-}
-
 _.flatten = function() {
-
-}
-
-_.throttle = function() {
-
-}
-
-_.clone = function() {
-
-}
-
-_.cloneDeep = function() {
 
 }
 
@@ -124,22 +117,40 @@ _.includes = function() {
 
 }
 
-_.isArray = function() {
+// Object
+
+_.extend = function() {
 
 }
 
-_.isNumber = function() {
+_.clone = function() {
 
 }
 
-_.isString = function() {
+_.cloneDeep = function() {
 
 }
 
-_.isFunction = function() {
+
+
+// Function
+
+_.invoke = function() {
 
 }
 
-_.size = function() {
+_.once = function() {
+
+}
+
+_.memoize = function() {
+
+}
+
+_.delay = function() {
+
+}
+
+_.throttle = function() {
 
 }
