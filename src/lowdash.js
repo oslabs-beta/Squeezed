@@ -99,7 +99,7 @@ _.forEach = function(collection, callback) {
 // _.forEach(['a','b','c'], function(element, index, collection) {
 //  console.log(element +"," +index);
 // }); → prints c,3,[1,2,3] b,2,[1,2,3] a,1,[1,2,3]
-_.forEachRight = function(colllection, callback) {
+_.forEachRight = function(collection, callback) {
 
 }
 
