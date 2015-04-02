@@ -8,14 +8,14 @@ _.identity = function(value) {
 // Returns boolean of whether argument is classified as a Number object
 // _.isNumber(5); → true
 // _.isNumber('hi'); → false
-_.isNumber = function() {
+_.isNumber = function(value) {
 
 }
 
 // Returns boolean of whether argument is classified as a String object
 // _.isString('hi'); → true
 // _.isString(5); → false
-_.isString = function() {
+_.isString = function(value) {
 
 }
 
@@ -29,7 +29,7 @@ _.isArray = function(value) {
 // Return the size of collection by returning its length for array-like values or the number of own enumerable properties for objects.
 // _.size([1,2,3]); → 3
 // _.size({a: 1, b: 2}); → 2
-_.size = function() {
+_.size = function(collection) {
 
 }
 
@@ -182,7 +182,7 @@ _.flattenDeep = function(array) {
 
 // Assigns own enumerable properties of source object(s) to the destination object. Subsequent sources overwrite property assignments of previous sources.
 // _.extend({ 'user': 'barney' }, { 'age': 40 }, { 'user': 'fred' }); → { 'user': 'fred', 'age': 40 }
-_.extend = function() {
+_.extend = function(object) {
 
 }
 
@@ -191,7 +191,7 @@ _.extend = function() {
 // var shallowClone = _.clone(users);
 // shallowClone[0].user === users[0].user → true
 // shallowClone === users → true
-_.clone = function() {
+_.clone = function(value) {
 
 }
 
@@ -200,7 +200,7 @@ _.clone = function() {
 // var deepClone = _.cloneDeep(users)
 // deepClone[0].user === users[0].user → false
 // deepClone === users → true
-_.cloneDeep = function() {
+_.cloneDeep = function(value) {
 
 }
 
@@ -221,7 +221,6 @@ _.delay = function(func, wait) {
 }
 
 // Creates a function that only invokes func at most once per every wait milliseconds.
-//
-_.throttle = function() {
+_.throttle = function(func, wait) {
 
 }
