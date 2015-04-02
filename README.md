@@ -1,7 +1,7 @@
 #Lowdash
 
 ##Summary
-Lowdash is a library based on lodash that provides basic javascript functions
+Lowdash is a library based on [lodash](https://lodash.com/docs#size) that provides basic javascript functions
 
 ##How do I run?
 Edit the files in src/lowdash.js
