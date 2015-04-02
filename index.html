@@ -1,0 +1,25 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Lowdash Test Suite</title>
+  <link rel="stylesheet" href="spec/lib/mocha/mocha.css" />
+
+</head>
+<body>
+  <div id="mocha"></div>
+  <script src="spec/lib/jquery/dist/jquery.js"></script>
+  <script src="spec/lib/sinon/index.js"></script>
+  <script src="spec/lib/mocha/mocha.js"></script>
+  <script>mocha.setup('bdd')</script>
+  <script src="spec/lib/expect/index.js"></script>
+
+  <script src="src/lowdash.js"></script>
+  <!-- <script src="spec/lib/lodash/lodash.js"></script> -->
+  <script src="spec/lowdashSpec.js"></script>
+  <script>
+    mocha.checkLeaks();
+    mocha.globals(['jQuery']);
+    mocha.run();
+  </script>
+</body>
+</html>
