@@ -10,45 +10,44 @@ describe('identity', function() {
 
 describe('isNumber', function() {
   it('should return true for numbers', function() {
-    expect(_.isNumber(0)).to.be.true;
-    expect(_.isNumber(-1)).to.be.true;
-    expect(_.isNumber(1)).to.be.true;
+    expect(_.isNumber(0)).to.be(true);
+    expect(_.isNumber(-1)).to.be(true);
+    expect(_.isNumber(1)).to.be(true);
   });
 
-  it('should return false for everything else', function() {
-    expect(_.isNumber('a')).to.be.false;
-    expect(_.isNumber({})).to.be.false;
-    expect(_.isNumber([])).to.be.false;
-    expect(_.isNumber(true)).to.be.false;
+  it('should return false for everything', function() {
+    expect(_.isNumber({})).to.be(false);
+    expect(_.isNumber([])).to.be(false);
+    expect(_.isNumber('a')).to.be(false);
+    expect(_.isNumber(true)).to.be(false);
   });
 });
 
 describe('isString', function() {
   it('should return true for strings', function() {
-    expect(_.isString('a')).to.be.true;
-    expect(_.isString('')).to.be.true;
-    expect(_.isString('hello')).to.be.true;
+    expect(_.isString('a')).to.equl(true);
+    expect(_.isString('')).to.be(true);
   });
 
-  it('should return false for everything else', function() {
-    expect(_.isString({})).to.be.false;
-    expect(_.isString([])).to.be.false;
-    expect(_.isString(true)).to.be.false;
-    expect(_.isString(1)).to.be.false;
+  it('should return false for everything', function() {
+    expect(_.isString({})).to.be(false);
+    expect(_.isString([])).to.be(false);
+    expect(_.isString(1)).to.be(false);
+    expect(_.isString(true)).to.be(false);
   });
 });
 
 describe('isArray', function() {
-  it('should return true for arrays', function() {
-    expect(_.isArray([])).to.be.true;
-    expect(_.isArray([1])).to.be.true;
+  it('should return true for array', function() {
+    expect(_.isArray([])).to.be(true);
+    expect(_.isArray([1])).to.be(true);
   });
 
-  it('should return false for everything else', function() {
-    expect(_.isArray({})).to.be.false;
-    expect(_.isArray('a')).to.be.false;
-    expect(_.isArray(true)).to.be.false;
-    expect(_.isArray(1)).to.be.false;
+  it('should return false for everything', function() {
+    expect(_.isArray({})).to.be(false);
+    expect(_.isArray('a')).to.be(false);
+    expect(_.isArray(1)).to.be(false);
+    expect(_.isArray(true)).to.be(false);
   });
 });
 
@@ -70,7 +69,7 @@ describe('first', function() {
   });
 
   it('should return undefined for empty array', function() {
-    expect(_.first([])).to.be.undefined;
+    expect(_.first([])).to.be(undefined);
   });
 });
 
@@ -81,7 +80,7 @@ describe('last', function() {
   });
 
   it('should return undefined for empty array', function() {
-    expect(_.last([])).to.be.undefined;
+    expect(_.last([])).to.be(undefined);
   });
 });
 
@@ -409,7 +408,7 @@ describe('clone', function() {
     var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
     var shallowClone = _.clone(users);
     expect(shallowClone[0].user).to.equal(users[0].user);
-    expect(shallowClone === users).to.be.true;
+    expect(shallowClone === users).to.be(true);
   });
 });
 
@@ -485,8 +484,9 @@ describe('delay', function() {
     var callback = sinon.spy();
     _.delay(callback, 100);
     clock.tick(99);
-    expect(callback.notCalled).to.be.true;
+    expect(callback.notCalled).to.be(true);
     clock.tick(1);
-    expect(callback.calledOnce).to.be.true;
+    console.log(callback.calledOnce);
+    expect(callback.calledOnce).to.be(true);
   });
 });
