@@ -204,12 +204,12 @@ _.cloneDeep = function(value) {
 
 }
 
-// Creates a function that is restricted to invoking func once. Repeat calls to the function return the value of the first call.
+// Returns a function that is restricted to invoking func once. Repeat calls to the function return the value of the first call.
 _.once = function(func) {
 
 }
 
-// Creates a function that when called, will check if it has already computed the result for the given argument and return that value instead if possible.
+// Returns a function that when called, will check if it has already computed the result for the given argument and return that value instead if possible.
 _.memoize = function(func) {
 
 }
@@ -219,7 +219,7 @@ _.delay = function(func, wait) {
 
 }
 
-// Creates a function that only invokes func at most once per every wait milliseconds.
+// Returns a function that only invokes func at most once per every wait milliseconds.
 _.throttle = function(func, wait) {
 
 }
