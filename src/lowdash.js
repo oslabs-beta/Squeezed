@@ -198,8 +198,8 @@ _.clone = function(value) {
 // Creates a deep clone of value.
 // var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
 // var deepClone = _.cloneDeep(users)
-// deepClone[0].user === users[0].user → false
-// deepClone === users → true
+// deepClone[0].user === users[0].user → true
+// deepClone === users → false
 _.cloneDeep = function(value) {
 
 }
