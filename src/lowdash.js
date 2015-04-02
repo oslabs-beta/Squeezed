@@ -76,7 +76,7 @@ _.dropRight = function(array, n) {
 
 }
 
-//Creates a slice of array with n elements taken from the beginning.
+//Creates a slice of array with n elements taken from the beginning. n defaults to 1
 // _.take([1, 2, 3]); → [1]
 // _.take([1, 2, 3], 2); → [1, 2]
 // _.take([1, 2, 3], 5); → [1, 2, 3]
