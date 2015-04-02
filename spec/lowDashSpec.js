@@ -187,19 +187,6 @@ describe('forEach', function() {
       ['cat', 2, animals]
     ]);
   });
-
-  it('should iterate over objects, providing access to the element, index, and object itself', function() {
-    var animals = { a: 'ant', b: 'bat', c: 'cat' };
-    var iterationInputs = [];
-    _.forEach(animals, function(animal, key, object) {
-      iterationInputs.push([animal, key, object]);
-    });
-    expect(iterationInputs).to.eql([
-      ['ant', 'a', animals],
-      ['bat', 'b', animals],
-      ['cat', 'c', animals]
-    ]);
-  });
 });
 
 describe('forEachRight', function() {
@@ -227,19 +214,6 @@ describe('forEachRight', function() {
       ['ant', 0, animals],
       ['bat', 1, animals],
       ['cat', 2, animals]
-    ].reverse());
-  });
-
-  it('should iterate over objects, providing access to the element, index, and object itself', function() {
-    var animals = { a: 'ant', b: 'bat', c: 'cat' };
-    var iterationInputs = [];
-    _.forEachRight(animals, function(animal, key, object) {
-      iterationInputs.push([animal, key, object]);
-    });
-    expect(iterationInputs).to.eql([
-      ['ant', 'a', animals],
-      ['bat', 'b', animals],
-      ['cat', 'c', animals]
     ].reverse());
   });
 });
@@ -408,7 +382,7 @@ describe('clone', function() {
     var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
     var shallowClone = _.clone(users);
     expect(shallowClone[0].user).to.equal(users[0].user);
-    expect(shallowClone === users).to.be(true);
+    expect(shallowClone[0]).to.equal(users[0]);
   });
 });
 
@@ -418,6 +392,8 @@ describe('cloneDeep', function() {
     var deepClone = _.cloneDeep(users);
     expect(deepClone[0].user).to.equal(users[0].user);
     expect(deepClone).to.not.equal(users);
+    expect(deepClone[0]).to.not.equal(users[0]);
+    expect(deepClone[0]).to.eql(users[0]);
     expect(deepClone).to.eql(users);
   });
 });
@@ -487,6 +463,13 @@ describe('delay', function() {
     expect(callback.notCalled).to.be(true);
     clock.tick(1);
     expect(callback.calledOnce).to.be(true);
+  });
+
+  it('should have successfully passed function arguments in', function() {
+    var callback = sinon.spy();
+    _.delay(callback, 100, 1, 2);
+    clock.tick(100);
+    expect(callback.calledWith(1, 2)).to.be(true);
   });
 });
 
