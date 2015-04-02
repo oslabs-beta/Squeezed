@@ -187,19 +187,6 @@ describe('forEach', function() {
       ['cat', 2, animals]
     ]);
   });
-
-  it('should iterate over objects, providing access to the element, index, and object itself', function() {
-    var animals = { a: 'ant', b: 'bat', c: 'cat' };
-    var iterationInputs = [];
-    _.forEach(animals, function(animal, key, object) {
-      iterationInputs.push([animal, key, object]);
-    });
-    expect(iterationInputs).to.eql([
-      ['ant', 'a', animals],
-      ['bat', 'b', animals],
-      ['cat', 'c', animals]
-    ]);
-  });
 });
 
 describe('forEachRight', function() {
@@ -227,19 +214,6 @@ describe('forEachRight', function() {
       ['ant', 0, animals],
       ['bat', 1, animals],
       ['cat', 2, animals]
-    ].reverse());
-  });
-
-  it('should iterate over objects, providing access to the element, index, and object itself', function() {
-    var animals = { a: 'ant', b: 'bat', c: 'cat' };
-    var iterationInputs = [];
-    _.forEachRight(animals, function(animal, key, object) {
-      iterationInputs.push([animal, key, object]);
-    });
-    expect(iterationInputs).to.eql([
-      ['ant', 'a', animals],
-      ['bat', 'b', animals],
-      ['cat', 'c', animals]
     ].reverse());
   });
 });
