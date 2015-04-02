@@ -2,36 +2,40 @@ var _ = {};
 
 // Returns the first argument provided to it
 _.identity = function(value) {
-
+  return value;
 }
 
 // Returns boolean of whether argument is classified as a Number object
 // _.isNumber(5); → true
 // _.isNumber('hi'); → false
 _.isNumber = function(value) {
-
+  return typeof value === 'number';
 }
 
 // Returns boolean of whether argument is classified as a String object
 // _.isString('hi'); → true
 // _.isString(5); → false
 _.isString = function(value) {
-
+  return typeof value === 'string';
 }
 
 // Returns boolean of whether argument is classified as an Array object
 // _.isArray(5); → false
 // _.isNumber([1,2,3]); → true
 _.isArray = function(value) {
-
+  return value.constructor === Array;
 }
 
 // Return the size of collection by returning its length for array-like values or the number of own enumerable properties for objects.
 // _.size([1,2,3]); → 3
 // _.size({a: 1, b: 2}); → 2
 _.size = function(collection) {
-
+  var count = 0;
+  for (var i in collection)
+    count++;
+  return count;
 }
+
 
 //Array
 
@@ -40,14 +44,14 @@ _.size = function(collection) {
 // _.first([1,2,3]); → 1
 // _.first([]); → undefined
 _.first = function(array) {
-
+  return array[0];
 }
 
 // Returns the last element of an array
 // _.last([1,2,3]); → 3
 // _.last([]); → undefined
 _.last = function(array) {
-
+  return array[array.length-1];
 }
 
 // Gets the index at which the first occurrence of value is found in array
@@ -55,7 +59,11 @@ _.last = function(array) {
 // _.indexOf([11,22,33], 11); → 1
 // _.indexOf([11,22,33], 5); → -1
 _.indexOf = function(array, value) {
-
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] === value)
+      return i;
+  };
+  return -1;
 }
 
 // Creates a slice of array with n elements dropped from the beginning. n defaults to 1
@@ -64,8 +72,10 @@ _.indexOf = function(array, value) {
 // _.drop([1, 2, 3], 5); → []
 // _.drop([1, 2, 3], 0); → [1, 2, 3]
 _.drop = function(array, n) {
-
+  n = typeof n === 'undefined' ? 1 : n;
+  return array.slice(n);
 }
+
 
 // Creates a slice of array with n elements dropped from the end.
 // _.dropRight([1, 2, 3]); → [1, 2]
@@ -73,8 +83,12 @@ _.drop = function(array, n) {
 // _.dropRight([1, 2, 3], 5); → []
 // _.dropRight([1, 2, 3], 0); → [1, 2, 3]
 _.dropRight = function(array, n) {
-
+  n = typeof n === 'undefined' ? 1 : n;
+  if (n)
+    return array.slice(0, -n);
+  return array;
 }
+
 
 //Creates a slice of array with n elements taken from the beginning.
 // _.take([1, 2, 3]); → [1]
@@ -82,7 +96,8 @@ _.dropRight = function(array, n) {
 // _.take([1, 2, 3], 5); → [1, 2, 3]
 // _.take([1, 2, 3], 0); → []
 _.take = function(array, n) {
-
+  n = typeof n === 'undefined' ? 1 : n;
+  return array.slice(0, n);
 }
 
 // Iterates over elements of collection invoking callback for each element.
@@ -91,7 +106,15 @@ _.take = function(array, n) {
 //  console.log(element +"," +index +"," +collection);
 // }); → prints a,1,[1,2,3] b,2,[1,2,3] c,3,[1,2,3]
 _.forEach = function(collection, callback) {
-
+  if (collection.constructor === Array) {
+    for (var i = 0; i < collection.length; i++) {
+      callback(collection[i], i, collection);
+    }
+  } else {
+    for (i in collection) {
+      callback(collection[i], i, collection);
+    }
+  }
 }
 
 // Iterates over elements of collection in reverse invoking callback for each element.
@@ -99,8 +122,16 @@ _.forEach = function(collection, callback) {
 // _.forEach(['a','b','c'], function(element, index, collection) {
 //  console.log(element +"," +index);
 // }); → prints c,3,[1,2,3] b,2,[1,2,3] a,1,[1,2,3]
-_.forEachRight = function(colllection, callback) {
-
+_.forEachRight = function(collection, callback) {
+  if (collection.constructor === Array) {
+    for (var i = collection.length - 1; i >= 0; i--) {
+      callback(collection[i], i, collection);
+    }
+  } else {
+    for (var i in collection) {
+      callback(collection[i], i, collection);
+    }
+  }
 }
 
 // Creates an array of values by running each element in collection through callback
@@ -110,7 +141,11 @@ _.forEachRight = function(colllection, callback) {
 //  return element * 3;
 // }); -> [3,6,9]
 _.map = function(collection, callback) {
-
+  var ans = [];
+  for (var i = 0; i < collection.length; i++) {
+    ans.push(callback(collection[i], i, collection));
+  };
+  return ans;
 }
 
 // Iterates over elements of collection, returning an array of all elements callback returns truthy for.
@@ -121,7 +156,14 @@ _.map = function(collection, callback) {
 //  return element % 2 !== 0;
 // }); → [1,3]
 _.filter = function(collection, callback) {
-
+  var ans = [];
+  for (var i in collection) {
+    var elem = callback(collection[i], i, collection);
+    if (elem === true) {
+      ans.push(collection[i])
+    }
+  }
+  return ans;
 }
 
 // Removes all elements from array that callback returns truthy for and returns an array of the removed elements.
@@ -133,19 +175,36 @@ _.filter = function(collection, callback) {
 // }); → [2,4]
 // Challenge: use _.filter
 _.reject = function(collection, callback) {
-
+  var ans = [];
+  for (var i in collection) {
+    var elem = callback(collection[i], i, collection);
+    if (elem === false) {
+      ans.push(collection[i])
+    }
+  }
+  return ans;
 }
 
 // Creates a duplicate-value-free version of an array
 // _.uniq([1,2,1]); → [1,2]
 _.uniq = function(array) {
-
+  var ans = [];
+  for (var i = 0; i < array.length; i++) {
+    if (ans.indexOf(array[i]) === -1) {
+      ans.push(array[i]);
+    };
+  };
+  return ans;
 }
 
 // Gets the value of key from all elements in collection.
 // _.pluck([{user: 'Bob', age: 20},{user: 'Sam', age: 25}], 'user'); → ['Bob','Sam']
 _.pluck = function(collection, key) {
-
+  var ans = [];
+  for (var i = 0; i < collection.length; i++) {
+    ans.push(collection[i][key]);
+  };
+  return ans;
 }
 
 // Reduces collection to a value which is the accumulated result of running each element in collection through iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not provided the first element of collection is used as the initial value.
@@ -171,19 +230,39 @@ _.reduceRight = function(collection, callback, start) {
 // Flattens a nested array.
 // _.flatten([1, [2, 3, [4]]]); → [1, 2, 3, [4]]
 _.flatten = function(array) {
-
+  var ans = [];
+  for (var i = 0; i < array.length; i++) {
+    ans = ans.concat(array[i]);
+  };
+  return ans;
 }
 
 // Recursively flattens a nested array.
 // _.flattenDeep([1, [2, 3, [4]]]); → [1, 2, 3, 4]
 _.flattenDeep = function(array) {
-
+  var bool = true;
+  while (bool) {
+    var ans = [];
+    for (var i = 0; i < array.length; i++) {
+      ans = ans.concat(array[i]);
+    };
+    bool = !(array.length === ans.length);
+    array = ans;
+  }
+  return ans;
 }
 
 // Assigns own enumerable properties of source object(s) to the destination object. Subsequent sources overwrite property assignments of previous sources.
 // _.extend({ 'user': 'barney' }, { 'age': 40 }, { 'user': 'fred' }); → { 'user': 'fred', 'age': 40 }
 _.extend = function(object) {
-
+  var ans = arguments[0], thisObj;
+  for (var i = 1; i < arguments.length ; i++) {
+    thisObj = arguments[i];
+    for (var j in thisObj) {
+      ans[j] = thisObj[j];
+    };
+  };
+  return ans;
 }
 
 // Creates a clone of value.
@@ -192,31 +271,54 @@ _.extend = function(object) {
 // shallowClone[0].user === users[0].user → true
 // shallowClone === users → true
 _.clone = function(value) {
-
+  var ans = value;
+  return ans;
 }
 
 // Creates a deep clone of value.
 // var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
 // var deepClone = _.cloneDeep(users)
-// deepClone[0].user === users[0].user → false
-// deepClone === users → true
+// deepClone[0].user === users[0].user → true
+// deepClone === users → false
 _.cloneDeep = function(value) {
-
+  var ans = [];
+  for (var i = 0; i < value.length; i++) {
+    ans.push(value[i]);
+  };
+  return ans;
 }
 
 // Creates a function that is restricted to invoking func once. Repeat calls to the function return the value of the first call.
 _.once = function(func) {
-
+  var called = false;
+  return function() {
+    if (!called) {
+      called = true;
+      var output = func();
+      return output;
+    } else {
+      return output;
+    };
+  };
 }
 
 // Creates a function that when called, will check if it has already computed the result for the given argument and return that value instead if possible.
 _.memoize = function(func) {
-
+  var computed = {};
+  return function(arg) {
+    if (!(arg in computed)) {
+      var output = func(arg);
+      computed[arg] = output;
+      return output;
+    } else {
+      return computed[arg]
+    };
+  };
 }
 
 // Invokes func after wait milliseconds. Any additional arguments are provided to func when it is invoked.
 _.delay = function(func, wait) {
-
+  setTimeout(func, wait);
 }
 
 // Creates a function that only invokes func at most once per every wait milliseconds.

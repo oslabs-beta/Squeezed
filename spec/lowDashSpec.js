@@ -25,7 +25,7 @@ describe('isNumber', function() {
 
 describe('isString', function() {
   it('should return true for strings', function() {
-    expect(_.isString('a')).to.equl(true);
+    expect(_.isString('a')).to.be(true);
     expect(_.isString('')).to.be(true);
   });
 
