@@ -205,12 +205,11 @@ _.cloneDeep = function(value) {
 }
 
 // Creates a function that is restricted to invoking func once. Repeat calls to the function return the value of the first call.
-//
 _.once = function(func) {
 
 }
 
-// Creates a function that memoizes the result of func.
+// Creates a function that when called, will check if it has already computed the result for the given argument and return that value instead if possible.
 _.memoize = function(func) {
 
 }
