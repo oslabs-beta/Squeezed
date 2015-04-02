@@ -1,13 +1,11 @@
-describe('Identity', function() {
+describe('identity', function() {
   var uniqueObject = {};
-
   it('should return whatever value is passed into it', function() {
     expect(_.identity(1)).to.equal(1);
     expect(_.identity('string')).to.equal('string');
     expect(_.identity(false)).to.equal(false);
     expect(_.identity(uniqueObject)).to.equal(uniqueObject);
   });
-
 });
 
 describe('isNumber', function() {
@@ -41,7 +39,7 @@ describe('isString', function() {
 });
 
 describe('isArray', function() {
-  it('should return true for strings', function() {
+  it('should return true for arrays', function() {
     expect(_.isArray([])).to.be.true;
     expect(_.isArray([1])).to.be.true;
   });
@@ -55,12 +53,14 @@ describe('isArray', function() {
 });
 
 describe('size', function() {
-  it('should return the correct size of the array', function() {
+  it('should return the correct size of arrays', function() {
     expect(_.size([])).to.eql(0);
     expect(_.size([1])).to.eql(1);
+  });
+  it('should return the correct size of objects', function() {
     expect(_.size({a:1,b:2})).to.eql(2);
     expect(_.size({})).to.eql(0);
-  })
+  });
 });
 
 describe('first', function() {
@@ -85,52 +85,79 @@ describe('last', function() {
   });
 });
 
-describe('forEach', function() {
-  it('should iterate over arrays, providing access to the element, index, and array itself', function() {
-    var animals = ['ant', 'bat', 'cat'];
-    var iterationInputs = [];
-
-    _.forEach(animals, function(animal, index, list) {
-      iterationInputs.push([animal, index, list]);
-    });
-
-    expect(iterationInputs).to.eql([
-      ['ant', 0, animals],
-      ['bat', 1, animals],
-      ['cat', 2, animals]
-    ]);
+describe('indexOf', function() {
+  it('should have 40 in the list', function() {
+    var numbers = [10, 20, 30, 40, 50];
+    expect(_.indexOf(numbers, 40)).to.be(3);
   });
 
-  it('should only iterate over the array elements, not properties of the array', function() {
-    var animals = ['ant', 'bat', 'cat'];
-    var iterationInputs = [];
-
-    animals.shouldBeIgnored = 'Ignore me!';
-
-    _.forEach(animals, function(animal, index, list) {
-      iterationInputs.push([animal, index, list]);
-    });
-
-    expect(iterationInputs).to.eql([
-      ['ant', 0, animals],
-      ['bat', 1, animals],
-      ['cat', 2, animals]
-    ]);
+  it('should be able to compute indexOf even when the native function is undefined', function() {
+    var numbers = [10, 20, 30];
+    expect(_.indexOf(numbers, 20)).to.be(1);
   });
 
-  it('should iterate over objects, providing access to the element, index, and object itself', function() {
-    var animals = { a: 'ant', b: 'bat', c: 'cat' };
-    var iterationInputs = [];
+  it('returns -1 when the target cannot be found not in the list', function() {
+    var numbers = [10, 20, 30, 40, 50];
+    expect(_.indexOf(numbers, 35)).to.be(-1);
+  });
 
-    _.forEach(animals, function(animal, key, object) {
-      iterationInputs.push([animal, key, object]);
-    });
+  it('returns the first index that the target can be found at when there are multiple matches', function() {
+    var numbers = [1, 40, 40, 40, 40, 40, 40, 40, 50, 60, 70];
+    expect(_.indexOf(numbers, 40)).to.be(1);
+  });
+});
 
-    expect(iterationInputs).to.eql([
-      ['ant', 'a', animals],
-      ['bat', 'b', animals],
-      ['cat', 'c', animals]
-    ]);
+describe('drop', function() {
+  it('should remove first element if second argument not provided', function() {
+    expect(_.drop([1, 2, 3])).to.eql([2, 3]);
+  });
+
+  it('should remove first n elem', function() {
+    expect(_.drop([1, 2, 3], 2)).to.eql([3]);
+  });
+
+  it('should return empty array if n is larger than array length', function() {
+    expect(_.drop([1, 2, 3], 5)).to.eql([]);
+  });
+
+  it('should return entire array if n is 0', function() {
+    expect(_.drop([1, 2, 3], 0)).to.eql([1, 2, 3]);
+  });
+});
+
+describe('dropRight', function() {
+  it('should remove last element if second argument not provided', function() {
+    expect(_.dropRight([1, 2, 3])).to.eql([1, 2]);
+  });
+
+  it('should remove last n elem', function() {
+    expect(_.dropRight([1, 2, 3], 2)).to.eql([1]);
+  });
+
+  it('should return empty array if n is larger than array length', function() {
+    expect(_.dropRight([1, 2, 3], 5)).to.eql([]);
+  });
+
+  it('should return entire array if n is 0', function() {
+    expect(_.dropRight([1, 2, 3], 0)).to.eql([1, 2, 3]);
+  });
+});
+
+describe('take', function() {
+  it('should return first element if second argument not provided', function() {
+    expect(_.take([1, 2, 3])).to.eql([1]);
+  });
+
+  it('should remove last n elem', function() {
+    expect(_.take([1, 2, 3], 2)).to.eql([1,2]);
+  });
+
+  it('should return entire array if n is larger than array length', function() {
+    expect(_.take([1, 2, 3], 5)).to.eql([1,2,3]);
+  });
+
+  it('should return empty array if n is 0', function() {
+    expect(_.take([1, 2, 3], 0)).to.eql([]);
   });
 });
 
@@ -138,11 +165,9 @@ describe('forEach', function() {
   it('should iterate over arrays, providing access to the element, index, and array itself', function() {
     var animals = ['ant', 'bat', 'cat'];
     var iterationInputs = [];
-
     _.forEach(animals, function(animal, index, list) {
       iterationInputs.push([animal, index, list]);
     });
-
     expect(iterationInputs).to.eql([
       ['ant', 0, animals],
       ['bat', 1, animals],
@@ -153,13 +178,10 @@ describe('forEach', function() {
   it('should only iterate over the array elements, not properties of the array', function() {
     var animals = ['ant', 'bat', 'cat'];
     var iterationInputs = [];
-
     animals.shouldBeIgnored = 'Ignore me!';
-
     _.forEach(animals, function(animal, index, list) {
       iterationInputs.push([animal, index, list]);
     });
-
     expect(iterationInputs).to.eql([
       ['ant', 0, animals],
       ['bat', 1, animals],
@@ -170,11 +192,9 @@ describe('forEach', function() {
   it('should iterate over objects, providing access to the element, index, and object itself', function() {
     var animals = { a: 'ant', b: 'bat', c: 'cat' };
     var iterationInputs = [];
-
     _.forEach(animals, function(animal, key, object) {
       iterationInputs.push([animal, key, object]);
     });
-
     expect(iterationInputs).to.eql([
       ['ant', 'a', animals],
       ['bat', 'b', animals],
@@ -187,11 +207,9 @@ describe('forEachRight', function() {
   it('should iterate over arrays, providing access to the element, index, and array itself', function() {
     var animals = ['ant', 'bat', 'cat'];
     var iterationInputs = [];
-
     _.forEachRight(animals, function(animal, index, list) {
       iterationInputs.push([animal, index, list]);
     });
-
     expect(iterationInputs).to.eql([
       ['ant', 0, animals],
       ['bat', 1, animals],
@@ -202,13 +220,10 @@ describe('forEachRight', function() {
   it('should only iterate over the array elements, not properties of the array', function() {
     var animals = ['ant', 'bat', 'cat'];
     var iterationInputs = [];
-
     animals.shouldBeIgnored = 'Ignore me!';
-
     _.forEachRight(animals, function(animal, index, list) {
       iterationInputs.push([animal, index, list]);
     });
-
     expect(iterationInputs).to.eql([
       ['ant', 0, animals],
       ['bat', 1, animals],
@@ -219,11 +234,9 @@ describe('forEachRight', function() {
   it('should iterate over objects, providing access to the element, index, and object itself', function() {
     var animals = { a: 'ant', b: 'bat', c: 'cat' };
     var iterationInputs = [];
-
     _.forEachRight(animals, function(animal, key, object) {
       iterationInputs.push([animal, key, object]);
     });
-
     expect(iterationInputs).to.eql([
       ['ant', 'a', animals],
       ['bat', 'b', animals],
@@ -237,37 +250,7 @@ describe('map', function() {
     var doubled = _.map([1, 2, 3], function(num) {
       return num * 2;
     });
-
     expect(doubled).to.eql([2, 4, 6]);
-  });
-});
-
-describe('indexOf', function() {
-  it('should have 40 in the list', function() {
-    var numbers = [10, 20, 30, 40, 50];
-
-    expect(_.indexOf(numbers, 40)).to.be(3);
-  });
-
-  it('should be able to compute indexOf even when the native function is undefined', function() {
-    var numbers = [10, 20, 30];
-
-    // If the browser provides a native indexOf array method, disable it
-    numbers.indexOf = null;
-
-    expect(_.indexOf(numbers, 20)).to.be(1);
-  });
-
-  it('returns -1 when the target cannot be found not in the list', function() {
-    var numbers = [10, 20, 30, 40, 50];
-
-    expect(_.indexOf(numbers, 35)).to.be(-1);
-  });
-
-  it('returns the first index that the target can be found at when there are multiple matches', function() {
-    var numbers = [1, 40, 40, 40, 40, 40, 40, 40, 50, 60, 70];
-
-    expect(_.indexOf(numbers, 40)).to.be(1);
   });
 });
 
@@ -275,14 +258,12 @@ describe('filter', function() {
   it('should return all even numbers in an array', function() {
     var isEven = function(num) { return num % 2 === 0; };
     var evens = _.filter([1, 2, 3, 4, 5, 6], isEven);
-
     expect(evens).to.eql([2, 4, 6]);
   });
 
   it('should return all odd numbers in an array', function() {
     var isOdd = function(num) { return num % 2 !== 0; };
     var odds = _.filter([1, 2, 3, 4, 5, 6], isOdd);
-
     expect(odds).to.eql([1, 3, 5]);
   });
 });
@@ -291,14 +272,12 @@ describe('reject', function() {
   it('should reject all even numbers', function() {
     var isEven = function(num) { return num % 2 === 0; };
     var odds = _.reject([1, 2, 3, 4, 5, 6], isEven);
-
     expect(odds).to.eql([1, 3, 5]);
   });
 
   it('should reject all odd numbers', function() {
     var isOdd = function(num) { return num % 2 !== 0; };
     var evens = _.reject([1, 2, 3, 4, 5, 6], isOdd);
-
     expect(evens).to.eql([2, 4, 6]);
   });
 });
@@ -306,14 +285,12 @@ describe('reject', function() {
 describe('uniq', function() {
   it('should return all unique values contained in an unsorted array', function() {
     var list = [1, 2, 1, 3, 1, 4];
-
     expect(_.uniq(list)).to.eql([1, 2, 3, 4]);
   });
 
   it('should handle iterators that work with a sorted array', function() {
     var iterator = function(value) { return value +1; };
     var list = [1, 2, 2, 3, 4, 4];
-
     expect(_.uniq(list, true, iterator)).to.eql([1, 2, 3, 4]);
   });
 });
@@ -324,7 +301,6 @@ describe('pluck', function() {
       {name : 'moe', age : 30},
       {name : 'curly', age : 50}
     ];
-
     expect(_.pluck(people, 'name')).to.eql(['moe', 'curly']);
   });
 });
@@ -333,28 +309,24 @@ describe('reduce', function() {
   it('should be able to sum up an array', function() {
     var add = function(tally, item) {return tally + item; };
     var total = _.reduce([1, 2, 3], add, 0);
-
     expect(total).to.equal(6);
   });
 
   it('should be able to find the difference in an array', function() {
     var difference = function(tally, item) {return tally - item; };
     var total = _.reduce([1, 2, 3], difference, 0);
-
     expect(total).to.equal(-6);
   });
 
   it('should default to the last item in the array', function() {
     var difference = function(tally, item) {return tally - item; };
     var total = _.reduce([1, 2, 3], difference);
-
     expect(total).to.equal(-4);
   });
 
   it('should default to the first item in the array', function() {
     var add = function(tally, item) {return tally + item; };
     var total = _.reduce([1, 2, 3], add);
-
     expect(total).to.equal(6);
   });
 
@@ -364,55 +336,26 @@ describe('reduceRight', function() {
   it('should be able to find the difference in an array', function() {
     var difference = function(tally, item) {return tally - item; };
     var total = _.reduceRight([1, 2, 3], difference, 0);
-
     expect(total).to.equal(-6);
   });
 
   it('should default to the last item in the array', function() {
     var difference = function(tally, item) {return tally - item; };
     var total = _.reduceRight([1, 2, 3], difference);
-
     expect(total).to.equal(0);
   });
 
 });
 
 describe('flatten', function() {
-  it('can flatten nested arrays', function() {
+  it('should flatten nested arrays', function() {
     expect(_.flatten([1, [2, 3, [4]]])).to.eql([1, 2, 3, [4]]);
   });
 });
 
 describe('flattenDeep', function() {
-  it('can flatten nested arrays', function() {
+  it('should flatten nested arrays recursively', function() {
     expect(_.flattenDeep([1, [2, 3, [4]]])).to.eql([1, 2, 3, 4]);
-  });
-});
-
-describe('drop', function() {
-  it('can drop', function() {
-    expect(_.drop([1, 2, 3])).to.eql([2, 3]);
-    expect(_.drop([1, 2, 3], 2)).to.eql([3]);
-    expect(_.drop([1, 2, 3], 5)).to.eql([]);
-    expect(_.drop([1, 2, 3], 0)).to.eql([1, 2, 3]);
-  });
-});
-
-describe('dropRight', function() {
-  it('can drop', function() {
-    expect(_.dropRight([1, 2, 3])).to.eql([1, 2]);
-    expect(_.dropRight([1, 2, 3], 2)).to.eql([1]);
-    expect(_.dropRight([1, 2, 3], 5)).to.eql([]);
-    expect(_.dropRight([1, 2, 3], 0)).to.eql([1, 2, 3]);
-  });
-});
-
-describe('take', function() {
-  it('can take', function() {
-    expect(_.take([1, 2, 3])).to.eql([1]);
-    expect(_.take([1, 2, 3], 2)).to.eql([1,2]);
-    expect(_.take([1, 2, 3], 5)).to.eql([1,2,3]);
-    expect(_.take([1, 2, 3], 0)).to.eql([]);
   });
 });
 
@@ -421,7 +364,6 @@ describe('extend', function() {
     var to = {};
     var from = {};
     var extended = _.extend(to, from);
-
     expect(extended).to.equal(to);
   });
 
@@ -429,7 +371,6 @@ describe('extend', function() {
     var to = {};
     var from = {a:'b'};
     var extended = _.extend(to, from);
-
     expect(extended.a).to.equal('b');
   });
 
@@ -437,7 +378,6 @@ describe('extend', function() {
     var to = {a:'x'};
     var from = {a:'b'};
     var extended = _.extend(to, from);
-
     expect(extended.a).to.equal('b');
   });
 
@@ -445,31 +385,27 @@ describe('extend', function() {
     var to = {x:'x'};
     var from = {a:'b'};
     var extended = _.extend(to, from);
-
     expect(extended.x).to.equal('x');
   });
 
   it('should extend from multiple source objects', function() {
     var extended = _.extend({x:1}, {a:2}, {b:3});
-
     expect(extended).to.eql({x:1, a:2, b:3});
   });
 
   it('in the case of a conflict, it should use the last property\'s values when extending from multiple source objects', function() {
     var extended = _.extend({x:'x'}, {a:'a', x:2}, {a:1});
-
     expect(extended).to.eql({x:2, a:1});
   });
 
   it('should copy undefined values', function() {
     var extended = _.extend({}, {a: void 0, b: null});
-
     expect('a' in extended && 'b' in extended).to.be(true);
   });
 });
 
 describe('clone', function() {
-  it('should clone', function() {
+  it('should return shallow copy of object', function() {
     var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
     var shallowClone = _.clone(users);
     expect(shallowClone[0].user).to.equal(users[0].user);
@@ -478,7 +414,7 @@ describe('clone', function() {
 });
 
 describe('cloneDeep', function() {
-  it('should ', function() {
+  it('should return deep copy of object', function() {
     var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
     var deepClone = _.cloneDeep(users);
     expect(deepClone[0].user).to.equal(users[0].user);
@@ -493,27 +429,22 @@ describe('once', function() {
     var increment = _.once(function() {
       num += 1;
     });
-
     increment();
     increment();
-
     expect(num).to.equal(1);
   });
 });
 
 describe('memoize', function() {
   var fib, fastFib, timeCheck, fastTime, wait;
-
   beforeEach(function() {
     fib = function(n) {
       if(n < 2){ return n; }
       return fib(n - 1) + fib(n - 2);
     };
     fastFib = _.memoize(fib);
-
     timeCheck = function(str) { return str + Date.now(); };
     fastTime = _.memoize(timeCheck);
-
     // Synchronous sleep: terrible for web development, awesome for testing _.memoize
     wait = function(t) {
       var start = Date.now();
@@ -544,15 +475,12 @@ describe('memoize', function() {
 
 describe('delay', function() {
   var clock;
-
   beforeEach(function() {
     clock = sinon.useFakeTimers();
   });
-
   afterEach(function() {
     clock.restore();
   });
-
   it('should only execute the function after the specified wait time', function() {
     var callback = sinon.spy();
     _.delay(callback, 100);

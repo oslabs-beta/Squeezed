@@ -1,7 +1,5 @@
 var _ = {};
 
-// Utilities
-
 // Returns the first argument provided to it
 _.identity = function(value) {
 
@@ -52,16 +50,46 @@ _.last = function(array) {
 
 }
 
-//Array
+// Gets the index at which the first occurrence of value is found in array
+// Returns -1 if element is not in array
+// _.indexOf([11,22,33], 11); → 1
+// _.indexOf([11,22,33], 5); → -1
+_.indexOf = function(array, value) {
+
+}
+
+// Creates a slice of array with n elements dropped from the beginning. n defaults to 1
+// _.drop([1, 2, 3]); → [2, 3]
+// _.drop([1, 2, 3], 2); → [3]
+// _.drop([1, 2, 3], 5); → []
+// _.drop([1, 2, 3], 0); → [1, 2, 3]
+_.drop = function(array, n) {
+
+}
+
+// Creates a slice of array with n elements dropped from the end.
+// _.dropRight([1, 2, 3]); → [1, 2]
+// _.dropRight([1, 2, 3], 2); → [1]
+// _.dropRight([1, 2, 3], 5); → []
+// _.dropRight([1, 2, 3], 0); → [1, 2, 3]
+_.dropRight = function(array, n) {
+
+}
+
+//Creates a slice of array with n elements taken from the beginning.
+// _.take([1, 2, 3]); → [1]
+// _.take([1, 2, 3], 2); → [1, 2]
+// _.take([1, 2, 3], 5); → [1, 2, 3]
+// _.take([1, 2, 3], 0); → []
+_.take = function(array, n) {
+
+}
 
 // Iterates over elements of collection invoking callback for each element.
 // Callback(element/value, index/key, collection)
 // _.forEach(['a','b','c'], function(element, index, collection) {
-//  console.log(element +"," +index);
-// }); → prints a,1 b,2 c,3
-// _.forEach({x: 1, y: 2, z:3}, function(value, key, collection) {
-//  console.log(value +"," +key);
-// }); → prints x,1 y,2 z,3
+//  console.log(element +"," +index +"," +collection);
+// }); → prints a,1,[1,2,3] b,2,[1,2,3] c,3,[1,2,3]
 _.forEach = function(collection, callback) {
 
 }
@@ -70,10 +98,7 @@ _.forEach = function(collection, callback) {
 // Callback(element/value, index/key, collection)
 // _.forEach(['a','b','c'], function(element, index, collection) {
 //  console.log(element +"," +index);
-// }); → prints c,3 b,2 a,1
-// _.forEach({x: 1, y: 2, z:3}, function(value, key, collection) {
-//  console.log(value +"," +key);
-// }); → prints z,3 y,2 x,1
+// }); → prints c,3,[1,2,3] b,2,[1,2,3] a,1,[1,2,3]
 _.forEachRight = function(colllection, callback) {
 
 }
@@ -84,18 +109,7 @@ _.forEachRight = function(colllection, callback) {
 // _.map([1,2,3], function(element, index, collection) {
 //  return element * 3;
 // }); -> [3,6,9]
-// _.map({a: 4, b: 5, c: 6}, function(element, index, collection) {
-//  return element * 3;
-// }); -> [12,15,18]
 _.map = function(collection, callback) {
-
-}
-
-// Gets the index at which the first occurrence of value is found in array
-// Returns -1 if element is not in array
-// _.indexOf([11,22,33], 11); → 1
-// _.indexOf([11,22,33], 5); → -1
-_.indexOf = function(array, value) {
 
 }
 
@@ -166,44 +180,6 @@ _.flattenDeep = function(array) {
 
 }
 
-// Creates a slice of array with n elements dropped from the beginning. n defaults to 1
-// _.drop([1, 2, 3]); → [2, 3]
-// _.drop([1, 2, 3], 2); → [3]
-// _.drop([1, 2, 3], 5); → []
-// _.drop([1, 2, 3], 0); → [1, 2, 3]
-_.drop = function(array, n) {
-
-}
-
-// Creates a slice of array with n elements dropped from the end.
-// _.dropRight([1, 2, 3]); → [1, 2]
-// _.dropRight([1, 2, 3], 2); → [1]
-// _.dropRight([1, 2, 3], 5); → []
-// _.dropRight([1, 2, 3], 0); → [1, 2, 3]
-_.dropRight = function(array, n) {
-
-}
-
-//Creates a slice of array with n elements taken from the beginning.
-// _.take([1, 2, 3]); → [1]
-// _.take([1, 2, 3], 2); → [1, 2]
-// _.take([1, 2, 3], 5); → [1, 2, 3]
-// _.take([1, 2, 3], 0); → []
-_.take = function(array, n) {
-
-}
-
-// Checks if value is in collection.
-// _.includes([1, 2, 3], 1); → true
-// _.includes([1, 2, 3], 5); → false
-// _.includes({ 'user': 'fred', 'age': 40 }, 'fred'); → true
-// _.includes('pebbles', 'eb'); → true
-_.includes = function(array, target) {
-
-}
-
-// Object
-
 // Assigns own enumerable properties of source object(s) to the destination object. Subsequent sources overwrite property assignments of previous sources.
 // _.extend({ 'user': 'barney' }, { 'age': 40 }, { 'user': 'fred' }); → { 'user': 'fred', 'age': 40 }
 _.extend = function() {
@@ -225,13 +201,6 @@ _.clone = function() {
 // deepClone[0].user === users[0].user → false
 // deepClone === users → true
 _.cloneDeep = function() {
-
-}
-
-// Function
-
-// Invokes the method named by methodName on each element in collection, returning an array of the results of each invoked method.
-_.invoke = function() {
 
 }
 
