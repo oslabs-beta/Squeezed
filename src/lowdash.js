@@ -67,7 +67,7 @@ _.drop = function(array, n) {
 
 }
 
-// Creates a slice of array with n elements dropped from the end.
+// Creates a slice of array with n elements dropped from the end. n defaults to 1
 // _.dropRight([1, 2, 3]); → [1, 2]
 // _.dropRight([1, 2, 3], 2); → [1]
 // _.dropRight([1, 2, 3], 5); → []
@@ -76,7 +76,7 @@ _.dropRight = function(array, n) {
 
 }
 
-//Creates a slice of array with n elements taken from the beginning.
+//Creates a slice of array with n elements taken from the beginning. n defaults to 1
 // _.take([1, 2, 3]); → [1]
 // _.take([1, 2, 3], 2); → [1, 2]
 // _.take([1, 2, 3], 5); → [1, 2, 3]
@@ -85,31 +85,31 @@ _.take = function(array, n) {
 
 }
 
-// Iterates over elements of collection invoking callback for each element.
+// Iterates over elements of array invoking callback for each element.
 // Callback(element/value, index/key, collection)
-// _.forEach(['a','b','c'], function(element, index, collection) {
-//  console.log(element +"," +index +"," +collection);
+// _.forEach(['a','b','c'], function(element, index, array) {
+//  console.log(element +"," +index +"," +array);
 // }); → prints a,1,[1,2,3] b,2,[1,2,3] c,3,[1,2,3]
-_.forEach = function(collection, callback) {
+_.forEach = function(array, callback) {
 
 }
 
-// Iterates over elements of collection in reverse invoking callback for each element.
+// Iterates over elements of array in reverse invoking callback for each element.
 // Callback(element/value, index/key, collection)
-// _.forEach(['a','b','c'], function(element, index, collection) {
-//  console.log(element +"," +index);
+// _.forEach(['a','b','c'], function(element, index, array) {
+//  console.log(element +"," +index +"," +array);
 // }); → prints c,3,[1,2,3] b,2,[1,2,3] a,1,[1,2,3]
-_.forEachRight = function(colllection, callback) {
+_.forEachRight = function(array, callback) {
 
 }
 
 // Creates an array of values by running each element in collection through callback
 // Should we explain that map returns?
-// Callback (element/value, index/key, collection)
-// _.map([1,2,3], function(element, index, collection) {
+// Callback (element/value, index/key, array)
+// _.map([1,2,3], function(element, index, array) {
 //  return element * 3;
 // }); -> [3,6,9]
-_.map = function(collection, callback) {
+_.map = function(array, callback) {
 
 }
 
@@ -198,8 +198,8 @@ _.clone = function(value) {
 // Creates a deep clone of value.
 // var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
 // var deepClone = _.cloneDeep(users)
-// deepClone[0].user === users[0].user → false
-// deepClone === users → true
+// deepClone[0].user === users[0].user → true
+// deepClone === users → false
 _.cloneDeep = function(value) {
 
 }
