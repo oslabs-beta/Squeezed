@@ -486,7 +486,65 @@ describe('delay', function() {
     clock.tick(99);
     expect(callback.notCalled).to.be(true);
     clock.tick(1);
-    console.log(callback.calledOnce);
     expect(callback.calledOnce).to.be(true);
   });
+});
+
+describe("throttle", function() {
+  it('throttled functions should only be able to be called again after the specified time', function(done) {
+    var counter = 0;
+    var incr = function() {
+      counter++;
+    };
+    var throttledIncr = _.throttle(incr, 32);
+    throttledIncr();
+    throttledIncr();
+
+    expect(counter).to.eql(1);
+    setTimeout(function() {
+      expect(counter).to.eql(2);
+      done();
+    }, 64);
+  });
+
+  it("throttled functions return their value", function(done) {
+    var counter = 0;
+    var incr = function() {
+      return ++counter;
+    };
+    var throttledIncr = _.throttle(incr, 32);
+    var result = throttledIncr();
+    setTimeout(function() {
+      expect(result).to.eql(1);
+      expect(counter).to.eql(1);
+      done();
+    }, 64);
+  });
+
+  it("throttled functions called repeatedly should adhere to time limitations", function(done) {
+    var counter = 0;
+    var incr = function() {
+      return ++counter;
+    };
+    var throttledIncr = _.throttle(incr, 64);
+    var results = [];
+    var saveResult = function() {
+      results.push(throttledIncr());
+    };
+    saveResult();
+    saveResult();
+    setTimeout(saveResult, 32);
+    setTimeout(saveResult, 80);
+    setTimeout(saveResult, 96);
+    setTimeout(saveResult, 144);
+    setTimeout(function() {
+      expect(results[0]).to.eql(1);
+      expect(results[1]).to.eql(1);
+      expect(results[2]).to.eql(1);
+      expect(results[3]).to.eql(2);
+      expect(results[4]).to.eql(2);
+      expect(results[5]).to.eql(3);
+      done();
+    }, 192);
+  })
 });
