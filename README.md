@@ -18,4 +18,10 @@ Lowdash is a library based on [lodash](https://lodash.com/docs#size) that provid
 3. Complete the challenge in located in src/lowdash.js
 
 ##How do I test if my answer is correct?
-Open index.html in your browser
+* Open index.html in your browser
+
+* Another incredibly useful tool is Chrome Dev Tool's Javascript Console (which can be opened in Chrome by pressing command+option+J). The console allows for developers to type javascript directly into the browser. Test it out by typing in the following to the console:
+````
+var a = 'lorem';
+console.log(a);
+````
