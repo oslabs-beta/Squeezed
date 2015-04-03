@@ -1,7 +1,7 @@
-#Lowdash
+#JS-Fundamentals
 
 ##Summary
-Lowdash is a library based on [lodash](https://lodash.com/docs#size) that provides basic javascript utilies
+JS-Fundamentals is a series of functions that perform common object-related tasks
 
 ##How do I get started?
 1. Fork this repo
@@ -15,7 +15,7 @@ Lowdash is a library based on [lodash](https://lodash.com/docs#size) that provid
   git clone [github url]
   ````
 
-3. Complete the challenge in located in src/lowdash.js
+3. Complete the challenge in located in src/js-fundamentals.js
 
 ##How do I test if my answer is correct?
 * Open index.html in your browser
