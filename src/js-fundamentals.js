@@ -18,7 +18,7 @@ function isArray(value) {
 
 }
 
-// Returns boolean of whether argument is classified as an Array object
+// Returns boolean of whether argument is classified as an Object
 // isArray(5); → false
 // isNumber([1,2,3]); → true
 function isObject(value) {
@@ -105,7 +105,7 @@ function forEach(array, callback) {
 // forEach(['a','b','c'], function(element, index, array) {
 //  console.log(element +"," +index +"," +array);
 // }); → prints c,3,[1,2,3] b,2,[1,2,3] a,1,[1,2,3]
-function forEach(array, callback) {
+function forEachRight(array, callback) {
 
 }
 
