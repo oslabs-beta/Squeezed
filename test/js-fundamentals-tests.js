@@ -23,20 +23,6 @@ describe('isNumber', function() {
   });
 });
 
-describe('isString', function() {
-  it('should return true for strings', function() {
-    expect(isString('a')).to.be(true);
-    expect(isString('')).to.be(true);
-  });
-
-  it('should return false for everything', function() {
-    expect(isString({})).to.be(false);
-    expect(isString([])).to.be(false);
-    expect(isString(1)).to.be(false);
-    expect(isString(true)).to.be(false);
-  });
-});
-
 describe('isArray', function() {
   it('should return true for array', function() {
     expect(isArray([])).to.be(true);
@@ -48,6 +34,29 @@ describe('isArray', function() {
     expect(isArray('a')).to.be(false);
     expect(isArray(1)).to.be(false);
     expect(isArray(true)).to.be(false);
+  });
+});
+
+describe('isObject', function() {
+  it('should return true for object', function() {
+    expect(isObject({})).to.be(true);
+    expect(isObject({a:1})).to.be(true);
+  });
+
+  it('should return false for everything', function() {
+    expect(isObject([])).to.be(false);
+    expect(isObject('a')).to.be(false);
+    expect(isObject(1)).to.be(false);
+    expect(isObject(true)).to.be(false);
+  });
+});
+
+describe('clone', function() {
+  it('should return shallow copy of object', function() {
+    var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
+    var shallowClone = clone(users);
+    expect(shallowClone[0].user).to.equal(users[0].user);
+    expect(shallowClone[0]).to.equal(users[0]);
   });
 });
 
@@ -377,12 +386,17 @@ describe('extend', function() {
   });
 });
 
-describe('clone', function() {
-  it('should return shallow copy of object', function() {
-    var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
-    var shallowClone = clone(users);
-    expect(shallowClone[0].user).to.equal(users[0].user);
-    expect(shallowClone[0]).to.equal(users[0]);
+describe('isString', function() {
+  it('should return true for strings', function() {
+    expect(isString('a')).to.be(true);
+    expect(isString(5)).to.be(true);
+  });
+
+  it('should return false for everything', function() {
+    expect(isString({})).to.be(false);
+    expect(isString([])).to.be(false);
+    expect(isString(1)).to.be(false);
+    expect(isString(true)).to.be(false);
   });
 });
 
