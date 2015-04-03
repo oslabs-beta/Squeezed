@@ -331,7 +331,13 @@ function memoize(func) {
 
 // Invokes func after wait milliseconds. Any additional arguments are provided to func when it is invoked.
 function delay(func, wait) {
-  setTimeout(func, wait);
+  var args = [];
+  for (var i = 2; i < arguments.length; i++) {
+    args.push(arguments[i]);
+  };
+  setTimeout(function() {
+    func.apply(this, args)
+    }, wait);
 }
 
 // Returns a function that only invokes func at most once per every wait milliseconds.
@@ -341,7 +347,6 @@ function throttle(func, wait) {
   return function() {
     if (!delay) {
       lastValue = func();
-      console.log(lastValue);
       delay = true;
       setTimeout(function() {
         delay = false;
