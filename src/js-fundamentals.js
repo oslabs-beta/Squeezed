@@ -21,7 +21,7 @@ function isArray(value) {
 // isArray(5); → false
 // isNumber([1,2,3]); → true
 function isObject(value) {
-
+  return value.constructor === Object;
 }
 
 // Creates a clone of value.
@@ -110,14 +110,8 @@ function take(array, n) {
 //  console.log(element +"," +index +"," +array);
 // }); → prints a,1,[1,2,3] b,2,[1,2,3] c,3,[1,2,3]
 function forEach(array, callback) {
-  if (collection.constructor === Array) {
-    for (var i = 0; i < collection.length; i++) {
-      callback(collection[i], i, collection);
-    }
-  } else {
-    for (i in collection) {
-      callback(collection[i], i, collection);
-    }
+  for (var i = 0; i < array.length; i++) {
+    callback(array[i], i, array);
   }
 }
 
@@ -126,15 +120,9 @@ function forEach(array, callback) {
 // forEach(['a','b','c'], function(element, index, array) {
 //  console.log(element +"," +index +"," +array);
 // }); → prints c,3,[1,2,3] b,2,[1,2,3] a,1,[1,2,3]
-function forEach(array, callback) {
-  if (collection.constructor === Array) {
-    for (var i = collection.length - 1; i >= 0; i--) {
-      callback(collection[i], i, collection);
-    }
-  } else {
-    for (var i in collection) {
-      callback(collection[i], i, collection);
-    }
+function forEachRight(array, callback) {
+  for (var i = array.length - 1; i >= 0; i--) {
+    callback(array[i], i, array);
   }
 }
 
@@ -146,8 +134,8 @@ function forEach(array, callback) {
 // }); -> [3,6,9]
 function map(array, callback) {
   var ans = [];
-  for (var i = 0; i < collection.length; i++) {
-    ans.push(callback(collection[i], i, collection));
+  for (var i = 0; i < array.length; i++) {
+    ans.push(callback(array[i], i, array));
   };
   return ans;
 }
@@ -220,15 +208,34 @@ function pluck(collection, key) {
 //  return result;
 // }, {}); → {a:3, b:6}
 function reduce(collection, callback, start) {
-
+  var accum;
+  if (typeof start === 'undefined') {
+    accum = collection.shift()
+  } else {
+    accum = start;
+  };
+  for (var i = 0; i < collection.length; i++) {
+    accum = callback(accum, collection[i])
+  };
+  return accum;
 }
+
 
 // This method is like reduce except that it iterates over elements of collection from right to left.
 // reduceRight([1,2], function(sum,n) {
 //  return difference - n;
 // }); → 1
 function reduceRight(collection, callback, start) {
-
+  var accum;
+  if (typeof start === 'undefined') {
+    accum = collection.pop()
+  } else {
+    accum = start;
+  };
+  for (var i = collection.length - 1; i >= 0; i--) {
+    accum = callback(accum, collection[i])
+  };
+  return accum;
 }
 
 // Flattens a nested array.
@@ -284,7 +291,12 @@ function isString(value) {
 function cloneDeep(value) {
   var ans = [];
   for (var i = 0; i < value.length; i++) {
-    ans.push(value[i]);
+    var obj = value[i];
+    var clo = {}
+    for (var j in obj) {
+      clo[j] = obj[j]
+    };
+    ans.push(clo);
   };
   return ans;
 }
