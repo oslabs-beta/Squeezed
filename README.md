@@ -15,7 +15,7 @@ JS-Fundamentals is a series of functions that perform common object-related task
   git clone [github url]
   ````
 
-3. Complete the challenge in located in src/js-fundamentals.js
+3. Complete the challenge in located in src/js-fundamentals.js. Feel free complete the functions in any order.
 
 ##How do I test if my answer is correct?
 * Open index.html in your browser
