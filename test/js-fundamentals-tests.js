@@ -173,8 +173,8 @@ describe('forEach', function() {
   it('should iterate over arrays, providing access to the element, index, and array itself', function() {
     var fruits = ['apple', 'banana', 'carrot'];
     var iterationInputs = [];
-    forEach(fruits, function(animal, index, list) {
-      iterationInputs.push([animal, index, list]);
+    forEach(fruits, function(fruit, index, list) {
+      iterationInputs.push([fruit, index, list]);
     });
     expect(iterationInputs).to.eql([
       ['apple', 0, fruits],
@@ -187,8 +187,8 @@ describe('forEach', function() {
     var fruits = ['apple', 'banana', 'carrot'];
     var iterationInputs = [];
     fruits.shouldBeIgnored = 'Ignore me!';
-    forEach(fruits, function(animal, index, list) {
-      iterationInputs.push([animal, index, list]);
+    forEach(fruits, function(fruit, index, list) {
+      iterationInputs.push([fruit, index, list]);
     });
     expect(iterationInputs).to.eql([
       ['apple', 0, fruits],
@@ -202,8 +202,8 @@ describe('forEachRight', function() {
   it('should iterate over arrays, providing access to the element, index, and array itself', function() {
     var fruits = ['apple', 'banana', 'carrot'];
     var iterationInputs = [];
-    forEachRight(fruits, function(animal, index, list) {
-      iterationInputs.push([animal, index, list]);
+    forEachRight(fruits, function(fruit, index, list) {
+      iterationInputs.push([fruit, index, list]);
     });
     expect(iterationInputs).to.eql([
       ['apple', 0, fruits],
@@ -216,8 +216,8 @@ describe('forEachRight', function() {
     var fruits = ['apple', 'banana', 'carrot'];
     var iterationInputs = [];
     fruits.shouldBeIgnored = 'Ignore me!';
-    forEachRight(fruits, function(animal, index, list) {
-      iterationInputs.push([animal, index, list]);
+    forEachRight(fruits, function(fruit, index, list) {
+      iterationInputs.push([fruit, index, list]);
     });
     expect(iterationInputs).to.eql([
       ['apple', 0, fruits],
@@ -534,7 +534,8 @@ describe("throttle", function() {
     setTimeout(saveResult, 32);
     setTimeout(saveResult, 80);
     setTimeout(saveResult, 96);
-    setTimeout(saveResult, 145);
+    setTimeout(saveResult, 180);
+
     setTimeout(function() {
       expect(results[0]).to.eql(1);
       expect(results[1]).to.eql(1);

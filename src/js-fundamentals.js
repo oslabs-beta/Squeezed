@@ -1,4 +1,3 @@
-
 // Returns the first argument provided to it
 function identity(value) {
 
