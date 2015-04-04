@@ -171,58 +171,58 @@ describe('take', function() {
 
 describe('forEach', function() {
   it('should iterate over arrays, providing access to the element, index, and array itself', function() {
-    var animals = ['ant', 'bat', 'cat'];
+    var fruits = ['apple', 'banana', 'carrot'];
     var iterationInputs = [];
-    forEach(animals, function(animal, index, list) {
+    forEach(fruits, function(animal, index, list) {
       iterationInputs.push([animal, index, list]);
     });
     expect(iterationInputs).to.eql([
-      ['ant', 0, animals],
-      ['bat', 1, animals],
-      ['cat', 2, animals]
+      ['apple', 0, fruits],
+      ['banana', 1, fruits],
+      ['carrot', 2, fruits]
     ]);
   });
 
   it('should only iterate over the array elements, not properties of the array', function() {
-    var animals = ['ant', 'bat', 'cat'];
+    var fruits = ['apple', 'banana', 'carrot'];
     var iterationInputs = [];
-    animals.shouldBeIgnored = 'Ignore me!';
-    forEach(animals, function(animal, index, list) {
+    fruits.shouldBeIgnored = 'Ignore me!';
+    forEach(fruits, function(animal, index, list) {
       iterationInputs.push([animal, index, list]);
     });
     expect(iterationInputs).to.eql([
-      ['ant', 0, animals],
-      ['bat', 1, animals],
-      ['cat', 2, animals]
+      ['apple', 0, fruits],
+      ['banana', 1, fruits],
+      ['carrot', 2, fruits]
     ]);
   });
 });
 
 describe('forEachRight', function() {
   it('should iterate over arrays, providing access to the element, index, and array itself', function() {
-    var animals = ['ant', 'bat', 'cat'];
+    var fruits = ['apple', 'banana', 'carrot'];
     var iterationInputs = [];
-    forEachRight(animals, function(animal, index, list) {
+    forEachRight(fruits, function(animal, index, list) {
       iterationInputs.push([animal, index, list]);
     });
     expect(iterationInputs).to.eql([
-      ['ant', 0, animals],
-      ['bat', 1, animals],
-      ['cat', 2, animals]
+      ['apple', 0, fruits],
+      ['banana', 1, fruits],
+      ['carrot', 2, fruits]
     ].reverse());
   });
 
   it('should only iterate over the array elements, not properties of the array', function() {
-    var animals = ['ant', 'bat', 'cat'];
+    var fruits = ['apple', 'banana', 'carrot'];
     var iterationInputs = [];
-    animals.shouldBeIgnored = 'Ignore me!';
-    forEachRight(animals, function(animal, index, list) {
+    fruits.shouldBeIgnored = 'Ignore me!';
+    forEachRight(fruits, function(animal, index, list) {
       iterationInputs.push([animal, index, list]);
     });
     expect(iterationInputs).to.eql([
-      ['ant', 0, animals],
-      ['bat', 1, animals],
-      ['cat', 2, animals]
+      ['apple', 0, fruits],
+      ['banana', 1, fruits],
+      ['carrot', 2, fruits]
     ].reverse());
   });
 });
@@ -499,6 +499,7 @@ describe("throttle", function() {
 
     expect(counter).to.eql(1);
     setTimeout(function() {
+      throttledIncr();
       expect(counter).to.eql(2);
       done();
     }, 64);
@@ -533,7 +534,8 @@ describe("throttle", function() {
     setTimeout(saveResult, 32);
     setTimeout(saveResult, 80);
     setTimeout(saveResult, 96);
-    setTimeout(saveResult, 144);
+    setTimeout(saveResult, 180);
+
     setTimeout(function() {
       expect(results[0]).to.eql(1);
       expect(results[1]).to.eql(1);
