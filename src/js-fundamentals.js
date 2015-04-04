@@ -12,14 +12,14 @@ function isNumber(value) {
 
 // Returns boolean of whether argument is classified as an Array object
 // isArray(5); → false
-// isNumber([1,2,3]); → true
+// isArray([1,2,3]); → true
 function isArray(value) {
 
 }
 
 // Returns boolean of whether argument is classified as an Object
-// isArray(5); → false
-// isNumber([1,2,3]); → true
+// isObject(5); → false
+// isObject([1,2,3]); → true
 function isObject(value) {
 
 }
