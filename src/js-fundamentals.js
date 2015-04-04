@@ -17,7 +17,7 @@ function isArray(value) {
   return value.constructor === Array;
 }
 
-// Returns boolean of whether argument is classified as an Array object
+// Returns boolean of whether argument is classified as an Object
 // isArray(5); → false
 // isNumber([1,2,3]); → true
 function isObject(value) {
