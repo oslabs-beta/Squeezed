@@ -389,7 +389,7 @@ describe('extend', function() {
 describe('isString', function() {
   it('should return true for strings', function() {
     expect(isString('a')).to.be(true);
-    expect(isString(5)).to.be(true);
+    expect(isString('5')).to.be(true);
   });
 
   it('should return false for everything', function() {
@@ -499,6 +499,7 @@ describe("throttle", function() {
 
     expect(counter).to.eql(1);
     setTimeout(function() {
+      throttledIncr();
       expect(counter).to.eql(2);
       done();
     }, 64);
@@ -533,7 +534,7 @@ describe("throttle", function() {
     setTimeout(saveResult, 32);
     setTimeout(saveResult, 80);
     setTimeout(saveResult, 96);
-    setTimeout(saveResult, 144);
+    setTimeout(saveResult, 145);
     setTimeout(function() {
       expect(results[0]).to.eql(1);
       expect(results[1]).to.eql(1);
