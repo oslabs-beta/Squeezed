@@ -18,10 +18,11 @@ JS-Fundamentals is a series of functions that perform common object-related task
 3. Complete the challenge in located in src/js-fundamentals.js. Feel free complete the functions in any order.
 
 ##How do I test if my answer is correct?
-* Open index.html in your browser
-
-* Another incredibly useful tool is Chrome Dev Tool's Javascript Console (which can be opened in Chrome by pressing command+option+J). The console allows for developers to type javascript directly into the browser. Test it out by typing in the following to the console:
+* An incredibly useful tool is Chrome Dev Tool's Javascript Console (which can be opened in Chrome by pressing command+option+J). The console allows for developers to type javascript directly into the browser. Test it out by typing in the following to the console:
 ````
 var a = 'lorem';
 console.log(a);
 ````
+
+* To test your functions, open index.html in your browser
+** NOTE: While completing the chllanges, if all tests that previously passed ALL suddenly fail, there is most likely a syntax error in your code. Open Chrome Dev Tool's to locate the cause of the error.
