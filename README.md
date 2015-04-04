@@ -12,7 +12,7 @@ JS-Fundamentals is a series of functions that perform common object-related task
   - copy and paste github url from the right side of the ![Alt text](http://u.cubeupload.com/azai91/howtoclone.png)
   - type in the following line into your command line and insert your copies url as shown below:
   ````
-  git clone [github url]
+  git clone *github url
   ````
 
 3. Complete the challenge in located in src/js-fundamentals.js. Feel free complete the functions in any order.
@@ -25,4 +25,4 @@ console.log(a);
 ````
 
 * To test your functions, open index.html in your browser
-** NOTE: While completing the chllanges, if all tests that previously passed ALL suddenly fail, there is most likely a syntax error in your code. Open Chrome Dev Tool's to locate the cause of the error.
+** NOTE: While completing the challenges, if all tests that previously passed ALL suddenly fail, there is most likely a syntax error in your code. Open Chrome Dev Tool's to locate the cause of the error.
