@@ -17,7 +17,7 @@ function isArray(value) {
   return value.constructor === Array;
 }
 
-// Returns boolean of whether argument is classified as an Array object
+// Returns boolean of whether argument is classified as an Object
 // isArray(5); → false
 // isNumber([1,2,3]); → true
 function isObject(value) {
@@ -121,9 +121,13 @@ function forEach(array, callback) {
 //  console.log(element +"," +index +"," +array);
 // }); → prints c,3,[1,2,3] b,2,[1,2,3] a,1,[1,2,3]
 function forEachRight(array, callback) {
+<<<<<<< HEAD
   for (var i = array.length - 1; i >= 0; i--) {
     callback(array[i], i, array);
   }
+=======
+
+>>>>>>> d6cc0fe8088bea0422826e59b8d3783a402a173d
 }
 
 // Creates an array of values by running each element in collection through callback
