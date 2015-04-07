@@ -389,7 +389,7 @@ describe('extend', function() {
 describe('isString', function() {
   it('should return true for strings', function() {
     expect(isString('a')).to.be(true);
-    expect(isString(5)).to.be(true);
+    expect(isString('5')).to.be(true);
   });
 
   it('should return false for everything', function() {
@@ -544,5 +544,5 @@ describe("throttle", function() {
       expect(results[5]).to.eql(3);
       done();
     }, 192);
-  })
+  });
 });
