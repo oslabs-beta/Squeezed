@@ -33,14 +33,14 @@ function clone(value) {
 
 }
 
-// Return the size of collection by returning its length for array-like values or the number of own enumerable properties for objects.
+// Return the size of collection. If the argument passed is an array, then return the length of the array. If the argument passed is an object, then return the number of key/value properties.
 // size([1,2,3]); → 3
 // size({a: 1, b: 2}); → 2
 function size(collection) {
 
 }
 
-// Returns the first element of an array.
+// Returns the first element of an array without modifying the original array.
 // Returns undefined if array is empty
 // first([1,2,3]); → 1
 // first([]); → undefined
@@ -48,7 +48,7 @@ function first(array) {
 
 }
 
-// Returns the last element of an array
+// Returns the last element of an array without modifying the origin array
 // last([1,2,3]); → 3
 // last([]); → undefined
 function last(array) {
@@ -90,20 +90,22 @@ function take(array, n) {
 
 }
 
-// Iterates over elements of array invoking callback for each element.
-// Callback(element/value, index/key, collection)
-// forEach(['a','b','c'], function(element, index, array) {
+// Iterates over elements of an array invoking callback for each element. The callback should be passed the element, the current index, and the entire array.
+// var callback = function(element, index, array) {
 //  console.log(element +"," +index +"," +array);
-// }); → prints a,1,[1,2,3] b,2,[1,2,3] c,3,[1,2,3]
+// }
+// forEach(['a','b','c'], callback); → prints a,0,[1,2,3] b,1,[1,2,3] c,2,[1,2,3]
+// For each element in the array, the callback we passed is called. The callback can be customized, but in the above example, the callback prints out the element, index, and entire array.
 function forEach(array, callback) {
 
 }
 
 // Iterates over elements of array in reverse invoking callback for each element.
 // Callback(element/value, index/key, collection)
-// forEach(['a','b','c'], function(element, index, array) {
+// var callback = function(element, index, array) {
 //  console.log(element +"," +index +"," +array);
-// }); → prints c,3,[1,2,3] b,2,[1,2,3] a,1,[1,2,3]
+// }
+// forEach(['a','b','c'], callback); → prints c,2,[1,2,3] b,1,[1,2,3] a,0,[1,2,3]
 function forEachRight(array, callback) {
 
 }
@@ -130,10 +132,10 @@ function filter(collection, callback) {
 }
 
 // Removes all elements from array that callback returns truthy for and returns an array of the removed elements.
-// remove([1,2,3,4], function(element, index, collection) {
+// reject([1,2,3,4], function(element, index, collection) {
 //  return element % 2 === 0;
 // }); → [1,3]
-// remove({a:1, b:2, c:3, d:4}, function(element, index, collection) {
+// reject({a:1, b:2, c:3, d:4}, function(element, index, collection) {
 //  return element % 2 !== 0;
 // }); → [2,4]
 // Challenge: use filter
@@ -141,7 +143,7 @@ function reject(collection, callback) {
 
 }
 
-// Creates a duplicate-value-free version of an array
+// Creates an array without duplicate values. The order of the array is preserved.
 // uniq([1,2,1]); → [1,2]
 function uniq(array) {
 
@@ -204,6 +206,20 @@ function isString(value) {
 // deepClone[0].user === users[0].user → true
 // deepClone === users → false
 function cloneDeep(value) {
+
+}
+
+// Using a for loop, call the functions in the queue in order with the input number, where the results of each function become the next function’s input. Additionally, the queue should be empty after the function is called.
+/* var puzzlers = [
+  function(a) { return 8 * a - 10; },
+  function(a) { return (a - 3) * (a - 3) * (a - 3); },
+  function(a) { return a * a + 4;},
+  function(a) { return a % 5;}
+];
+var start = 2;
+applyAndEmpty(2, puzzlers); → 3
+*/
+function applyAndEmpty(input, queue) {
 
 }
 

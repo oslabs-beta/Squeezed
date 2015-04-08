@@ -77,6 +77,12 @@ describe('first', function() {
     expect(first([6])).to.equal(6);
   });
 
+  it('should not modify the array', function() {
+    var array = [1,2,3];
+    expect(first(array)).to.equal(1);
+    expect(array).to.eql([1,2,3]);
+  });
+
   it('should return undefined for empty array', function() {
     expect(first([])).to.be(undefined);
   });
@@ -86,6 +92,12 @@ describe('last', function() {
   it('should be able to pull out the last element of an array', function() {
     expect(last([1,2,3])).to.equal(3);
     expect(last([6])).to.equal(6);
+  });
+
+  it('should not modify the array', function() {
+    var array = [1,2,3];
+    expect(last(array)).to.equal(3);
+    expect(array).to.eql([1,2,3]);
   });
 
   it('should return undefined for empty array', function() {
