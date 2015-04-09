@@ -24,11 +24,10 @@ function isObject(value) {
 
 }
 
-// Creates a clone of value.
+// Creates a clone of an object.
 // var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
 // var shallowClone = clone(users);
-// shallowClone[0].user === users[0].user → true
-// shallowClone === users → true
+// shallowClone[0] === users[0] → true
 function clone(value) {
 
 }
