@@ -77,6 +77,12 @@ describe('first', function() {
     expect(first([6])).to.equal(6);
   });
 
+  it('should not modify the array', function() {
+    var array = [1,2,3];
+    expect(first(array)).to.equal(1);
+    expect(array).to.eql([1,2,3]);
+  });
+
   it('should return undefined for empty array', function() {
     expect(first([])).to.be(undefined);
   });
@@ -86,6 +92,12 @@ describe('last', function() {
   it('should be able to pull out the last element of an array', function() {
     expect(last([1,2,3])).to.equal(3);
     expect(last([6])).to.equal(6);
+  });
+
+  it('should not modify the array', function() {
+    var array = [1,2,3];
+    expect(last(array)).to.equal(3);
+    expect(array).to.eql([1,2,3]);
   });
 
   it('should return undefined for empty array', function() {
@@ -389,7 +401,7 @@ describe('extend', function() {
 describe('isString', function() {
   it('should return true for strings', function() {
     expect(isString('a')).to.be(true);
-    expect(isString('5')).to.be(true);
+    expect(isString(5)).to.be(true);
   });
 
   it('should return false for everything', function() {
@@ -409,6 +421,19 @@ describe('cloneDeep', function() {
     expect(deepClone[0]).to.not.equal(users[0]);
     expect(deepClone[0]).to.eql(users[0]);
     expect(deepClone).to.eql(users);
+  });
+});
+
+describe('applyAndEmpty', function() {
+  it('should iterate over the queue and submit input', function() {
+    var puzzlers = [
+      function(a) { return 8 * a - 10; },
+      function(a) { return (a - 3) * (a - 3) * (a - 3); },
+      function(a) { return a * a + 4;},
+      function(a) { return a % 5;}
+    ];
+    var start = 2;
+    expect(applyAndEmpty(2, puzzlers)).to.equal(3);
   });
 });
 
