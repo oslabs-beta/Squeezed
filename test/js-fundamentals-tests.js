@@ -418,7 +418,6 @@ describe('cloneDeep', function() {
     var deepClone = cloneDeep(users);
     expect(deepClone[0].user).to.equal(users[0].user);
     expect(deepClone).to.not.equal(users);
-    expect(deepClone[0]).to.not.equal(users[0]);
     expect(deepClone[0]).to.eql(users[0]);
     expect(deepClone).to.eql(users);
   });
