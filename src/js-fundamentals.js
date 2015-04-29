@@ -1,28 +1,30 @@
 // Returns the first argument provided to it
 function identity(value) {
-
+	console.log(value);
+	return value;
 }
 
 // Returns boolean of whether argument is classified as a Number object
 // isNumber(5); → true
 // isNumber('hi'); → false
 function isNumber(value) {
-
+	
 }
 
 // Returns boolean of whether argument is classified as an Array object
 // isArray(5); → false
 // isArray([1,2,3]); → true
 function isArray(value) {
-
+	
 }
 
-// Returns boolean of whether argument is classified as an Object
-// isObject(5); → false
-// isObject([1,2,3]); → true
 function isObject(value) {
+	var toClass = {}.toString;
 
+	var result = toClass.call(value);
+	return result; // obviously will check type
 }
+
 
 // Creates a clone of an object.
 // var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
@@ -97,6 +99,11 @@ function take(array, n) {
 // For each element in the array, the callback we passed is called. The callback can be customized, but in the above example, the callback prints out the element, index, and entire array.
 function forEach(array, callback) {
 
+	for (var i = 0; i < array.length; i++) {
+		callback(array[i], i, array);
+	}
+
+
 }
 
 // Iterates over elements of array in reverse invoking callback for each element.
@@ -116,6 +123,18 @@ function forEachRight(array, callback) {
 //  return element * 3;
 // }); -> [3,6,9]
 function map(array, callback) {
+
+	if (isObject(array) === '[object Array]') {
+		var values = [];
+		// for (var i = 0; i < array.length; i++) {
+		// 	values.push(callback(array[i]));
+		// }
+		forEach(array, function(element){
+			values.push(callback(element))
+		});
+	}
+
+	return values;
 
 }
 
@@ -240,4 +259,15 @@ function delay(func, wait) {
 // Returns a function that only invokes func at most once per every wait milliseconds.
 function throttle(func, wait) {
 
+}
+
+function reverseString(testString) {
+	// get length of testString
+	var container = [];
+
+	for (var i = testString.length-1; i >= 0; i--) {
+		container.push(testString[i]);
+	}
+
+	return container.join("");
 }
