@@ -204,6 +204,16 @@ function filter(collection, callback) {
 // 	return (x%2 === 0);
 // }
 
+/*
+the splice function in javascript mutates the original array
+
+
+
+
+
+*/
+
+
 function reject(collection, callback) {
  //define a container array
    var container = [];
