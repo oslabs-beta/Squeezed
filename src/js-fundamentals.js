@@ -91,6 +91,23 @@ function take(array, n) {
 
 }
 
+/*
+	The following brief introduction to callbacks is necessary to understand the rest of this fundamentals unit! 
+*/
+
+
+/*
+	INTRODUCING CALLBACKS
+
+	Callbacks are the most important topic to understand if you want to understand how to use node.
+
+	Nearly everything in node uses callbacks. They were not invented by node, they are just part of the Javascript language
+
+	Callbacks are functions that are executed asynchronously, or at a later time.  Instead of the code reading top to bottom, procedurally, async programs may execute different functions at different times based on the order and speed that earlier functions (like http requests) or file system reads happen
+
+*/
+
+
 // Iterates over elements of an array invoking callback for each element. The callback should be passed the element, the current index, and the entire array.
 // var callback = function(element, index, array) {
 //  console.log(element +"," +index +"," +array);
@@ -147,24 +164,115 @@ function map(array, callback) {
 // }); → [1,3]
 function filter(collection, callback) {
 
+	var container = [];
+
+	forEach(collection, function(item){
+		if (callback(item) == true) {
+			container.push(item);
+		}
+	});
+
+	return container;
 }
+
+
+// function filter(collection, callback, booleanValue) {
+
+// 	var container = [];
+
+// 	forEach(collection, function(item){
+// 		if (callback(item) == booleanValue) {
+// 			container.push(item);
+// 		}
+// 	});
+
+// 	return container;
+// }
 
 // Removes all elements from array that callback returns truthy for and returns an array of the removed elements.
 // reject([1,2,3,4], function(element, index, collection) {
 //  return element % 2 === 0;
-// }); → [1,3]
+// }); → [2,4]
 // reject({a:1, b:2, c:3, d:4}, function(element, index, collection) {
 //  return element % 2 !== 0;
 // }); → [2,4]
 // Challenge: use filter
-function reject(collection, callback) {
+// example array
+// var exampleArray = [1,2,3,4,5,6,7,8,9,10];
 
+// function evenOrOdd (x) {
+// 	return (x%2 === 0);
+// }
+
+function reject(collection, callback) {
+ //define a container array
+   var container = [];
+   forEach(collection, function(element,index,collection){
+   	if(callback(element) === true){
+   		container.push(collection.splice(index, 1)[0]);
+	}
+   });
+
+   // var newContainer = [];
+   // for (var i = 0; i < container.length; i++) {
+   // 		newContainer.push(container[i][0]);
+   // }
+   return container;
+   // return newContainer;
+
+ //callback returns a boolean
+
+ //for values in collection where callback returns true,
+
+ //splice true returns out of collection
+
+ //push splice items to a container array
 }
+
+//reject(exampleArray,trueIfEven)
+// => [2,4,6,8,10]
+// exampleArray => [1,3,5,7,9]
+
 
 // Creates an array without duplicate values. The order of the array is preserved.
 // uniq([1,2,1]); → [1,2]
+var uniqueArray = [1,2,5,3,3,5,7,8];
+
 function uniq(array) {
 
+	for (var i = 0; i < array.length; i++) {
+		if (array[i] === array[i+1]) {
+			array.splice(i+1, 1);
+		}
+	}
+
+	return array;
+
+}
+
+
+function uniq(array) {
+
+	for (var i = 0; i < array.length; i++) {
+		for (var j = i+1; j < array.length; j++) {
+			if (array[i] === array[j]) {
+				array.splice(i, 1);
+			}
+		}
+	}
+
+	return array;
+}
+
+function uniq(array) {
+
+		for (var i = 0; i < array.length; i++) {
+			if (array[i] === array[i+1]) {
+				console.log("he");
+			}
+		}
+
+	// return array;
 }
 
 // Gets the value of key from all elements in collection.
