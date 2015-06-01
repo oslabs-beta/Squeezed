@@ -1,27 +1,46 @@
 // Returns the first argument provided to it
 function identity(value) {
-
+	return value;
 }
 
 // Returns boolean of whether argument is classified as a Number object
 // isNumber(5); → true
 // isNumber('hi'); → false
 function isNumber(value) {
-
+	if(typeof(value) == "number")
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 // Returns boolean of whether argument is classified as an Array object
 // isArray(5); → false
 // isArray([1,2,3]); → true
 function isArray(value) {
-
+	if(typeof(value) == "object" && typeof(value.length) !== "undefined"){
+		return true;
+	}
+	else{
+		return false;
+	}
 }
 
 // Returns boolean of whether argument is classified as an Object
 // isObject(5); → false
 // isObject([1,2,3]); → true
 function isObject(value) {
-
+	if(typeof(value) == "object")
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 // Creates a clone of an object.
@@ -29,7 +48,7 @@ function isObject(value) {
 // var shallowClone = clone(users);
 // shallowClone[0] === users[0] → true
 function clone(value) {
-
+	
 }
 
 // Return the size of collection. If the argument passed is an array, then return the length of the array. If the argument passed is an object, then return the number of key/value properties.
