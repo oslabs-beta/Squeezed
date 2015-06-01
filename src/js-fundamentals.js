@@ -154,7 +154,9 @@ function take(array, n) {
 // forEach(['a','b','c'], callback); → prints a,0,[1,2,3] b,1,[1,2,3] c,2,[1,2,3]
 // For each element in the array, the callback we passed is called. The callback can be customized, but in the above example, the callback prints out the element, index, and entire array.
 function forEach(array, callback) {
-
+	for (var i = 0; i<array.length; i++){
+		callback(array[i], i, array);
+	}
 }
 
 // Iterates over elements of array in reverse invoking callback for each element.
@@ -164,7 +166,10 @@ function forEach(array, callback) {
 // }
 // forEach(['a','b','c'], callback); → prints c,2,[1,2,3] b,1,[1,2,3] a,0,[1,2,3]
 function forEachRight(array, callback) {
-
+	for(var i = array.length-1; i >= 0; i--)
+	{
+		callback(array[i], i, array);	
+	}
 }
 
 // Creates an array of values by running each element in collection through callback
@@ -174,7 +179,10 @@ function forEachRight(array, callback) {
 //  return element * 3;
 // }); -> [3,6,9]
 function map(array, callback) {
-
+	for (var i = 0; i<array.length; i++){
+		array[i] = callback(array[i], i, array);
+	}
+	return array;
 }
 
 // Iterates over elements of collection, returning an array of all elements callback returns truthy for.
@@ -185,7 +193,15 @@ function map(array, callback) {
 //  return element % 2 !== 0;
 // }); → [1,3]
 function filter(collection, callback) {
-
+	var answer = [];
+	for(key in collection)
+	{
+		if(callback(collection[key],key,collection))
+		{
+			answer.push(collection[key]);
+		}
+	}
+	return answer;
 }
 
 // Removes all elements from array that callback returns truthy for and returns an array of the removed elements.
