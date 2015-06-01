@@ -33,7 +33,7 @@ function isArray(value) {
 // isObject(5); → false
 // isObject([1,2,3]); → true
 function isObject(value) {
-	if(typeof(value) == "object")
+	if(typeof(value) == "object" && value.length !== 0)
 	{
 		return true;
 	}
@@ -48,14 +48,26 @@ function isObject(value) {
 // var shallowClone = clone(users);
 // shallowClone[0] === users[0] → true
 function clone(value) {
-	
+	return value;
 }
 
 // Return the size of collection. If the argument passed is an array, then return the length of the array. If the argument passed is an object, then return the number of key/value properties.
 // size([1,2,3]); → 3
 // size({a: 1, b: 2}); → 2
 function size(collection) {
-
+	// if(isArray(collection))
+	// {
+	// 	return collection.length;
+	// }
+	// else
+	// {
+		var counter = 0;
+		for(key in collection)
+		{
+			counter++;
+		}
+		return counter;
+	// }
 }
 
 // Returns the first element of an array without modifying the original array.
@@ -63,7 +75,12 @@ function size(collection) {
 // first([1,2,3]); → 1
 // first([]); → undefined
 function first(array) {
-
+	if (array.length == 0){
+		return undefined;
+	}
+	else {
+		return array[0];
+	}
 }
 
 // Returns the last element of an array without modifying the origin array
