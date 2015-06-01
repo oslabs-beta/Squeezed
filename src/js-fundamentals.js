@@ -241,3 +241,36 @@ function delay(func, wait) {
 function throttle(func, wait) {
 
 }
+
+// Creates an array of elements, sorted in ascending order by the results of running each element in a collection through iteratee. 
+/*
+sortBy([1, 2, 3], function(n) {
+  return Math.sin(n);
+}); → [3, 1, 2]
+
+sortBy([1, 2, 3], function(n) {
+  return this.sin(n);
+}, Math); → [3, 1, 2]
+
+var users = [
+  { 'user': 'fred' },
+  { 'user': 'pebbles' },
+  { 'user': 'barney' }
+];
+
+_.pluck(_.sortBy(users, 'user'), 'user'); → ['barney', 'fred', 'pebbles']
+ */
+function sortBy(array, iterator) {
+
+}
+
+// Receives a variable number of arrays, and returns an array that contains every item shared between all passed-in arrays
+function intersection() {
+
+}
+
+// Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
+// zip(['fred', 'barney'], [30, 40], [true, false]); → [['fred', 30, true], ['barney', 40, false]]
+function zip() {
+
+}
