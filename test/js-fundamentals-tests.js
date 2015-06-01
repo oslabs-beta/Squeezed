@@ -41,10 +41,10 @@ describe('isObject', function() {
   it('should return true for object', function() {
     expect(isObject({})).to.be(true);
     expect(isObject({a:1})).to.be(true);
+    expect(isObject([])).to.be(true);
   });
 
   it('should return false for everything', function() {
-    expect(isObject([])).to.be(false);
     expect(isObject('a')).to.be(false);
     expect(isObject(1)).to.be(false);
     expect(isObject(true)).to.be(false);
