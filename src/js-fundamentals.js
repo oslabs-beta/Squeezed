@@ -87,7 +87,14 @@ function first(array) {
 // last([1,2,3]); → 3
 // last([]); → undefined
 function last(array) {
-
+	if(array.length == 0)
+	{
+		return undefined;
+	}
+	else
+	{
+		return array[array.length-1];
+	}
 }
 
 // Gets the index at which the first occurrence of value is found in array
@@ -95,7 +102,7 @@ function last(array) {
 // indexOf([11,22,33], 11); → 0
 // indexOf([11,22,33], 5); → -1
 function indexOf(array, value) {
-
+	return array.indexOf(value);
 }
 
 // Creates a slice of array with n elements dropped from the beginning. n defaults to 1
@@ -104,7 +111,12 @@ function indexOf(array, value) {
 // drop([1, 2, 3], 5); → []
 // drop([1, 2, 3], 0); → [1, 2, 3]
 function drop(array, n) {
-
+	if(n == undefined)
+	{
+		n = 1;
+	}
+	array.splice(0,n);
+	return array;
 }
 
 // Creates a slice of array with n elements dropped from the end. n defaults to 1
@@ -113,7 +125,14 @@ function drop(array, n) {
 // dropRight([1, 2, 3], 5); → []
 // dropRight([1, 2, 3], 0); → [1, 2, 3]
 function dropRight(array, n) {
-
+	if (n == undefined){
+		n = 1;
+	}
+	if (n > array.length){
+		return [];
+	}
+	array.splice(array.length-n, n);
+	return array;
 }
 
 //Creates a slice of array with n elements taken from the beginning. n defaults to 1
@@ -122,7 +141,10 @@ function dropRight(array, n) {
 // take([1, 2, 3], 5); → [1, 2, 3]
 // take([1, 2, 3], 0); → []
 function take(array, n) {
-
+	if (n == undefined){
+		n = 1;
+	}
+	return array.slice(0,n);
 }
 
 // Iterates over elements of an array invoking callback for each element. The callback should be passed the element, the current index, and the entire array.
