@@ -213,20 +213,43 @@ function filter(collection, callback) {
 // }); → [2,4]
 // Challenge: use filter
 function reject(collection, callback) {
-
+	for(key in collection)
+	{
+		if(callback(collection[key],key,collection))
+		{
+			collection.splice(key, 1);
+		}
+	}
+	return collection;
 }
+
 
 // Creates an array without duplicate values. The order of the array is preserved.
 // uniq([1,2,1]); → [1,2]
 function uniq(array) {
-
+	var answer = [];
+	for(var i = 0; i < array.length; i++)
+	{
+		if(answer.indexOf(array[i]) === -1)
+		{
+			answer.push(array[i]);
+		}
+	}
+	return answer;
 }
 
 // Gets the value of key from all elements in collection.
 // pluck([{user: 'Bob', age: 20},{user: 'Sam', age: 25}], 'user'); → ['Bob','Sam']
 function pluck(collection, key) {
-
+	var answer = [];
+	for (index in collection){
+		answer.push(collection[index][key]);
+	}
+	return answer;
 }
+
+//COME BACK
+//_------------------------
 
 // Reduces collection to a value which is the accumulated result of running each element in collection through iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not provided the first element of collection is used as the initial value.
 // reduce([1,2], function(sum,n) {
@@ -237,7 +260,21 @@ function pluck(collection, key) {
 //  return result;
 // }, {}); → {a:3, b:6}
 function reduce(collection, callback, start) {
-
+	if(start === undefined)
+	{
+		start = collection[0];
+		for(var i = 1; i < collection.length; i++)
+		{
+			start = callback(start,collection[i]);
+		}
+		return start;
+	}
+	var answer = start;
+	for(var i = 0; i < collection.length; i++)
+	{
+		answer = callback(answer,collection[i]);
+	}
+	return answer;
 }
 
 // This method is like reduce except that it iterates over elements of collection from right to left.
@@ -245,32 +282,91 @@ function reduce(collection, callback, start) {
 //  return difference - n;
 // }); → 1
 function reduceRight(collection, callback, start) {
+	if(start == undefined)
+	{
+		start = collection[collection.length-1];
+		for (var i = collection.length-2; i >= 0; i--){
+			start = callback(start, collection[i]);
+		}
+		return start;
+	}
+	var answer = start;
+	for(var i = collection.length-1; i >= 0; i--)
+	{
+		answer = callback(answer, collection[i]);
+	}
+	return answer;
 
 }
 
 // Flattens a nested array.
 // flatten([1, [2, 3, [4]]]); → [1, 2, 3, [4]]
 function flatten(array) {
-
+	var answer = [];
+	for(var i = 0; i < array.length; i++)
+	{
+		if(isArray(array[i]))
+		{
+			for(var j = 0; j < array[i].length; j++)
+			{
+				answer.push(array[i][j]);
+			}
+		}
+		else
+		{
+			answer.push(array[i]);
+		}
+	}
+	return answer;
 }
 
 // Recursively flattens a nested array.
 // flattenDeep([1, [2, 3, [4]]]); → [1, 2, 3, 4]
+var ans = [];
 function flattenDeep(array) {
-
+	for (var i =0; i<array.length; i++){
+		if (isArray(array[i])){
+			flattenDeep(array[i]);
+		}
+		else
+		{
+			ans.push(array[i]);
+		}
+	}
+	return ans;
 }
 
 // Assigns own enumerable properties of source object(s) to the destination object. Subsequent sources overwrite property assignments of previous sources.
 // extend({ 'user': 'barney' }, { 'age': 40 }, { 'user': 'fred' }); → { 'user': 'fred', 'age': 40 }
-function extend(object) {
+function extend() {
+	// return arguments.reduce(function(previousValue, currentValue, index, array){
+	// 	for (key in currentValue){
+	// 		initialValue[key] = currentValue[key];
+	// 	}
+	// 	return initialValue;
+	// });
 
+
+
+	for (var i =1; i<arguments.length; i++){
+		for (key in arguments[i]){
+			arguments[0][key] = arguments[i][key];
+		}
+	}
+
+	return arguments[0];
 }
 
 // Returns boolean of whether argument is classified as a String object
 // isString('hi'); → true
 // isString(5); → false
 function isString(value) {
-
+	if (typeof(value) === "string"){
+		return true;
+	}
+	else{
+		return false;
+	}
 }
 
 // Creates a deep clone of value.
@@ -279,7 +375,11 @@ function isString(value) {
 // deepClone[0].user === users[0].user → true
 // deepClone === users → false
 function cloneDeep(value) {
-
+	var arr = [];
+	for (var i =0; i<value.length; i++){
+		arr.push(value[i]);
+	}
+	return arr;
 }
 
 // Using a for loop, call the functions in the queue in order with the input number, where the results of each function become the next function’s input. Additionally, the queue should be empty after the function is called.
