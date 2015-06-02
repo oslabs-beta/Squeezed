@@ -250,7 +250,7 @@ var users = [
   { 'user': 'barney' }
 ];
 
-_.pluck(_.sortBy(users, 'user'), 'user'); → ['barney', 'fred', 'pebbles']
+pluck(_.sortBy(users, 'user'), 'user'); → ['barney', 'fred', 'pebbles']
  */
 function sortBy(array, iterator) {
 
