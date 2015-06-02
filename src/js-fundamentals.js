@@ -155,13 +155,13 @@ function pluck(collection, key) {
 }
 
 // Reduces collection to a value which is the accumulated result of running each element in collection through iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not provided the first element of collection is used as the initial value.
-// reduce([1,2], function(sum,n) {
-//  return sum + n;
+// If a start parameter is not provided, then set the start value as the zeroth index
+// reduce([1,2], function(stored,current) {
+//  return stored + current;
 // }); → 3
-// reduce({a:1, b:2}, function(result, n, key) {
-//  result[key] = n*3;
-//  return result;
-// }, {}); → {a:3, b:6}
+// reduce([1,2], function(stored,current) {
+//  return stored + current;
+// },1); → 4
 function reduce(collection, callback, start) {
 
 }
