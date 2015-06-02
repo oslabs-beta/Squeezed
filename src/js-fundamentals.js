@@ -134,9 +134,9 @@ function filter(collection, callback) {
 // reject([1,2,3,4], function(element, index, collection) {
 //  return element % 2 === 0;
 // }); → [1,3]
-// reject({a:1, b:2, c:3, d:4}, function(element, index, collection) {
+// reject({a:1, b:2, c:3, d:4}, function(value, key, collection) {
 //  return element % 2 !== 0;
-// }); → [2,4]
+// }); → {b:2, d:4}
 // Challenge: use filter
 function reject(collection, callback) {
 
@@ -150,7 +150,7 @@ function uniq(array) {
 
 // Gets the value of key from all elements in collection.
 // pluck([{user: 'Bob', age: 20},{user: 'Sam', age: 25}], 'user'); → ['Bob','Sam']
-function pluck(collection, key) {
+function pluck(array, key) {
 
 }
 
@@ -162,15 +162,7 @@ function pluck(collection, key) {
 // reduce([1,2], function(stored,current) {
 //  return stored + current;
 // },1); → 4
-function reduce(collection, callback, start) {
-
-}
-
-// This method is like reduce except that it iterates over elements of collection from right to left.
-// reduceRight([1,2], function(sum,n) {
-//  return difference - n;
-// }); → 1
-function reduceRight(collection, callback, start) {
+function reduce(array, callback, start) {
 
 }
 

@@ -274,6 +274,13 @@ describe('reject', function() {
     var evens = reject([1, 2, 3, 4, 5, 6], isOdd);
     expect(evens).to.eql([2, 4, 6]);
   });
+
+  it('should reject all odd values in object', function() {
+    var obj = {a:1, b:2, c:3, d:4};
+    var isOdd = function(value, key, collection) { return value % 2 !== 0; };
+    var evens = reject(obj, isOdd);  
+    expect(evens).to.eql({b:2, d:4});
+  })
 });
 
 describe('uniq', function() {
@@ -311,34 +318,6 @@ describe('reduce', function() {
     var total = reduce([1, 2, 3], difference, 0);
     expect(total).to.equal(-6);
   });
-
-  it('should default to the last item in the array', function() {
-    var difference = function(tally, item) {return tally - item; };
-    var total = reduce([1, 2, 3], difference);
-    expect(total).to.equal(-4);
-  });
-
-  it('should default to the first item in the array', function() {
-    var add = function(tally, item) {return tally + item; };
-    var total = reduce([1, 2, 3], add);
-    expect(total).to.equal(6);
-  });
-
-});
-
-describe('reduceRight', function() {
-  it('should be able to find the difference in an array', function() {
-    var difference = function(tally, item) {return tally - item; };
-    var total = reduceRight([1, 2, 3], difference, 0);
-    expect(total).to.equal(-6);
-  });
-
-  it('should default to the last item in the array', function() {
-    var difference = function(tally, item) {return tally - item; };
-    var total = reduceRight([1, 2, 3], difference);
-    expect(total).to.equal(0);
-  });
-
 });
 
 describe('flatten', function() {
