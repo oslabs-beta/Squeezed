@@ -180,7 +180,7 @@ function flattenDeep(array) {
 
 // Assigns own enumerable properties of source object(s) to the destination object. Subsequent sources overwrite property assignments of previous sources.
 // extend({ 'user': 'barney' }, { 'age': 40 }, { 'user': 'fred' }); → { 'user': 'fred', 'age': 40 }
-function extend(object) {
+function extend() {
 
 }
 
