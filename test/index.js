@@ -274,6 +274,13 @@ describe('reject', function() {
     var evens = reject([1, 2, 3, 4, 5, 6], isOdd);
     expect(evens).to.eql([2, 4, 6]);
   });
+
+  it('should reject all odd values in object', function() {
+    var obj = {a:1, b:2, c:3, d:4};
+    var isOdd = function(value, key, collection) { return value % 2 !== 0; };
+    var evens = reject(obj, isOdd);  
+    expect(evens).to.eql({b:2, d:4});
+  })
 });
 
 describe('uniq', function() {
@@ -311,34 +318,6 @@ describe('reduce', function() {
     var total = reduce([1, 2, 3], difference, 0);
     expect(total).to.equal(-6);
   });
-
-  it('should default to the last item in the array', function() {
-    var difference = function(tally, item) {return tally - item; };
-    var total = reduce([1, 2, 3], difference);
-    expect(total).to.equal(-4);
-  });
-
-  it('should default to the first item in the array', function() {
-    var add = function(tally, item) {return tally + item; };
-    var total = reduce([1, 2, 3], add);
-    expect(total).to.equal(6);
-  });
-
-});
-
-describe('reduceRight', function() {
-  it('should be able to find the difference in an array', function() {
-    var difference = function(tally, item) {return tally - item; };
-    var total = reduceRight([1, 2, 3], difference, 0);
-    expect(total).to.equal(-6);
-  });
-
-  it('should default to the last item in the array', function() {
-    var difference = function(tally, item) {return tally - item; };
-    var total = reduceRight([1, 2, 3], difference);
-    expect(total).to.equal(0);
-  });
-
 });
 
 describe('flatten', function() {
@@ -364,27 +343,28 @@ describe('extend', function() {
   it('should extend an object with the attributes of another', function() {
     var to = {};
     var from = {a:'b'};
-    var extended = extend(to, from);
-    expect(extended.a).to.equal('b');
+    extend(to, from);
+    expect(to.a).to.equal('b');
   });
 
   it('should override properties found on the destination', function() {
     var to = {a:'x'};
     var from = {a:'b'};
-    var extended = extend(to, from);
-    expect(extended.a).to.equal('b');
+    extend(to, from)
+    expect(to.a).to.equal('b');
   });
 
   it('should not override properties not found in the source', function() {
     var to = {x:'x'};
     var from = {a:'b'};
-    var extended = extend(to, from);
-    expect(extended.x).to.equal('x');
+    extend(to, from);
+    expect(to.x).to.equal('x');
   });
 
   it('should extend from multiple source objects', function() {
-    var extended = extend({x:1}, {a:2}, {b:3});
-    expect(extended).to.eql({x:1, a:2, b:3});
+    var first = {x:1};
+    extend(first, {a:2}, {b:3});
+    expect(first).to.eql({x:1, a:2, b:3});
   });
 
   it('in the case of a conflict, it should use the last property\'s values when extending from multiple source objects', function() {
@@ -568,5 +548,76 @@ describe("throttle", function() {
       expect(results[5]).to.eql(3);
       done();
     }, 192);
+  });
+
+  describe('sortBy', function() {
+    it('should sort by age', function() {
+      var people = [{name : 'george', age : 50}, {name : 'same', age : 30}];
+      people = _.sortBy(people, function(person) {
+        return person.age;
+      });
+
+      expect(_.pluck(people, 'name')).to.eql(['sam', 'george']);
+    });
+
+    it('should handle undefined values', function() {
+      var list = [undefined, 4, 1, undefined, 3, 2];
+      var result = _.sortBy(list, function(i) { return i; });
+
+      expect(result).to.eql([1, 2, 3, 4, undefined, undefined]);
+    });
+
+    it('should sort by length', function() {
+      var list = ['one', 'two', 'three', 'four', 'five'];
+      var sorted = _.sortBy(list, 'length');
+
+      expect(sorted).to.eql(['one', 'two', 'four', 'five', 'three']);
+    });
+
+    it('should produce results that change the order of the list as little as possible', function() {
+      function Pair(x, y) {
+        this.x = x;
+        this.y = y;
+      }
+
+      var collection = [
+        new Pair(1, 1), new Pair(1, 2),
+        new Pair(1, 3), new Pair(1, 4),
+        new Pair(1, 5), new Pair(1, 6),
+        new Pair(2, 1), new Pair(2, 2),
+        new Pair(2, 3), new Pair(2, 4),
+        new Pair(2, 5), new Pair(2, 6),
+        new Pair(undefined, 1), new Pair(undefined, 2),
+        new Pair(undefined, 3), new Pair(undefined, 4),
+        new Pair(undefined, 5), new Pair(undefined, 6)
+      ];
+
+      var actual = _.sortBy(collection, function(pair) {
+        return pair.x;
+      });
+
+      expect(actual).to.eql(collection);
+    });
+  });
+
+  describe('intersection', function() {
+    it('should take the set intersection of two arrays', function() {
+      var stooges = ['moe', 'curly', 'larry'];
+      var leaders = ['moe', 'groucho'];
+
+      expect(_.intersection(stooges, leaders)).to.eql(['moe']);
+    });
+  });
+
+  describe('zip', function() {
+    it('should zip together arrays of different lengths', function() {
+      var names = ['moe', 'larry', 'curly'], ages = [30, 40, 50], leaders = [true];
+
+      expect(_.zip(names, ages, leaders)).to.eql([
+        ['moe', 30, true],
+        ['larry', 40, undefined],
+        ['curly', 50, undefined]
+      ]);
+    });
   });
 });

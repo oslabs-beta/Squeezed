@@ -208,16 +208,21 @@ function filter(collection, callback) {
 // reject([1,2,3,4], function(element, index, collection) {
 //  return element % 2 === 0;
 // }); → [1,3]
-// reject({a:1, b:2, c:3, d:4}, function(element, index, collection) {
+// reject({a:1, b:2, c:3, d:4}, function(value, key, collection) {
 //  return element % 2 !== 0;
-// }); → [2,4]
+// }); → {b:2, d:4}
 // Challenge: use filter
 function reject(collection, callback) {
 	for(key in collection)
 	{
 		if(callback(collection[key],key,collection))
 		{
-			collection.splice(key, 1);
+			if (collection.length !== undefined){
+				collection.splice(key, 1);
+			}
+			else {
+				delete collection[key];
+			}
 		}
 	}
 	return collection;
@@ -240,6 +245,7 @@ function uniq(array) {
 
 // Gets the value of key from all elements in collection.
 // pluck([{user: 'Bob', age: 20},{user: 'Sam', age: 25}], 'user'); → ['Bob','Sam']
+//<<<<<<< HEAD
 function pluck(collection, key) {
 	var answer = [];
 	for (index in collection){
@@ -247,14 +253,21 @@ function pluck(collection, key) {
 	}
 	return answer;
 }
+//=======
+// function pluck(array, key) {
+
+// ///>>>>>>> 27d736f94cf7afc6512288cbe7021b47d9bf095d
+// }
 
 //COME BACK
 //_------------------------
 
 // Reduces collection to a value which is the accumulated result of running each element in collection through iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not provided the first element of collection is used as the initial value.
-// reduce([1,2], function(sum,n) {
-//  return sum + n;
+// If a start parameter is not provided, then set the start value as the zeroth index
+// reduce([1,2], function(stored,current) {
+//  return stored + current;
 // }); → 3
+//<<<<<< HEAD
 // reduce({a:1, b:2}, function(result, n, key) {
 //  result[key] = n*3;
 //  return result;
@@ -296,8 +309,15 @@ function reduceRight(collection, callback, start) {
 		answer = callback(answer, collection[i]);
 	}
 	return answer;
-
 }
+//=======
+// reduce([1,2], function(stored,current) {
+//  return stored + current;
+// },1); → 4
+//function reduce(array, callback, start) {
+//>>>>>>> 27d736f94cf7afc6512288cbe7021b47d9bf095d
+
+//}
 
 // Flattens a nested array.
 // flatten([1, [2, 3, [4]]]); → [1, 2, 3, [4]]
@@ -338,7 +358,8 @@ function flattenDeep(array) {
 
 // Assigns own enumerable properties of source object(s) to the destination object. Subsequent sources overwrite property assignments of previous sources.
 // extend({ 'user': 'barney' }, { 'age': 40 }, { 'user': 'fred' }); → { 'user': 'fred', 'age': 40 }
-function extend() {
+//<<<<<<< HEAD
+//function extend() {
 	// return arguments.reduce(function(previousValue, currentValue, index, array){
 	// 	for (key in currentValue){
 	// 		initialValue[key] = currentValue[key];
@@ -347,6 +368,10 @@ function extend() {
 	// });
 
 
+//=======
+// BONUS: solve with reduce
+function extend() {
+//>>>>>>> 27d736f94cf7afc6512288cbe7021b47d9bf095d
 
 	for (var i =1; i<arguments.length; i++){
 		for (key in arguments[i]){
@@ -393,25 +418,90 @@ var start = 2;
 applyAndEmpty(2, puzzlers); → 3
 */
 function applyAndEmpty(input, queue) {
-
+	while (queue.length > 0){
+		input = queue.shift()(input);
+	}
+	return input;
 }
 
 // Returns a function that is restricted to invoking func once. Repeat calls to the function return the value of the first call.
 function once(func) {
-
+	return function () {
+		if (func){
+			var ret = func();
+			func = null;
+		}
+		return ret;
+	};
 }
 
 // Returns a function that when called, will check if it has already computed the result for the given argument and return that value instead if possible.
 function memoize(func) {
-
+	var map = {};
+	return function(param) {
+		if(map[param])
+		{
+			return map[param];
+		}
+		else
+		{
+			map[param] = func(param);
+		}
+		return map[param];
+	}
 }
 
 // Invokes func after wait milliseconds. Any additional arguments are provided to func when it is invoked.
 function delay(func, wait) {
-
+	console.log("arguments",arguments[2]);
+	var args = Array.prototype.slice.call(arguments, 2);
+	console.log("args", args);
+	return setTimeout(function(){
+		console.log("this",this);
+		return func.apply(this,args);
+	}, wait);
 }
 
 // Returns a function that only invokes func at most once per every wait milliseconds.
 function throttle(func, wait) {
+
+}
+
+// Creates an array of elements, sorted in ascending order by the results of running each element in a collection through iteratee. 
+/*
+sortBy([1, 2, 3], function(n) {
+  return Math.sin(n);
+}); → [3, 1, 2]
+
+sortBy([1, 2, 3], function(n) {
+  return this.sin(n);
+}, Math); → [3, 1, 2]
+
+var users = [
+  { 'user': 'fred' },
+  { 'user': 'pebbles' },
+  { 'user': 'barney' }
+];
+
+pluck(_.sortBy(users, 'user'), 'user'); → ['barney', 'fred', 'pebbles']
+ */
+function sortBy(array, iterator) {
+	var arr =[];
+	for(var i = 0; i < array.length; i++)
+	{
+		array[i] = iterator(array[i]);
+	}
+	arr = array.sort();
+	return arr;
+}
+
+// Receives a variable number of arrays, and returns an array that contains every item shared between all passed-in arrays
+function intersection() {
+
+}
+
+// Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
+// zip(['fred', 'barney'], [30, 40], [true, false]); → [['fred', 30, true], ['barney', 40, false]]
+function zip() {
 
 }
