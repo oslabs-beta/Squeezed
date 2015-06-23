@@ -235,7 +235,7 @@ function throttle(func, wait) {
 
 }
 
-// Creates an array of elements, sorted in ascending order by the results of running each element in a collection through iteratee. 
+// Creates an array of elements, sorted in ascending order by the results of running each element in a collection through iteratee.
 /*
 sortBy([1, 2, 3], function(n) {
   return Math.sin(n);

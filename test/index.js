@@ -278,7 +278,7 @@ describe('reject', function() {
   it('should reject all odd values in object', function() {
     var obj = {a:1, b:2, c:3, d:4};
     var isOdd = function(value, key, collection) { return value % 2 !== 0; };
-    var evens = reject(obj, isOdd);  
+    var evens = reject(obj, isOdd);
     expect(evens).to.eql({b:2, d:4});
   })
 });
@@ -553,23 +553,23 @@ describe("throttle", function() {
   describe('sortBy', function() {
     it('should sort by age', function() {
       var people = [{name : 'george', age : 50}, {name : 'same', age : 30}];
-      people = _.sortBy(people, function(person) {
+      people = sortBy(people, function(person) {
         return person.age;
       });
 
-      expect(_.pluck(people, 'name')).to.eql(['sam', 'george']);
+      expect(pluck(people, 'name')).to.eql(['sam', 'george']);
     });
 
     it('should handle undefined values', function() {
       var list = [undefined, 4, 1, undefined, 3, 2];
-      var result = _.sortBy(list, function(i) { return i; });
+      var result = sortBy(list, function(i) { return i; });
 
       expect(result).to.eql([1, 2, 3, 4, undefined, undefined]);
     });
 
     it('should sort by length', function() {
       var list = ['one', 'two', 'three', 'four', 'five'];
-      var sorted = _.sortBy(list, 'length');
+      var sorted = sortBy(list, 'length');
 
       expect(sorted).to.eql(['one', 'two', 'four', 'five', 'three']);
     });
@@ -592,7 +592,7 @@ describe("throttle", function() {
         new Pair(undefined, 5), new Pair(undefined, 6)
       ];
 
-      var actual = _.sortBy(collection, function(pair) {
+      var actual = sortBy(collection, function(pair) {
         return pair.x;
       });
 
@@ -605,7 +605,7 @@ describe("throttle", function() {
       var stooges = ['moe', 'curly', 'larry'];
       var leaders = ['moe', 'groucho'];
 
-      expect(_.intersection(stooges, leaders)).to.eql(['moe']);
+      expect(intersection(stooges, leaders)).to.eql(['moe']);
     });
   });
 
@@ -613,7 +613,7 @@ describe("throttle", function() {
     it('should zip together arrays of different lengths', function() {
       var names = ['moe', 'larry', 'curly'], ages = [30, 40, 50], leaders = [true];
 
-      expect(_.zip(names, ages, leaders)).to.eql([
+      expect(zip(names, ages, leaders)).to.eql([
         ['moe', 30, true],
         ['larry', 40, undefined],
         ['curly', 50, undefined]
