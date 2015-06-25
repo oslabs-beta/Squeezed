@@ -1,5 +1,74 @@
 // Returns the first argument provided to it
+// ex: identity(5); -> 5
 function identity(value) {
+
+}
+
+// returns an integer with a value 2 times the value of the inputted integer
+// assume only integers are inputted
+// multiplyByTwo(1); -> 2
+// multiplyByTwo(2); -> 4
+function multiplyByTwo(num) {
+
+}
+
+// determines if the number is negative or not
+// ex: isNegative(5); -> false
+// ex: isNegative(-5); -> true
+function isNegative(value) {
+
+}
+
+// returns true if the number is negative or odd
+// ex: isNegativeOrOdd(1); -> true
+// ex: isNegativeOrOdd(-2); -> true
+// ex: isNegativeOrOdd(2); -> false
+function isNegativeOrOdd(value) {
+
+}
+
+
+// returns the strings combined together in the reverse order with a space
+// ex: concatSpace("world","hello"); -> "hello world"
+function concatSpaceBackwards(word1, word2) {
+
+}
+
+// returns a string that is the reverse of the inputted string
+// assume only strings are inputted
+// reverseString('hello'); -> 'olleh'
+// reverseString('will'); -> 'lliw'
+function reverseString(string) {
+
+}
+
+// Returns the first element of an array without modifying the original array.
+// Returns undefined if array is empty
+// first([1,2,3]); → 1
+// first([]); → undefined
+function first(array) {
+
+}
+
+// Returns the last element of an array without modifying the origin array
+// last([1,2,3]); → 3
+// last([]); → undefined
+function last(array) {
+
+}
+
+// accepts an object and returns an object with key and values switched
+// ex: reverseObject({a:1,b:"c","d":4}); -> {1:a,c:"b",4:"d"}
+function reverseObject(argument) {
+
+}
+
+// accepts a number and returns a string of all characters in the order they appear first
+// commonCharacters('abc'); -> 'abc'
+// commonCharacters('aabc'); -> 'abc'
+// commonCharacters('abca'); -> 'abc'
+// commonCharacters('abcdac'); -> 'abcd
+function commonCharacters(string) {
 
 }
 
@@ -24,6 +93,13 @@ function isObject(value) {
 
 }
 
+// return boolean of whether argument is classified as null
+// isNull(null); -> true
+// isNull(5); -> false
+function isNull(value) {
+
+}
+
 // Creates a clone of an object.
 // var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
 // var shallowClone = clone(users);
@@ -36,21 +112,6 @@ function clone(value) {
 // size([1,2,3]); → 3
 // size({a: 1, b: 2}); → 2
 function size(collection) {
-
-}
-
-// Returns the first element of an array without modifying the original array.
-// Returns undefined if array is empty
-// first([1,2,3]); → 1
-// first([]); → undefined
-function first(array) {
-
-}
-
-// Returns the last element of an array without modifying the origin array
-// last([1,2,3]); → 3
-// last([]); → undefined
-function last(array) {
 
 }
 
@@ -89,6 +150,14 @@ function take(array, n) {
 
 }
 
+/**
+ * returns an array with the elements from array1 that are not in array2
+ * difference([0,1,2,3,4,5],[3,5]); -> [0,1,2,4]
+ */
+function difference(array1, array2) {
+
+}
+
 // Iterates over elements of an array invoking callback for each element. The callback should be passed the element, the current index, and the entire array.
 // var callback = function(element, index, array) {
 //  console.log(element +"," +index +"," +array);
@@ -115,6 +184,7 @@ function forEachRight(array, callback) {
 // map([1,2,3], function(element, index, array) {
 //  return element * 3;
 // }); -> [3,6,9]
+// BONUS: use the forEach method you use to create map
 function map(array, callback) {
 
 }
@@ -251,9 +321,33 @@ var users = [
   { 'user': 'barney' }
 ];
 
-pluck(_.sortBy(users, 'user'), 'user'); → ['barney', 'fred', 'pebbles']
+pluck(sortBy(users, 'user'), 'user'); → ['barney', 'fred', 'pebbles']
  */
 function sortBy(array, iterator) {
+
+}
+
+/**
+ * Returns a list of integers from start (inclusive) to stop (exclusive), incremented (or decremented) by step
+ * start defaults to 0, step defaults to 1
+ * If you'd like a negative range, use a negative step.
+ * range(10); -> [0,1,2,3,4,5,6,7,8,9]
+ * range(1,11); -> [1,2,3,4,5,6,7,8,9,10]
+ * range(0,30,5); -> [0,5,10,15,20,25]
+ * range(0,-10,-1); -> [0,-1,-2,-3,-4,-5,-6,-7,-8,-9]
+ */
+function range(start, stop, step) {
+
+}
+
+/**
+ * split array into two array based on those elements who satisfies the predicate (callback)
+ * predicate(element)
+ * partition([0,1,2,3,4,5,6], function(element) {
+ *   return element % 2 === 0;
+ * }); -> [[0,2,4,6],[1,3,5]];
+ */
+function partition(array, predicate) {
 
 }
 

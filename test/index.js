@@ -8,6 +8,67 @@ describe('identity', function() {
   });
 });
 
+describe('multiplyByTwo', function() {
+  it('should multiplyByTwo', function() {
+    expect(multiplyByTwo(0)).to.eql(0);
+    expect(multiplyByTwo(1)).to.eql(2);
+  });
+});
+
+describe('reverseString', function() {
+  it('should reverse a string', function() {
+    expect(reverseString('')).to.eql('');
+    expect(reverseString('abc')).to.eql('cba');
+    expect(reverseString('abcd')).to.eql('dcba');
+  });
+});
+
+describe('first', function() {
+  it('should be able to pull out the first element of an array', function() {
+    expect(first([1,2,3])).to.equal(1);
+    expect(first([6])).to.equal(6);
+  });
+
+  it('should not modify the array', function() {
+    var array = [1,2,3];
+    expect(first(array)).to.equal(1);
+    expect(array).to.eql([1,2,3]);
+  });
+
+  it('should return undefined for empty array', function() {
+    expect(first([])).to.be(undefined);
+  });
+});
+
+describe('last', function() {
+  it('should be able to pull out the last element of an array', function() {
+    expect(last([1,2,3])).to.equal(3);
+    expect(last([6])).to.equal(6);
+  });
+
+  it('should not modify the array', function() {
+    var array = [1,2,3];
+    expect(last(array)).to.equal(3);
+    expect(array).to.eql([1,2,3]);
+  });
+
+  it('should return undefined for empty array', function() {
+    expect(last([])).to.be(undefined);
+  });
+});
+
+describe('reverseObject', function() {
+  it('should reverse object', function() {
+    expect(reverseObject({a:'b'})).to.eql({b:'a'});
+    expect(reverseObject({a:1})).to.eql({'1':'a'});
+  });
+
+  it('should reverse multiple properties', function() {
+    expect(reverseObject({a:1,b:2})).to.eql({'1':'a','2':'b'});
+    expect(reverseObject({a:1,b:2,c:3})).to.eql({'1':'a','2':'b','3':'c'});
+  });
+});
+
 describe('isNumber', function() {
   it('should return true for numbers', function() {
     expect(isNumber(0)).to.be(true);
@@ -51,6 +112,23 @@ describe('isObject', function() {
   });
 });
 
+describe('isNull', function() {
+  it('should return true for null', function() {
+    expect(isNull(null)).to.be(true);
+  });
+
+  it('should return false for everything', function() {
+    expect(isNull(5)).to.eql(false);
+    expect(isNull('string')).to.eql(false);
+    expect(isNull({})).to.eql(false);
+    expect(isNull([])).to.eql(false);
+    expect(isNull(undefined)).to.eql(false);
+    expect(isNull(true)).to.eql(false);
+    expect(isNull(false)).to.eql(false);
+  });
+
+});
+
 describe('clone', function() {
   it('should return shallow copy of object', function() {
     var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
@@ -68,40 +146,6 @@ describe('size', function() {
   it('should return the correct size of objects', function() {
     expect(size({a:1,b:2})).to.eql(2);
     expect(size({})).to.eql(0);
-  });
-});
-
-describe('first', function() {
-  it('should be able to pull out the first element of an array', function() {
-    expect(first([1,2,3])).to.equal(1);
-    expect(first([6])).to.equal(6);
-  });
-
-  it('should not modify the array', function() {
-    var array = [1,2,3];
-    expect(first(array)).to.equal(1);
-    expect(array).to.eql([1,2,3]);
-  });
-
-  it('should return undefined for empty array', function() {
-    expect(first([])).to.be(undefined);
-  });
-});
-
-describe('last', function() {
-  it('should be able to pull out the last element of an array', function() {
-    expect(last([1,2,3])).to.equal(3);
-    expect(last([6])).to.equal(6);
-  });
-
-  it('should not modify the array', function() {
-    var array = [1,2,3];
-    expect(last(array)).to.equal(3);
-    expect(array).to.eql([1,2,3]);
-  });
-
-  it('should return undefined for empty array', function() {
-    expect(last([])).to.be(undefined);
   });
 });
 
@@ -178,6 +222,12 @@ describe('take', function() {
 
   it('should return empty array if n is 0', function() {
     expect(take([1, 2, 3], 0)).to.eql([]);
+  });
+});
+
+describe('difference', function() {
+  it('should split return an array with the elements from the first array that are not present in the second array ', function() {
+    expect(difference([0,1,2,3,4,5],[3,5])).to.eql([0,1,2,4]);
   });
 });
 
@@ -549,75 +599,104 @@ describe("throttle", function() {
       done();
     }, 192);
   });
+});
 
-  describe('sortBy', function() {
-    it('should sort by age', function() {
-      var people = [{name : 'george', age : 50}, {name : 'same', age : 30}];
-      people = sortBy(people, function(person) {
-        return person.age;
-      });
-
-      expect(pluck(people, 'name')).to.eql(['sam', 'george']);
+describe('sortBy', function() {
+  it('should sort by age', function() {
+    var people = [{name : 'george', age : 50}, {name : 'same', age : 30}];
+    people = sortBy(people, function(person) {
+      return person.age;
     });
 
-    it('should handle undefined values', function() {
-      var list = [undefined, 4, 1, undefined, 3, 2];
-      var result = sortBy(list, function(i) { return i; });
-
-      expect(result).to.eql([1, 2, 3, 4, undefined, undefined]);
-    });
-
-    it('should sort by length', function() {
-      var list = ['one', 'two', 'three', 'four', 'five'];
-      var sorted = sortBy(list, 'length');
-
-      expect(sorted).to.eql(['one', 'two', 'four', 'five', 'three']);
-    });
-
-    it('should produce results that change the order of the list as little as possible', function() {
-      function Pair(x, y) {
-        this.x = x;
-        this.y = y;
-      }
-
-      var collection = [
-        new Pair(1, 1), new Pair(1, 2),
-        new Pair(1, 3), new Pair(1, 4),
-        new Pair(1, 5), new Pair(1, 6),
-        new Pair(2, 1), new Pair(2, 2),
-        new Pair(2, 3), new Pair(2, 4),
-        new Pair(2, 5), new Pair(2, 6),
-        new Pair(undefined, 1), new Pair(undefined, 2),
-        new Pair(undefined, 3), new Pair(undefined, 4),
-        new Pair(undefined, 5), new Pair(undefined, 6)
-      ];
-
-      var actual = sortBy(collection, function(pair) {
-        return pair.x;
-      });
-
-      expect(actual).to.eql(collection);
-    });
+    expect(pluck(people, 'name')).to.eql(['sam', 'george']);
   });
 
-  describe('intersection', function() {
-    it('should take the set intersection of two arrays', function() {
-      var stooges = ['moe', 'curly', 'larry'];
-      var leaders = ['moe', 'groucho'];
+  it('should handle undefined values', function() {
+    var list = [undefined, 4, 1, undefined, 3, 2];
+    var result = sortBy(list, function(i) { return i; });
 
-      expect(intersection(stooges, leaders)).to.eql(['moe']);
-    });
+    expect(result).to.eql([1, 2, 3, 4, undefined, undefined]);
   });
 
-  describe('zip', function() {
-    it('should zip together arrays of different lengths', function() {
-      var names = ['moe', 'larry', 'curly'], ages = [30, 40, 50], leaders = [true];
+  it('should sort by length', function() {
+    var list = ['one', 'two', 'three', 'four', 'five'];
+    var sorted = sortBy(list, 'length');
 
-      expect(zip(names, ages, leaders)).to.eql([
-        ['moe', 30, true],
-        ['larry', 40, undefined],
-        ['curly', 50, undefined]
-      ]);
+    expect(sorted).to.eql(['one', 'two', 'four', 'five', 'three']);
+  });
+
+  it('should produce results that change the order of the list as little as possible', function() {
+    function Pair(x, y) {
+      this.x = x;
+      this.y = y;
+    }
+
+    var collection = [
+      new Pair(1, 1), new Pair(1, 2),
+      new Pair(1, 3), new Pair(1, 4),
+      new Pair(1, 5), new Pair(1, 6),
+      new Pair(2, 1), new Pair(2, 2),
+      new Pair(2, 3), new Pair(2, 4),
+      new Pair(2, 5), new Pair(2, 6),
+      new Pair(undefined, 1), new Pair(undefined, 2),
+      new Pair(undefined, 3), new Pair(undefined, 4),
+      new Pair(undefined, 5), new Pair(undefined, 6)
+    ];
+
+    var actual = sortBy(collection, function(pair) {
+      return pair.x;
     });
+
+    expect(actual).to.eql(collection);
+  });
+});
+
+describe('range', function() {
+  it('should work with start and stop', function() {
+    expect(range(0,2,1)).to.eql([0,1]);
+    expect(range(0,5,1)).to.eql([0,1,2,3,4]);
+    expect(range(0,30,5)).to.eql([0,5,10,15,20,25]);
+  });
+
+  it('should default to step of 1', function() {
+    expect(range(0,2)).to.eql([0,1]);
+    expect(range(0,5)).to.eql([0,1,2,3,4]);
+  });
+
+  it('should default to start of 0', function() {
+    expect(range(5)).to.eql([0,1,2,3,4]);
+    expect(range(0)).to.eql([]);
+  });
+});
+
+describe('partition', function() {
+  it('should split the array into two based on predicate', function() {
+    expect(partition([0,1,2,3,4,5], function(element) {
+      return element % 2 === 0;
+    })).to.eql([0,2,4]);
+    expect(partition([0,1,2,3,4,5], function(element) {
+      return element % 2 === 1;
+    })).to.eql([1,3,5]);
+  });
+});
+
+describe('intersection', function() {
+  it('should take the set intersection of two arrays', function() {
+    var stooges = ['moe', 'curly', 'larry'];
+    var leaders = ['moe', 'groucho'];
+
+    expect(intersection(stooges, leaders)).to.eql(['moe']);
+  });
+});
+
+describe('zip', function() {
+  it('should zip together arrays of different lengths', function() {
+    var names = ['moe', 'larry', 'curly'], ages = [30, 40, 50], leaders = [true];
+
+    expect(zip(names, ages, leaders)).to.eql([
+      ['moe', 30, true],
+      ['larry', 40, undefined],
+      ['curly', 50, undefined]
+    ]);
   });
 });
