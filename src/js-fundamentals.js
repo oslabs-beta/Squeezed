@@ -27,6 +27,12 @@ function isNegativeOrOdd(value) {
 
 }
 
+// returns the strings combined together in the reverse order with a space
+// ex: concatSpace("world","hello"); -> "hello world"
+function concatSpaceBackwards(word1, word2) {
+
+}
+
 /**
  * repeats the given string count times
  * repeat('abc',3); -> 'abcabcabc'
@@ -34,13 +40,6 @@ function isNegativeOrOdd(value) {
  * repeat('abc',0); -> ''
  */
 function repeat(string, count) {
-
-}
-
-
-// returns the strings combined together in the reverse order with a space
-// ex: concatSpace("world","hello"); -> "hello world"
-function concatSpaceBackwards(word1, word2) {
 
 }
 
@@ -69,7 +68,7 @@ function last(array) {
 
 // accepts an object and returns an object with key and values switched
 // ex: reverseObject({a:1,b:"c","d":4}); -> {1:a,c:"b",4:"d"}
-function reverseObject(argument) {
+function reverseObject(object) {
 
 }
 
@@ -113,6 +112,7 @@ function isNull(value) {
 // Creates a clone of an object.
 // var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
 // var shallowClone = clone(users);
+// shallowClone === clone; 0 -> false
 // shallowClone[0] === users[0] → true
 function clone(value) {
 
@@ -127,6 +127,7 @@ function size(collection) {
 
 // Gets the index at which the first occurrence of value is found in array
 // Returns -1 if element is not in array
+// DO NOT USE THE BUILT-IN INDEXOF function
 // indexOf([11,22,33], 11); → 0
 // indexOf([11,22,33], 5); → -1
 function indexOf(array, value) {
@@ -314,7 +315,7 @@ function memoize(func) {
 }
 
 // Invokes func after wait milliseconds. Any additional arguments are provided to func when it is invoked.
-function delay(func, wait) {
+function delay(func, wait, third) {
 
 }
 
@@ -383,7 +384,7 @@ function zip() {
 
 // returns a function that will only be run after first being called count times
 // var called = function() { console.log('hello') };
-// var afterCalled = after(2, called);
+// var afterCalled = after(3, called);
 // afterCalled(); -> nothing is printed
 // afterCalled(); -> nothing is printed
 // afterCalled(); -> 'hello is printed'

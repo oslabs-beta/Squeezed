@@ -49,16 +49,16 @@ describe('isNegativeOrOdd', function() {
   });
 });
 
+describe('concatSpaceBackwards', function() {
+  it('should reverse the words with a space', function() {
+    expect(concatSpaceBackwards('world','hello')).to.eql('hello world');
+  });
+});
+
 describe('repeat', function() {
   it('should repeat inputted string count times', function() {
     expect(repeat('abc',3)).to.eql('abcabcabc');
     expect(repeat('***',2)).to.eql('******');
-  });
-});
-
-describe('concatSpaceBackwards', function() {
-  it('should reverse the words with a space', function() {
-    expect(concatSpaceBackwards('world','hello')).to.eql('hello world');
   });
 });
 
@@ -116,6 +116,18 @@ describe('reverseObject', function() {
   });
 });
 
+describe('commonCharacters', function() {
+  it('should return common characters', function() {
+    expect(commonCharacters('abc')).to.eql('abc');
+    expect(commonCharacters('aabc')).to.eql('abc');
+  });
+
+  it('should return common characters in order they first appear', function() {
+    expect(commonCharacters('abca')).to.eql('abc');
+    expect(commonCharacters('abcdac')).to.eql('abcd');
+  });
+});
+
 describe('isNumber', function() {
   it('should return true for numbers', function() {
     expect(isNumber(0)).to.be(true);
@@ -149,10 +161,10 @@ describe('isObject', function() {
   it('should return true for object', function() {
     expect(isObject({})).to.be(true);
     expect(isObject({a:1})).to.be(true);
+    expect(isObject([])).to.be(true);
   });
 
   it('should return false for everything', function() {
-    expect(isObject([])).to.be(false);
     expect(isObject('a')).to.be(false);
     expect(isObject(1)).to.be(false);
     expect(isObject(true)).to.be(false);
@@ -177,11 +189,20 @@ describe('isNull', function() {
 });
 
 describe('clone', function() {
-  it('should return shallow copy of object', function() {
+  it('should return shallow copy of array', function() {
     var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
     var shallowClone = clone(users);
+    expect(shallowClone).to.not.equal(users);
     expect(shallowClone[0].user).to.equal(users[0].user);
     expect(shallowClone[0]).to.equal(users[0]);
+  });
+
+  it('should return shallow copy of an object', function() {
+    var users = {a: {b:1}, c: {d: 2}};
+    var shallowClone = clone(users);
+    expect(users).to.not.equal(shallowClone);
+    expect(users.a).to.eql(shallowClone.a);
+    expect(users.c).to.eql(shallowClone.c);
   });
 });
 
@@ -424,16 +445,28 @@ describe('trim', function() {
 });
 
 describe('reduce', function() {
-  it('should be able to sum up an array', function() {
+  it('should sum up an array', function() {
     var add = function(tally, item) {return tally + item; };
-    var total = reduce([1, 2, 3], add, 0);
+    var total = reduce([1, 2, 3], add);
     expect(total).to.equal(6);
   });
 
-  it('should be able to find the difference in an array', function() {
+  it('should find the difference in an array', function() {
     var difference = function(tally, item) {return tally - item; };
-    var total = reduce([1, 2, 3], difference, 0);
-    expect(total).to.equal(-6);
+    var total = reduce([1, 2, 3], difference);
+    expect(total).to.equal(-4);
+  });
+
+  it('should sum up an array when start provided', function() {
+    var add = function(tally, item) {return tally + item; };
+    var total = reduce([1, 2, 3], add, 2);
+    expect(total).to.equal(8);
+  });
+
+  it('should find the difference in an array when start provided', function() {
+    var difference = function(tally, item) {return tally - item; };
+    var total = reduce([1, 2, 3], difference, -1);
+    expect(total).to.equal(-7);
   });
 });
 
@@ -498,7 +531,7 @@ describe('extend', function() {
 describe('isString', function() {
   it('should return true for strings', function() {
     expect(isString('a')).to.be(true);
-    expect(isString(5)).to.be(true);
+    expect(isString(5)).to.be(true); // congrats, you found the error
   });
 
   it('should return false for everything', function() {
@@ -584,27 +617,36 @@ describe('memoize', function() {
 });
 
 describe('delay', function() {
-  var clock;
-  beforeEach(function() {
-    clock = sinon.useFakeTimers();
-  });
-  afterEach(function() {
-    clock.restore();
-  });
-  it('should only execute the function after the specified wait time', function() {
-    var callback = sinon.spy();
-    delay(callback, 100);
-    clock.tick(99);
-    expect(callback.notCalled).to.be(true);
-    clock.tick(1);
-    expect(callback.calledOnce).to.be(true);
+  it('should only execute the function after the specified wait time', function(done) {
+    var count = 0;
+    delay(function() {
+       count++;
+    },50);
+    setTimeout(function() {
+      expect(count).to.eql(0);
+    },49);
+    setTimeout(function() {
+      expect(count).to.eql(1);
+      done();
+    },51);
   });
 
-  it('should have successfully passed function arguments in', function() {
-    var callback = sinon.spy();
-    delay(callback, 100, 1, 2);
-    clock.tick(100);
-    expect(callback.calledWith(1, 2)).to.be(true);
+  it('should have successfully passed function arguments in', function(done) {
+    var count = 0;
+    var count2 = 0;
+    delay(function(num, num2) {
+      count += num;
+      count2 += num2;
+    },50,5,2);
+    setTimeout(function() {
+      expect(count).to.eql(0);
+      expect(count2).to.eql(0);
+    },49);
+    setTimeout(function() {
+      expect(count).to.eql(5);
+      expect(count2).to.eql(2);
+      done();
+    },51);
   });
 });
 
@@ -617,13 +659,12 @@ describe("throttle", function() {
     var throttledIncr = throttle(incr, 32);
     throttledIncr();
     throttledIncr();
-
     expect(counter).to.eql(1);
     setTimeout(function() {
       throttledIncr();
       expect(counter).to.eql(2);
       done();
-    }, 64);
+    },33);
   });
 
   it("throttled functions return their value", function(done) {
@@ -657,20 +698,20 @@ describe("throttle", function() {
     setTimeout(saveResult, 96);
     setTimeout(saveResult, 180);
     setTimeout(function() {
-      expect(results[0]).to.eql(1);
+      expect(results[0]).to.be(1);
       expect(results[1]).to.eql(1);
       expect(results[2]).to.eql(1);
       expect(results[3]).to.eql(2);
       expect(results[4]).to.eql(2);
       expect(results[5]).to.eql(3);
       done();
-    }, 192);
+    }.bind(this),192);
   });
 });
 
 describe('sortBy', function() {
   it('should sort by age', function() {
-    var people = [{name : 'george', age : 50}, {name : 'same', age : 30}];
+    var people = [{name : 'george', age : 50}, {name : 'sam', age : 30}];
     people = sortBy(people, function(person) {
       return person.age;
     });
@@ -740,10 +781,10 @@ describe('partition', function() {
   it('should split the array into two based on predicate', function() {
     expect(partition([0,1,2,3,4,5], function(element) {
       return element % 2 === 0;
-    })).to.eql([0,2,4]);
+    })).to.eql([[0,2,4],[1,3,5]]);
     expect(partition([0,1,2,3,4,5], function(element) {
       return element % 2 === 1;
-    })).to.eql([1,3,5]);
+    })).to.eql([[1,3,5],[0,2,4]]);
   });
 });
 
@@ -765,5 +806,36 @@ describe('zip', function() {
       ['larry', 40, undefined],
       ['curly', 50, undefined]
     ]);
+  });
+});
+
+describe('after', function() {
+  it('should not be called until after returned function has been called count times', function() {
+    var count = 0;
+    var incr = function() {
+      count++;
+    }
+    var afterIncr = after(3, incr);
+    afterIncr();
+    expect(count).to.eql(0);
+    afterIncr();
+    expect(count).to.eql(0);
+    afterIncr();
+    expect(count).to.eql(1);
+    afterIncr();
+    expect(count).to.eql(2);
+  });
+});
+
+describe('before', function() {
+  it('description', function() {
+    var count = 0;
+    var incr = function() {
+      return count++;
+    }
+    var beforeIncr = before(3, incr);
+    expect(beforeIncr()).to.eql(0);
+    expect(beforeIncr()).to.eql(1);
+    expect(beforeIncr()).to.eql(1);
   });
 });
