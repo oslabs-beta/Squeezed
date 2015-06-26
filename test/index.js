@@ -15,6 +15,53 @@ describe('multiplyByTwo', function() {
   });
 });
 
+describe('isNegative', function() {
+  it('should return true if number is negative', function() {
+    expect(isNegative(-1)).to.eql(true);
+    expect(isNegative(-2)).to.eql(true);
+    expect(isNegative(-3)).to.eql(true);
+  });
+
+  it('should return false if number is positive', function() {
+    expect(isNegative(0)).to.eql(false);
+    expect(isNegative(1)).to.eql(false);
+    expect(isNegative(2)).to.eql(false);
+  });
+});
+
+describe('isNegativeOrOdd', function() {
+  it('should return true if number is negative', function() {
+    expect(isNegativeOrOdd(1)).to.eql(true);
+    expect(isNegativeOrOdd(3)).to.eql(true);
+    expect(isNegativeOrOdd(5)).to.eql(true);
+  });
+
+  it('should return true is number is negative', function() {
+    expect(isNegativeOrOdd(-1)).to.eql(true);
+    expect(isNegativeOrOdd(-2)).to.eql(true);
+    expect(isNegativeOrOdd(-3)).to.eql(true);
+  });
+
+  it('description', function() {
+    expect(isNegativeOrOdd(0)).to.eql(false);
+    expect(isNegativeOrOdd(2)).to.eql(false);
+    expect(isNegativeOrOdd(4)).to.eql(false);
+  });
+});
+
+describe('repeat', function() {
+  it('should repeat inputted string count times', function() {
+    expect(repeat('abc',3)).to.eql('abcabcabc');
+    expect(repeat('***',2)).to.eql('******');
+  });
+});
+
+describe('concatSpaceBackwards', function() {
+  it('should reverse the words with a space', function() {
+    expect(concatSpaceBackwards('world','hello')).to.eql('hello world');
+  });
+});
+
 describe('reverseString', function() {
   it('should reverse a string', function() {
     expect(reverseString('')).to.eql('');
@@ -353,6 +400,26 @@ describe('pluck', function() {
       {name : 'curly', age : 50}
     ];
     expect(pluck(people, 'name')).to.eql(['moe', 'curly']);
+  });
+});
+
+describe('trim', function() {
+  it('should remove leading white spaces', function() {
+    expect(trim('hello')).to.eql('hello');
+    expect(trim(' hello')).to.eql('hello');
+    expect(trim('  hello')).to.eql('hello');
+    expect(trim('   hello')).to.eql('hello');
+  });
+
+  it('should remove trailing white spaces', function() {
+    expect(trim('hello')).to.eql('hello');
+    expect(trim('hello ')).to.eql('hello');
+    expect(trim('hello  ')).to.eql('hello');
+    expect(trim('hello    ')).to.eql('hello');
+  });
+
+  it('should remove both', function() {
+    expect(trim('  hello  ')).to.eql('hello');
   });
 });
 

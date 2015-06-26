@@ -27,6 +27,16 @@ function isNegativeOrOdd(value) {
 
 }
 
+/**
+ * repeats the given string count times
+ * repeat('abc',3); -> 'abcabcabc'
+ * repeat('*',3); -> '***'
+ * repeat('abc',0); -> ''
+ */
+function repeat(string, count) {
+
+}
+
 
 // returns the strings combined together in the reverse order with a space
 // ex: concatSpace("world","hello"); -> "hello world"
@@ -224,6 +234,14 @@ function pluck(array, key) {
 
 }
 
+/**
+ * remove leading and trailing whitespace or specified characters from string
+ * trim(' hello '); -> 'hello'
+ */
+function trim(string) {
+
+}
+
 // Reduces collection to a value which is the accumulated result of running each element in collection through iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not provided the first element of collection is used as the initial value.
 // If a start parameter is not provided, then set the start value as the zeroth index
 // reduce([1,2], function(stored,current) {
@@ -373,8 +391,8 @@ function after(count, func) {
 
 }
 
-// returns a functin that can be called no more than count times. The result of the last function call is memoized and returned when count has been reached
 /**
+ * returns a functin that can be called no more than count times. The result of the last function call is memoized and returned when count has been reached
  * var count = 0;
  * var printAndIncrementCount = function() { console.log(count++) };
  * var beforePrintAndIncrementCount = before(2,printAndIncrementCount);
@@ -383,6 +401,6 @@ function after(count, func) {
  * beforePrintAndIncrementCount(); prints 1
  * beforePrintAndIncrementCount(); prints 1
  */
-function before(count, function) {
+function before(count, func) {
 
 }
