@@ -352,12 +352,37 @@ function partition(array, predicate) {
 }
 
 // Receives a variable number of arrays, and returns an array that contains every item shared between all passed-in arrays
+// intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]); -> [1,2]
 function intersection() {
 
 }
 
-// Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
+// Returns an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
 // zip(['fred', 'barney'], [30, 40], [true, false]); → [['fred', 30, true], ['barney', 40, false]]
 function zip() {
+
+}
+
+// returns a function that will only be run after first being called count times
+// var called = function() { console.log('hello') };
+// var afterCalled = after(2, called);
+// afterCalled(); -> nothing is printed
+// afterCalled(); -> nothing is printed
+// afterCalled(); -> 'hello is printed'
+function after(count, func) {
+
+}
+
+// returns a functin that can be called no more than count times. The result of the last function call is memoized and returned when count has been reached
+/**
+ * var count = 0;
+ * var printAndIncrementCount = function() { console.log(count++) };
+ * var beforePrintAndIncrementCount = before(2,printAndIncrementCount);
+ * beforePrintAndIncrementCount(); prints 0
+ * beforePrintAndIncrementCount(); prints 1
+ * beforePrintAndIncrementCount(); prints 1
+ * beforePrintAndIncrementCount(); prints 1
+ */
+function before(count, function) {
 
 }
