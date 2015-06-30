@@ -4,7 +4,8 @@
   <title>JS-Fundamental Test Suite</title>
   <link rel="stylesheet" href="test/lib/mocha/mocha.css" />
 </head>
-<script src="test/lib/scroll.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.9.3/lodash.min.js"></script>
+<script src="test/scroll.js"></script>
 <body onload="loadScroll()" onunload="saveScroll()">
   <div id="mocha"></div>
   <!-- <script src="test/lib/jquery/dist/jquery.js"></script> -->
@@ -13,6 +14,7 @@
   <script>mocha.setup('bdd')</script>
   <script src="test/lib/expect/index.js"></script>
   <script src="src/js-fundamentals.js"></script>
+  <script src="test/lib/lodash/lodash.js"></script>
   <script src="test/index.js"></script>
   <script>
     mocha.globals();

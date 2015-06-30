@@ -1,73 +1,54 @@
 // Returns the first argument provided to it
+// ex: identity(5); -> 5
 function identity(value) {
-	return value;
-}
-
-// Returns boolean of whether argument is classified as a Number object
-// isNumber(5); → true
-// isNumber('hi'); → false
-function isNumber(value) {
-	if(typeof(value) == "number")
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-
-	// return typeof(value) == "number";
 
 }
 
-// Returns boolean of whether argument is classified as an Array object
-// isArray(5); → false
-// isArray([1,2,3]); → true
-function isArray(value) {
-	if(typeof(value) == "object" && typeof(value.length) !== "undefined"){
-		return true;
-	}
-	else{
-		return false;
-	}
-
-	// return Array.isArray(value);
-	// return value.constructor === Array;
+// returns an integer with a value 2 times the value of the inputted integer
+// assume only integers are inputted
+// multiplyByTwo(1); -> 2
+// multiplyByTwo(2); -> 4
+function multiplyByTwo(num) {
 
 }
 
-// Returns boolean of whether argument is classified as an Object
-// isObject(5); → false
-// isObject([1,2,3]); → true
-function isObject(value) {
-	if(typeof(value) == "object" && value.length !== 0)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+// determines if the number is negative or not
+// ex: isNegative(5); -> false
+// ex: isNegative(-5); -> true
+function isNegative(value) {
+
 }
 
-// Creates a clone of an object.
-// var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
-// var shallowClone = clone(users);
-// shallowClone[0] === users[0] → true
-function clone(value) {
-	return value;
+// returns true if the number is negative or odd
+// ex: isNegativeOrOdd(1); -> true
+// ex: isNegativeOrOdd(-2); -> true
+// ex: isNegativeOrOdd(2); -> false
+function isNegativeOrOdd(value) {
+
 }
 
-// Return the size of collection. If the argument passed is an array, then return the length of the array. If the argument passed is an object, then return the number of key/value properties.
-// size([1,2,3]); → 3
-// size({a: 1, b: 2}); → 2
-function size(collection) {
-		var counter = 0;
-		for(key in collection)
-		{
-			counter++;
-		}
-		return counter;
+// returns the strings combined together in the reverse order with a space
+// ex: concatSpace("world","hello"); -> "hello world"
+function concatSpaceBackwards(word1, word2) {
+
+}
+
+/**
+ * repeats the given string count times
+ * repeat('abc',3); -> 'abcabcabc'
+ * repeat('*',3); -> '***'
+ * repeat('abc',0); -> ''
+ */
+function repeat(string, count) {
+
+}
+
+// returns a string that is the reverse of the inputted string
+// assume only strings are inputted
+// reverseString('hello'); -> 'olleh'
+// reverseString('will'); -> 'lliw'
+function reverseString(string) {
+
 }
 
 // Returns the first element of an array without modifying the original array.
@@ -75,42 +56,82 @@ function size(collection) {
 // first([1,2,3]); → 1
 // first([]); → undefined
 function first(array) {
-	// if (array.length == 0){
-	// 	return undefined;
-	// }
-	// else {
-		return array[0];
-	// }
+
 }
 
 // Returns the last element of an array without modifying the origin array
 // last([1,2,3]); → 3
 // last([]); → undefined
 function last(array) {
-	// if(array.length == 0)
-	// {
-	// 	return undefined;
-	// }
-	// else
-	// {
-		return array[array.length-1];
-	// }
+
+}
+
+// accepts an object and returns an object with key and values switched
+// ex: reverseObject({a:1,b:"c","d":4}); -> {1:a,c:"b",4:"d"}
+function reverseObject(object) {
+
+}
+
+// accepts a number and returns a string of all characters in the order they appear first
+// commonCharacters('abc'); -> 'abc'
+// commonCharacters('aabc'); -> 'abc'
+// commonCharacters('abca'); -> 'abc'
+// commonCharacters('abcdac'); -> 'abcd
+function commonCharacters(string) {
+
+}
+
+// Returns boolean of whether argument is classified as a Number object
+// isNumber(5); → true
+// isNumber('hi'); → false
+function isNumber(value) {
+
+}
+
+// Returns boolean of whether argument is classified as an Array object
+// isArray(5); → false
+// isArray([1,2,3]); → true
+function isArray(value) {
+
+}
+
+// Returns boolean of whether argument is classified as an Object
+// isObject(5); → false
+// isObject([1,2,3]); → true
+function isObject(value) {
+
+}
+
+// return boolean of whether argument is classified as null
+// isNull(null); -> true
+// isNull(5); -> false
+function isNull(value) {
+
+}
+
+// Creates a clone of an object.
+// var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
+// var shallowClone = clone(users);
+// shallowClone === clone; 0 -> false
+// shallowClone[0] === users[0] → true
+function clone(value) {
+
+}
+
+// Return the size of collection. If the argument passed is an array, then return the length of the array. If the argument passed is an object, then return the number of key/value properties.
+// size([1,2,3]); → 3
+// size({a: 1, b: 2}); → 2
+function size(collection) {
+
 }
 
 // Gets the index at which the first occurrence of value is found in array
 // Returns -1 if element is not in array
+// DO NOT USE THE BUILT-IN INDEXOF function
 // indexOf([11,22,33], 11); → 0
 // indexOf([11,22,33], 5); → -1
 function indexOf(array, value) {
-	// return array.indexOf(value);
-	for(var i = 0; i < array.length; i++)
-	{
-		if(array[i] === value)
-		{
-			return i;
-		}
-	}
-	return -1;
+
 }
 
 // Creates a slice of array with n elements dropped from the beginning. n defaults to 1
@@ -119,12 +140,7 @@ function indexOf(array, value) {
 // drop([1, 2, 3], 5); → []
 // drop([1, 2, 3], 0); → [1, 2, 3]
 function drop(array, n) {
-	if(n == undefined)
-	{
-		n = 1;
-	}
-	array.splice(0,n);
-	return array;
+
 }
 
 // Creates a slice of array with n elements dropped from the end. n defaults to 1
@@ -133,14 +149,7 @@ function drop(array, n) {
 // dropRight([1, 2, 3], 5); → []
 // dropRight([1, 2, 3], 0); → [1, 2, 3]
 function dropRight(array, n) {
-	if (n == undefined){
-		n = 1;
-	}
-	if (n > array.length){
-		return [];
-	}
-	array.splice(array.length-n, n);
-	return array;
+
 }
 
 //Creates a slice of array with n elements taken from the beginning. n defaults to 1
@@ -149,10 +158,15 @@ function dropRight(array, n) {
 // take([1, 2, 3], 5); → [1, 2, 3]
 // take([1, 2, 3], 0); → []
 function take(array, n) {
-	if (n == undefined){
-		n = 1;
-	}
-	return array.slice(0,n);
+
+}
+
+/**
+ * returns an array with the elements from array1 that are not in array2
+ * difference([0,1,2,3,4,5],[3,5]); -> [0,1,2,4]
+ */
+function difference(array1, array2) {
+
 }
 
 // Iterates over elements of an array invoking callback for each element. The callback should be passed the element, the current index, and the entire array.
@@ -162,9 +176,7 @@ function take(array, n) {
 // forEach(['a','b','c'], callback); → prints a,0,[1,2,3] b,1,[1,2,3] c,2,[1,2,3]
 // For each element in the array, the callback we passed is called. The callback can be customized, but in the above example, the callback prints out the element, index, and entire array.
 function forEach(array, callback) {
-	for (var i = 0; i<array.length; i++){
-		callback(array[i], i, array);
-	}
+
 }
 
 // Iterates over elements of array in reverse invoking callback for each element.
@@ -174,10 +186,7 @@ function forEach(array, callback) {
 // }
 // forEach(['a','b','c'], callback); → prints c,2,[1,2,3] b,1,[1,2,3] a,0,[1,2,3]
 function forEachRight(array, callback) {
-	for(var i = array.length-1; i >= 0; i--)
-	{
-		callback(array[i], i, array);	
-	}
+
 }
 
 // Creates an array of values by running each element in collection through callback
@@ -186,11 +195,9 @@ function forEachRight(array, callback) {
 // map([1,2,3], function(element, index, array) {
 //  return element * 3;
 // }); -> [3,6,9]
+// BONUS: use the forEach method you use to create map
 function map(array, callback) {
-	for (var i = 0; i<array.length; i++){
-		array[i] = callback(array[i], i, array);
-	}
-	return array;
+
 }
 
 // Iterates over elements of collection, returning an array of all elements callback returns truthy for.
@@ -201,15 +208,7 @@ function map(array, callback) {
 //  return element % 2 !== 0;
 // }); → [1,3]
 function filter(collection, callback) {
-	var answer = [];
-	for(key in collection)
-	{
-		if(callback(collection[key],key,collection))
-		{
-			answer.push(collection[key]);
-		}
-	}
-	return answer;
+
 }
 
 // Removes all elements from array that callback returns truthy for and returns an array of the removed elements.
@@ -221,186 +220,65 @@ function filter(collection, callback) {
 // }); → {b:2, d:4}
 // Challenge: use filter
 function reject(collection, callback) {
-	for(key in collection)
-	{
-		if(callback(collection[key],key,collection))
-		{
-			if (collection.length !== undefined){
-				collection.splice(key, 1);
-			}
-			else {
-				delete collection[key];
-			}
-		}
-	}
-	return collection;
-}
 
+}
 
 // Creates an array without duplicate values. The order of the array is preserved.
 // uniq([1,2,1]); → [1,2]
 function uniq(array) {
-	var answer = [];
-	for(var i = 0; i < array.length; i++)
-	{
-		if(answer.indexOf(array[i]) === -1)
-		{
-			answer.push(array[i]);
-		}
-	}
-	return answer;
 
-	// creating an empty object and saving values to it would be more time efficient
 }
 
 // Gets the value of key from all elements in collection.
 // pluck([{user: 'Bob', age: 20},{user: 'Sam', age: 25}], 'user'); → ['Bob','Sam']
-//<<<<<<< HEAD
-function pluck(collection, key) {
-	var answer = [];
-	for (index in collection){
-		answer.push(collection[index][key]);
-	}
-	return answer;
+function pluck(array, key) {
+
 }
-//=======
-// function pluck(array, key) {
 
-// ///>>>>>>> 27d736f94cf7afc6512288cbe7021b47d9bf095d
-// }
+/**
+ * remove leading and trailing whitespace or specified characters from string
+ * trim(' hello '); -> 'hello'
+ */
+function trim(string) {
 
-//COME BACK
-//_------------------------
+}
 
 // Reduces collection to a value which is the accumulated result of running each element in collection through iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not provided the first element of collection is used as the initial value.
 // If a start parameter is not provided, then set the start value as the zeroth index
 // reduce([1,2], function(stored,current) {
 //  return stored + current;
 // }); → 3
-//<<<<<< HEAD
-// reduce({a:1, b:2}, function(result, n, key) {
-//  result[key] = n*3;
-//  return result;
-// }, {}); → {a:3, b:6}
-function reduce(collection, callback, start) {
-	if(start === undefined)
-	{
-		start = collection[0];
-		for(var i = 1; i < collection.length; i++)
-		{
-			start = callback(start,collection[i]);
-		}
-		return start;
-	}
-	var answer = start;
-	for(var i = 0; i < collection.length; i++)
-	{
-		answer = callback(answer,collection[i]);
-	}
-	return answer;
-}
-
-// This method is like reduce except that it iterates over elements of collection from right to left.
-// reduceRight([1,2], function(sum,n) {
-//  return difference - n;
-// }); → 1
-function reduceRight(collection, callback, start) {
-	if(start == undefined)
-	{
-		start = collection[collection.length-1];
-		for (var i = collection.length-2; i >= 0; i--){
-			start = callback(start, collection[i]);
-		}
-		return start;
-	}
-	var answer = start;
-	for(var i = collection.length-1; i >= 0; i--)
-	{
-		answer = callback(answer, collection[i]);
-	}
-	return answer;
-}
-//=======
 // reduce([1,2], function(stored,current) {
 //  return stored + current;
 // },1); → 4
-//function reduce(array, callback, start) {
-//>>>>>>> 27d736f94cf7afc6512288cbe7021b47d9bf095d
+function reduce(array, callback, start) {
 
-//}
+}
 
 // Flattens a nested array.
 // flatten([1, [2, 3, [4]]]); → [1, 2, 3, [4]]
 function flatten(array) {
-	var answer = [];
-	for(var i = 0; i < array.length; i++)
-	{
-		if(isArray(array[i]))
-		{
-			for(var j = 0; j < array[i].length; j++)
-			{
-				answer.push(array[i][j]);
-			}
-		}
-		else
-		{
-			answer.push(array[i]);
-		}
-	}
-	return answer;
+
 }
 
 // Recursively flattens a nested array.
 // flattenDeep([1, [2, 3, [4]]]); → [1, 2, 3, 4]
 function flattenDeep(array) {
-	var ans = [];
-	for (var i =0; i<array.length; i++){
-		if (isArray(array[i])){
-			ans = ans.concat(flattenDeep(array[i]));
-		}
-		else
-		{
-			ans.push(array[i]);
-		}
-	}
-	return ans;
+
 }
 
 // Assigns own enumerable properties of source object(s) to the destination object. Subsequent sources overwrite property assignments of previous sources.
 // extend({ 'user': 'barney' }, { 'age': 40 }, { 'user': 'fred' }); → { 'user': 'fred', 'age': 40 }
-//<<<<<<< HEAD
-//function extend() {
-	// return arguments.reduce(function(previousValue, currentValue, index, array){
-	// 	for (key in currentValue){
-	// 		initialValue[key] = currentValue[key];
-	// 	}
-	// 	return initialValue;
-	// });
-
-
-//=======
 // BONUS: solve with reduce
 function extend() {
-//>>>>>>> 27d736f94cf7afc6512288cbe7021b47d9bf095d
 
-	for (var i =1; i<arguments.length; i++){
-		for (key in arguments[i]){
-			arguments[0][key] = arguments[i][key];
-		}
-	}
-	return arguments[0];
 }
 
 // Returns boolean of whether argument is classified as a String object
 // isString('hi'); → true
 // isString(5); → false
 function isString(value) {
-	if (typeof(value) === "string"){
-		return true;
-	}
-	else{
-		return false;
-	}
+
 }
 
 // Creates a deep clone of value.
@@ -409,11 +287,7 @@ function isString(value) {
 // deepClone[0].user === users[0].user → true
 // deepClone === users → false
 function cloneDeep(value) {
-	var arr = [];
-	for (var i =0; i<value.length; i++){
-		arr.push(value[i]);
-	}
-	return arr;
+
 }
 
 // Using a for loop, call the functions in the queue in order with the input number, where the results of each function become the next function’s input. Additionally, the queue should be empty after the function is called.
@@ -427,93 +301,119 @@ var start = 2;
 applyAndEmpty(2, puzzlers); → 3
 */
 function applyAndEmpty(input, queue) {
-	while (queue.length > 0){
-		input = queue.shift()(input);
-	}
-	return input;
+
 }
 
 // Returns a function that is restricted to invoking func once. Repeat calls to the function return the value of the first call.
 function once(func) {
-	return function () {
-		if (func){
-			var ret = func();
-			func = null;
-		}
-		return ret;
-	};
+
 }
 
 // Returns a function that when called, will check if it has already computed the result for the given argument and return that value instead if possible.
 function memoize(func) {
-	var map = {};
-	return function(param) {
-		if(!map[param])
-		{
-			map[param] = func(param);
-		}
-		return map[param];
-	}
+
 }
 
 // Invokes func after wait milliseconds. Any additional arguments are provided to func when it is invoked.
-function delay(func, wait) {
-	console.log("arguments",arguments[2]);
-	var args = Array.prototype.slice.call(arguments, 2);
-	console.log("args", args);
-	return setTimeout(function(){
-		console.log("this",this);
-		return func.apply(this,args);
-	}, wait);
+function delay(func, wait, third) {
+
 }
 
 // Returns a function that only invokes func at most once per every wait milliseconds.
 function throttle(func, wait) {
-	return function(){
-		var once = true;
-		
-		
-	}; 
+
 }
 
-// Creates an array of elements, sorted in ascending order by the results of running each element in a collection through iteratee. 
+// Creates an array of elements, sorted in ascending order by the results of running each element in a collection through iteratee.
 /*
 sortBy([1, 2, 3], function(n) {
   return Math.sin(n);
 }); → [3, 1, 2]
-
 sortBy([1, 2, 3], function(n) {
   return this.sin(n);
 }, Math); → [3, 1, 2]
-
 var users = [
   { 'user': 'fred' },
   { 'user': 'pebbles' },
   { 'user': 'barney' }
 ];
-
-pluck(_.sortBy(users, 'user'), 'user'); → ['barney', 'fred', 'pebbles']
+pluck(sortBy(users, 'user'), 'user'); → ['barney', 'fred', 'pebbles']
  */
- // [1,7, 123]
- //[1,6,7]
- //[1,123,7]
 function sortBy(array, iterator) {
-	var arr =[];
-	for(var i = 0; i < array.length; i++)
-	{
-		array[i] = iterator(array[i]);
-	}
-	arr = array.sort();
-	return arr;
+
+}
+
+/**
+ * Returns a list of integers from start (inclusive) to stop (exclusive), incremented (or decremented) by step
+ * start defaults to 0, step defaults to 1
+ * If you'd like a negative range, use a negative step.
+ * range(10); -> [0,1,2,3,4,5,6,7,8,9]
+ * range(1,11); -> [1,2,3,4,5,6,7,8,9,10]
+ * range(0,30,5); -> [0,5,10,15,20,25]
+ * range(0,-10,-1); -> [0,-1,-2,-3,-4,-5,-6,-7,-8,-9]
+ */
+function range(start, stop, step) {
+
+}
+
+/**
+ * split array into two array based on those elements who satisfies the predicate (callback)
+ * predicate(element)
+ * partition([0,1,2,3,4,5,6], function(element) {
+ *   return element % 2 === 0;
+ * }); -> [[0,2,4,6],[1,3,5]];
+ */
+function partition(array, predicate) {
+
 }
 
 // Receives a variable number of arrays, and returns an array that contains every item shared between all passed-in arrays
+// intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]); -> [1,2]
 function intersection() {
 
 }
 
-// Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
+// Returns an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
 // zip(['fred', 'barney'], [30, 40], [true, false]); → [['fred', 30, true], ['barney', 40, false]]
 function zip() {
+
+}
+
+// returns a function that will only be run after first being called count times
+// var called = function() { console.log('hello') };
+// var afterCalled = after(3, called);
+// afterCalled(); -> nothing is printed
+// afterCalled(); -> nothing is printed
+// afterCalled(); -> 'hello is printed'
+function after(count, func) {
+
+}
+
+/**
+ * returns a functin that can be called no more than count times. The result of the last function call is memoized and returned when count has been reached
+ * var count = 0;
+ * var printAndIncrementCount = function() { console.log(count++) };
+ * var beforePrintAndIncrementCount = before(2,printAndIncrementCount);
+ * beforePrintAndIncrementCount(); prints 0
+ * beforePrintAndIncrementCount(); prints 1
+ * beforePrintAndIncrementCount(); prints 1
+ * beforePrintAndIncrementCount(); prints 1
+ */
+function before(count, func) {
+
+}
+
+/**
+ * returns a javascript object from a JSON formatted string
+ * Example json to javascript object:
+ *   "5"          -> 5
+ *   "'hello'"   -> 'hello'
+ *   "[]"         -> []
+ *   "{}"         -> {}
+ *   "["hello"]"  -> ['hello']
+ *
+ *  For more examples, use the JSON.stringify method in the console
+ */
+function JSONParser(string) {
 
 }
