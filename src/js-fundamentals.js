@@ -329,17 +329,14 @@ function throttle(func, wait) {
 sortBy([1, 2, 3], function(n) {
   return Math.sin(n);
 }); → [3, 1, 2]
-
 sortBy([1, 2, 3], function(n) {
   return this.sin(n);
 }, Math); → [3, 1, 2]
-
 var users = [
   { 'user': 'fred' },
   { 'user': 'pebbles' },
   { 'user': 'barney' }
 ];
-
 pluck(sortBy(users, 'user'), 'user'); → ['barney', 'fred', 'pebbles']
  */
 function sortBy(array, iterator) {

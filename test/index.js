@@ -214,6 +214,7 @@ describe('size', function() {
   it('should return the correct size of objects', function() {
     expect(size({a:1,b:2})).to.eql(2);
     expect(size({})).to.eql(0);
+    expect(size({a:1,b:2,length:1})).to.eql(3);
   });
 });
 
