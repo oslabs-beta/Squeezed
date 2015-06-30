@@ -15,6 +15,9 @@ function isNumber(value) {
 	{
 		return false;
 	}
+
+	// return typeof(value) == "number";
+
 }
 
 // Returns boolean of whether argument is classified as an Array object
@@ -27,6 +30,10 @@ function isArray(value) {
 	else{
 		return false;
 	}
+
+	// return Array.isArray(value);
+	// return value.constructor === Array;
+
 }
 
 // Returns boolean of whether argument is classified as an Object
@@ -55,19 +62,12 @@ function clone(value) {
 // size([1,2,3]); → 3
 // size({a: 1, b: 2}); → 2
 function size(collection) {
-	// if(isArray(collection))
-	// {
-	// 	return collection.length;
-	// }
-	// else
-	// {
 		var counter = 0;
 		for(key in collection)
 		{
 			counter++;
 		}
 		return counter;
-	// }
 }
 
 // Returns the first element of an array without modifying the original array.
@@ -75,26 +75,26 @@ function size(collection) {
 // first([1,2,3]); → 1
 // first([]); → undefined
 function first(array) {
-	if (array.length == 0){
-		return undefined;
-	}
-	else {
+	// if (array.length == 0){
+	// 	return undefined;
+	// }
+	// else {
 		return array[0];
-	}
+	// }
 }
 
 // Returns the last element of an array without modifying the origin array
 // last([1,2,3]); → 3
 // last([]); → undefined
 function last(array) {
-	if(array.length == 0)
-	{
-		return undefined;
-	}
-	else
-	{
+	// if(array.length == 0)
+	// {
+	// 	return undefined;
+	// }
+	// else
+	// {
 		return array[array.length-1];
-	}
+	// }
 }
 
 // Gets the index at which the first occurrence of value is found in array
@@ -102,7 +102,15 @@ function last(array) {
 // indexOf([11,22,33], 11); → 0
 // indexOf([11,22,33], 5); → -1
 function indexOf(array, value) {
-	return array.indexOf(value);
+	// return array.indexOf(value);
+	for(var i = 0; i < array.length; i++)
+	{
+		if(array[i] === value)
+		{
+			return i;
+		}
+	}
+	return -1;
 }
 
 // Creates a slice of array with n elements dropped from the beginning. n defaults to 1
@@ -241,6 +249,8 @@ function uniq(array) {
 		}
 	}
 	return answer;
+
+	// creating an empty object and saving values to it would be more time efficient
 }
 
 // Gets the value of key from all elements in collection.
@@ -342,11 +352,11 @@ function flatten(array) {
 
 // Recursively flattens a nested array.
 // flattenDeep([1, [2, 3, [4]]]); → [1, 2, 3, 4]
-var ans = [];
 function flattenDeep(array) {
+	var ans = [];
 	for (var i =0; i<array.length; i++){
 		if (isArray(array[i])){
-			flattenDeep(array[i]);
+			ans = ans.concat(flattenDeep(array[i]));
 		}
 		else
 		{
@@ -378,7 +388,6 @@ function extend() {
 			arguments[0][key] = arguments[i][key];
 		}
 	}
-
 	return arguments[0];
 }
 
@@ -439,11 +448,7 @@ function once(func) {
 function memoize(func) {
 	var map = {};
 	return function(param) {
-		if(map[param])
-		{
-			return map[param];
-		}
-		else
+		if(!map[param])
 		{
 			map[param] = func(param);
 		}
@@ -464,7 +469,11 @@ function delay(func, wait) {
 
 // Returns a function that only invokes func at most once per every wait milliseconds.
 function throttle(func, wait) {
-
+	return function(){
+		var once = true;
+		
+		
+	}; 
 }
 
 // Creates an array of elements, sorted in ascending order by the results of running each element in a collection through iteratee. 
@@ -485,6 +494,9 @@ var users = [
 
 pluck(_.sortBy(users, 'user'), 'user'); → ['barney', 'fred', 'pebbles']
  */
+ // [1,7, 123]
+ //[1,6,7]
+ //[1,123,7]
 function sortBy(array, iterator) {
 	var arr =[];
 	for(var i = 0; i < array.length; i++)
