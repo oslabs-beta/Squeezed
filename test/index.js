@@ -281,7 +281,7 @@ describe('take', function() {
     expect(take([1, 2, 3])).to.eql([1]);
   });
 
-  it('should remove last n elem', function() {
+  it('should return first n elem', function() {
     expect(take([1, 2, 3], 2)).to.eql([1,2]);
   });
 
