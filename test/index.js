@@ -268,37 +268,53 @@ describe('drop', function() {
 
 describe('dropRight', function() {
   it('should remove last element if second argument not provided', function() {
-    expect(dropRight([1, 2, 3])).to.eql([1, 2]);
+    var numbers = [1, 2, 3];
+    expect(dropRight(numbers)).to.eql([1, 2]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should remove last n elem', function() {
-    expect(dropRight([1, 2, 3], 2)).to.eql([1]);
+    var numbers = [1, 2, 3];
+    expect(dropRight(numbers, 2)).to.eql([1]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should return empty array if n is larger than array length', function() {
-    expect(dropRight([1, 2, 3], 5)).to.eql([]);
+    var numbers = [1, 2, 3];
+    expect(dropRight(numbers, 5)).to.eql([]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should return entire array if n is 0', function() {
-    expect(dropRight([1, 2, 3], 0)).to.eql([1, 2, 3]);
+    var numbers = [1, 2, 3];
+    expect(dropRight(numbers, 0)).to.eql([1, 2, 3]);
+    expect(numbers).to.eql([1,2,3]);
   });
 });
 
 describe('take', function() {
   it('should return first element if second argument not provided', function() {
-    expect(take([1, 2, 3])).to.eql([1]);
+    var numbers = [1, 2, 3];
+    expect(take(numbers)).to.eql([1]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should return first n elem', function() {
-    expect(take([1, 2, 3], 2)).to.eql([1,2]);
+    var numbers = [1, 2, 3];
+    expect(take(numbers, 2)).to.eql([1,2]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should return entire array if n is larger than array length', function() {
-    expect(take([1, 2, 3], 5)).to.eql([1,2,3]);
+    var numbers = [1, 2, 3];
+    expect(take(numbers, 5)).to.eql([1,2,3]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should return empty array if n is 0', function() {
-    expect(take([1, 2, 3], 0)).to.eql([]);
+    var numbers = [1, 2, 3];
+    expect(take(numbers, 0)).to.eql([]);
+    expect(numbers).to.eql([1,2,3]);
   });
 });
 
