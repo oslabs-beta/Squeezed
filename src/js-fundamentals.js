@@ -72,7 +72,7 @@ function reverseObject(object) {
 
 }
 
-// accepts a number and returns a string of all characters in the order they appear first
+// accepts a string and returns a string of all characters in the order they appear first
 // commonCharacters('abc'); -> 'abc'
 // commonCharacters('aabc'); -> 'abc'
 // commonCharacters('abca'); -> 'abc'
@@ -284,8 +284,9 @@ function isString(value) {
 // Creates a deep clone of value.
 // var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
 // var deepClone = cloneDeep(users)
-// deepClone[0].user === users[0].user → true
 // deepClone === users → false
+// deepClone[0] === users[0] → false 
+// deepClone[0].user === users[0].user → true
 function cloneDeep(value) {
 
 }

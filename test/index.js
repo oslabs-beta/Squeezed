@@ -36,13 +36,13 @@ describe('isNegativeOrOdd', function() {
     expect(isNegativeOrOdd(5)).to.eql(true);
   });
 
-  it('should return true is number is negative', function() {
+  it('should return true if number is negative', function() {
     expect(isNegativeOrOdd(-1)).to.eql(true);
     expect(isNegativeOrOdd(-2)).to.eql(true);
     expect(isNegativeOrOdd(-3)).to.eql(true);
   });
 
-  it('description', function() {
+  it('should return false if number is even', function() {
     expect(isNegativeOrOdd(0)).to.eql(false);
     expect(isNegativeOrOdd(2)).to.eql(false);
     expect(isNegativeOrOdd(4)).to.eql(false);
@@ -548,6 +548,7 @@ describe('cloneDeep', function() {
     var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
     var deepClone = cloneDeep(users);
     expect(deepClone[0].user).to.equal(users[0].user);
+    expect(deepClone[0]).to.not.equal(users[0]);
     expect(deepClone).to.not.equal(users);
     expect(deepClone[0]).to.eql(users[0]);
     expect(deepClone).to.eql(users);
@@ -834,7 +835,7 @@ describe('before', function() {
     var incr = function() {
       return count++;
     }
-    var beforeIncr = before(3, incr);
+    var beforeIncr = before(2, incr);
     expect(beforeIncr()).to.eql(0);
     expect(beforeIncr()).to.eql(1);
     expect(beforeIncr()).to.eql(1);
