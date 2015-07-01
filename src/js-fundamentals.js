@@ -232,14 +232,7 @@ function uniq(array) {
 // Gets the value of key from all elements in collection.
 // pluck([{user: 'Bob', age: 20},{user: 'Sam', age: 25}], 'user'); → ['Bob','Sam']
 function pluck(array, key) {
-	var newar = array.map(function(element){
-		if (typeof element === "object"){
-			if (element[key]){
-				return element[key];
-			}
-		}
-	});
-	return newar;
+
 }
 
 /**
@@ -324,30 +317,12 @@ function memoize(func) {
 
 // Invokes func after wait milliseconds. Any additional arguments are provided to func when it is invoked.
 function delay(func, wait, third) {
-	var args = Array.prototype.slice.call(arguments, 2) || '';
-	setTimeout(function(){
-		return func.apply(null, args);
-	}, wait);
+
 }
 
 // Returns a function that only invokes func at most once per every wait milliseconds.
 function throttle(func, wait) {
-	var once = true;
-	var val;
-	var inside = function() {
-		if (once){
-			once = false;
-			val = func();
-			return val;
-		}else{
-			setTimeout(function(){
-				once = true;
-			}, wait);
-			return val;
-		}
-		
-	}	
-	return inside;
+
 }
 
 // Creates an array of elements, sorted in ascending order by the results of running each element in a collection through iteratee.
