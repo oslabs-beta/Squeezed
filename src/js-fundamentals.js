@@ -366,10 +366,7 @@ var users = [
 pluck(sortBy(users, 'user'), 'user'); → ['barney', 'fred', 'pebbles']
  */
 function sortBy(array, iterator) {
-	array.sort(function(a, b){
-		return iterator(a) - iterator(b);
-	});	
-	return array;
+
 }
 
 /**
