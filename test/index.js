@@ -730,7 +730,9 @@ describe('sortBy', function() {
 
   it('should sort by length', function() {
     var list = ['one', 'two', 'three', 'four', 'five'];
-    var sorted = sortBy(list, 'length');
+    var sorted = sortBy(list, function(s){
+      return s.length;
+    });
 
     expect(sorted).to.eql(['one', 'two', 'four', 'five', 'three']);
   });
