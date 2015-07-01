@@ -36,13 +36,13 @@ describe('isNegativeOrOdd', function() {
     expect(isNegativeOrOdd(5)).to.eql(true);
   });
 
-  it('should return true is number is negative', function() {
+  it('should return true if number is negative', function() {
     expect(isNegativeOrOdd(-1)).to.eql(true);
     expect(isNegativeOrOdd(-2)).to.eql(true);
     expect(isNegativeOrOdd(-3)).to.eql(true);
   });
 
-  it('description', function() {
+  it('should return false if number is even', function() {
     expect(isNegativeOrOdd(0)).to.eql(false);
     expect(isNegativeOrOdd(2)).to.eql(false);
     expect(isNegativeOrOdd(4)).to.eql(false);
