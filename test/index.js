@@ -242,19 +242,27 @@ describe('indexOf', function() {
 
 describe('drop', function() {
   it('should remove first element if second argument not provided', function() {
-    expect(drop([1, 2, 3])).to.eql([2, 3]);
+    var numbers = [1, 2, 3];
+    expect(drop(numbers)).to.eql([2, 3]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should remove first n elem', function() {
-    expect(drop([1, 2, 3], 2)).to.eql([3]);
+    var numbers = [1, 2, 3];
+    expect(drop(numbers, 2)).to.eql([3]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should return empty array if n is larger than array length', function() {
-    expect(drop([1, 2, 3], 5)).to.eql([]);
+    var numbers = [1, 2, 3];
+    expect(drop(numbers, 5)).to.eql([]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should return entire array if n is 0', function() {
-    expect(drop([1, 2, 3], 0)).to.eql([1, 2, 3]);
+    var numbers = [1, 2, 3];
+    expect(drop(numbers, 0)).to.eql([1, 2, 3]);
+    expect(numbers).to.eql([1,2,3]);
   });
 });
 
