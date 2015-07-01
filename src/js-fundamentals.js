@@ -288,15 +288,7 @@ function isString(value) {
 // deepClone[0] === users[0] → false 
 // deepClone[0].user === users[0].user → true
 function cloneDeep(value) {
-	var newArr = [];
-	for (var i = 0; i < value.length; i++){
-		var obj = {};
-		for (key in value[i]){
-			obj[key] = value[i][key];
-		}
-		newArr.push(obj);
-	}
-	return newArr;
+
 }
 
 // Using a for loop, call the functions in the queue in order with the input number, where the results of each function become the next function’s input. Additionally, the queue should be empty after the function is called.
