@@ -320,7 +320,7 @@ function delay(func, wait, third) {
 
 }
 
-// Returns a function that only invokes func once per every wait milliseconds (additional calls to func within the millisecond should not be invoked).
+// Returns a function that only invokes func once per every wait milliseconds (additional calls to func within the wait should not be invoked).
 function throttle(func, wait) {
 
 }
