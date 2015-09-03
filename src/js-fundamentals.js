@@ -1,35 +1,8 @@
-// Returns the first argument provided to it
-// ex: identity(5); -> 5
-function identity(value) {
-
-}
-
-// returns an integer with a value 2 times the value of the inputted integer
-// assume only integers are inputted
-// multiplyByTwo(1); -> 2
-// multiplyByTwo(2); -> 4
-function multiplyByTwo(num) {
-
-}
-
-// determines if the number is negative or not
-// ex: isNegative(5); -> false
-// ex: isNegative(-5); -> true
-function isNegative(value) {
-
-}
-
 // returns true if the number is negative or odd
 // ex: isNegativeOrOdd(1); -> true
 // ex: isNegativeOrOdd(-2); -> true
 // ex: isNegativeOrOdd(2); -> false
 function isNegativeOrOdd(value) {
-
-}
-
-// returns the strings combined together in the reverse order with a space
-// ex: concatSpace("world","hello"); -> "hello world"
-function concatSpaceBackwards(word1, word2) {
 
 }
 
@@ -51,33 +24,9 @@ function reverseString(string) {
 
 }
 
-// Returns the first element of an array without modifying the original array.
-// Returns undefined if array is empty
-// first([1,2,3]); → 1
-// first([]); → undefined
-function first(array) {
-
-}
-
-// Returns the last element of an array without modifying the origin array
-// last([1,2,3]); → 3
-// last([]); → undefined
-function last(array) {
-
-}
-
 // accepts an object and returns an object with key and values switched
 // ex: reverseObject({a:1,b:"c","d":4}); -> {1:a,c:"b",4:"d"}
 function reverseObject(object) {
-
-}
-
-// accepts a string and returns a string of all characters in the order they appear first
-// commonCharacters('abc'); -> 'abc'
-// commonCharacters('aabc'); -> 'abc'
-// commonCharacters('abca'); -> 'abc'
-// commonCharacters('abcdac'); -> 'abcd
-function commonCharacters(string) {
 
 }
 
@@ -401,20 +350,5 @@ function after(count, func) {
  * beforePrintAndIncrementCount(); prints 1
  */
 function before(count, func) {
-
-}
-
-/**
- * returns a javascript object from a JSON formatted string
- * Example json to javascript object:
- *   "5"          -> 5
- *   "'hello'"   -> 'hello'
- *   "[]"         -> []
- *   "{}"         -> {}
- *   "["hello"]"  -> ['hello']
- *
- *  For more examples, use the JSON.stringify method in the console
- */
-function JSONParser(string) {
 
 }

@@ -1,34 +1,3 @@
-describe('identity', function() {
-  var uniqueObject = {};
-  it('should return whatever value is passed into it', function() {
-    expect(identity(1)).to.equal(1);
-    expect(identity('string')).to.equal('string');
-    expect(identity(false)).to.equal(false);
-    expect(identity(uniqueObject)).to.equal(uniqueObject);
-  });
-});
-
-describe('multiplyByTwo', function() {
-  it('should multiplyByTwo', function() {
-    expect(multiplyByTwo(0)).to.eql(0);
-    expect(multiplyByTwo(1)).to.eql(2);
-  });
-});
-
-describe('isNegative', function() {
-  it('should return true if number is negative', function() {
-    expect(isNegative(-1)).to.eql(true);
-    expect(isNegative(-2)).to.eql(true);
-    expect(isNegative(-3)).to.eql(true);
-  });
-
-  it('should return false if number is positive', function() {
-    expect(isNegative(0)).to.eql(false);
-    expect(isNegative(1)).to.eql(false);
-    expect(isNegative(2)).to.eql(false);
-  });
-});
-
 describe('isNegativeOrOdd', function() {
   it('should return true if number is odd', function() {
     expect(isNegativeOrOdd(1)).to.eql(true);
@@ -49,12 +18,6 @@ describe('isNegativeOrOdd', function() {
   });
 });
 
-describe('concatSpaceBackwards', function() {
-  it('should reverse the words with a space', function() {
-    expect(concatSpaceBackwards('world','hello')).to.eql('hello world');
-  });
-});
-
 describe('repeat', function() {
   it('should repeat inputted string count times', function() {
     expect(repeat('abc',3)).to.eql('abcabcabc');
@@ -70,39 +33,7 @@ describe('reverseString', function() {
   });
 });
 
-describe('first', function() {
-  it('should be able to pull out the first element of an array', function() {
-    expect(first([1,2,3])).to.equal(1);
-    expect(first([6])).to.equal(6);
-  });
 
-  it('should not modify the array', function() {
-    var array = [1,2,3];
-    expect(first(array)).to.equal(1);
-    expect(array).to.eql([1,2,3]);
-  });
-
-  it('should return undefined for empty array', function() {
-    expect(first([])).to.be(undefined);
-  });
-});
-
-describe('last', function() {
-  it('should be able to pull out the last element of an array', function() {
-    expect(last([1,2,3])).to.equal(3);
-    expect(last([6])).to.equal(6);
-  });
-
-  it('should not modify the array', function() {
-    var array = [1,2,3];
-    expect(last(array)).to.equal(3);
-    expect(array).to.eql([1,2,3]);
-  });
-
-  it('should return undefined for empty array', function() {
-    expect(last([])).to.be(undefined);
-  });
-});
 
 describe('reverseObject', function() {
   it('should reverse object', function() {
@@ -116,17 +47,6 @@ describe('reverseObject', function() {
   });
 });
 
-describe('commonCharacters', function() {
-  it('should return common characters', function() {
-    expect(commonCharacters('abc')).to.eql('abc');
-    expect(commonCharacters('aabc')).to.eql('abc');
-  });
-
-  it('should return common characters in order they first appear', function() {
-    expect(commonCharacters('abca')).to.eql('abc');
-    expect(commonCharacters('abcdac')).to.eql('abcd');
-  });
-});
 
 describe('isNumber', function() {
   it('should return true for numbers', function() {
@@ -866,51 +786,4 @@ describe('before', function() {
     expect(beforeIncr()).to.eql(1);
     expect(beforeIncr()).to.eql(1);
   });
-});
-
-describe('JSONParser', function() {
-  it('should work on numbers', function() {
-    expect(JSONParser(JSON.stringify(1))).to.eql(1);
-  });
-
-  it('should work on strings', function() {
-    expect(JSONParser(JSON.stringify('test'))).to.eql('test');
-  });
-
-  it('should work on booleans', function() {
-    expect(JSONParser(JSON.stringify(true))).to.eql(true);
-  });
-
-  it('should work on arrays', function() {
-    expect(JSONParser(JSON.stringify([]))).to.eql([]);
-    expect(JSONParser(JSON.stringify(['a']))).to.eql(['a']);
-    expect(JSONParser(JSON.stringify([1]))).to.eql([1]);
-    expect(JSONParser(JSON.stringify([true]))).to.eql([true]);
-    expect(JSONParser(JSON.stringify([true,1]))).to.eql([true,1]);
-    expect(JSONParser(JSON.stringify([true,1,'test']))).to.eql([true,1,'test']);
-  });
-
-  it('should work on objects', function() {
-    expect(JSONParser(JSON.stringify({}))).to.eql({});
-    expect(JSONParser(JSON.stringify({a:true}))).to.eql({a:true});
-    expect(JSONParser(JSON.stringify({b:1}))).to.eql({b:1});
-    expect(JSONParser(JSON.stringify({c:'test'}))).to.eql({c:'test'})
-    expect(JSONParser(JSON.stringify({a:true,b:1}))).to.eql({a:true,b:1});
-    expect(JSONParser(JSON.stringify({a:true,b:1,c:'test'}))).to.eql({a:true,b:1,c:'test'});
-  });
-
-  it('should working with nesting in objects', function() {
-    expect(JSONParser(JSON.stringify({a:{}}))).to.eql({a:{}});
-    expect(JSONParser(JSON.stringify({a:{b:1}}))).to.eql({a:{b:1}});
-    expect(JSONParser(JSON.stringify({a:{b:1,c:2}}))).to.eql({a:{b:1,c:2}});
-    expect(JSONParser(JSON.stringify({a:{b:1},c:2}))).to.eql({a:{b:1},c:2});
-    expect(JSONParser(JSON.stringify({a:{b:{c:2}}}))).to.eql({a:{b:{c:2}}});
-  });
-
-  it('should working with nesting in arrays', function() {
-    expect(JSONParser(JSON.stringify([{a:1}]))).to.eql([{a:1}]);
-    expect(JSONParser(JSON.stringify([{a:1},{b:2}]))).to.eql([{a:1},{b:2}]);
-    expect(JSONParser(JSON.stringify([{a:{c:2}},{b:2}]))).to.eql([{a:{c:2}},{b:2}]);
-  });
-
 });
