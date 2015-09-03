@@ -352,3 +352,14 @@ function after(count, func) {
 function before(count, func) {
 
 }
+
+// Write a function that creates arrays. The first argument is the length. The second
+// is a callback. The return value of this callback will become the array element. Call
+// the callback with the array index as an argument.
+// var square = function(n) { return n * n; };
+// arrayFactory(4, square); -> [0, 1, 4, 9]
+
+// Remember the zero-based index for arrays. 3 Was passed as the last argument for an array of length 4.
+function arrayFactory(length, processor) {
+
+}
