@@ -577,6 +577,7 @@ describe('memoize', function() {
     wait(5);
     expect(firstTime).to.not.equal(secondTime);
     expect(fastTime({ foo: 'bar' })).to.equal(secondTime);
+    expect(fastTime({ foo: 'bar' })).to.not.equal(fastTime({ different: 'result' }));
   });
 
   it('should work with arrays as arguments', function() {
@@ -586,6 +587,7 @@ describe('memoize', function() {
     wait(5);
     expect(firstTime).to.not.equal(secondTime);
     expect(fastTime(['foo', 'bar'])).to.equal(secondTime);
+    expect(fastTime(['foo', 'bar'])).to.not.equal(fastTime(['different', 'results']));
   });
 });
 
