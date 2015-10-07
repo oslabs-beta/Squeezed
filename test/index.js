@@ -525,7 +525,7 @@ describe('once', function() {
 });
 
 describe('memoize', function() {
-  var fib, fastFib, timeCheck, fastTime, wait;
+  var fib, fastFib, timeCheck, fastTime, wait, add, fastAdd;
   beforeEach(function() {
     fib = function(n) {
       if(n < 2){ return n; }
@@ -534,10 +534,14 @@ describe('memoize', function() {
     fastFib = memoize(fib);
     timeCheck = function(str) { return str + Date.now(); };
     fastTime = memoize(timeCheck);
+    add = function(a, b, c) {
+      return a + b + c;
+    };
+    fastAdd = memoize(add);
     // Synchronous sleep: terrible for web development, awesome for testing memoize
     wait = function(t) {
       var start = Date.now();
-      while ((Date.now() - start) < t){}
+      while ((Date.now() - start) < t) 'wait';
     };
   });
 
@@ -559,6 +563,29 @@ describe('memoize', function() {
     wait(5);
     expect(firstTime).to.not.equal(secondTime);
     expect(fastTime('shazaam!')).to.equal(secondTime);
+  });
+
+  it('should accept multiple arguments', function() {
+    expect(add(10, 5, 4)).to.equal(19);
+    expect(fastAdd(10, 5, 4)).to.equal(19);
+  });
+
+  it('should work with objects as arguments', function() {
+    var firstTime = timeCheck({ foo: 'bar' });
+    wait(5);
+    var secondTime = fastTime({ foo: 'bar' });
+    wait(5);
+    expect(firstTime).to.not.equal(secondTime);
+    expect(fastTime({ foo: 'bar' })).to.equal(secondTime);
+  });
+
+  it('should work with arrays as arguments', function() {
+    var firstTime = timeCheck(['foo', 'bar']);
+    wait(5);
+    var secondTime = fastTime(['foo', 'bar']);
+    wait(5);
+    expect(firstTime).to.not.equal(secondTime);
+    expect(fastTime(['foo', 'bar'])).to.equal(secondTime);
   });
 });
 
