@@ -567,7 +567,7 @@ describe('memoize', function() {
 
   it('should accept multiple arguments', function() {
     expect(add(10, 5, 4)).to.equal(19);
-    expect(fastFib(10, 5, 4)).to.equal(19);
+    expect(fastAdd(10, 5, 4)).to.equal(19);
   });
 
   it('should work with objects as arguments', function() {
