@@ -1,45 +1,23 @@
-#JS-Fundamentals
+# JS-Fundamentals
 
-##Summary
+## Summary
 JS-Fundamentals is a series of functions that perform common object-related tasks
 
-
-##How do I get started?
-1. Fork this repo
-  - click on fork button on the top right of the page ![Alt text](http://u.cubeupload.com/azai91/howtofork.png)
-  - click on your handle to fork to your repo
-
-2. Clone the repo
-  - copy and paste github url from the right side of the ![Alt text](http://u.cubeupload.com/azai91/howtoclone.png)
-  - type in the following line into your command line and insert your copies url as shown below:
-  ````
-  git clone *github url
-  ````
-
-3. Complete the challenge in located in src/js-fundamentals.js. Feel free complete the functions in any order.
-
-##How do I test if my answer is correct?
-* An incredibly useful tool is Chrome Dev Tool's Javascript Console (which can be opened in Chrome by pressing command+option+J). The console allows for developers to type javascript directly into the browser. Test it out by typing in the following to the console:
-````
-var a = 'lorem';
-console.log(a);
-````
-
-* To test your functions, open index.html in your browser
-** NOTE: While completing the challenges, if all tests that previously passed ALL suddenly fail, there is most likely a syntax error in your code. Open Chrome Dev Tool's to locate the cause of the error.
-
-## These challenges will test your ability to understand core javascript principles and concepts
+### Learning Goals
+- Understand how to manipulate date types - integers, strings, booleans, objects, and arrays
+- Understand closures
+- Understanding of callbacks
 
 ### Identity and typing
 
 The first challenges require you to understand what `datatype` things are in javascript.
 Datatype is a how the computer stores things in memory. Different types of data are handled differently.
-Additionally, its important to know what type of data you are dealing with. 
+Additionally, its important to know what type of data you are dealing with.
 It makes send to multiply two numbers, but you wouldnt want to try and multiply two strings!
 The first 4 exercises involve understanding these concepts. How do you find out what datatype something is in javascript?
 
 ###Cloning
-Sometimes its nescessary to create a perfect copy of an object rather than just passing that object along. How do we go through an object and create a copy of it?
+Sometimes its necessary to create a perfect copy of an object rather than just passing that object along. How do we go through an object and create a copy of it?
 
 ###Array methods
 working with arrays is something that is really important, for these exercises we need you to implement some array methods. You need to find a way to get the first and the last elements in that array.
@@ -66,7 +44,7 @@ function logger(name, cb) {
   // we execute that callback function and give it the name parameter
   // we set the variable 'output'  equal to whatever it returns
   var output = cb(name);
-  
+
   // we console log that variable
   console.log(output);
 }
@@ -98,4 +76,28 @@ Why does `console.log({name: 'rob'} === {name: 'rob'})` return false?
 Use one of the functions above and just keep passing the output of one function as the input of the other until you're through the stack.
 
 
+##Getting Started
+1. Fork this repo
+  - click on fork button on the top right of the page ![Alt text](http://u.cubeupload.com/azai91/howtofork.png)
+  - click on your handle to fork to your repo
+
+2. Clone the repo
+  - copy and paste github url from the right side of the ![Alt text](http://u.cubeupload.com/azai91/howtoclone.png)
+  - type in the following line into your command line and insert your copies url as shown below:
+  ````
+  git clone *github url
+  ````
+
+##Testing
+* An incredibly useful tool is Chrome Dev Tool's Javascript Console (which can be opened in Chrome by pressing command+option+J). The console allows for developers to type javascript directly into the browser. Test it out by typing in the following to the console:
+````
+var a = 'lorem';
+console.log(a);
+````
+
+* To test your functions, open index.html in your browser
+** NOTE: While completing the challenges, if all tests that previously passed ALL suddenly fail, there is most likely a syntax error in your code. Open Chrome Dev Tool's to locate the cause of the error.
+
+##Challenges
+1. Complete the challenge in located in src/js-fundamentals.js. Feel free complete the functions in any order.
 
