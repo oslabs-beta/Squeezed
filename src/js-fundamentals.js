@@ -1,35 +1,8 @@
-// Returns the first argument provided to it
-// ex: identity(5); -> 5
-function identity(value) {
-
-}
-
-// returns an integer with a value 2 times the value of the inputted integer
-// assume only integers are inputted
-// multiplyByTwo(1); -> 2
-// multiplyByTwo(2); -> 4
-function multiplyByTwo(num) {
-
-}
-
-// determines if the number is negative or not
-// ex: isNegative(5); -> false
-// ex: isNegative(-5); -> true
-function isNegative(value) {
-
-}
-
 // returns true if the number is negative or odd
 // ex: isNegativeOrOdd(1); -> true
 // ex: isNegativeOrOdd(-2); -> true
 // ex: isNegativeOrOdd(2); -> false
 function isNegativeOrOdd(value) {
-
-}
-
-// returns the strings combined together in the reverse order with a space
-// ex: concatSpace("world","hello"); -> "hello world"
-function concatSpaceBackwards(word1, word2) {
 
 }
 
@@ -51,33 +24,9 @@ function reverseString(string) {
 
 }
 
-// Returns the first element of an array without modifying the original array.
-// Returns undefined if array is empty
-// first([1,2,3]); → 1
-// first([]); → undefined
-function first(array) {
-
-}
-
-// Returns the last element of an array without modifying the origin array
-// last([1,2,3]); → 3
-// last([]); → undefined
-function last(array) {
-
-}
-
 // accepts an object and returns an object with key and values switched
 // ex: reverseObject({a:1,b:"c","d":4}); -> {1:a,c:"b",4:"d"}
 function reverseObject(object) {
-
-}
-
-// accepts a number and returns a string of all characters in the order they appear first
-// commonCharacters('abc'); -> 'abc'
-// commonCharacters('aabc'); -> 'abc'
-// commonCharacters('abca'); -> 'abc'
-// commonCharacters('abcdac'); -> 'abcd
-function commonCharacters(string) {
 
 }
 
@@ -284,8 +233,9 @@ function isString(value) {
 // Creates a deep clone of value.
 // var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
 // var deepClone = cloneDeep(users)
-// deepClone[0].user === users[0].user → true
 // deepClone === users → false
+// deepClone[0] === users[0] → false 
+// deepClone[0].user === users[0].user → true
 function cloneDeep(value) {
 
 }
@@ -311,7 +261,7 @@ function once(func) {
 
 // Returns a function that when called, will check if it has already computed the result for the given argument and return that value instead if possible.
 function memoize(func) {
-
+  
 }
 
 // Invokes func after wait milliseconds. Any additional arguments are provided to func when it is invoked.
@@ -319,7 +269,7 @@ function delay(func, wait, third) {
 
 }
 
-// Returns a function that only invokes func at most once per every wait milliseconds.
+// Returns a function that only invokes func once per every wait milliseconds (additional calls to func within the wait should not be invoked).
 function throttle(func, wait) {
 
 }
@@ -329,17 +279,14 @@ function throttle(func, wait) {
 sortBy([1, 2, 3], function(n) {
   return Math.sin(n);
 }); → [3, 1, 2]
-
 sortBy([1, 2, 3], function(n) {
   return this.sin(n);
 }, Math); → [3, 1, 2]
-
 var users = [
   { 'user': 'fred' },
   { 'user': 'pebbles' },
   { 'user': 'barney' }
 ];
-
 pluck(sortBy(users, 'user'), 'user'); → ['barney', 'fred', 'pebbles']
  */
 function sortBy(array, iterator) {
@@ -406,17 +353,13 @@ function before(count, func) {
 
 }
 
-/**
- * returns a javascript object from a JSON formatted string
- * Example json to javascript object:
- *   "5"          -> 5
- *   "'hello'"   -> 'hello'
- *   "[]"         -> []
- *   "{}"         -> {}
- *   "["hello"]"  -> ['hello']
- *
- *  For more examples, use the JSON.stringify method in the console
- */
-function JSONParser(string) {
+// Write a function that creates arrays. The first argument is the length. The second
+// is a callback. The return value of this callback will become the array element. Call
+// the callback with the array index as an argument.
+// var square = function(n) { return n * n; };
+// arrayFactory(4, square); -> [0, 1, 4, 9]
+
+// Remember the zero-based index for arrays. 3 Was passed as the last argument for an array of length 4.
+function arrayFactory(length, processor) {
 
 }

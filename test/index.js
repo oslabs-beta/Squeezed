@@ -1,34 +1,3 @@
-describe('identity', function() {
-  var uniqueObject = {};
-  it('should return whatever value is passed into it', function() {
-    expect(identity(1)).to.equal(1);
-    expect(identity('string')).to.equal('string');
-    expect(identity(false)).to.equal(false);
-    expect(identity(uniqueObject)).to.equal(uniqueObject);
-  });
-});
-
-describe('multiplyByTwo', function() {
-  it('should multiplyByTwo', function() {
-    expect(multiplyByTwo(0)).to.eql(0);
-    expect(multiplyByTwo(1)).to.eql(2);
-  });
-});
-
-describe('isNegative', function() {
-  it('should return true if number is negative', function() {
-    expect(isNegative(-1)).to.eql(true);
-    expect(isNegative(-2)).to.eql(true);
-    expect(isNegative(-3)).to.eql(true);
-  });
-
-  it('should return false if number is positive', function() {
-    expect(isNegative(0)).to.eql(false);
-    expect(isNegative(1)).to.eql(false);
-    expect(isNegative(2)).to.eql(false);
-  });
-});
-
 describe('isNegativeOrOdd', function() {
   it('should return true if number is odd', function() {
     expect(isNegativeOrOdd(1)).to.eql(true);
@@ -36,22 +5,16 @@ describe('isNegativeOrOdd', function() {
     expect(isNegativeOrOdd(5)).to.eql(true);
   });
 
-  it('should return true is number is negative', function() {
+  it('should return true if number is negative', function() {
     expect(isNegativeOrOdd(-1)).to.eql(true);
     expect(isNegativeOrOdd(-2)).to.eql(true);
     expect(isNegativeOrOdd(-3)).to.eql(true);
   });
 
-  it('description', function() {
+  it('should return false if number is even', function() {
     expect(isNegativeOrOdd(0)).to.eql(false);
     expect(isNegativeOrOdd(2)).to.eql(false);
     expect(isNegativeOrOdd(4)).to.eql(false);
-  });
-});
-
-describe('concatSpaceBackwards', function() {
-  it('should reverse the words with a space', function() {
-    expect(concatSpaceBackwards('world','hello')).to.eql('hello world');
   });
 });
 
@@ -70,39 +33,7 @@ describe('reverseString', function() {
   });
 });
 
-describe('first', function() {
-  it('should be able to pull out the first element of an array', function() {
-    expect(first([1,2,3])).to.equal(1);
-    expect(first([6])).to.equal(6);
-  });
 
-  it('should not modify the array', function() {
-    var array = [1,2,3];
-    expect(first(array)).to.equal(1);
-    expect(array).to.eql([1,2,3]);
-  });
-
-  it('should return undefined for empty array', function() {
-    expect(first([])).to.be(undefined);
-  });
-});
-
-describe('last', function() {
-  it('should be able to pull out the last element of an array', function() {
-    expect(last([1,2,3])).to.equal(3);
-    expect(last([6])).to.equal(6);
-  });
-
-  it('should not modify the array', function() {
-    var array = [1,2,3];
-    expect(last(array)).to.equal(3);
-    expect(array).to.eql([1,2,3]);
-  });
-
-  it('should return undefined for empty array', function() {
-    expect(last([])).to.be(undefined);
-  });
-});
 
 describe('reverseObject', function() {
   it('should reverse object', function() {
@@ -116,17 +47,6 @@ describe('reverseObject', function() {
   });
 });
 
-describe('commonCharacters', function() {
-  it('should return common characters', function() {
-    expect(commonCharacters('abc')).to.eql('abc');
-    expect(commonCharacters('aabc')).to.eql('abc');
-  });
-
-  it('should return common characters in order they first appear', function() {
-    expect(commonCharacters('abca')).to.eql('abc');
-    expect(commonCharacters('abcdac')).to.eql('abcd');
-  });
-});
 
 describe('isNumber', function() {
   it('should return true for numbers', function() {
@@ -214,6 +134,7 @@ describe('size', function() {
   it('should return the correct size of objects', function() {
     expect(size({a:1,b:2})).to.eql(2);
     expect(size({})).to.eql(0);
+    expect(size({a:1,b:2,length:1})).to.eql(3);
   });
 });
 
@@ -241,55 +162,79 @@ describe('indexOf', function() {
 
 describe('drop', function() {
   it('should remove first element if second argument not provided', function() {
-    expect(drop([1, 2, 3])).to.eql([2, 3]);
+    var numbers = [1, 2, 3];
+    expect(drop(numbers)).to.eql([2, 3]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should remove first n elem', function() {
-    expect(drop([1, 2, 3], 2)).to.eql([3]);
+    var numbers = [1, 2, 3];
+    expect(drop(numbers, 2)).to.eql([3]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should return empty array if n is larger than array length', function() {
-    expect(drop([1, 2, 3], 5)).to.eql([]);
+    var numbers = [1, 2, 3];
+    expect(drop(numbers, 5)).to.eql([]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should return entire array if n is 0', function() {
-    expect(drop([1, 2, 3], 0)).to.eql([1, 2, 3]);
+    var numbers = [1, 2, 3];
+    expect(drop(numbers, 0)).to.eql([1, 2, 3]);
+    expect(numbers).to.eql([1,2,3]);
   });
 });
 
 describe('dropRight', function() {
   it('should remove last element if second argument not provided', function() {
-    expect(dropRight([1, 2, 3])).to.eql([1, 2]);
+    var numbers = [1, 2, 3];
+    expect(dropRight(numbers)).to.eql([1, 2]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should remove last n elem', function() {
-    expect(dropRight([1, 2, 3], 2)).to.eql([1]);
+    var numbers = [1, 2, 3];
+    expect(dropRight(numbers, 2)).to.eql([1]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should return empty array if n is larger than array length', function() {
-    expect(dropRight([1, 2, 3], 5)).to.eql([]);
+    var numbers = [1, 2, 3];
+    expect(dropRight(numbers, 5)).to.eql([]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should return entire array if n is 0', function() {
-    expect(dropRight([1, 2, 3], 0)).to.eql([1, 2, 3]);
+    var numbers = [1, 2, 3];
+    expect(dropRight(numbers, 0)).to.eql([1, 2, 3]);
+    expect(numbers).to.eql([1,2,3]);
   });
 });
 
 describe('take', function() {
   it('should return first element if second argument not provided', function() {
-    expect(take([1, 2, 3])).to.eql([1]);
+    var numbers = [1, 2, 3];
+    expect(take(numbers)).to.eql([1]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
-  it('should remove last n elem', function() {
-    expect(take([1, 2, 3], 2)).to.eql([1,2]);
+  it('should return first n elem', function() {
+    var numbers = [1, 2, 3];
+    expect(take(numbers, 2)).to.eql([1,2]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should return entire array if n is larger than array length', function() {
-    expect(take([1, 2, 3], 5)).to.eql([1,2,3]);
+    var numbers = [1, 2, 3];
+    expect(take(numbers, 5)).to.eql([1,2,3]);
+    expect(numbers).to.eql([1,2,3]);
   });
 
   it('should return empty array if n is 0', function() {
-    expect(take([1, 2, 3], 0)).to.eql([]);
+    var numbers = [1, 2, 3];
+    expect(take(numbers, 0)).to.eql([]);
+    expect(numbers).to.eql([1,2,3]);
   });
 });
 
@@ -547,6 +492,7 @@ describe('cloneDeep', function() {
     var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
     var deepClone = cloneDeep(users);
     expect(deepClone[0].user).to.equal(users[0].user);
+    expect(deepClone[0]).to.not.equal(users[0]);
     expect(deepClone).to.not.equal(users);
     expect(deepClone[0]).to.eql(users[0]);
     expect(deepClone).to.eql(users);
@@ -579,7 +525,7 @@ describe('once', function() {
 });
 
 describe('memoize', function() {
-  var fib, fastFib, timeCheck, fastTime, wait;
+  var fib, fastFib, timeCheck, fastTime, wait, add, fastAdd;
   beforeEach(function() {
     fib = function(n) {
       if(n < 2){ return n; }
@@ -588,10 +534,14 @@ describe('memoize', function() {
     fastFib = memoize(fib);
     timeCheck = function(str) { return str + Date.now(); };
     fastTime = memoize(timeCheck);
+    add = function(a, b, c) {
+      return a + b + c;
+    };
+    fastAdd = memoize(add);
     // Synchronous sleep: terrible for web development, awesome for testing memoize
     wait = function(t) {
       var start = Date.now();
-      while ((Date.now() - start) < t){}
+      while ((Date.now() - start) < t) 'wait';
     };
   });
 
@@ -613,6 +563,31 @@ describe('memoize', function() {
     wait(5);
     expect(firstTime).to.not.equal(secondTime);
     expect(fastTime('shazaam!')).to.equal(secondTime);
+  });
+
+  it('should accept multiple arguments', function() {
+    expect(add(10, 5, 4)).to.equal(19);
+    expect(fastAdd(10, 5, 4)).to.equal(19);
+  });
+
+  it('should work with objects as arguments', function() {
+    var firstTime = timeCheck({ foo: 'bar' });
+    wait(5);
+    var secondTime = fastTime({ foo: 'bar' });
+    wait(5);
+    expect(firstTime).to.not.equal(secondTime);
+    expect(fastTime({ foo: 'bar' })).to.equal(secondTime);
+    expect(fastTime({ foo: 'bar' })).to.not.equal(fastTime({ different: 'result' }));
+  });
+
+  it('should work with arrays as arguments', function() {
+    var firstTime = timeCheck(['foo', 'bar']);
+    wait(5);
+    var secondTime = fastTime(['foo', 'bar']);
+    wait(5);
+    expect(firstTime).to.not.equal(secondTime);
+    expect(fastTime(['foo', 'bar'])).to.equal(secondTime);
+    expect(fastTime(['foo', 'bar'])).to.not.equal(fastTime(['different', 'results']));
   });
 });
 
@@ -728,7 +703,9 @@ describe('sortBy', function() {
 
   it('should sort by length', function() {
     var list = ['one', 'two', 'three', 'four', 'five'];
-    var sorted = sortBy(list, 'length');
+    var sorted = sortBy(list, function(s){
+      return s.length;
+    });
 
     expect(sorted).to.eql(['one', 'two', 'four', 'five', 'three']);
   });
@@ -833,56 +810,9 @@ describe('before', function() {
     var incr = function() {
       return count++;
     }
-    var beforeIncr = before(3, incr);
+    var beforeIncr = before(2, incr);
     expect(beforeIncr()).to.eql(0);
     expect(beforeIncr()).to.eql(1);
     expect(beforeIncr()).to.eql(1);
   });
-});
-
-describe('JSONParser', function() {
-  it('should work on numbers', function() {
-    expect(JSONParser(JSON.stringify(1))).to.eql(1);
-  });
-
-  it('should work on strings', function() {
-    expect(JSONParser(JSON.stringify('test'))).to.eql('test');
-  });
-
-  it('should work on booleans', function() {
-    expect(JSONParser(JSON.stringify(true))).to.eql(true);
-  });
-
-  it('should work on arrays', function() {
-    expect(JSONParser(JSON.stringify([]))).to.eql([]);
-    expect(JSONParser(JSON.stringify(['a']))).to.eql(['a']);
-    expect(JSONParser(JSON.stringify([1]))).to.eql([1]);
-    expect(JSONParser(JSON.stringify([true]))).to.eql([true]);
-    expect(JSONParser(JSON.stringify([true,1]))).to.eql([true,1]);
-    expect(JSONParser(JSON.stringify([true,1,'test']))).to.eql([true,1,'test']);
-  });
-
-  it('should work on objects', function() {
-    expect(JSONParser(JSON.stringify({}))).to.eql({});
-    expect(JSONParser(JSON.stringify({a:true}))).to.eql({a:true});
-    expect(JSONParser(JSON.stringify({b:1}))).to.eql({b:1});
-    expect(JSONParser(JSON.stringify({c:'test'}))).to.eql({c:'test'})
-    expect(JSONParser(JSON.stringify({a:true,b:1}))).to.eql({a:true,b:1});
-    expect(JSONParser(JSON.stringify({a:true,b:1,c:'test'}))).to.eql({a:true,b:1,c:'test'});
-  });
-
-  it('should working with nesting in objects', function() {
-    expect(JSONParser(JSON.stringify({a:{}}))).to.eql({a:{}});
-    expect(JSONParser(JSON.stringify({a:{b:1}}))).to.eql({a:{b:1}});
-    expect(JSONParser(JSON.stringify({a:{b:1,c:2}}))).to.eql({a:{b:1,c:2}});
-    expect(JSONParser(JSON.stringify({a:{b:1},c:2}))).to.eql({a:{b:1},c:2});
-    expect(JSONParser(JSON.stringify({a:{b:{c:2}}}))).to.eql({a:{b:{c:2}}});
-  });
-
-  it('should working with nesting in arrays', function() {
-    expect(JSONParser(JSON.stringify([{a:1}]))).to.eql([{a:1}]);
-    expect(JSONParser(JSON.stringify([{a:1},{b:2}]))).to.eql([{a:1},{b:2}]);
-    expect(JSONParser(JSON.stringify([{a:{c:2}},{b:2}]))).to.eql([{a:{c:2}},{b:2}]);
-  });
-
 });
