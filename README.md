@@ -78,11 +78,13 @@ Use one of the functions above and just keep passing the output of one function 
 
 ##Getting Started
 1. Fork this repo
-  - click on fork button on the top right of the page ![Alt text](http://u.cubeupload.com/azai91/howtofork.png)
+  - click on fork button on the top right of the page
+  <br><img src="https://help.github.com/assets/images/help/repository/fork_button.jpg" width="300px"></img>  
   - click on your handle to fork to your repo
 
 2. Clone the repo
-  - copy and paste github url from the right side of the ![Alt text](http://u.cubeupload.com/azai91/howtoclone.png)
+  - copy and paste github url from the right side of the screen
+  <br><img src="https://help.github.com/assets/images/help/repository/clone-repo-clone-url-button.png" width="200px"></img>
   - type in the following line into your command line and insert your copies url as shown below:
   ````
   git clone *github url
