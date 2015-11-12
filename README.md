@@ -99,5 +99,8 @@ console.log(a);
 ** NOTE: While completing the challenges, if all tests that previously passed ALL suddenly fail, there is most likely a syntax error in your code. Open Chrome Dev Tool's to locate the cause of the error.
 
 ##Challenges
-1. Complete the challenge in located in src/js-fundamentals.js. Feel free complete the functions in any order.
+1. Complete the challenge located in ```src/js-fundamentals.js```. Feel free complete the functions in any order.
+
+##Extension Challenges
+1. Complete the extension challenges located in ```src/js-fundamentals.js```.
 
