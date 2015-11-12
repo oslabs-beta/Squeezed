@@ -187,6 +187,7 @@ function pluck(array, key) {
 /**
  * remove leading and trailing whitespace or specified characters from string
  * trim(' hello '); -> 'hello'
+ * trim('   hello world '); -> 'hello world'
  */
 function trim(string) {
 
@@ -308,7 +309,6 @@ function range(start, stop, step) {
 
 /**
  * split array into two array based on those elements who satisfies the predicate (callback)
- * predicate(element)
  * partition([0,1,2,3,4,5,6], function(element) {
  *   return element % 2 === 0;
  * }); -> [[0,2,4,6],[1,3,5]];
