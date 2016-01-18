@@ -10,16 +10,16 @@ JS-Fundamentals is a series of functions that perform common object-related task
 
 ### Identity and typing
 
-The first challenges require you to understand what `datatype` things are in javascript.
-Datatype is a how the computer stores things in memory. Different types of data are handled differently.
+The first challenges require you to understand what `datatype` things are in JavaScript.
+Data types are how the computer stores things in memory. Different types of data are handled differently.
 Additionally, its important to know what type of data you are dealing with.
-It makes send to multiply two numbers, but you wouldnt want to try and multiply two strings!
-The first 4 exercises involve understanding these concepts. How do you find out what datatype something is in javascript?
+It makes send to multiply two numbers, but you wouldn't want to try and multiply two strings!
+The first 4 exercises involve understanding these concepts. How do you find out what data type something is in javascript?
 
-###Cloning
+### Cloning
 Sometimes its necessary to create a perfect copy of an object rather than just passing that object along. How do we go through an object and create a copy of it?
 
-###Array methods
+### Array methods
 working with arrays is something that is really important, for these exercises we need you to implement some array methods. You need to find a way to get the first and the last elements in that array.
 
 * `indexOf` We give you a function that takes 2 arguments, an array of numbers, and a single number? How do you loop though an array and return the index of the element that matches the number?
@@ -31,7 +31,7 @@ working with arrays is something that is really important, for these exercises w
 ### Callbacks
 Callbacks are a crucial piece of knowledge to have and these next exercises help reinforce that knowledge.
 A **callback function** or **callback** for short is just a function that you pass into a function. Here's a simple example
-```
+```javascript
 // we create 2 functions
 
 // we call the first one 'callback', it takes one parameter, a string 'name'
@@ -39,7 +39,7 @@ function callBack(name) {
  return "hello" + name;
 }
 
-// then we createa another function that takes two paramenters, a string 'name' and a function 'cb'
+// then we create another function that takes two parameters, a string 'name' and a function 'cb'
 function logger(name, cb) {
   // we execute that callback function and give it the name parameter
   // we set the variable 'output'  equal to whatever it returns
@@ -66,7 +66,7 @@ These ones are still things we can hard code but they take it to the next level.
 * `flattenDeep` Is the same concept but in this case we don't know how deep the subarrays go, this could be a perfect application of recursion. just keep flattening infinitely until the array is only one level deep.
 * `isString` the same concept as the ones in the beginning, how do you check a datatype in javascript?
 
-###Clone deep
+### Clone deep
 This one is a little trickier, you might want to do a little research on "pass by value" vs "pass by reference"
 Why does `console.log({name: 'rob'} === {name: 'rob'})` return false?
 
@@ -76,7 +76,7 @@ Why does `console.log({name: 'rob'} === {name: 'rob'})` return false?
 Use one of the functions above and just keep passing the output of one function as the input of the other until you're through the stack.
 
 
-##Getting Started
+## Getting Started
 1. Fork this repo
   - click on fork button on the top right of the page
   <br><img src="https://help.github.com/assets/images/help/repository/fork_button.jpg" width="300px"></img>  
@@ -90,19 +90,18 @@ Use one of the functions above and just keep passing the output of one function 
   git clone *github url
   ````
 
-##Testing
+## Testing
 * An incredibly useful tool is Chrome Dev Tool's Javascript Console (which can be opened in Chrome by pressing command+option+J). The console allows for developers to type javascript directly into the browser. Test it out by typing in the following to the console:
-````
+```javascript
 var a = 'lorem';
 console.log(a);
-````
+```
 
 * To test your functions, open index.html in your browser
 ** NOTE: While completing the challenges, if all tests that previously passed ALL suddenly fail, there is most likely a syntax error in your code. Open Chrome Dev Tool's to locate the cause of the error.
 
-##Challenges
-1. Complete the challenge located in ```src/js-fundamentals.js```. Feel free complete the functions in any order.
+## Challenges
+1. Complete the challenge located in `src/js-fundamentals.js`. Feel free complete the functions in any order.
 
-##Extension Challenges
-1. Complete the extension challenges located in ```src/js-fundamentals.js```.
-
+## Extension Challenges
+1. Complete the extension challenges located in `src/js-fundamentals.js`.
