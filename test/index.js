@@ -323,6 +323,13 @@ describe('filter', function() {
     var odds = filter([1, 2, 3, 4, 5, 6], isOdd);
     expect(odds).to.eql([1, 3, 5]);
   });
+
+  it('should filter all odd values in object', function() {
+    var obj = {a:1, b:2, c:3, d:4};
+    var isOdd = function(value, key, collection) { return value % 2 !== 0; };
+    var evens = reject(obj, isOdd);
+    expect(evens).to.eql({a:1, c:3});
+  });
 });
 
 describe('reject', function() {
@@ -343,7 +350,7 @@ describe('reject', function() {
     var isOdd = function(value, key, collection) { return value % 2 !== 0; };
     var evens = reject(obj, isOdd);
     expect(evens).to.eql({b:2, d:4});
-  })
+  });
 });
 
 describe('uniq', function() {
