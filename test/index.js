@@ -832,3 +832,10 @@ describe('before', function() {
     expect(count).to.eql(2);
   });
 });
+
+describe('arrayFactory', function() {
+  it('should make an array of squares', function() {
+    var square = function(n) { return n * n; };
+    expect(arrayFactory(4, square)).to.eql([0, 1, 4, 9]);
+  });
+});
