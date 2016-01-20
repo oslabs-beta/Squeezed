@@ -68,7 +68,7 @@ These ones are still things we can hard code but they take it to the next level.
 
 ### Clone deep
 This one is a little trickier, you might want to do a little research on "pass by value" vs "pass by reference"
-Why does `{ name: 'rob' } === { name: 'rob'}` return false?
+Why does `{ name: 'rob' } === { name: 'rob' }` return false?
 
 * `deepClone` how do we make a copy of an object that has an unknown number of nested properties?
 
