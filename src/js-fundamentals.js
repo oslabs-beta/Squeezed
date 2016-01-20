@@ -155,12 +155,12 @@ function map(array, callback) {
 // }); → [2,4]
 // filter({a: 1, b: 2,c: 3,d: 4}, function(element, index, collection) {
 //  return element % 2 !== 0;
-// }); → [1,3]
+// }); → {a: 1, c: 3}
 function filter(collection, callback) {
 
 }
 
-// Removes all elements from array that callback returns truthy for and returns an array of the removed elements.
+// Removes all elements from array that callback returns truthy for and returns an array of the remaining elements.
 // reject([1,2,3,4], function(element, index, collection) {
 //  return element % 2 === 0;
 // }); → [1,3]
@@ -235,7 +235,7 @@ function isString(value) {
 // var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
 // var deepClone = cloneDeep(users)
 // deepClone === users → false
-// deepClone[0] === users[0] → false 
+// deepClone[0] === users[0] → false
 // deepClone[0].user === users[0].user → true
 function cloneDeep(value) {
 
@@ -262,7 +262,7 @@ function once(func) {
 
 // Returns a function that when called, will check if it has already computed the result for the given argument and return that value instead if possible.
 function memoize(func) {
-  
+
 }
 
 // Invokes func after wait milliseconds. Any additional arguments are provided to func when it is invoked.

@@ -323,6 +323,13 @@ describe('filter', function() {
     var odds = filter([1, 2, 3, 4, 5, 6], isOdd);
     expect(odds).to.eql([1, 3, 5]);
   });
+
+  it('should filter all odd values in object', function() {
+    var obj = {a:1, b:2, c:3, d:4};
+    var isOdd = function(value, key, collection) { return value % 2 !== 0; };
+    var evens = reject(obj, isOdd);
+    expect(evens).to.eql({b:2, d:4});
+  });
 });
 
 describe('reject', function() {
@@ -343,7 +350,7 @@ describe('reject', function() {
     var isOdd = function(value, key, collection) { return value % 2 !== 0; };
     var evens = reject(obj, isOdd);
     expect(evens).to.eql({b:2, d:4});
-  })
+  });
 });
 
 describe('uniq', function() {
@@ -476,7 +483,7 @@ describe('extend', function() {
 describe('isString', function() {
   it('should return true for strings', function() {
     expect(isString('a')).to.be(true);
-    expect(isString(5)).to.be(true); // congrats, you found the error
+    expect(isString('5')).to.be(true); // congrats, you found the error
   });
 
   it('should return false for everything', function() {
@@ -489,13 +496,19 @@ describe('isString', function() {
 
 describe('cloneDeep', function() {
   it('should return deep copy of object', function() {
-    var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
+    // notice how andy is the only user with friends
+    var users = [
+      { 'user': 'barney' },
+      { 'user': 'fred' },
+      { 'user': 'andy', friends: { 'user': 'alex' } }
+    ];
     var deepClone = cloneDeep(users);
     expect(deepClone[0].user).to.equal(users[0].user);
     expect(deepClone[0]).to.not.equal(users[0]);
     expect(deepClone).to.not.equal(users);
     expect(deepClone[0]).to.eql(users[0]);
     expect(deepClone).to.eql(users);
+    expect(deepClone[2].friends).to.not.equal(users[2].friends);
   });
 });
 
@@ -811,8 +824,11 @@ describe('before', function() {
       return count++;
     }
     var beforeIncr = before(2, incr);
-    expect(beforeIncr()).to.eql(0);
-    expect(beforeIncr()).to.eql(1);
-    expect(beforeIncr()).to.eql(1);
+    beforeIncr();
+    expect(count).to.eql(1);
+    beforeIncr();
+    expect(count).to.eql(2);
+    beforeIncr();
+    expect(count).to.eql(2);
   });
 });
