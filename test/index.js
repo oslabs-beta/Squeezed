@@ -821,7 +821,7 @@ describe('before', function() {
   it('description', function() {
     var count = 0;
     var incr = function() {
-      return count++;
+      return ++count;
     }
     var beforeIncr = before(2, incr);
     beforeIncr();
