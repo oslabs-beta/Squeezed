@@ -157,90 +157,95 @@ describe('indexOf', () => {
 });
 
 describe('drop', () => {
+  let numbers = [];
+
   beforeEach(() => {
-    const numbers = [1, 2, 3];
-
-    it('should remove first element if second argument not provided', () => {
-      expect(drop(numbers)).to.eql([2, 3]);
-      expect(numbers).to.eql([1,2,3]);
-    });
-
-    it('should remove first n elem', () => {
-      expect(drop(numbers, 2)).to.eql([3]);
-      expect(numbers).to.eql([1,2,3]);
-    });
-
-    it('should return empty array if n is larger than array length', () => {
-      expect(drop(numbers, 5)).to.eql([]);
-      expect(numbers).to.eql([1,2,3]);
-    });
-
-    it('should return entire array if n is 0', () => {
-      expect(drop(numbers, 0)).to.eql([1, 2, 3]);
-      expect(numbers).to.eql([1,2,3]);
-    });
-
-    it('should not mutate the input array', () => {
-      drop(numbers);
-      expect(numbers).to.eql([1,2,3]);
-      drop(numbers, 2);
-      expect(numbers).to.eql([1,2,3]);
-      drop(numbers, 5);
-      expect(numbers).to.eql([1,2,3]);
-    });
+    numbers = [1, 2, 3];
   });
 
+  it('should remove first element if second argument not provided', () => {
+    expect(drop(numbers)).to.eql([2, 3]);
+    expect(numbers).to.eql([1,2,3]);
+  });
+
+  it('should remove first n elem', () => {
+    expect(drop(numbers, 2)).to.eql([3]);
+    expect(numbers).to.eql([1,2,3]);
+  });
+
+  it('should return empty array if n is larger than array length', () => {
+    expect(drop(numbers, 5)).to.eql([]);
+    expect(numbers).to.eql([1,2,3]);
+  });
+
+  it('should return entire array if n is 0', () => {
+    expect(drop(numbers, 0)).to.eql([1, 2, 3]);
+    expect(numbers).to.eql([1,2,3]);
+  });
+
+  it('should not mutate the input array', () => {
+    drop(numbers);
+    expect(numbers).to.eql([1,2,3]);
+    drop(numbers, 2);
+    expect(numbers).to.eql([1,2,3]);
+    drop(numbers, 5);
+    expect(numbers).to.eql([1,2,3]);
+  });
 });
 
 describe('dropRight', () => {
+  let numbers = [];
+
   beforeEach(() => {
-    const numbers = [1, 2, 3];
+    numbers = [1, 2, 3];
+  });
 
-    it('should remove last element if second argument not provided', () => {
-      expect(dropRight(numbers)).to.eql([1, 2]);
-      expect(numbers).to.eql([1,2,3]);
-    });
+  it('should remove last element if second argument not provided', () => {
+    expect(dropRight(numbers)).to.eql([1, 2]);
+    expect(numbers).to.eql([1,2,3]);
+  });
 
-    it('should remove last n elem', () => {
-      expect(dropRight(numbers, 2)).to.eql([1]);
-      expect(numbers).to.eql([1,2,3]);
-    });
+  it('should remove last n elem', () => {
+    expect(dropRight(numbers, 2)).to.eql([1]);
+    expect(numbers).to.eql([1,2,3]);
+  });
 
-    it('should return empty array if n is larger than array length', () => {
-      expect(dropRight(numbers, 5)).to.eql([]);
-      expect(numbers).to.eql([1,2,3]);
-    });
+  it('should return empty array if n is larger than array length', () => {
+    expect(dropRight(numbers, 5)).to.eql([]);
+    expect(numbers).to.eql([1,2,3]);
+  });
 
-    it('should return entire array if n is 0', () => {
-      expect(dropRight(numbers, 0)).to.eql([1, 2, 3]);
-      expect(numbers).to.eql([1,2,3]);
-    });
+  it('should return entire array if n is 0', () => {
+    expect(dropRight(numbers, 0)).to.eql([1, 2, 3]);
+    expect(numbers).to.eql([1,2,3]);
   });
 });
 
 describe('take', () => {
-  beforeEach(() => {
-    const numbers = [1, 2, 3];
+  let numbers = [];
 
-    it('should return first element if second argument not provided', () => {
-      expect(take(numbers)).to.eql([1]);
-      expect(numbers).to.eql([1,2,3]);
-    });
+  beforeEach( function() {
+    numbers = [1, 2, 3];
+  });
 
-    it('should return first n elem', () => {
-      expect(take(numbers, 2)).to.eql([1,2]);
-      expect(numbers).to.eql([1,2,3]);
-    });
+  it('should return first element if second argument not provided', () => {
+    expect(take(numbers)).to.eql([1]);
+    expect(numbers).to.eql([1,2,3]);
+  });
 
-    it('should return entire array if n is larger than array length', () => {
-      expect(take(numbers, 5)).to.eql([1,2,3]);
-      expect(numbers).to.eql([1,2,3]);
-    });
+  it('should return first n elem', () => {
+    expect(take(numbers, 2)).to.eql([1,2]);
+    expect(numbers).to.eql([1,2,3]);
+  });
 
-    it('should return empty array if n is 0', () => {
-      expect(take(numbers, 0)).to.eql([]);
-      expect(numbers).to.eql([1,2,3]);
-    });
+  it('should return entire array if n is larger than array length', () => {
+    expect(take(numbers, 5)).to.eql([1,2,3]);
+    expect(numbers).to.eql([1,2,3]);
+  });
+
+  it('should return empty array if n is 0', () => {
+    expect(take(numbers, 0)).to.eql([]);
+    expect(numbers).to.eql([1,2,3]);
   });
 });
 
@@ -251,62 +256,68 @@ describe('difference', () => {
 });
 
 describe('forEach', () => {
+  let fruits = [];
+  let iterationInputs = [];
+
   beforeEach(() => {
-    const fruits = ['apple', 'banana', 'carrot'];
-    const iterationInputs = [];
+    fruits = ['apple', 'banana', 'carrot'];
+    iterationInputs = [];
+  });
 
-    it('should iterate over arrays, providing access to the element, index, and array itself', () => {
-      forEach(fruits, (fruit, index, list) => {
-        iterationInputs.push([fruit, index, list]);
-      });
-      expect(iterationInputs).to.eql([
-        ['apple', 0, fruits],
-        ['banana', 1, fruits],
-        ['carrot', 2, fruits]
-      ]);
+  it('should iterate over arrays, providing access to the element, index, and array itself', () => {
+    forEach(fruits, (fruit, index, list) => {
+      iterationInputs.push([fruit, index, list]);
     });
+    expect(iterationInputs).to.eql([
+      ['apple', 0, fruits],
+      ['banana', 1, fruits],
+      ['carrot', 2, fruits]
+    ]);
+  });
 
-    it('should only iterate over the array elements, not properties of the array', () => {
-      fruits.shouldBeIgnored = 'Ignore me!';
-      forEach(fruits, (fruit, index, list) => {
-        iterationInputs.push([fruit, index, list]);
-      });
-      expect(iterationInputs).to.eql([
-        ['apple', 0, fruits],
-        ['banana', 1, fruits],
-        ['carrot', 2, fruits]
-      ]);
+  it('should only iterate over the array elements, not properties of the array', () => {
+    fruits.shouldBeIgnored = 'Ignore me!';
+    forEach(fruits, (fruit, index, list) => {
+      iterationInputs.push([fruit, index, list]);
     });
+    expect(iterationInputs).to.eql([
+      ['apple', 0, fruits],
+      ['banana', 1, fruits],
+      ['carrot', 2, fruits]
+    ]);
   });
 });
 
 describe('forEachRight', () => {
+  let fruits = [];
+  let iterationInputs = [];
+
   beforeEach(() => {
-    const fruits = ['apple', 'banana', 'carrot'];
-    const iterationInputs = [];
+    fruits = ['apple', 'banana', 'carrot'];
+    iterationInputs = [];
+  });
 
-    it('should iterate over arrays, providing access to the element, index, and array itself', () => {
-      forEachRight(fruits, (fruit, index, list) => {
-        iterationInputs.push([fruit, index, list]);
-      });
-      expect(iterationInputs).to.eql([
-        ['apple', 0, fruits],
-        ['banana', 1, fruits],
-        ['carrot', 2, fruits]
-      ].reverse());
+  it('should iterate over arrays, providing access to the element, index, and array itself', () => {
+    forEachRight(fruits, (fruit, index, list) => {
+      iterationInputs.push([fruit, index, list]);
     });
+    expect(iterationInputs).to.eql([
+      ['apple', 0, fruits],
+      ['banana', 1, fruits],
+      ['carrot', 2, fruits]
+    ].reverse());
+  });
 
-    it('should only iterate over the array elements, not properties of the array', () => {
-      fruits.shouldBeIgnored = 'Ignore me!';
-      forEachRight(fruits, (fruit, index, list) => {
-        iterationInputs.push([fruit, index, list]);
-      });
-      expect(iterationInputs).to.eql([
-        ['apple', 0, fruits],
-        ['banana', 1, fruits],
-        ['carrot', 2, fruits]
-      ].reverse());
+  it('should only iterate over the array elements, not properties of the array', () => {
+    fruits.shouldBeIgnored = 'Ignore me!';
+    forEachRight(fruits, (fruit, index, list) => {
+      iterationInputs.push([fruit, index, list]);
     });
+    expect(iterationInputs).to.eql([
+      ['apple', 0, fruits],
+      ['banana', 1, fruits],
+      ['carrot', 2, fruits]
+    ].reverse());
   });
 });
 
@@ -531,62 +542,64 @@ describe('once', () => {
 });
 
 describe('memoize', () => {
+  let fib, fastFib, timeCheck, fastTimeCheck, add, fastAdd, wait;
+
   beforeEach(() => {
-    const fib = (n) => (n < 2) ? n : fib(n - 1) + fib(n - 2);
-    const fastFib = memoize(fib);
-    const timeCheck = (str) => str + Date.now();
-    const fastTimeCheck = memoize(timeCheck);
-    const add = (a, b, c) => a + b + c;
-    const fastAdd = memoize(add);
+    fib = (n) => (n < 2) ? n : fib(n - 1) + fib(n - 2);
+    fastFib = memoize(fib);
+    timeCheck = (str) => str + Date.now();
+    fastTimeCheck = memoize(timeCheck);
+    add = (a, b, c) => a + b + c;
+    fastAdd = memoize(add);
 
     // Synchronous sleep: terrible for web development, awesome for testing memoize
-    const wait = (t) => {
+    wait = (t) => {
       const start = Date.now();
       while ((Date.now() - start) < t) 'wait';
     };
+  });
 
-    it('a memoized function should produce the same result when called with the same arguments', () => {
-      expect(fib(10)).to.equal(55);
-      expect(fastFib(10)).to.equal(55);
-    });
+  it('a memoized function should produce the same result when called with the same arguments', () => {
+    expect(fib(10)).to.equal(55);
+    expect(fastFib(10)).to.equal(55);
+  });
 
-    it('should give different results for different arguments', () => {
-      expect(fastFib(10)).to.not.equal(fastFib(7));
-    });
+  it('should give different results for different arguments', () => {
+    expect(fastFib(10)).to.not.equal(fastFib(7));
+  });
 
-    it('should not run the function twice for the same given argument', () => {
-      const firstTime = timeCheck('shazaam!');
-      wait(5);
-      const secondTime = fastTimeCheck('shazaam!');
-      wait(5);
-      expect(firstTime).to.not.equal(secondTime);
-      expect(fastTimeCheck('shazaam!')).to.equal(secondTime);
-    });
+  it('should not run the function twice for the same given argument', () => {
+    const firstTime = timeCheck('shazaam!');
+    wait(5);
+    const secondTime = fastTimeCheck('shazaam!');
+    wait(5);
+    expect(firstTime).to.not.equal(secondTime);
+    expect(fastTimeCheck('shazaam!')).to.equal(secondTime);
+  });
 
-    it('should accept multiple arguments', () => {
-      expect(add(10, 5, 4)).to.equal(19);
-      expect(fastAdd(10, 5, 4)).to.equal(19);
-    });
+  it('should accept multiple arguments', () => {
+    expect(add(10, 5, 4)).to.equal(19);
+    expect(fastAdd(10, 5, 4)).to.equal(19);
+  });
 
-    it('should work with objects as arguments', () => {
-      const firstTime = timeCheck({ foo: 'bar' });
-      wait(5);
-      const secondTime = fastTimeCheck({ foo: 'bar' });
-      wait(5);
-      expect(firstTime).to.not.equal(secondTime);
-      expect(fastTimeCheck({ foo: 'bar' })).to.equal(secondTime);
-      expect(fastTimeCheck({ foo: 'bar' })).to.not.equal(fastTimeCheck({ different: 'result' }));
-    });
+  it('should work with objects as arguments', () => {
+    const firstTime = timeCheck({ foo: 'bar' });
+    wait(5);
+    const secondTime = fastTimeCheck({ foo: 'bar' });
+    wait(5);
+    expect(firstTime).to.not.equal(secondTime);
+    expect(fastTimeCheck({ foo: 'bar' })).to.equal(secondTime);
+    expect(fastTimeCheck({ foo: 'bar' })).to.not.equal(fastTimeCheck({ different: 'result' }));
+  });
 
-    it('should work with arrays as arguments', () => {
-      const firstTime = timeCheck(['foo', 'bar']);
-      wait(5);
-      const secondTime = fastTimeCheck(['foo', 'bar']);
-      wait(5);
-      expect(firstTime).to.not.equal(secondTime);
-      expect(fastTimeCheck(['foo', 'bar'])).to.equal(secondTime);
-      expect(fastTimeCheck(['foo', 'bar'])).to.not.equal(fastTimeCheck(['different', 'results']));
-    });
+  it('should work with arrays as arguments', () => {
+    const firstTime = timeCheck(['foo', 'bar']);
+    wait(5);
+    const secondTime = fastTimeCheck(['foo', 'bar']);
+    wait(5);
+    expect(firstTime).to.not.equal(secondTime);
+    expect(fastTimeCheck(['foo', 'bar'])).to.equal(secondTime);
+    expect(fastTimeCheck(['foo', 'bar'])).to.not.equal(fastTimeCheck(['different', 'results']));
   });
 });
 
@@ -636,7 +649,7 @@ describe("throttle", () => {
     },33);
   });
 
-  it("throttled functions return their value", (done) => {
+  it('throttled functions return their value', (done) => {
     let counter = 0;
     const incr = () => ++counter;
     const throttledIncr = throttle(incr, 32);
@@ -648,7 +661,7 @@ describe("throttle", () => {
     }, 64);
   });
 
-  it("throttled functions called repeatedly should adhere to time limitations", (done) => {
+  it('throttled functions called repeatedly should adhere to time limitations', (done) => {
     let counter = 0;
     const incr = () => ++counter;
     const throttledIncr = throttle(incr, 64);
@@ -682,7 +695,6 @@ describe('sortBy', () => {
   it('should handle undefined values', () => {
     let list = [undefined, 4, 1, undefined, 3, 2];
     list = sortBy(list, i => i);
-
     expect(list).to.eql([1, 2, 3, 4, undefined, undefined]);
   });
 
