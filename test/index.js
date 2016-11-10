@@ -515,6 +515,57 @@ describe('cloneDeep', () => {
     expect(deepClone[2].friends).to.eql(users[2].friends);
     expect(deepClone[2].friends).to.not.equal(users[2].friends);
   });
+    
+  it('should be able to clone an unknown amount of layers deep', () => {
+    const users = [
+      'Simon',
+      { 'user': 'Will B' },
+      { 'user': 'Weylin',
+        friends: {
+          'user': 'Michael',
+          friends: {
+            'user': 'Mickey',
+            friends: {
+              'user': 'Brandon',
+              friends: {
+                'user': 'Yung Mike',
+                friends: {
+                  'user': 'Sam',
+                  friends: {
+                    'user': 'Will S',
+                    friends: {
+                      'user': 'Dan C',
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ];
+    console.log(users);
+    const deepClone = cloneDeep(users);
+
+    expect(deepClone).to.eql(users);
+    expect(deepClone).to.not.equal(users);
+    expect(deepClone[0]).to.eql(users[0]);
+    expect(deepClone[1]).to.eql(users[1]);
+    expect(deepClone[1]).to.not.equal(users[1]);
+    expect(deepClone[1].user).to.equal(users[1].user);
+    expect(deepClone[2]).to.eql(users[2]);
+    expect(deepClone[2]).to.not.equal(users[2]);
+    expect(deepClone[2].user).to.equal(users[2].user);
+    expect(deepClone[2].friends).to.eql(users[2].friends);
+    expect(deepClone[2].friends).to.not.equal(users[2].friends);
+    expect(deepClone[2].friends.user).to.equal(users[2].friends.user);
+    expect(deepClone[2].friends.friends).to.eql(users[2].friends.friends);
+    expect(deepClone[2].friends.friends).to.not.equal(users[2].friends.friends);
+    expect(deepClone[2].friends.friends.user).to.equal(users[2].friends.friends.user);
+    expect(deepClone[2].friends.friends.friends.friends.friends.friends.friends).to.eql(users[2].friends.friends.friends.friends.friends.friends.friends);
+    expect(deepClone[2].friends.friends.friends.friends.friends.friends.friends).to.not.equal(users[2].friends.friends.friends.friends.friends.friends.friends);
+    expect(deepClone[2].friends.friends.friends.friends.friends.friends.friends.user).to.equal(users[2].friends.friends.friends.friends.friends.friends.friends.user);
+  });
 });
 
 describe('applyAndEmpty', () => {
