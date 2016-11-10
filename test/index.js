@@ -544,7 +544,6 @@ describe('cloneDeep', () => {
         }
       }
     ];
-    console.log(users);
     const deepClone = cloneDeep(users);
 
     expect(deepClone).to.eql(users);
