@@ -78,6 +78,7 @@ function isNull(value) {
  * var shallowClone = clone(users);
  * shallowClone === users -> false
  * shallowClone[0] === users[0] → true
+ * DO NOT USE THE BUILT-IN Object.assign FUNCTION
  */
 function clone(value) {
 
