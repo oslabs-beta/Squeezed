@@ -386,6 +386,7 @@ function range(start, stop, step) {
  * partition([0,1,2,3,4,5,6], function(element) {
  *   return element % 2 === 0;
  * }); -> [[0,2,4,6],[1,3,5]];
+ * BONUS: Use two lodash functions that you created in this unit
  */
 function partition(array, predicate) {
 
