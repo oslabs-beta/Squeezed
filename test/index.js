@@ -219,6 +219,15 @@ describe('dropRight', () => {
     expect(dropRight(numbers, 0)).to.eql([1, 2, 3]);
     expect(numbers).to.eql([1,2,3]);
   });
+
+  it('should not mutate the input array', () => {
+    dropRight(numbers);
+    expect(numbers).to.eql([1,2,3]);
+    dropRight(numbers, 2);
+    expect(numbers).to.eql([1,2,3]);
+    dropRight(numbers, 5);
+    expect(numbers).to.eql([1,2,3]);
+  });
 });
 
 describe('take', () => {
@@ -247,11 +256,28 @@ describe('take', () => {
     expect(take(numbers, 0)).to.eql([]);
     expect(numbers).to.eql([1,2,3]);
   });
+
+  it('should not mutate the input array', () => {
+    take(numbers);
+    expect(numbers).to.eql([1,2,3]);
+    take(numbers, 2);
+    expect(numbers).to.eql([1,2,3]);
+    take(numbers, 5);
+    expect(numbers).to.eql([1,2,3]);
+  });
 });
 
 describe('difference', () => {
+  let numbers = [0, 1, 2, 3, 4, 5];
+  let diffNumbers = [3, 5];
   it('should split return an array with the elements from the first array that are not present in the second array ', () => {
-    expect(difference([0,1,2,3,4,5],[3,5])).to.eql([0,1,2,4]);
+    expect(difference(numbers, diffNumbers)).to.eql([0,1,2,4]);
+  });
+
+  it('should not mutate the input array', () => {
+    difference(numbers, diffNumbers);
+    expect(numbers).to.eql([0, 1, 2, 3, 4, 5]);
+    expect(diffNumbers).to.eql([3, 5]);
   });
 });
 
@@ -286,6 +312,12 @@ describe('forEach', () => {
       ['carrot', 2, fruits]
     ]);
   });
+
+  it('should mutate the input array', () => {
+    expect(forEach(fruits, (fruit, index, list) => {
+      iterationInputs.push([fruit, index, list]);
+    })).to.eql(undefined);
+  });
 });
 
 describe('forEachRight', () => {
@@ -319,12 +351,24 @@ describe('forEachRight', () => {
       ['carrot', 2, fruits]
     ].reverse());
   });
+
+  it('should mutate the input array', () => {
+    expect(forEach(fruits, (fruit, index, list) => {
+      iterationInputs.push([fruit, index, list]);
+    })).to.eql(undefined);
+  });
 });
 
 describe('map', () => {
   it('should apply a function to every value in an array', () => {
     const doubled = map([1, 2, 3], num => num * 2);
     expect(doubled).to.eql([2, 4, 6]);
+  });
+
+  it('should not mutate the input array', () => {
+    let numbers = [1, 2, 3];
+    let duplicatedThroughMap = map(numbers, (el) => el);
+    expect(numbers).to.not.equal(duplicatedThroughMap);
   });
 });
 
@@ -343,6 +387,12 @@ describe('filter', () => {
     const evens = filter({a:1, b:2, c:3, d:4}, (value, key, collection) => value % 2 !== 0);
     expect(evens).to.eql({a:1, c:3});
   });
+
+  it('should not mutate the input array', () => {
+    let numbers = [1, 2, 3, 4];
+    let duplicatedThroughFilter = filter(numbers, () => true);
+    expect(numbers).to.not.equal(duplicatedThroughFilter);
+  });
 });
 
 describe('reject', () => {
@@ -360,11 +410,23 @@ describe('reject', () => {
     const evens = reject({a:1, b:2, c:3, d:4}, (value, key, collection) => value % 2 !== 0);
     expect(evens).to.eql({b:2, d:4});
   });
+
+  it('should not mutate the input array', () => {
+    let numbers = [1, 2, 3, 4];
+    let duplicatedThroughReject = filter(numbers, () => false);
+    expect(numbers).to.not.equal(duplicatedThroughReject);
+  });
 });
 
 describe('uniq', () => {
   it('should return all unique values contained in an unsorted array', () => {
     expect(uniq([1, 2, 1, 3, 1, 4])).to.eql([1, 2, 3, 4]);
+  });
+
+  it('should not mutate the input array', () => {
+    let numbers = [1, 2, 1, 3, 1, 4];
+    uniq(numbers);
+    expect(numbers).to.eql([1, 2, 1, 3, 1, 4]);
   });
 });
 
@@ -419,6 +481,12 @@ describe('reduce', () => {
   it('should find the difference in an array when start provided', () => {
     const total = reduce([1, 2, 3], (tally, item) => tally - item, -1);
     expect(total).to.equal(-7);
+  });
+
+  it('should not mutate the input array', () => {
+    let numbers = [1, 2, 3];
+    let hi = reduce(numbers, (a, b) => a + b);
+    expect(numbers).to.eql([1, 2, 3]);
   });
 });
 
@@ -777,6 +845,14 @@ describe('sortBy', () => {
     const sorted = sortBy(collection, pair => pair.x);
     expect(sorted).to.eql(collection);
   });
+
+  it('should mutate the input array', () => {
+    let arr = [4, 3, 2, 1];
+    let sorted = sortBy(arr, el => el);
+    expect(arr).to.eql([1, 2, 3, 4]);
+    expect(arr).to.not.equal([4, 3, 2, 1]);
+    expect(sorted).to.eql([1, 2, 3, 4]);
+  });
 });
 
 describe('range', () => {
@@ -801,6 +877,13 @@ describe('partition', () => {
   it('should split the array into two based on predicate', () => {
     expect(partition([0,1,2,3,4,5], num => num % 2 === 0)).to.eql([[0,2,4],[1,3,5]]);
     expect(partition([0,1,2,3,4,5], num => num % 2 === 1)).to.eql([[1,3,5],[0,2,4]]);
+  });
+
+  it('should not mutate the input array', () => {
+    let numbers = [5, 10, 15, 20, 25, 30];
+    let partitioned = partition(numbers, num => num % 10 === 0);
+    expect(numbers).to.eql([5, 10, 15, 20, 25, 30]);
+    expect(partitioned).to.eql([[10, 20, 30], [5, 15, 25]]);
   });
 });
 
