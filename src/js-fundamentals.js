@@ -153,7 +153,7 @@ function difference(array1, array2) {
  * var callback = function(element, index, array) {
  *   console.log(element + "," + index + "," + array);
  * }
- * forEach(['a','b','c'], callback); → prints a,0,[1,2,3] b,1,[1,2,3] c,2,[1,2,3]
+ * forEach(['a','b','c'], callback); → prints a,0,[a,b,c] b,1,[a,b,c] c,2,[a,b,c]
  * For each element in the array, the callback we passed is called. The callback can be customized, but in the above example, the callback prints out the element, index, and entire array.
  */
 function forEach(array, callback) {
@@ -166,7 +166,7 @@ function forEach(array, callback) {
  * var callback = function(element, index, array) {
  *   console.log(element + "," + index + "," + array);
  * }
- * forEach(['a','b','c'], callback); → prints c,2,[1,2,3] b,1,[1,2,3] a,0,[1,2,3]
+ * forEach(['a','b','c'], callback); → prints c,2,[a,b,c] b,1,[a,b,c] a,0,[a,b,c]
  */
 function forEachRight(array, callback) {
 
