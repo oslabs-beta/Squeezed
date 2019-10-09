@@ -5,7 +5,7 @@
  * ex: isNegativeOrOdd(2); -> false
  */
 function isNegativeOrOdd(value) {
-
+  return value < 0 || value % 2 !== 0;
 }
 
 /**
@@ -15,7 +15,11 @@ function isNegativeOrOdd(value) {
  * repeat('abc',0); -> ''
  */
 function repeat(string, count) {
-
+  let repeatedString = '';
+  for (let i = 0; i < count; i++) {
+    repeatedString += string;
+  }
+  return repeatedString;
 }
 
 /**
@@ -25,7 +29,11 @@ function repeat(string, count) {
  * reverseString('will'); -> 'lliw'
  */
 function reverseString(string) {
-
+  let reversedString = '';
+  for (let i = string.length - 1; i >= 0; i--) {
+    reversedString += string[i]
+  }
+  return reversedString;
 }
 
 /**
@@ -33,7 +41,10 @@ function reverseString(string) {
  * ex: reverseObject({a:1,b:"c","d":4}); -> {1:a,c:"b",4:"d"}
  */
 function reverseObject(object) {
-
+  return Object.entries(object).reduce((reversedObject, [key, value]) => {
+    reversedObject[value] = key;
+    return reversedObject;
+  }, {});
 }
 
 /**
@@ -42,7 +53,7 @@ function reverseObject(object) {
  * isNumber('hi'); → false
  */
 function isNumber(value) {
-
+  return typeof value === 'number';
 }
 
 /**
@@ -51,7 +62,7 @@ function isNumber(value) {
  * isArray([1,2,3]); → true
  */
 function isArray(value) {
-
+  return value instanceof Array;
 }
 
 /**
@@ -60,7 +71,7 @@ function isArray(value) {
  * isObject([1,2,3]); → true
  */
 function isObject(value) {
-
+  return typeof value === 'object';
 }
 
 /**
@@ -69,7 +80,7 @@ function isObject(value) {
  * isNull(5); -> false
  */
 function isNull(value) {
-
+  return value === null;
 }
 
 /**
@@ -81,7 +92,14 @@ function isNull(value) {
  * DO NOT USE THE BUILT-IN Object.assign FUNCTION
  */
 function clone(value) {
-
+  const clone = value instanceof Array ? [] : {};
+  Object.entries(value).forEach(([key, value]) => {
+    clone[key] = value;
+  });
+  return clone;
+  // // ES6 spread syntax
+  // return [...value];
+  // // also works for objects {...value}
 }
 
 /**
@@ -92,7 +110,7 @@ function clone(value) {
  * size({a: 1, b: 2}); → 2
  */
 function size(collection) {
-
+  return Object.keys(collection).length;
 }
 
 /**
@@ -103,7 +121,12 @@ function size(collection) {
  * indexOf([11,22,33], 5); → -1
  */
 function indexOf(array, value) {
-
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === value) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 /**
@@ -113,8 +136,8 @@ function indexOf(array, value) {
  * drop([1, 2, 3], 5); → []
  * drop([1, 2, 3], 0); → [1, 2, 3]
  */
-function drop(array, n) {
-
+function drop(array, n = 1) {
+  return array.slice(n)
 }
 
 /**
@@ -124,8 +147,12 @@ function drop(array, n) {
  * dropRight([1, 2, 3], 5); → []
  * dropRight([1, 2, 3], 0); → [1, 2, 3]
  */
-function dropRight(array, n) {
-
+function dropRight(array, n = 1) {
+  const droppedArray = [];
+  for (let i = 0; i < array.length - n; i++) {
+    droppedArray.push(array[i]);
+  }
+  return droppedArray;
 }
 
 /**
@@ -135,8 +162,8 @@ function dropRight(array, n) {
  * take([1, 2, 3], 5); → [1, 2, 3]
  * take([1, 2, 3], 0); → []
  */
-function take(array, n) {
-
+function take(array, n = 1) {
+  return array.slice(0, n);
 }
 
 /**
@@ -144,7 +171,8 @@ function take(array, n) {
  * difference([0,1,2,3,4,5],[3,5]); -> [0,1,2,4]
  */
 function difference(array1, array2) {
-
+  const cache = new Set(array2);
+  return array1.filter(el => !cache.has(el));
 }
 
 /**
@@ -157,7 +185,9 @@ function difference(array1, array2) {
  * For each element in the array, the callback we passed is called. The callback can be customized, but in the above example, the callback prints out the element, index, and entire array.
  */
 function forEach(array, callback) {
-
+  for (let i = 0; i < array.length; i++) {
+    callback(array[i], i, array);
+  }
 }
 
 /**
@@ -169,7 +199,9 @@ function forEach(array, callback) {
  * forEach(['a','b','c'], callback); → prints c,2,[a,b,c] b,1,[a,b,c] a,0,[a,b,c]
  */
 function forEachRight(array, callback) {
-
+  for (let i = array.length - 1; i >= 0; i--) {
+    callback(array[i], i, array);
+  }
 }
 
 /**
@@ -181,7 +213,9 @@ function forEachRight(array, callback) {
  * BONUS: use the forEach method you use to create map
  */
 function map(array, callback) {
-
+  const mappedArray = [];
+  forEach(array, el => mappedArray.push(callback(el)));
+  return mappedArray;
 }
 
 /**
@@ -194,7 +228,17 @@ function map(array, callback) {
  * }); → {a: 1, c: 3}
  */
 function filter(collection, callback) {
-
+  const isArray = collection instanceof Array;
+  return Object.entries(collection).reduce((filteredCollection, [key, value]) => {
+    if (callback(value)) {
+      if (isArray) {
+        filteredCollection.push(value);
+      } else {
+        filteredCollection[key] = value;
+      }
+    }
+    return filteredCollection;
+  }, isArray ? [] : {});
 }
 
 /**
@@ -208,7 +252,17 @@ function filter(collection, callback) {
  * Challenge: use filter
  */
 function reject(collection, callback) {
-
+  const isArray = collection instanceof Array;
+  return Object.entries(collection).reduce((filteredCollection, [key, value]) => {
+    if (!callback(value)) {
+      if (isArray) {
+        filteredCollection.push(value);
+      } else {
+        filteredCollection[key] = value;
+      }
+    }
+    return filteredCollection;
+  }, isArray ? [] : {});
 }
 
 /**
@@ -216,7 +270,7 @@ function reject(collection, callback) {
  * uniq([1,2,1]); → [1,2]
  */
 function uniq(array) {
-
+  return [...new Set(array)]
 }
 
 /**
@@ -224,7 +278,7 @@ function uniq(array) {
  * pluck([{user: 'Bob', age: 20},{user: 'Sam', age: 25}], 'user'); → ['Bob','Sam']
  */
 function pluck(array, key) {
-
+  return array.map(el => el[key]);
 }
 
 /**
@@ -233,7 +287,15 @@ function pluck(array, key) {
  * trim('   hello world '); -> 'hello world'
  */
 function trim(string) {
-
+  // regular expression:
+  // a regular expression can be written /between two forward slashes/
+  // ^ means look at the beginning of a string, $ means look at end of string
+  // \s means whitespace
+  // + means one or more of a character
+  // | means or
+  // g means look for all instances (by default it will only look for the first)
+  // overall this means "look for all occurrences of one or more white space characters and the beginning or end of a string" and replace all matches with an empty string
+  return string.replace(/^\s+|\s+$/g, '');
 }
 
 /**
@@ -250,7 +312,16 @@ function trim(string) {
  * },1); → 4
  */
 function reduce(array, callback, start) {
-
+  let accumulator = array[0];
+  let initialIndex = 1;
+  if (start) {
+    accumulator = start;
+    initialIndex = 0;
+  }
+  for (let i = initialIndex; i < array.length; i++) {
+    accumulator = callback(accumulator, array[i]);
+  }
+  return accumulator;
 }
 
 /**
@@ -258,7 +329,7 @@ function reduce(array, callback, start) {
  * flatten([1, [2, 3, [4]]]); → [1, 2, 3, [4]]
  */
 function flatten(array) {
-
+  return array.reduce((flattenedArray, current) => flattenedArray.concat(current), []);
 }
 
 /**
@@ -266,7 +337,13 @@ function flatten(array) {
  * flattenDeep([1, [2, 3, [4]]]); → [1, 2, 3, 4]
  */
 function flattenDeep(array) {
-
+  return array.reduce((flattenedArray, current) => {
+    if (current instanceof Array) {
+      return flattenedArray.concat(...flattenDeep(current))
+    } else {
+      return flattenedArray.concat(current);
+    }
+  }, []);
 }
 
 /**
@@ -275,8 +352,14 @@ function flattenDeep(array) {
  * extend({ 'user': 'barney' }, { 'age': 40 }, { 'user': 'fred' }); → { 'user': 'fred', 'age': 40 }
  * BONUS: solve with reduce
  */
-function extend() {
-
+function extend(destination, ...sources) {
+  sources.reduce((accumulator, current) => {
+    Object.entries(current).forEach(([key, value]) => {
+      accumulator[key] = value;
+    });
+    return accumulator;
+  }, destination);
+  return destination;
 }
 
 /**
@@ -285,7 +368,7 @@ function extend() {
  * isString(5); → false
  */
 function isString(value) {
-
+  return typeof value === 'string';
 }
 
 /**
@@ -296,8 +379,20 @@ function isString(value) {
  * deepClone[0] === users[0] → false
  * deepClone[0].user === users[0].user → true
  */
-function cloneDeep(value) {
-
+function cloneDeep(collection) {
+  if (Array.isArray(collection)) {
+    return collection.reduce((clone, currentEl) => {
+      clone.push(cloneDeep(currentEl));
+      return clone;
+    }, []);
+  } else if (typeof collection === 'object') {
+    return Object.keys(collection).reduce((clone, currentKey) => {
+      clone[currentKey] = cloneDeep(collection[currentKey]);
+      return clone;
+    }, {});
+  } else {
+    return collection;
+  }
 }
 
 /**
@@ -312,7 +407,11 @@ function cloneDeep(value) {
  * applyAndEmpty(2, puzzlers); → 3
  */
 function applyAndEmpty(input, queue) {
-
+  let result = queue.reduce((accumulator, currentValue) => {
+    return currentValue(accumulator);
+  }, input)
+  queue.length = 0;
+  return result;
 }
 
 /**
@@ -320,7 +419,13 @@ function applyAndEmpty(input, queue) {
  * Repeat calls to the function return the value of the first call.
  */
 function once(func) {
-
+  let called = false;
+  return function(...args) {
+    if (!called) {
+      called = true;
+      func(...args);
+    }
+  }
 }
 
 /**
@@ -328,15 +433,25 @@ function once(func) {
  * the result for the given argument and return that value instead if possible.
  */
 function memoize(func) {
-
+  const cache = {};
+  return function(...args) {
+    const stringifiedArgs = JSON.stringify(args)
+    if (cache.hasOwnProperty(stringifiedArgs)) {
+      return cache[stringifiedArgs]
+    } else {
+      const result = func(...args);
+      cache[stringifiedArgs] = result;
+      return result;
+    }
+  }
 }
 
 /**
  * Invokes func after wait milliseconds.
  * Any additional arguments are provided to func when it is invoked.
  */
-function delay(func, wait) {
-
+function delay(func, wait, ...args) {
+  setTimeout(() => func(...args), wait);
 }
 
 /**
@@ -344,7 +459,14 @@ function delay(func, wait) {
  * (additional calls to func within the wait should not be invoked or queued).
  */
 function throttle(func, wait) {
-
+  let isCallable = true;
+  return function(...args) {
+    if (isCallable) {
+      isCallable = false;
+      setTimeout(() => isCallable = true, wait);
+      return func(...args);
+    }
+  }
 }
 
 /**
@@ -358,14 +480,15 @@ function throttle(func, wait) {
  *   return this.sin(n);
  * }, Math); → [3, 1, 2]
  * var users = [
- *   { 'user': 'fred' },
- *   { 'user': 'pebbles' },
- *   { 'user': 'barney' }
- * ];
+    { 'user': 'fred' },
+    { 'user': 'pebbles' },
+    { 'user': 'barney' }
+  ];
  * pluck(sortBy(users, 'user'), 'user'); → ['barney', 'fred', 'pebbles']
  */
 function sortBy(array, iterator) {
-
+  array.sort((a, b) => iterator(a) > iterator(b));
+  return array;
 }
 
 /**
@@ -377,8 +500,16 @@ function sortBy(array, iterator) {
  * range(0,30,5); -> [0,5,10,15,20,25]
  * range(0,-10,-1); -> [0,-1,-2,-3,-4,-5,-6,-7,-8,-9]
  */
-function range(start, stop, step) {
-
+function range(start = 0, stop, step = 1) {
+  if (!stop) {
+    stop = start;
+    start = 0;
+  }
+  const array = [];
+  for (let i = start; i < stop; i += step) {
+    array.push(i);
+  }
+  return array;
 }
 
 /**
@@ -389,23 +520,37 @@ function range(start, stop, step) {
  * BONUS: Use two lodash functions that you created in this unit
  */
 function partition(array, predicate) {
-
+  return [filter(array, predicate), reject(array, predicate)];
 }
 
 /**
  * Receives a variable number of arrays, and returns an array that contains every item shared between all passed-in arrays
  * intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]); -> [1,2]
  */
-function intersection() {
-
+function intersection(...args) {
+  return args.reduce((accumulator, currentValue) => {
+    return filter(accumulator, function(el){
+      if(currentValue.includes(el)){
+        return true;
+      }
+    })
+  });
 }
 
 /**
  * Returns an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
  * zip(['fred', 'barney'], [30, 40], [true, false]); → [['fred', 30, true], ['barney', 40, false]]
  */
-function zip() {
-
+function zip(...args) {
+  let zippedArray = [];
+  for(let i = 0; i < args[0].length; i++){
+    let subarray = [];
+    args.forEach(function(element){
+      subarray.push(element[i])
+    })
+    zippedArray.push(subarray)
+  }
+  return zippedArray;
 }
 /**
  * returns a function that will only be run after first being called count times
@@ -417,7 +562,13 @@ function zip() {
  * afterCalled(); -> 'hello is printed'
  */
 function after(count, func) {
-
+  let calls = 0;
+  return function(...args) {
+    calls++;
+    if (calls >= count) {
+      func(...args);
+    }
+  }
 }
 
 /**
@@ -432,7 +583,15 @@ function after(count, func) {
  * beforePrintAndIncrementCount(); prints 1
  */
 function before(count, func) {
-
+  let calls = 0;
+  let result;
+  return function(...args) {
+    calls++;
+    if (calls <= count) {
+      result = func(...args);
+    }
+    return result;
+  }
 }
 
 /**
@@ -444,5 +603,9 @@ function before(count, func) {
  * Remember the zero-based index for arrays. 3 Was passed as the last argument for an array of length 4.
  */
 function arrayFactory(length, processor) {
-
+  const array = [];
+  for (let i = 0; i < length; i++) {
+    array.push(processor(i));
+  }
+  return array;
 }
