@@ -11,12 +11,12 @@ JS-Fundamentals is a series of functions that perform common object-related task
 ## Getting Started
 1. Fork this repo
   - click on fork button on the top right of the page
-  <br><img src="https://github.com/CodesmithLLC/unit-1-js-fundamentals/docs/assets/images/help/repository/fork_button.jpg" width="300px"></img>  
+  <br><img src="https://github.com/CodesmithLLC/unit-1-js-fundamentals/docs/assets/images/fork_button.jpg" width="300px"></img>  
   - click on your handle to fork to your repo
 
 2. Clone the repo
   - copy and paste github url from the right side of the screen
-  <br><img src="https://github.com/CodesmithLLC/unit-1-js-fundamentals/docs/assets/images/help/repository/clone-repo-clone-url-button.png" width="200px"></img>
+  <br><img src="https://github.com/CodesmithLLC/unit-1-js-fundamentals/docs/assets/images/clone-repo-clone-url-button.png" width="200px"></img>
   - type in the following line into your command line and insert your copies url as shown below:
   ````
   git clone *github url
