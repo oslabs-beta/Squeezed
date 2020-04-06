@@ -3,7 +3,7 @@
 ## Summary
 JS-Fundamentals is a series of functions that perform common object-related tasks
 
-### Learning Goals
+## Learning Goals
 - Understand how to manipulate date types - integers, strings, booleans, objects, and arrays
 - Understand closures
 - Understanding of callbacks
@@ -24,10 +24,10 @@ JS-Fundamentals is a series of functions that perform common object-related task
   ```
 3. Add two remote links to the cloned repo on your shared workstation: one to CodesmithLLC's repo, and one to the partners repo that was not cloned:
   ```
-  git remote add upstream https://github.com/CodesmithLLC/unit-2-data-structure.git
+  git remote add upstream https://github.com/CodesmithLLC/unit-1-js-fundamentals.git
   ```
   ```
-  git remote add partner https://github.com/PARTNERS_GITHUB_HANDLE/unit-2-data-structure.git
+  git remote add partner https://github.com/PARTNERS_GITHUB_HANDLE/unit-1-js-fundamentals.git
   ```
 3. Each partner clone their own repo to their own laptop, following the clone instructions in step 2
 4. Each partner add two remote links to their clone on their own laptop, one to CodesmithLLC's repo, and one to their partner's repo, following the instructions in step 3
