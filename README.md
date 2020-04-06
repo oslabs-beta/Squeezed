@@ -31,7 +31,7 @@ JS-Fundamentals is a series of functions that perform common object-related task
   ```
 3. Each partner clone their own repo to their own laptop, following the clone instructions in step 2
 4. Each partner add two remote links to their clone on their own laptop, one to CodesmithLLC's repo, and one to their partner's repo, following the instructions in step 3
-5. As you work on the shared workstation, periodically push your changes to your repo with `git push origin master`. Your partner can then use `git pull partner master` to get the changes onto their machine, followed by `git push origin master` to push those changes to their own GitHub repo!
+5. As you work on the shared workstation or remotely on your own workstations, periodically push your changes to your repo with `git push origin master`. Your partner can then use `git pull partner master` to get the changes onto their machine, followed by `git push origin master` to push those changes to their own GitHub repo!
 
 Check out the [GitHub Documentation](https://help.github.com/articles/fork-a-repo/) for a more in-depth explanation of forking and cloning.
 
