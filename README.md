@@ -9,16 +9,17 @@ JS-Fundamentals is a series of functions that perform common object-related task
 - Understanding of callbacks
 
 ## How do I get started?
-1. Have BOTH partners fork this repo
-  - click on the **Fork** button on the top right of the page
-<br><img src="https://help.github.com/assets/images/help/repository/fork_button.jpg" width="300px"></img>  
-  - click on your handle to fork to your repo
+1. Have __BOTH__ partners fork this repo
+    - click on the __Fork__ button on the top right of the page
+  <br><img src="./docs/assets/images/fork_button.jpg" width="300px"></img>  
+    - click on your handle to fork to your repo
 
 2. Choose one partner's GitHub repo to work from, and clone it to your shared machine
-  - first, make sure you're on your new forked repo on GitHub
-  - copy and paste github url from the right side of the page
-<br><img src="https://help.github.com/assets/images/help/repository/clone-repo-clone-url-button.png" width="200px"></img>
+    - first, make sure you're on your new forked repo on GitHub
+    - copy and paste github url from the right side of the page
+<br><img src="./docs/assets/images/clone-repo-clone-url-button.png" width="200px"></img>
   - enter the following line into your command line and insert your copied url instead of the quoted text:
+
   ```
   git clone 'copied url'
   ```
@@ -29,12 +30,11 @@ JS-Fundamentals is a series of functions that perform common object-related task
   ```
   git remote add partner https://github.com/PARTNERS_GITHUB_HANDLE/unit-1-js-fundamentals.git
   ```
-3. Each partner clone their own repo to their own laptop, following the clone instructions in step 2
-4. Each partner add two remote links to their clone on their own laptop, one to CodesmithLLC's repo, and one to their partner's repo, following the instructions in step 3
-5. As you work on the shared workstation or remotely on your own workstations, periodically push your changes to your repo with `git push origin master`. Your partner can then use `git pull partner master` to get the changes onto their machine, followed by `git push origin master` to push those changes to their own GitHub repo!
+4. Each partner clone their own repo to their own laptop, following the clone instructions in step 2
+5. Each partner add two remote links to their clone on their own laptop, one to CodesmithLLC's repo, and one to their partner's repo, following the instructions in step 3
+6. As you work on the shared workstation or remotely on your own workstations, periodically push your changes to your repo with `git push origin master`. Your partner can then use `git pull partner master` to get the changes onto their machine, followed by `git push origin master` to push those changes to their own GitHub repo!
 
 Check out the [GitHub Documentation](https://help.github.com/articles/fork-a-repo/) for a more in-depth explanation of forking and cloning.
-
 
 ## Testing
 * An incredibly useful tool is Chrome Dev Tool's Javascript Console (which can be opened in Chrome by pressing command+option+J). The console allows for developers to type javascript directly into the browser. Test it out by typing in the following to the console:
