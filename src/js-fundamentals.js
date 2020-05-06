@@ -74,8 +74,8 @@ function isNull(value) {
 
 /**
  * Creates a clone of an object.
- * var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
- * var shallowClone = clone(users);
+ * let users = [{ 'user': 'barney' },{ 'user': 'fred' }];
+ * let shallowClone = clone(users);
  * shallowClone === users -> false
  * shallowClone[0] === users[0] → true
  * DO NOT USE THE BUILT-IN Object.assign FUNCTION
@@ -150,7 +150,7 @@ function difference(array1, array2) {
 /**
  * Iterates over elements of an array invoking callback for each element.
  * The callback should be passed the element, the current index, and the entire array.
- * var callback = function(element, index, array) {
+ * let callback = function(element, index, array) {
  *   console.log(element + "," + index + "," + array);
  * }
  * forEach(['a','b','c'], callback); → prints a,0,[a,b,c] b,1,[a,b,c] c,2,[a,b,c]
@@ -163,7 +163,7 @@ function forEach(array, callback) {
 /**
  * Iterates over elements of array in reverse invoking callback for each element.
  * The callback should be passed the element, the current index, and the entire array.
- * var callback = function(element, index, array) {
+ * let callback = function(element, index, array) {
  *   console.log(element + "," + index + "," + array);
  * }
  * forEach(['a','b','c'], callback); → prints c,2,[a,b,c] b,1,[a,b,c] a,0,[a,b,c]
@@ -175,7 +175,7 @@ function forEachRight(array, callback) {
 /**
  * Creates an array of values by running each element in array through callback
  * The callback should be passed the element, the current index, and the entire array.
- * map([1,2,3], function(element, index, array) {
+ * map([1,2,3], (element, index, array) => {
  *  return element * 3;
  * }); -> [3,6,9]
  * BONUS: use the forEach method you use to create map
@@ -186,10 +186,10 @@ function map(array, callback) {
 
 /**
  * Iterates over elements of collection returning an array of all the elements callback returns truthy for.
- * filter([1,2,3,4], function(element, index, array) {
+ * filter([1,2,3,4], (element, index, array) => {
  *  return element % 2 === 0;
  * }); → [2,4]
- * filter({a: 1, b: 2,c: 3,d: 4}, function(value, key, collection) {
+ * filter({a: 1, b: 2,c: 3,d: 4}, (value, key, collection) => {
  *  return element % 2 !== 0;
  * }); → {a: 1, c: 3}
  */
@@ -199,10 +199,10 @@ function filter(collection, callback) {
 
 /**
  * Removes all elements from array that callback returns truthy for and returns an array of the remaining elements.
- * reject([1,2,3,4], function(element, index, collection) {
+ * reject([1,2,3,4], (element, index, collection) => {
  *  return element % 2 === 0;
  * }); → [1,3]
- * reject({a:1, b:2, c:3, d:4}, function(value, key, collection) {
+ * reject({a:1, b:2, c:3, d:4}, (value, key, collection) => {
  *  return element % 2 !== 0;
  * }); → {b:2, d:4}
  * Challenge: use filter
@@ -242,10 +242,10 @@ function trim(string) {
  * supplied the return value of the previous. If accumulator is not provided the
  * first element of collection is used as the initial value.
  * If a start parameter is not provided, then set the start value as the zeroth index
- * reduce([1,2], function(stored,current) {
+ * reduce([1,2], (stored,current) => {
  *  return stored + current;
  * }); → 3
- * reduce([1,2], function(stored,current) {
+ * reduce([1,2], (stored,current) => {
  *  return stored + current;
  * },1); → 4
  */
@@ -290,8 +290,8 @@ function isString(value) {
 
 /**
  * Creates a deep clone of value.
- * var users = [{ 'user': 'barney' },{ 'user': 'fred' }];
- * var deepClone = cloneDeep(users)
+ * let users = [{ 'user': 'barney' },{ 'user': 'fred' }];
+ * let deepClone = cloneDeep(users)
  * deepClone === users → false
  * deepClone[0] === users[0] → false
  * deepClone[0].user === users[0].user → true
@@ -302,13 +302,13 @@ function cloneDeep(value) {
 
 /**
  * Using a for loop, call the functions in the queue in order with the input number, where the results of each function become the next function’s input. Additionally, the queue should be empty after the function is called.
- * var puzzlers = [
+ * let puzzlers = [
  *   function(a) { return 8 * a - 10; },
  *   function(a) { return (a - 3) * (a - 3) * (a - 3); },
  *   function(a) { return a * a + 4;},
  *   function(a) { return a % 5;}
  * ];
- * var start = 2;
+ * let start = 2;
  * applyAndEmpty(2, puzzlers); → 3
  */
 function applyAndEmpty(input, queue) {
@@ -354,10 +354,7 @@ function throttle(func, wait) {
  * sortBy([1, 2, 3], function(n) {
  *   return Math.sin(n);
  * }); → [3, 1, 2]
- * sortBy([1, 2, 3], function(n) {
- *   return this.sin(n);
- * }, Math); → [3, 1, 2]
- * var users = [
+ * let users = [
  *   { 'user': 'fred' },
  *   { 'user': 'pebbles' },
  *   { 'user': 'barney' }
@@ -409,8 +406,8 @@ function zip() {
 }
 /**
  * returns a function that will only be run after first being called count times
- * var called = function() { console.log('hello') };
- * var afterCalled = after(3, called);
+ * let called = function() { console.log('hello') };
+ * let afterCalled = after(3, called);
  * afterCalled(); -> nothing is printed
  * afterCalled(); -> nothing is printed
  * afterCalled(); -> 'hello is printed'
@@ -423,9 +420,9 @@ function after(count, func) {
 /**
  * Returns a function that can be called no more than count times.
  * The result of the last function call is memoized and returned when count has been reached
- * var count = 0;
- * var printAndIncrementCount = function() { console.log(count++) };
- * var beforePrintAndIncrementCount = before(2,printAndIncrementCount);
+ * let count = 0;
+ * let printAndIncrementCount = function() { console.log(count++) };
+ * let beforePrintAndIncrementCount = before(2,printAndIncrementCount);
  * beforePrintAndIncrementCount(); prints 0
  * beforePrintAndIncrementCount(); prints 1
  * beforePrintAndIncrementCount(); prints 1
@@ -439,7 +436,7 @@ function before(count, func) {
  * Write a function that creates arrays. The first argument is the length. The second
  * is a callback. The return value of this callback will become the array element. Call
  * the callback with the array index as an argument.
- * var square = function(n) { return n * n; };
+ * let square = function(n) { return n * n; };
  * arrayFactory(4, square); -> [0, 1, 4, 9]
  * Remember the zero-based index for arrays. 3 Was passed as the last argument for an array of length 4.
  */
