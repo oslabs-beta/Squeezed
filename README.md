@@ -14,25 +14,23 @@ JS-Fundamentals is a series of functions that perform common object-related task
   <br><img src="./docs/assets/images/fork_button.jpg" width="300px"></img>  
     - click on your handle to fork to your repo
 
-2. Choose one partner's GitHub repo to work from, and clone it to your shared machine
+2. Each partner clones their own newly forked repo to their local machine
     - first, make sure you're on your new forked repo on GitHub
-    - copy and paste github url from the right side of the page
-<br><img src="./docs/assets/images/clone-repo-clone-url-button.png" width="200px"></img>
-  - enter the following line into your command line and insert your copied url instead of the quoted text:
-
-  ```
-  git clone 'copied url'
-  ```
-3. Add two remote links to the cloned repo on your shared workstation: one to CodesmithLLC's repo, and one to the partners repo that was not cloned:
-  ```
-  git remote add upstream https://github.com/CodesmithLLC/unit-1-js-fundamentals.git
-  ```
-  ```
-  git remote add partner https://github.com/PARTNERS_GITHUB_HANDLE/unit-1-js-fundamentals.git
-  ```
-4. Each partner clone their own repo to their own laptop, following the clone instructions in step 2
-5. Each partner add two remote links to their clone on their own laptop, one to CodesmithLLC's repo, and one to their partner's repo, following the instructions in step 3
-6. As you work on the shared workstation or remotely on your own workstations, periodically push your changes to your repo with `git push origin master`. Your partner can then use `git pull partner master` to get the changes onto their machine, followed by `git push origin master` to push those changes to their own GitHub repo!
+    - copy and paste GitHub url from the right side of the page
+<br><img src="./docs/assets/images/clone-repo-clone-url-button-new.png" width="200px"></img>
+    - enter the following line into your command line and insert your copied url instead of the quoted text:
+      ```
+      git clone 'copied url'
+      ```
+3. Each partner adds two remote links to their cloned repo on their own local workstation: one to CodesmithLLC's repo, and one to the partner's repo:
+    ```
+    git remote add upstream https://github.com/CodesmithLLC/unit-1-js-fundamentals.git
+    ```
+    ```
+    git remote add partner https://github.com/PARTNERS_GITHUB_HANDLE/unit-1-js-fundamentals.git
+    ```
+    \* Make sure to edit the remote partner link with your partner's GitHub handle.
+4. As you work remotely on your own workstation, periodically push your changes to your repo with `git push origin master`. Your partner can then use `git pull partner master` to get the changes onto their machine, followed by `git push origin master` to push those changes to their own GitHub repo!
 
 Check out the [GitHub Documentation](https://help.github.com/articles/fork-a-repo/) for a more in-depth explanation of forking and cloning.
 
