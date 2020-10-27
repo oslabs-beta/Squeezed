@@ -1,4 +1,4 @@
-package.json
 bower.json
 .bowerrc
 .DS_Store
+node_modules/

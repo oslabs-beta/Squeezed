@@ -1,0 +1,27 @@
+{
+  "name": "unit-1-js-fundamentals",
+  "version": "1.0.0",
+  "description": "## Summary JS-Fundamentals is a series of functions that perform common object-related tasks",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodesmithLLC/unit-1-js-fundamentals.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodesmithLLC/unit-1-js-fundamentals/issues"
+  },
+  "homepage": "https://github.com/CodesmithLLC/unit-1-js-fundamentals#readme",
+  "devDependencies": {
+    "eslint": "^7.12.0"
+  }
+}
