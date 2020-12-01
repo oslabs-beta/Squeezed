@@ -166,7 +166,7 @@ function forEach(array, callback) {
  * let callback = function(element, index, array) {
  *   console.log(element + "," + index + "," + array);
  * }
- * forEach(['a','b','c'], callback); → prints c,2,[a,b,c] b,1,[a,b,c] a,0,[a,b,c]
+ * forEachRight(['a','b','c'], callback); → prints c,2,[a,b,c] b,1,[a,b,c] a,0,[a,b,c]
  */
 function forEachRight(array, callback) {
 
