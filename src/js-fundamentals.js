@@ -166,7 +166,7 @@ function forEach(array, callback) {
  * let callback = function(element, index, array) {
  *   console.log(element + "," + index + "," + array);
  * }
- * forEach(['a','b','c'], callback); → prints c,2,[a,b,c] b,1,[a,b,c] a,0,[a,b,c]
+ * forEachRight(['a','b','c'], callback); → prints c,2,[a,b,c] b,1,[a,b,c] a,0,[a,b,c]
  */
 function forEachRight(array, callback) {
 
@@ -190,7 +190,7 @@ function map(array, callback) {
  *  return element % 2 === 0;
  * }); → [2,4]
  * filter({a: 1, b: 2,c: 3,d: 4}, (value, key, collection) => {
- *  return element % 2 !== 0;
+ *  return value % 2 !== 0;
  * }); → {a: 1, c: 3}
  */
 function filter(collection, callback) {
@@ -203,7 +203,7 @@ function filter(collection, callback) {
  *  return element % 2 === 0;
  * }); → [1,3]
  * reject({a:1, b:2, c:3, d:4}, (value, key, collection) => {
- *  return element % 2 !== 0;
+ *  return value % 2 !== 0;
  * }); → {b:2, d:4}
  * Challenge: use filter
  */
