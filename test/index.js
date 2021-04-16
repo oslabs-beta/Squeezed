@@ -751,7 +751,7 @@ describe('delay', () => {
   });
 });
 
-describe("throttle", () => {
+describe('throttle', () => {
   it('throttled functions should only be able to be called again after the specified time', (done) => {
     let counter = 0;
     const incr = () => counter++;
@@ -759,12 +759,14 @@ describe("throttle", () => {
 
     throttledIncr();
     throttledIncr();
-    expect(counter).to.eql(1);
     setTimeout(() => {
+      expect(counter).to.eql(1);
       throttledIncr();
-      expect(counter).to.eql(2);
-      done();
-    },33);
+      setTimeout(() => {
+        expect(counter).to.eql(2);
+        done();
+      }, 32);
+    }, 32);
   });
 
   it('throttled functions return their value', (done) => {
