@@ -301,7 +301,9 @@ function cloneDeep(value) {
 }
 
 /**
- * Using a for loop, call the functions in the queue in order with the input number, where the results of each function become the next function’s input. Additionally, the queue should be empty after the function is called.
+ * Loop through the queue, invoking the functions in order with the input number, 
+ * where the results of each invocation become the next function’s input. 
+ * Additionally, the queue should be empty after the function is called.
  * let puzzlers = [
  *   function(a) { return 8 * a - 10; },
  *   function(a) { return (a - 3) * (a - 3) * (a - 3); },
