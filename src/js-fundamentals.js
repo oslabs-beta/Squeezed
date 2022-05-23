@@ -4,19 +4,31 @@
  * ex: isNegativeOrOdd(-2); -> true
  * ex: isNegativeOrOdd(2); -> false
  */
-function isNegativeOrOdd(value) {
+ function isNegativeOrOdd(num) {
+    if (num % 2 !== 0){return true};
+    return num < 0 ? true : false;
 
 }
-
+console.log(isNegativeOrOdd(1));
+console.log(isNegativeOrOdd(-2));
+console.log(isNegativeOrOdd(2));
+console.log(isNegativeOrOdd(4));
 /**
  * repeats the given string count times
  * repeat('abc',3); -> 'abcabcabc'
  * repeat('*',3); -> '***'
  * repeat('abc',0); -> ''
  */
-function repeat(string, count) {
 
+// 
+function repeat(string, count) {
+    // return string applying the method 'repeat'
+    // repeat takes single argument of number of times to repeat
+    return string.repeat(count);
 }
+
+console.log(repeat('abc',3));
+console.log(repeat('*',3));
 
 /**
  * returns a string that is the reverse of the inputted string
@@ -25,16 +37,34 @@ function repeat(string, count) {
  * reverseString('will'); -> 'lliw'
  */
 function reverseString(string) {
-
+    //use the reverse and split method 
+    let result ="";
+    //iterate through  the string using a for loop
+    for (let i = string.length-1; i >= 0; i--){
+        result+=string[i];
+    }
+    return result;
 }
-
+console.log(reverseString('hello'));
+console.log(reverseString('will'));
 /**
  * accepts an object and returns an object with key and values switched
  * ex: reverseObject({a:1,b:"c","d":4}); -> {1:a,c:"b",4:"d"}
  */
 function reverseObject(object) {
-
+    // declare a new object for results
+    const resultsObj = {};
+    // iterate through the input object
+    for(let key in object){
+        //assign the value as a key in the object
+        // corresponding key as the value in the object
+        resultsObj[object[key]] = key;
+    }
+    // return the new result object
+    return resultsObj;
 }
+
+console.log(reverseObject({a:1,b:"c","d":4}));
 
 /**
  * Returns boolean of whether argument is classified as a Number object
