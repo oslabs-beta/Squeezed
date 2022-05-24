@@ -72,7 +72,7 @@ console.log(reverseObject({a:1,b:"c","d":4}));
  * isNumber('hi'); → false
  */
 function isNumber(value) {
-
+    
 }
 
 /**
