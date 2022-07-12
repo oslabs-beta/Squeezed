@@ -1,0 +1,25 @@
+{
+  "imports": {
+    "$fresh/": "https://deno.land/x/fresh@1.0.1/",
+    "preact": "https://esm.sh/preact@10.8.2",
+    "preact/": "https://esm.sh/preact@10.8.2/",
+    "preact-render-to-string": "https://esm.sh/preact-render-to-string@5.2.0?deps=preact@10.8.2",
+    "@twind": "./utils/twind.ts",
+    "twind": "https://esm.sh/twind@0.16.17",
+    "twind/": "https://esm.sh/twind@0.16.17/",
+    "oak": "https://deno.land/x/oak@v10.6.0",
+    "~/": "./",
+    "std/": "https://deno.land/std@0.145.0/",
+    "@unocss/": "https://deno.land/x/aleph@1.0.0-alpha.88/lib/@unocss/",
+    "aleph/": "https://deno.land/x/aleph@1.0.0-alpha.88/",
+    "aleph/server": "https://deno.land/x/aleph@1.0.0-alpha.88/server/mod.ts",
+    "aleph/dev": "https://deno.land/x/aleph@1.0.0-alpha.88/server/dev.ts",
+    "aleph/react": "https://deno.land/x/aleph@1.0.0-alpha.88/framework/react/mod.ts",
+    "aleph/react-client": "https://deno.land/x/aleph@1.0.0-alpha.88/framework/react/client.ts",
+    "aleph/react-ssr": "https://deno.land/x/aleph@1.0.0-alpha.88/framework/react/ssr.ts",
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "react-dom/": "https://esm.sh/react-dom@18.2.0/",
+    "postgres": "https://deno.land/x/postgres@v0.16.1/mod.ts"
+  }
+}
