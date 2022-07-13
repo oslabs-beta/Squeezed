@@ -1,6 +1,6 @@
 import { Client } from "postgres";
 
-let config = "postgres://yuiolgxd:Zq74w9OKmQ8jo4W7CS7NT9flwm8xk1FT@heffalump.db.elephantsql.com/yuiolgxd";
+let config = "postgres://eylrwzmt:oZ-T6w_cEIg_2i9agFo6RHf3OpqA82NU@heffalump.db.elephantsql.com/eylrwzmt";
 
 const client = new Client(config);
 
