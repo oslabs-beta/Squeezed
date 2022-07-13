@@ -10,8 +10,9 @@ router
       
       context.response.body = output;
       })
-//   .post("/account", accountController.createAccount)
-  .get('/account/:id', accountController.getAccount);
+  .post("/account", accountController.createAccount)
+  .get('/account/:id', accountController.getAccount)
+  .get('/account', accountController.getAll);
 
 
 export default router

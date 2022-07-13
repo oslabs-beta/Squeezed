@@ -1,36 +1,35 @@
 import db from '../db.ts'
+import Dex from "https://deno.land/x/dex/mod.ts";
+const dex = Dex({client: 'postgres'}); 
 
 const projectController: any = {};
 
-
-projectController.getproject = async({ request, response, params }: { request: any, response: any, params: any }) => {
+projectController.getproject = async(ctx: any) => {
     try {
-      const { id } = request.body;
-      const data = await db.queryArray({
+        const id = await ctx.params.id;
+        const data = await db.queryObject({
           text: `SELECT * FROM projects WHERE account_id = ${id}`
-      });
-      response.body = {
-          status: true,
-          data: data.rows[0]
-      };
-      response.status(200);
+        });
+        ctx.response.body = data.rows[0]
+        ctx.response.status = 200;
+        return;
     } catch (err) {
-      response.body = { status: false, data: null};
-      response.status = 500;
-      console.log(err);         
+        ctx.response.body = { status: false, data: null};
+        ctx.response.status = 500;
+        console.log(err);         
     }
 };
 
-projectController.saveProject = async({ request, response, params }: { request: any, response: any, params: any }) => {
+projectController.saveProject = async(ctx: any) => {
     try {
-        const { id, projectName, code, date } = request.body;
-        const data = await db.queryArray({
-                text: `INSERT INTO projects (name, code, date, account_id) VALUES (${projectName}, ${code}, ${date}, ${id})`
-            });
-            response.status(200);  
+        const { value } = await ctx.request.body({type: 'json'});
+        let selectQuery = dex("projects").insert(await value).toString();
+        const data = await db.queryObject(selectQuery);
+        ctx.response.status = 200; 
+        return; 
     } catch (err) {
-        response.body = { status: false, data: null};
-        response.status = 500;
+        ctx.response.body = { status: false, data: null};
+        ctx.response.status = 500;
         console.log(err);
     }
 };
