@@ -5,7 +5,9 @@
   "compilerOptions": {
     "allowJs": true,
     "lib": ["deno.window"],
-    "strict": true
+    "strict": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "https://esm.sh/react"
   },
   "importMap": "./import_map.json",
   "lint": {

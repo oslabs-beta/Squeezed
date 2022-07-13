@@ -27,18 +27,7 @@ export async function handleRequest(request: Request): Promise<Response> {
         <link rel="stylesheet" href="style.css" />
       </head>
       <body>
-      <DragDropContext>
-        <div class='container'>
-            <nav>NavBar</nav>
-            <section id='sideBar'>sideBar</section> 
-            <Draggable>
-            <section id='dragAndDrop'>dragAndDrop</section> 
-            </Draggable>
-            <section id='preview'>preview</section> 
-            <section id='customization'>customization</section> 
-            <section id='buttons'>buttons</section> 
-        </div>
-        </DragDropContext>
+        <div id='root'>ROOT DIV</div>
       </body>
     </html>`,
     {
@@ -48,5 +37,18 @@ export async function handleRequest(request: Request): Promise<Response> {
     },
   );
 }
+
+// <DragDropContext>
+//         <div class='container'>
+//             <nav>NavBar</nav>
+//             <section id='sideBar'>sideBar</section> 
+//             <Draggable>
+//             <section id='dragAndDrop'>dragAndDrop</section> 
+//             </Draggable>
+//             <section id='preview'>preview</section> 
+//             <section id='customization'>customization</section> 
+//             <section id='buttons'>buttons</section> 
+//         </div>
+//         </DragDropContext>
 
 serve(handleRequest);

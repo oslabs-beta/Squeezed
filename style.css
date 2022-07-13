@@ -2,7 +2,7 @@
     display: grid;
     grid-template: auto / repeat(7, 1fr);
     grid-template-areas:
-    "nav nav nav nav nav nav nav"
+    "side dd dd dd dd prev prev"
     "side dd dd dd dd prev prev"
     "side dd dd dd dd prev prev"
     "side dd dd dd dd prev prev"
