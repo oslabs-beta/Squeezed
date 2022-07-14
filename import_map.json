@@ -7,7 +7,7 @@
     "@twind": "./utils/twind.ts",
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",
-    "oak": "https://deno.land/x/oak@v10.6.0",
+    "oak": "https://deno.land/x/oak/mod.ts",
     "~/": "./",
     "std/": "https://deno.land/std@0.145.0/",
     "@unocss/": "https://deno.land/x/aleph@1.0.0-alpha.88/lib/@unocss/",
