@@ -1,0 +1,68 @@
+/* body {
+    background-color: orange;
+} */
+
+.app {
+    display: grid;
+    grid-template: auto / repeat(7, 1fr);
+    grid-template-areas:
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "side dd dd dd dd prev prev"
+    "buttons cust cust cust cust prev prev"
+    "buttons cust cust cust cust prev prev"
+    "buttons cust cust cust cust prev prev"
+    "buttons cust cust cust cust prev prev"
+    "buttons cust cust cust cust prev prev"
+    "buttons cust cust cust cust prev prev"
+    "buttons cust cust cust cust prev prev"
+    "buttons cust cust cust cust prev prev"
+    "buttons cust cust cust cust prev prev"
+    "buttons cust cust cust cust prev prev"
+    "buttons cust cust cust cust prev prev";
+    height: 100%;
+    width: 100%;
+}
+
+nav { 
+    grid-area: nav; 
+    background-color: rgb(255, 0, 0);
+    border: 2px solid white;
+    font-size: 30px;
+}
+
+#sideBar { grid-area: side;
+    background-color: rgb(255, 123, 0);
+    border: 2px solid white;
+    font-size: 30px; }
+
+#dragAndDrop { grid-area: dd;
+    background-color: rgb(230, 203, 27);
+    border: 2px solid white;
+    font-size: 30px; }
+#preview { grid-area: prev; 
+    background-color: rgb(47, 217, 78);
+    border: 2px solid white;
+    font-size: 30px;}
+#customization { grid-area: cust; 
+    background-color: aqua;
+    border: 2px solid white;
+    font-size: 30px;}
+#buttons { grid-area: buttons; 
+    background-color: rgb(225, 0, 255);
+    border: 2px solid white;
+    font-size: 30px;}
+
