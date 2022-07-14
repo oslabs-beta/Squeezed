@@ -13,14 +13,41 @@ export default function SideBar(this: any){
   //   border: '2px solid white',
   //   fontSize: '30px',
   // } as const;
+  interface Props {
+    name: string;
+    className?: string;
+    onClick: (e: Event) => void;
+  }
 
+function move(){
+console.log('ugh')
+return
+}
+
+const handleDrag = (event: React.DragEvent<HTMLAnchorElement>) => {
+  console.log(event.currentTarget);
+  alert("dragged");
+}
   return (
     <main className='container' >
       <ul className="sideBar">
         {/* {this.state.htmlElements.map((el: any) => (
           <li className="sidebar-button" />
         ))} */}
-        <li className="sidebar-button"> LIST ITEM</li>
+        {/* <Button 
+  variant="contained" 
+  href="/required" 
+  onDrag={handleDrag}
+>
+  Drag Event
+</Button> */}
+        <button className="sidebar-button" draggable="true" onClick={() => move()}> DIV</button>
+        <button className="sidebar-button" draggable="true" onClick={() => {move()}}> BUTTON</button>
+        <button className="sidebar-button" draggable="true" onClick={() => {move()}}> FORM</button>
+        <button className="sidebar-button" draggable="true" onClick={() => {move()}}> IMAGE</button>
+        <button className="sidebar-button" draggable="true" onClick={() => {move()}}> PARAGRAPH</button>
+        <button className="sidebar-button" draggable="true" onClick={() => {move()}}> HEADER</button>
+        <button className="sidebar-button" draggable="true" onClick={() => {move()}}> LIST</button>
       </ul>
     </main>
   );

@@ -48,36 +48,36 @@ const buttonsStyle = {
   const styles = {
     display: 'grid',
     backgroundColor: 'black',
-     gridTemplate: 'auto / repeat(7, 1fr)',
+     gridTemplate: 'auto / repeat(11, 1fr)',
     border: '2px solid pink',
     gridTemplateAreas:
-    `"side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side dd dd dd prev prev prev"
-    "side cust cust cust prev prev prev"
-    "side cust cust cust prev prev prev"
-    "side cust cust cust prev prev prev"
-    "side cust cust cust prev prev prev"
-    "side cust cust cust prev prev prev"
-    "side cust cust cust prev prev prev"
-    "buttons cust cust cust prev prev prev"
-    "buttons cust cust cust prev prev prev"
-    "buttons cust cust cust prev prev prev"
-    "buttons cust cust cust prev prev prev"
-    "buttons cust cust cust prev prev prev"`,
+    `"side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side dd dd dd dd dd prev prev prev prev prev"
+    "side cust cust cust cust cust prev prev prev prev prev"
+    "side cust cust cust cust cust prev prev prev prev prev"
+    "side cust cust cust cust cust prev prev prev prev prev"
+    "side cust cust cust cust cust prev prev prev prev prev"
+    "side cust cust cust cust cust prev prev prev prev prev"
+    "side cust cust cust cust cust prev prev prev prev prev"
+    "buttons cust cust cust cust cust prev prev prev prev prev"
+    "buttons cust cust cust cust cust prev prev prev prev prev"
+    "buttons cust cust cust cust cust prev prev prev prev prev"
+    "buttons cust cust cust cust cust prev prev prev prev prev"
+    "buttons cust cust cust cust cust prev prev prev prev prev"`,
     height: '100%',
     width: '100%'
  } as const;
