@@ -32,7 +32,7 @@ app.addEventListener("error", (evt) => {
   console.log(evt.error);
 });
 
-app.use((ctx) => {
+app.use((ctx: any) => {
   ctx.throw(500);
 });
 
