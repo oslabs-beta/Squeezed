@@ -4,8 +4,10 @@
   },
   "compilerOptions": {
     "allowJs": true,
-    "lib": ["deno.window"],
-    "strict": true
+    "lib": ["deno.window", "es6", "dom"],
+    "strict": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "https://esm.sh/react"
   },
   "importMap": "./import_map.json",
   "lint": {

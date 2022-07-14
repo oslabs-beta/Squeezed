@@ -48,3 +48,29 @@ await app.listen({ port });
         // deno run --allow-net ./server/server.ts
         
         //deno run --allow-net --allow-env server.ts
+
+
+
+
+// import { Application, Router } from '../deps.ts';
+
+// const app = new Application();
+// const PORT = 8000;
+
+// const router = new Router();
+// router
+//   .get('/', (ctx) => {
+//     ctx.response.body = 'Home'
+//   })
+//   .get('/about', (ctx) => {
+//     ctx.response.body = 'About'
+//   })
+
+// app.use(router.routes());
+// app.use(router.allowedMethods())
+
+// app.addEventListener('listen', () => {
+//   console.log(`Server started on port ${PORT}`);
+// })
+
+// await app.listen({port: PORT});
