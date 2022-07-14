@@ -4,7 +4,7 @@
   },
   "compilerOptions": {
     "allowJs": true,
-    "lib": ["deno.window"],
+    "lib": ["deno.window", "es6", "dom"],
     "strict": true,
     "jsx": "react-jsx",
     "jsxImportSource": "https://esm.sh/react"

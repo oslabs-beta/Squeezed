@@ -4,11 +4,21 @@ import React from 'react';
 
 
 export default function Customization(){
-    // state
+  // state
+
+  // const customizationStyle = { 
+  //   gridArea: 'dd',
+  //   backgroundColor: 'rgb(230, 203, 27)',
+  //   border: '2px solid white',
+  //   fontSize: '30px',
+  // } as const;
 
 
 
-    return (
-    <p>Customization</p>
-    );
+
+  return (
+    <main className='container' >
+      <p>Customization</p>
+    </main>
+  );
 }

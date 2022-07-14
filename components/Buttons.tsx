@@ -7,7 +7,7 @@ export default function Buttons(){
 // state
 
 function load(){
-
+console.log('loaded')
 }
 
 
@@ -16,13 +16,18 @@ function clear(){
 }
 
 function save(){
-
+  
 }
 
 function exportFunc(){
 
 }
-
+// const buttonsStyle = { 
+//   gridArea: 'buttons',
+//   backgroundColor: 'rgb(225, 0, 255)',
+//   border: '2px solid white',
+//   fontSize: '30px'
+// } as const;
 
 
 return (
@@ -67,4 +72,4 @@ return (
     </div>
   </main>
 );
-    }
+}
