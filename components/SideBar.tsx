@@ -1,18 +1,19 @@
 //import statements
-import React from 'react';
+// import React from 'react';
 // import "../styles.css";
+import { React } from '../deps.tsx';
 
 export default function SideBar(this: any){
-  //  this.state = {
-  //   htmlElements : ['div', 'paragraph', 'h1', 'form', 'button', 'img']
-  // };
+   this.state = {
+    htmlElements : ['div', 'paragraph', 'h1', 'form', 'button', 'img']
+  };
 
-  // const sideBarStyle = { 
-  //   gridArea: 'side',
-  //   backgroundColor: 'rgb(255, 123, 0)',
-  //   border: '2px solid white',
-  //   fontSize: '30px',
-  // } as const;
+  const sideBarStyle = { 
+    gridArea: 'side',
+    backgroundColor: 'rgb(255, 123, 0)',
+    border: '2px solid white',
+    fontSize: '30px',
+  } as const;
   interface Props {
     name: string;
     className?: string;
@@ -52,3 +53,11 @@ const handleDrag = (event: React.DragEvent<HTMLAnchorElement>) => {
     </main>
   );
 }
+
+// const SideBar = () => {
+//   return(
+//     <div>SIDEBAR</div>
+//   )
+// }
+
+// export default SideBar;

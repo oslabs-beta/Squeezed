@@ -1,5 +1,6 @@
 //import statements
-import React from 'react';
+// import React from 'react';
+import { React } from '../deps.tsx';
 // import { useState, useEffect } from "react"
 
 
@@ -24,34 +25,16 @@ function clear(){
 }
 
 function save(){
-  fetch('http://localhost:8080/home', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify()
-   })
+  // fetch('http://localhost:8080/home', {
+  //   method: 'POST',
+  //   headers: {'Content-Type': 'application/json'},
+  //   body: JSON.stringify()
+  //  })
 }
 
 function exportFunc(){
-  document.getElementById('exportBtn').addEventListener('click', async () => {
-    const out = {};
-    const dirHandle = await window.showDirectoryPicker();  
-    await handleDirectoryEntry( dirHandle, out );
-    console.log( out );
-  
-  async function handleDirectoryEntry( dirHandle, out ) {
-    for await (const entry of dirHandle.values()) {
-      if (entry.kind === "file"){
-        const file = await entry.getFile();
-        out[ file.name ] = file;
-      }
-      if (entry.kind === "directory") {
-        const newHandle = await dirHandle.getDirectoryHandle( entry.name, { create: false } );
-        const newOut = out[ entry.name ] = {};
-        await handleDirectoryEntry( newHandle, newOut );
-      }
-    }
-  }
-  });
+  // this should open up the window directory with deno ???
+  // Deno.readDir 
 }
 
 // const buttonsStyle = { 
@@ -95,7 +78,7 @@ return (
       <button
         id="exportBtn"
         onClick={(event: React.MouseEvent<HTMLElement>) => {
-          // alert("Project Exported");
+          alert("Project Exported");
           console.log('clicked')
           exportFunc();
         }}

@@ -45,7 +45,7 @@ await app.listen({ port });
         
         // https://stackoverflow.com/questions/62363699/how-to-access-form-body-in-oak-deno
         
-        // deno run --allow-net ./server/server.ts
+        // deno run --allow-net --allow-env ./server/server.ts
         
         //deno run --allow-net --allow-env server.ts
 

@@ -1,7 +1,6 @@
 //import statements
-import React from 'react';
-
-
+// import React from 'react';
+import { React } from '../deps.tsx';
 
 export default function DragAndDrop(){
 // state

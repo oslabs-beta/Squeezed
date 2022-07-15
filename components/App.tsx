@@ -1,4 +1,4 @@
-import { React } from '../deps.ts';
+import { React } from '../deps.tsx';
 import SideBar from './SideBar.tsx';
 import DragAndDrop from './DragAndDrop.tsx';
 import Customization from './Customization.tsx';
@@ -38,17 +38,17 @@ const App = () => {
     fontSize: '30px',
   } as const;
 
-const buttonsStyle = { 
-  gridArea: 'buttons',
-  backgroundColor: 'green',
-  border: '2px solid orange',
-  fontSize: '30px'
-} as const;
+  const buttonsStyle = { 
+    gridArea: 'buttons',
+    backgroundColor: 'green',
+    border: '2px solid orange',
+    fontSize: '30px'
+  } as const;
 
   const styles = {
     display: 'grid',
     backgroundColor: 'black',
-     gridTemplate: 'auto / repeat(11, 1fr)',
+    gridTemplate: 'auto / repeat(11, 1fr)',
     border: '2px solid pink',
     gridTemplateAreas:
     `"side dd dd dd dd dd prev prev prev prev prev"
@@ -78,7 +78,7 @@ const buttonsStyle = {
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"`,
-    height: '100%',
+    height: '200%',
     width: '100%'
  } as const;
 
