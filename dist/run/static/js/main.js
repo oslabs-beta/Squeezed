@@ -11015,68 +11015,257 @@ function dew7() {
 }
 dew7();
 function SideBar() {
-    this.state = {
-        htmlElements: [
-            'div',
-            'paragraph',
-            'h1',
-            'form',
-            'button',
-            'img'
-        ]
+    const [dragOver, setDragOver] = mod.useState(false);
+    const [content, setContent] = mod.useState('drag into here');
+    const [elementsArr, setElementsArr] = mod.useState([]);
+    const handleDragOverStart = ()=>setDragOver(true);
+    const handleDragOverEnd = ()=>setDragOver(false);
+    const handleDragStart = (event)=>{
+        event.dataTransfer.setData("text", event.currentTarget.id);
     };
-    function move() {
-        console.log('ugh');
-        return;
-    }
-    return mod.createElement("main", {
-        className: "container"
-    }, mod.createElement("ul", {
-        className: "sideBar"
+    const enableDropping = (event)=>{
+        event.preventDefault();
+        const data = event.dataTransfer.getData("text");
+        setContent(data);
+    };
+    const handleDrop = (event)=>{
+        const id = event.dataTransfer.getData("text");
+        setContent(id);
+        const newElementsArr = [
+            ...elementsArr
+        ];
+        newElementsArr.push(id);
+        setElementsArr(newElementsArr);
+    };
+    const sideStyle = {
+        gridArea: "bar",
+        backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+        borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        fontSize: "30px",
+        overflow: "scroll"
+    };
+    const dropStyle = {
+        gridArea: "drop",
+        backgroundColor: "#2D3033",
+        borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        fontSize: "30px",
+        height: "600px"
+    };
+    const styles = {
+        display: "grid",
+        gridTemplate: "auto / repeat(16, 1fr)",
+        gridTemplateAreas: `"bar bar drop drop drop drop drop drop drop drop drop drop drop drop drop drop"
+    "bar bar drop drop drop drop drop drop drop drop drop drop drop drop drop drop"
+    "bar bar drop drop drop drop drop drop drop drop drop drop drop drop drop drop"`,
+        height: "100%",
+        width: "100%",
+        color: '#7e55bb'
+    };
+    const htmlTags = elementsArr.map((elements, index)=>{
+        return mod.createElement("div", null, elementsArr[index], " ");
+    });
+    return mod.createElement("div", {
+        style: styles,
+        id: "scroll"
+    }, mod.createElement("div", {
+        style: sideStyle
+    }, mod.createElement("div", {
+        id: "div",
+        onDragStart: handleDragStart
     }, mod.createElement("button", {
-        className: "sidebar-button",
-        draggable: "true",
-        onClick: ()=>move()
-    }, " DIV"), mod.createElement("button", {
-        className: "sidebar-button",
-        draggable: "true",
-        onClick: ()=>{
-            move();
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "DIV")), mod.createElement("div", {
+        id: "paragraph",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '16px'
+        },
+        draggable: "true"
+    }, " ", "PARAGRAPH")), mod.createElement("div", {
+        id: "image",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "IMAGE")), mod.createElement("div", {
+        id: "form",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "FORM")), mod.createElement("div", {
+        id: "list",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "LIST")), mod.createElement("div", {
+        id: "header",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "HEADER")), mod.createElement("div", {
+        id: "footer",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "FOOTER")), mod.createElement("div", {
+        id: "link",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "LINK")), mod.createElement("div", {
+        id: "idk",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "IDK")), mod.createElement("div", {
+        id: "div",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "DIV")), mod.createElement("div", {
+        id: "image",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "IMAGE")), mod.createElement("div", {
+        id: "form",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "FORM")), mod.createElement("div", {
+        id: "list",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "LIST")), mod.createElement("div", {
+        id: "header",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "HEADER")), mod.createElement("div", {
+        id: "footer",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "FOOTER")), mod.createElement("div", {
+        id: "link",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "90%",
+            fontSize: '20px'
+        },
+        draggable: "true"
+    }, " ", "LINK"))), mod.createElement("div", {
+        onDragOver: enableDropping,
+        onDrop: handleDrop,
+        onDragEnter: handleDragOverStart,
+        onDragLeave: handleDragOverEnd,
+        style: dropStyle
+    }, mod.createElement("div", {
+        style: {
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            width: "100%",
+            fontSize: '20px',
+            borderColor: '#2D3033',
+            borderWidth: '2px',
+            borderStyle: 'solid'
         }
-    }, " BUTTON"), mod.createElement("button", {
-        className: "sidebar-button",
-        draggable: "true",
-        onClick: ()=>{
-            move();
-        }
-    }, " FORM"), mod.createElement("button", {
-        className: "sidebar-button",
-        draggable: "true",
-        onClick: ()=>{
-            move();
-        }
-    }, " IMAGE"), mod.createElement("button", {
-        className: "sidebar-button",
-        draggable: "true",
-        onClick: ()=>{
-            move();
-        }
-    }, " PARAGRAPH"), mod.createElement("button", {
-        className: "sidebar-button",
-        draggable: "true",
-        onClick: ()=>{
-            move();
-        }
-    }, " HEADER"), mod.createElement("button", {
-        className: "sidebar-button",
-        draggable: "true",
-        onClick: ()=>{
-            move();
-        }
-    }, " LIST")));
-}
-function DragAndDrop() {
-    return mod.createElement("main", null, mod.createElement("p", null, "Drag n Drop"));
+    }, htmlTags)));
 }
 function Customization() {
     return mod.createElement("main", {
@@ -11097,23 +11286,47 @@ function Buttons() {
         id: "buttonContainer"
     }, mod.createElement("button", {
         id: "loadBtn",
+        style: {
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            width: "90%",
+            fontSize: '20px'
+        },
         onClick: ()=>{
             alert("Project loaded");
             load();
         }
     }, "Load Project"), mod.createElement("button", {
+        style: {
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            width: "90%",
+            fontSize: '20px'
+        },
         id: "clearBtn",
         onClick: ()=>{
             alert("Canvas cleared");
             clear();
         }
     }, "Clear Project"), mod.createElement("button", {
+        style: {
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            width: "90%",
+            fontSize: '20px'
+        },
         id: "saveBtn",
         onClick: ()=>{
             alert("Project Saved");
             save();
         }
     }, "Save"), mod.createElement("button", {
+        style: {
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            width: "90%",
+            fontSize: '20px'
+        },
         id: "exportBtn",
         onClick: (event)=>{
             alert("Project Exported");
@@ -11125,61 +11338,60 @@ function Buttons() {
 const App = ()=>{
     const sideBarStyle = {
         gridArea: 'side',
-        backgroundColor: 'blue',
-        border: '2px solid black',
-        fontSize: '30px'
-    };
-    const dragAndDropStyle = {
-        gridArea: 'dd',
-        backgroundColor: 'red',
-        border: '2px solid blue',
         fontSize: '30px'
     };
     const customizationStyle = {
         gridArea: 'cust',
-        backgroundColor: 'orange',
-        border: '2px solid purple',
-        fontSize: '30px'
+        backgroundColor: "#2D3033",
+        borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        fontSize: '30px',
+        height: '470px'
     };
     const previewStyle = {
         gridArea: 'prev',
-        backgroundColor: 'yellow',
-        border: '2px solid black',
+        backgroundColor: "#2D3033",
+        borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
+        borderWidth: '2px',
+        borderStyle: 'solid',
         fontSize: '30px'
     };
     const buttonsStyle = {
         gridArea: 'buttons',
-        backgroundColor: 'green',
-        border: '2px solid orange',
+        backgroundColor: "#2D3033",
+        borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
+        borderWidth: '2px',
+        borderStyle: 'solid',
         fontSize: '30px'
     };
     const styles = {
         display: 'grid',
         backgroundColor: 'black',
+        color: '#68EDA7',
         gridTemplate: 'auto / repeat(11, 1fr)',
-        border: '2px solid pink',
-        gridTemplateAreas: `"side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side cust cust cust cust cust prev prev prev prev prev"
-    "side cust cust cust cust cust prev prev prev prev prev"
-    "side cust cust cust cust cust prev prev prev prev prev"
-    "side cust cust cust cust cust prev prev prev prev prev"
-    "side cust cust cust cust cust prev prev prev prev prev"
-    "side cust cust cust cust cust prev prev prev prev prev"
+        gridTemplateAreas: `"side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "buttons cust cust cust cust cust prev prev prev prev prev"
+    "buttons cust cust cust cust cust prev prev prev prev prev"
+    "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
@@ -11188,14 +11400,13 @@ const App = ()=>{
         height: '200%',
         width: '100%'
     };
+    const [elementsArr, setElementsArr] = mod.useState([]);
     return mod.createElement("div", {
         className: "app",
         style: styles
     }, mod.createElement("div", {
         style: sideBarStyle
     }, mod.createElement(SideBar, null)), mod.createElement("div", {
-        style: dragAndDropStyle
-    }, mod.createElement(DragAndDrop, null)), mod.createElement("div", {
         style: customizationStyle
     }, mod.createElement(Customization, null)), mod.createElement("div", {
         style: previewStyle
