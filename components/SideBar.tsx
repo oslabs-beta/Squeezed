@@ -85,7 +85,7 @@ function SideBar(this: any) {
 
 const htmlTags = elementsArr.map((elements, index) =>{
   return (
-    <div>{elementsArr[index]} </div>
+    <div style={{borderColor: '#2D3033', borderWidth: '8px', borderStyle: 'solid', textAlign: 'center', fontWeight: 'bolder'}}>{elementsArr[index]} </div>
   )
 })
 

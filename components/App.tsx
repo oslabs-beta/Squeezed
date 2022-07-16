@@ -25,8 +25,9 @@ const App = () => {
     gridArea: 'cust',
     backgroundColor: "#2D3033",
     borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-        borderWidth: '2px',
-    borderStyle: 'solid',    fontSize: '30px',
+    borderWidth: '2px',
+    borderStyle: 'solid',    
+    fontSize: '30px',
     height: '470px'
   } as const;
 

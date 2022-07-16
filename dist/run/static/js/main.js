@@ -11066,7 +11066,15 @@ function SideBar() {
         color: '#7e55bb'
     };
     const htmlTags = elementsArr.map((elements, index)=>{
-        return mod.createElement("div", null, elementsArr[index], " ");
+        return mod.createElement("div", {
+            style: {
+                borderColor: '#2D3033',
+                borderWidth: '8px',
+                borderStyle: 'solid',
+                textAlign: 'center',
+                fontWeight: 'bolder'
+            }
+        }, elementsArr[index], " ");
     });
     return mod.createElement("div", {
         style: styles,
@@ -11298,7 +11306,7 @@ const Styling = (props)=>{
         htmlFor: "textAlign"
     }, "Text Align"), mod.createElement("select", {
         onChange: (e)=>setTextAlign(e.target.value)
-    }, mod.createElement("option", null, "center"), mod.createElement("option", null, "right"), mod.createElement("option", null, "left"), mod.createElement("option", null, "justify")), mod.createElement("br", null), mod.createElement("label", {
+    }, mod.createElement("option", null, "center"), mod.createElement("option", null, "right"), mod.createElement("option", null, "left"), mod.createElement("option", null, "justify"), mod.createElement("option", null, "justify")), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "textDecoration"
     }, "Text Decoration"), mod.createElement("select", {
         onChange: (e)=>setTextDecoration(e.target.value)
