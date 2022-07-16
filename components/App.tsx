@@ -1,8 +1,8 @@
 import { React } from '../deps.tsx';
 import SideBar from './SideBar.tsx';
 import DragAndDrop from './DragAndDrop.tsx';
-import Customization from './Customization.tsx';
-import Preview from './Preview.tsx';
+import Customization from './customization/Customization.tsx';
+import Preview from './preview/Preview.tsx';
 import Buttons from './Buttons.tsx';
 
 
@@ -25,8 +25,9 @@ const App = () => {
     gridArea: 'cust',
     backgroundColor: "#2D3033",
     borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-        borderWidth: '2px',
-    borderStyle: 'solid',    fontSize: '30px',
+    borderWidth: '2px',
+    borderStyle: 'solid',    
+    fontSize: '30px',
     height: '470px'
   } as const;
 
