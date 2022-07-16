@@ -64,6 +64,7 @@ const Styling: any = (props: any) => {
           <option>right</option>
           <option>left</option>
           <option>justify</option>
+          <option>justify</option>
         </select>
         <br />
 
