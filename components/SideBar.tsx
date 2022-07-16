@@ -45,7 +45,7 @@ function SideBar(this: any) {
     borderWidth: '2px',
     borderStyle: 'solid',
     fontSize: "30px",
-    overflow: "scroll"
+    overflow: "scroll",
   } as const;
 
   const dropStyle = {
@@ -85,7 +85,7 @@ function SideBar(this: any) {
 
 const htmlTags = elementsArr.map((elements, index) =>{
   return (
-    <div>{elementsArr[index]} </div>
+    <div style={{borderColor: '#2D3033', borderWidth: '8px', borderStyle: 'solid', textAlign: 'center', fontWeight: 'bolder'}}>{elementsArr[index]} </div>
   )
 })
 
@@ -94,97 +94,97 @@ const htmlTags = elementsArr.map((elements, index) =>{
     <div style={styles} id="scroll">
       <div style={sideStyle}>
         <div id="div" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}} draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             DIV
           </button>
         </div>
         <div id="paragraph"  onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '16px'}} draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '16px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             PARAGRAPH
           </button>
         </div>
         <div id="image" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}} draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             IMAGE
           </button>
         </div>
         <div id="form" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}} draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             FORM
           </button>
         </div>
         <div id="list" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}} draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LIST
           </button>
         </div>
         <div id="header" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}}  draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             HEADER
           </button>
         </div>
         <div id="footer" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}}  draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             FOOTER
           </button>
         </div>
         <div id="link" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}} draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LINK
           </button>
         </div>
         <div id="idk" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}}  draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             IDK
           </button>
         </div>
         <div id="div" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}} draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             DIV
           </button>
         </div>
         <div id="image" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}} draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             IMAGE
           </button>
         </div>
         <div id="form" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}} draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             FORM
           </button>
         </div>
         <div id="list" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}} draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LIST
           </button>
         </div>
         <div id="header" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}}  draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             HEADER
           </button>
         </div>
         <div id="footer" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}}  draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             FOOTER
           </button>
         </div>
         <div id="link" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px'}} draggable="true">
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "90%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LINK
           </button>
@@ -197,7 +197,7 @@ const htmlTags = elementsArr.map((elements, index) =>{
         onDragEnter={handleDragOverStart}
         onDragLeave={handleDragOverEnd}
         style={dropStyle} >
-        <div style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033",width: "100%", fontSize: '20px', borderColor: '#2D3033', borderWidth: '2px', borderStyle: 'solid'}}>{htmlTags}</div>
+        <div style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033",width: "100%", fontSize: '20px'}}>{htmlTags}</div>
       </div>
     </div>
   );

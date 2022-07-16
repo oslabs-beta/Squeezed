@@ -11066,7 +11066,15 @@ function SideBar() {
         color: '#7e55bb'
     };
     const htmlTags = elementsArr.map((elements, index)=>{
-        return mod.createElement("div", null, elementsArr[index], " ");
+        return mod.createElement("div", {
+            style: {
+                borderColor: '#2D3033',
+                borderWidth: '8px',
+                borderStyle: 'solid',
+                textAlign: 'center',
+                fontWeight: 'bolder'
+            }
+        }, elementsArr[index], " ");
     });
     return mod.createElement("div", {
         style: styles,
@@ -11081,7 +11089,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "DIV")), mod.createElement("div", {
@@ -11092,7 +11101,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '16px'
+            fontSize: '16px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "PARAGRAPH")), mod.createElement("div", {
@@ -11103,7 +11113,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "IMAGE")), mod.createElement("div", {
@@ -11114,7 +11125,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "FORM")), mod.createElement("div", {
@@ -11125,7 +11137,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "LIST")), mod.createElement("div", {
@@ -11136,7 +11149,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "HEADER")), mod.createElement("div", {
@@ -11147,7 +11161,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "FOOTER")), mod.createElement("div", {
@@ -11158,7 +11173,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "LINK")), mod.createElement("div", {
@@ -11169,7 +11185,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "IDK")), mod.createElement("div", {
@@ -11180,7 +11197,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "DIV")), mod.createElement("div", {
@@ -11191,7 +11209,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "IMAGE")), mod.createElement("div", {
@@ -11202,7 +11221,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "FORM")), mod.createElement("div", {
@@ -11213,7 +11233,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "LIST")), mod.createElement("div", {
@@ -11224,7 +11245,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "HEADER")), mod.createElement("div", {
@@ -11235,7 +11257,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "FOOTER")), mod.createElement("div", {
@@ -11246,7 +11269,8 @@ function SideBar() {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         draggable: "true"
     }, " ", "LINK"))), mod.createElement("div", {
@@ -11260,10 +11284,7 @@ function SideBar() {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
             width: "100%",
-            fontSize: '20px',
-            borderColor: '#2D3033',
-            borderWidth: '2px',
-            borderStyle: 'solid'
+            fontSize: '20px'
         }
     }, htmlTags)));
 }
@@ -11290,7 +11311,8 @@ function Buttons() {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         onClick: ()=>{
             alert("Project loaded");
@@ -11301,7 +11323,8 @@ function Buttons() {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         id: "clearBtn",
         onClick: ()=>{
@@ -11313,7 +11336,8 @@ function Buttons() {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         id: "saveBtn",
         onClick: ()=>{
@@ -11325,7 +11349,8 @@ function Buttons() {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
             width: "90%",
-            fontSize: '20px'
+            fontSize: '20px',
+            fontWeight: 'bolder'
         },
         id: "exportBtn",
         onClick: (event)=>{
