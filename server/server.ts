@@ -1,4 +1,4 @@
-import { Application, isHttpError, Status } from "oak";
+import { Application, isHttpError, Status, Router} from "oak";
 import db from './db.ts'
 import accountRoutes from './routes/accountRoutes.ts'
 import projectRoutes from './routes/projectRoutes.ts'
@@ -6,7 +6,29 @@ import projectRoutes from './routes/projectRoutes.ts'
 const port = 8000;
 const app = new Application();
 
+const router = new Router();
 
+router
+.get ('/', async (ctx) => {
+  await ctx.send({
+    root: `${Deno.cwd()}`,
+    index: "index.html",
+  });
+})
+  
+// app.use(async (context, next) => {
+//   try {
+//     await context.send({
+//       root: `${Deno.cwd()}/dist/run/static/js`,
+//       index: 'main.js' 
+//     });
+//   } catch {
+//     await next();
+//   }
+// });
+
+app.use(router.routes());
+app.use(router.allowedMethods());
 app.use(accountRoutes.routes());
 app.use(accountRoutes.allowedMethods());
 app.use(projectRoutes.routes());
@@ -45,7 +67,7 @@ await app.listen({ port });
         
         // https://stackoverflow.com/questions/62363699/how-to-access-form-body-in-oak-deno
         
-        // deno run --allow-net --allow-env ./server/server.ts
+        // deno run --allow-net --allow-env --allow-read ./server/server.ts
         
         //deno run --allow-net --allow-env server.ts
 
