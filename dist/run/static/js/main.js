@@ -11395,9 +11395,52 @@ const Customization = ()=>{
         setCustomizationPage: setCustomizationPage
     }));
 };
-function Preview() {
-    return mod.createElement("main", null, mod.createElement("p", null, "Preview"));
-}
+const CodePreview = (props)=>{
+    return mod.createElement("div", null, "Code Preview page");
+};
+const IslandPreview = (props)=>{
+    return mod.createElement("div", null, "Island Preview page");
+};
+const MainContainer1 = (props)=>{
+    const { previewPage , setPreviewPage  } = props;
+    let page;
+    if (previewPage === 'codePreview') page = mod.createElement(CodePreview, null);
+    if (previewPage === 'islandPreview') page = mod.createElement(IslandPreview, null);
+    return mod.createElement("div", {
+        className: "previewPage"
+    }, page);
+};
+const Navbar1 = (props)=>{
+    const { setPreviewPage  } = props;
+    return mod.createElement("div", {
+        className: "navBar"
+    }, mod.createElement("button", {
+        className: "codePreviewBtn",
+        onClick: ()=>{
+            setPreviewPage('codePreview');
+        }
+    }, mod.createElement("h3", {
+        className: "codePreviewBtn"
+    }, "Code Preview")), mod.createElement("button", {
+        className: "islandPreviewBtn",
+        onClick: ()=>{
+            setPreviewPage('islandPreview');
+        }
+    }, mod.createElement("h3", {
+        className: "islandPreviewBtn"
+    }, "Island Preview")));
+};
+const Preview = ()=>{
+    const [previewPage, setPreviewPage] = mod.useState('codePreview');
+    return mod.createElement("div", {
+        className: "preview"
+    }, mod.createElement(Navbar1, {
+        setPreviewPage: setPreviewPage
+    }), mod.createElement(MainContainer1, {
+        previewPage: previewPage,
+        setPreviewPage: setPreviewPage
+    }));
+};
 function Buttons() {
     function load() {
         console.log('loaded');

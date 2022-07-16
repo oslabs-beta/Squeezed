@@ -2,7 +2,7 @@ import { React } from '../deps.tsx';
 import SideBar from './SideBar.tsx';
 import DragAndDrop from './DragAndDrop.tsx';
 import Customization from './customization/Customization.tsx';
-import Preview from './Preview.tsx';
+import Preview from './preview/Preview.tsx';
 import Buttons from './Buttons.tsx';
 
 
