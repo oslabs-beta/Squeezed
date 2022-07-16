@@ -49,7 +49,7 @@ return (
   <main>
     <div id="buttonContainer">
       <button
-        id="loadBtn"
+        id="loadBtn" style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px'}}
         onClick={() => {
           alert("Project loaded");
           load();
@@ -57,7 +57,7 @@ return (
       >
         Load Project
       </button>
-      <button
+      <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px'}}
         id="clearBtn"
         onClick={() => {
           alert("Canvas cleared");
@@ -66,7 +66,7 @@ return (
       >
         Clear Project
       </button>
-      <button
+      <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px'}}
         id="saveBtn"
         onClick={() => {
           alert("Project Saved");
@@ -75,7 +75,7 @@ return (
       >
         Save
       </button>
-      <button
+      <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px'}}
         id="exportBtn"
         onClick={(event: React.MouseEvent<HTMLElement>) => {
           alert("Project Exported");

@@ -1,78 +1,81 @@
 import { React } from '../deps.tsx';
 import SideBar from './SideBar.tsx';
 import DragAndDrop from './DragAndDrop.tsx';
-import Customization from './Customization.tsx';
-import Preview from './Preview.tsx';
+import Customization from './customization/Customization.tsx';
+import Preview from './preview/Preview.tsx';
 import Buttons from './Buttons.tsx';
+
 
 const App = () => {
   
-  // not sure if we need this and react router, going with just react router for now
-  // const [page, setPage] = (React as any).useState('home');
+  //Styling
   const sideBarStyle = { 
     gridArea: 'side',
-    backgroundColor: 'blue',
-    border: '2px solid black',
     fontSize: '30px',
   } as const;
 
   const dragAndDropStyle = { 
     gridArea: 'dd',
     backgroundColor: 'red',
-    border: '2px solid blue',
     fontSize: '30px',
   
   } as const;
 
   const customizationStyle = { 
     gridArea: 'cust',
-    backgroundColor: 'orange',
-    border: '2px solid purple',
+    backgroundColor: "#2D3033",
+    borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
+    borderWidth: '2px',
+    borderStyle: 'solid',    
     fontSize: '30px',
+    height: '470px'
   } as const;
 
   const previewStyle = { 
     gridArea: 'prev',
-    backgroundColor: 'yellow',
-    border: '2px solid black',
-    fontSize: '30px',
+    backgroundColor: "#2D3033",
+    borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
+    borderWidth: '2px',
+    borderStyle: 'solid',    fontSize: '30px',
   } as const;
 
   const buttonsStyle = { 
     gridArea: 'buttons',
-    backgroundColor: 'green',
-    border: '2px solid orange',
+    backgroundColor: "#2D3033",
+    borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
+    borderWidth: '2px',
+    borderStyle: 'solid',    
     fontSize: '30px'
   } as const;
 
   const styles = {
     display: 'grid',
     backgroundColor: 'black',
+    color: '#68EDA7',
     gridTemplate: 'auto / repeat(11, 1fr)',
-    border: '2px solid pink',
     gridTemplateAreas:
-    `"side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side dd dd dd dd dd prev prev prev prev prev"
-    "side cust cust cust cust cust prev prev prev prev prev"
-    "side cust cust cust cust cust prev prev prev prev prev"
-    "side cust cust cust cust cust prev prev prev prev prev"
-    "side cust cust cust cust cust prev prev prev prev prev"
-    "side cust cust cust cust cust prev prev prev prev prev"
-    "side cust cust cust cust cust prev prev prev prev prev"
+    `"side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "side side side side side side prev prev prev prev prev"
+    "buttons cust cust cust cust cust prev prev prev prev prev"
+    "buttons cust cust cust cust cust prev prev prev prev prev"
+    "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
@@ -82,12 +85,13 @@ const App = () => {
     width: '100%'
  } as const;
 
- 
+  //State
+  const [elementsArr, setElementsArr] = React.useState<string[] | number>([]);
 
   return (
     <div className="app" style={styles}>
+      {/* <div style={sideBarStyle} elementsArr={elementsArr} setElementsArr={setElementsArr}><SideBar /></div> */}
       <div style={sideBarStyle}><SideBar /></div>
-      <div style={dragAndDropStyle}><DragAndDrop /></div>
       <div style={customizationStyle}><Customization /></div>
       <div style={previewStyle}><Preview /></div>
       <div style={buttonsStyle}><Buttons /></div>
@@ -97,6 +101,8 @@ const App = () => {
 
 export default App;
 
+// green #68EDA7
+//yellow #FFE958
 
 // const App = () => {
 
