@@ -1,0 +1,19 @@
+Create Table Queries
+
+CREATE TABLE projects
+(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(50),
+  code TEXT,
+  date VARCHAR(50),
+  account_id INTEGER REFERENCES accounts(id)
+);
+
+CREATE TABLE accounts
+(
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(15) NOT NULL,
+  password VARCHAR(25) NOT NULL,
+  email VARCHAR(50) NOT NULL
+);
+
