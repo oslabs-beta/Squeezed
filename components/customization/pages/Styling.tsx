@@ -46,20 +46,23 @@ const Styling: any = (props: any) => {
 //   }
 
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{fontSize: '20px', fontWeight: 'bolder', color: 'white'}}>
 
-        <label htmlFor="inputText">Text</label>  
+        <label htmlFor="inputText">Text </label>  
         <input
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           type="text"
           placeholder="Enter text"
           className="input"
+          style={{backgroundColor: '#68EDA7', color: 'black'}}
+
         /> 
         <br />
 
-        <label htmlFor="textAlign">Text Align</label>
-        <select onChange={e => setTextAlign(e.target.value)}>
+        <label htmlFor="textAlign">Text Align </label>
+        <select onChange={e => setTextAlign(e.target.value)} style={{backgroundColor: '#68EDA7', color: 'black'}}
+>
           <option>center</option>
           <option>right</option>
           <option>left</option>
@@ -68,8 +71,9 @@ const Styling: any = (props: any) => {
         </select>
         <br />
 
-        <label htmlFor="textDecoration">Text Decoration</label>
-        <select onChange={e => setTextDecoration(e.target.value)}>
+        <label htmlFor="textDecoration">Text Decoration </label>
+        <select onChange={e => setTextDecoration(e.target.value)} style={{backgroundColor: '#68EDA7', color: 'black'}}
+>
           <option>overline</option>
           <option>line-through</option>
           <option>underline</option>
@@ -77,67 +81,78 @@ const Styling: any = (props: any) => {
         </select>
         <br />
 
-        <label htmlFor="backgroundColor">Background Color</label>  
+        <label htmlFor="backgroundColor">Background Color </label>  
         <input
           value={backgroundColor}
           onChange={(e) => setBackgroundColor(e.target.value)}
           type="text"
           placeholder="Enter hex color code"
           className="input"
+          style={{backgroundColor: '#68EDA7', color: 'black'}}
+
         /> 
         <br />
 
-        <label htmlFor="color">Text Color</label>  
+        <label htmlFor="color">Text Color </label>  
         <input
           value={color}
           onChange={(e) => setColor(e.target.value)}
           type="text"
           placeholder="Enter hex color code"
           className="input"
+          style={{backgroundColor: '#68EDA7', color: 'black'}}
         /> 
         <br />
 
-        <label htmlFor="margin">Margin</label>  
+        <label htmlFor="margin">Margin </label>  
         <input
           value={margin}
           onChange={(e) => setMargin(e.target.value)}
           type="text"
           placeholder="Enter margin value"
           className="input"
+          style={{backgroundColor: '#68EDA7', color: 'black'}}
+
         /> 
         <br />
 
-        <label htmlFor="height">Height</label>  
+        <label htmlFor="height">Height </label>  
         <input
           value={height}
           onChange={(e) => setHeight(e.target.value)}
           type="text"
           placeholder="Enter height"
           className="input"
+          style={{backgroundColor: '#68EDA7', color: 'black'}}
+
         /> 
         <br />
 
-        <label htmlFor="width">Width</label>  
+        <label htmlFor="width">Width </label>  
         <input
           value={width}
           onChange={(e) => setWidth(e.target.value)}
           type="text"
           placeholder="Enter width"
           className="input"
+          style={{backgroundColor: '#68EDA7', color: 'black'}}
+
         /> 
         <br />
 
-        <label htmlFor="padding">Padding</label>  
+        <label htmlFor="padding">Padding </label>  
         <input
           value={padding}
           onChange={(e) => setPadding(e.target.value)}
           type="text"
           placeholder="Enter padding"
           className="input"
+          style={{backgroundColor: '#68EDA7', color: 'black'}}
+
         /> 
         <br />
 
-        <button type="submit" className="btn">
+        <button type="submit" className="btn"  style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)"}}>
           Submit
         </button>
 

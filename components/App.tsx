@@ -6,21 +6,39 @@ import Preview from './preview/Preview.tsx';
 import Buttons from './Buttons.tsx';
 
 
-const App = () => {
+
+interface Props{
+  elementsArr: string[];
+  setElementsArr: React.Dispatch<React.SetStateAction<string>>;
+  content: string;
+  setContent: React.Dispatch<React.SetStateAction<string>>;
+  // currentElement: string;
+}
+
+// function h(this: any, props: any) {
+  
+  
+  
+  const App = () => {
+  //   this.state = {
+  //     // populate state fields according to props fields
+  
+  //   };
+  // }
   
   //Styling
   const sideBarStyle = { 
     gridArea: 'side',
     fontSize: '30px',
   } as const;
-
+  
   const dragAndDropStyle = { 
     gridArea: 'dd',
     backgroundColor: 'red',
     fontSize: '30px',
-  
+    
   } as const;
-
+  
   const customizationStyle = { 
     gridArea: 'cust',
     backgroundColor: "#2D3033",
@@ -30,7 +48,7 @@ const App = () => {
     fontSize: '30px',
     height: '470px'
   } as const;
-
+  
   const previewStyle = { 
     gridArea: 'prev',
     backgroundColor: "#2D3033",
@@ -38,7 +56,7 @@ const App = () => {
     borderWidth: '2px',
     borderStyle: 'solid',    fontSize: '30px',
   } as const;
-
+  
   const buttonsStyle = { 
     gridArea: 'buttons',
     backgroundColor: "#2D3033",
@@ -47,7 +65,7 @@ const App = () => {
     borderStyle: 'solid',    
     fontSize: '30px'
   } as const;
-
+  
   const styles = {
     display: 'grid',
     backgroundColor: 'black',
@@ -83,15 +101,15 @@ const App = () => {
     "buttons cust cust cust cust cust prev prev prev prev prev"`,
     height: '200%',
     width: '100%'
- } as const;
-
+  } as const;
+  
   //State
   const [elementsArr, setElementsArr] = React.useState<string[]>([]);
-  const [currentEl, setCurrentEl] = React.useState<HTMLDivElement>("");
-
+  const [currentElement, setCurrentElement] = React.useState<string>('drag into here');
+  
   return (
     <div className="app" style={styles}>
-      <div style={sideBarStyle}><SideBar elementsArr={elementsArr} setElementsArr={setElementsArr}/></div>
+      <div style={sideBarStyle}><SideBar elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} /></div>
       <div style={customizationStyle}><Customization /></div>
       <div style={previewStyle}><Preview /></div>
       <div style={buttonsStyle}><Buttons /></div>
