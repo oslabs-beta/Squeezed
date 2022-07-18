@@ -11014,10 +11014,10 @@ function dew7() {
     return exports7;
 }
 dew7();
-function SideBar() {
+const SideBar = ({ elementsArr , setElementsArr , currentElement , setCurrentElement  })=>{
+    console.log("I'm in sidebar: ", elementsArr, currentElement);
     const [dragOver, setDragOver] = mod.useState(false);
     const [content, setContent] = mod.useState('drag into here');
-    const [elementsArr, setElementsArr] = mod.useState([]);
     const handleDragOverStart = ()=>setDragOver(true);
     const handleDragOverEnd = ()=>setDragOver(false);
     const handleDragStart = (event)=>{
@@ -11036,6 +11036,7 @@ function SideBar() {
         ];
         newElementsArr.push(id);
         setElementsArr(newElementsArr);
+        setCurrentElement(id);
     };
     const sideStyle = {
         gridArea: "bar",
@@ -11088,7 +11089,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11100,7 +11101,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '16px',
             fontWeight: 'bolder'
         },
@@ -11112,7 +11113,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11124,7 +11125,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11136,7 +11137,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11148,7 +11149,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11160,7 +11161,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11172,7 +11173,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11184,7 +11185,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11196,7 +11197,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11208,7 +11209,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11220,7 +11221,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11232,7 +11233,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11244,7 +11245,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11256,7 +11257,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11268,7 +11269,7 @@ function SideBar() {
         style: {
             backgroundColor: "#2D3033",
             color: "#e8e1f3",
-            width: "90%",
+            width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
@@ -11287,7 +11288,7 @@ function SideBar() {
             fontSize: '20px'
         }
     }, htmlTags)));
-}
+};
 const Routing = (props)=>{
     return mod.createElement("div", null, "Routing page in react router");
 };
@@ -11306,74 +11307,118 @@ const Styling = (props)=>{
         alert(`form submitted`);
     };
     return mod.createElement("form", {
-        onSubmit: handleSubmit
+        onSubmit: handleSubmit,
+        style: {
+            fontSize: '20px',
+            fontWeight: 'bolder',
+            color: 'white'
+        }
     }, mod.createElement("label", {
         htmlFor: "inputText"
-    }, "Text"), mod.createElement("input", {
+    }, "Text "), mod.createElement("input", {
         value: inputText,
         onChange: (e)=>setInputText(e.target.value),
         type: "text",
         placeholder: "Enter text",
-        className: "input"
+        className: "input",
+        style: {
+            backgroundColor: '#68EDA7',
+            color: 'black'
+        }
     }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "textAlign"
-    }, "Text Align"), mod.createElement("select", {
-        onChange: (e)=>setTextAlign(e.target.value)
+    }, "Text Align "), mod.createElement("select", {
+        onChange: (e)=>setTextAlign(e.target.value),
+        style: {
+            backgroundColor: '#68EDA7',
+            color: 'black'
+        }
     }, mod.createElement("option", null, "center"), mod.createElement("option", null, "right"), mod.createElement("option", null, "left"), mod.createElement("option", null, "justify"), mod.createElement("option", null, "justify")), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "textDecoration"
-    }, "Text Decoration"), mod.createElement("select", {
-        onChange: (e)=>setTextDecoration(e.target.value)
+    }, "Text Decoration "), mod.createElement("select", {
+        onChange: (e)=>setTextDecoration(e.target.value),
+        style: {
+            backgroundColor: '#68EDA7',
+            color: 'black'
+        }
     }, mod.createElement("option", null, "overline"), mod.createElement("option", null, "line-through"), mod.createElement("option", null, "underline"), mod.createElement("option", null, "none")), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "backgroundColor"
-    }, "Background Color"), mod.createElement("input", {
+    }, "Background Color "), mod.createElement("input", {
         value: backgroundColor,
         onChange: (e)=>setBackgroundColor(e.target.value),
         type: "text",
         placeholder: "Enter hex color code",
-        className: "input"
+        className: "input",
+        style: {
+            backgroundColor: '#68EDA7',
+            color: 'black'
+        }
     }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "color"
-    }, "Text Color"), mod.createElement("input", {
+    }, "Text Color "), mod.createElement("input", {
         value: color,
         onChange: (e)=>setColor(e.target.value),
         type: "text",
         placeholder: "Enter hex color code",
-        className: "input"
+        className: "input",
+        style: {
+            backgroundColor: '#68EDA7',
+            color: 'black'
+        }
     }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "margin"
-    }, "Margin"), mod.createElement("input", {
+    }, "Margin "), mod.createElement("input", {
         value: margin,
         onChange: (e)=>setMargin(e.target.value),
         type: "text",
         placeholder: "Enter margin value",
-        className: "input"
+        className: "input",
+        style: {
+            backgroundColor: '#68EDA7',
+            color: 'black'
+        }
     }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "height"
-    }, "Height"), mod.createElement("input", {
+    }, "Height "), mod.createElement("input", {
         value: height,
         onChange: (e)=>setHeight(e.target.value),
         type: "text",
         placeholder: "Enter height",
-        className: "input"
+        className: "input",
+        style: {
+            backgroundColor: '#68EDA7',
+            color: 'black'
+        }
     }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "width"
-    }, "Width"), mod.createElement("input", {
+    }, "Width "), mod.createElement("input", {
         value: width,
         onChange: (e)=>setWidth(e.target.value),
         type: "text",
         placeholder: "Enter width",
-        className: "input"
+        className: "input",
+        style: {
+            backgroundColor: '#68EDA7',
+            color: 'black'
+        }
     }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "padding"
-    }, "Padding"), mod.createElement("input", {
+    }, "Padding "), mod.createElement("input", {
         value: padding,
         onChange: (e)=>setPadding(e.target.value),
         type: "text",
         placeholder: "Enter padding",
-        className: "input"
+        className: "input",
+        style: {
+            backgroundColor: '#68EDA7',
+            color: 'black'
+        }
     }), mod.createElement("br", null), mod.createElement("button", {
         type: "submit",
-        className: "btn"
+        className: "btn",
+        style: {
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)"
+        }
     }, "Submit"));
 };
 const MainContainer = (props)=>{
@@ -11388,8 +11433,19 @@ const MainContainer = (props)=>{
 const Navbar = (props)=>{
     const { setCustomizationPage  } = props;
     return mod.createElement("div", {
-        className: "navBar"
+        className: "navBar",
+        style: {
+            height: '1%'
+        }
     }, mod.createElement("button", {
+        style: {
+            width: '50%',
+            padding: '0px',
+            fontSize: '20px',
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            fontWeight: 'bolder'
+        },
         className: "stylingBtn",
         onClick: ()=>{
             setCustomizationPage('styling');
@@ -11397,6 +11453,14 @@ const Navbar = (props)=>{
     }, mod.createElement("h3", {
         className: "stylingBtnText"
     }, "Styling")), mod.createElement("button", {
+        style: {
+            width: '50%',
+            padding: '0px',
+            fontSize: '20px',
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            fontWeight: 'bolder'
+        },
         className: "routingBtn",
         onClick: ()=>{
             setCustomizationPage('routing');
@@ -11434,8 +11498,21 @@ const MainContainer1 = (props)=>{
 const Navbar1 = (props)=>{
     const { setPreviewPage  } = props;
     return mod.createElement("div", {
-        className: "navBar"
+        className: "navBar",
+        style: {
+            width: '100%',
+            height: '1%'
+        }
     }, mod.createElement("button", {
+        style: {
+            width: '50%',
+            padding: '0px',
+            fontSize: '20px',
+            height: '100px',
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            fontWeight: 'bolder'
+        },
         className: "codePreviewBtn",
         onClick: ()=>{
             setPreviewPage('codePreview');
@@ -11443,6 +11520,15 @@ const Navbar1 = (props)=>{
     }, mod.createElement("h3", {
         className: "codePreviewBtn"
     }, "Code Preview")), mod.createElement("button", {
+        style: {
+            width: '50%',
+            padding: '0px',
+            fontSize: '20px',
+            height: '100px',
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            fontWeight: 'bolder'
+        },
         className: "islandPreviewBtn",
         onClick: ()=>{
             setPreviewPage('islandPreview');
@@ -11592,12 +11678,18 @@ const App = ()=>{
         width: '100%'
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
+    const [currentElement, setCurrentElement] = mod.useState('drag into here');
     return mod.createElement("div", {
         className: "app",
         style: styles
     }, mod.createElement("div", {
         style: sideBarStyle
-    }, mod.createElement(SideBar, null)), mod.createElement("div", {
+    }, mod.createElement(SideBar, {
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr,
+        currentElement: currentElement,
+        setCurrentElement: setCurrentElement
+    })), mod.createElement("div", {
         style: customizationStyle
     }, mod.createElement(Customization, null)), mod.createElement("div", {
         style: previewStyle
