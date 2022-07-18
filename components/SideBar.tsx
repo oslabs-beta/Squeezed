@@ -1,10 +1,11 @@
-import {React, ReactDOM } from '../deps.tsx';
+import { React, ReactDOM } from '../deps.tsx';
 
-function SideBar(this: any) {
-
+function SideBar(props) {
+  const { elementsArr, setElementsArr } = props;
+  console.log(elementsArr);
   const [dragOver, setDragOver] = React.useState(false);
   const [content, setContent] = React.useState<string>('drag into here');
-  const [elementsArr, setElementsArr] = React.useState<string[]>([]);
+  // const [elementsArr, setElementsArr] = React.useState<string[]>([]);
   const handleDragOverStart = () => setDragOver(true);
   const handleDragOverEnd = () => setDragOver(false);
 

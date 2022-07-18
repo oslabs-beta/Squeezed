@@ -86,12 +86,12 @@ const App = () => {
  } as const;
 
   //State
-  const [elementsArr, setElementsArr] = React.useState<string[] | number>([]);
+  const [elementsArr, setElementsArr] = React.useState<string[]>([]);
+  const [currentEl, setCurrentEl] = React.useState<HTMLDivElement>("");
 
   return (
     <div className="app" style={styles}>
-      {/* <div style={sideBarStyle} elementsArr={elementsArr} setElementsArr={setElementsArr}><SideBar /></div> */}
-      <div style={sideBarStyle}><SideBar /></div>
+      <div style={sideBarStyle}><SideBar elementsArr={elementsArr} setElementsArr={setElementsArr}/></div>
       <div style={customizationStyle}><Customization /></div>
       <div style={previewStyle}><Preview /></div>
       <div style={buttonsStyle}><Buttons /></div>

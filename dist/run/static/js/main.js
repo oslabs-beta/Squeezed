@@ -11014,10 +11014,11 @@ function dew7() {
     return exports7;
 }
 dew7();
-function SideBar() {
+function SideBar(props) {
+    const { elementsArr , setElementsArr  } = props;
+    console.log(elementsArr);
     const [dragOver, setDragOver] = mod.useState(false);
     const [content, setContent] = mod.useState('drag into here');
-    const [elementsArr, setElementsArr] = mod.useState([]);
     const handleDragOverStart = ()=>setDragOver(true);
     const handleDragOverEnd = ()=>setDragOver(false);
     const handleDragStart = (event)=>{
@@ -11580,7 +11581,10 @@ const App = ()=>{
         style: styles
     }, mod.createElement("div", {
         style: sideBarStyle
-    }, mod.createElement(SideBar, null)), mod.createElement("div", {
+    }, mod.createElement(SideBar, {
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr
+    })), mod.createElement("div", {
         style: customizationStyle
     }, mod.createElement(Customization, null)), mod.createElement("div", {
         style: previewStyle
