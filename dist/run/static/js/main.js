@@ -11014,14 +11014,8 @@ function dew7() {
     return exports7;
 }
 dew7();
-<<<<<<< HEAD
-function SideBar(props) {
-    const { elementsArr , setElementsArr  } = props;
-    console.log(elementsArr);
-=======
 const SideBar = ({ elementsArr , setElementsArr , currentElement , setCurrentElement  })=>{
     console.log("I'm in sidebar: ", elementsArr, currentElement);
->>>>>>> alexa/dragAndDrop
     const [dragOver, setDragOver] = mod.useState(false);
     const [content, setContent] = mod.useState('drag into here');
     const handleDragOverStart = ()=>setDragOver(true);
@@ -11692,13 +11686,9 @@ const App = ()=>{
         style: sideBarStyle
     }, mod.createElement(SideBar, {
         elementsArr: elementsArr,
-<<<<<<< HEAD
-        setElementsArr: setElementsArr
-=======
         setElementsArr: setElementsArr,
         currentElement: currentElement,
         setCurrentElement: setCurrentElement
->>>>>>> alexa/dragAndDrop
     })), mod.createElement("div", {
         style: customizationStyle
     }, mod.createElement(Customization, null)), mod.createElement("div", {
