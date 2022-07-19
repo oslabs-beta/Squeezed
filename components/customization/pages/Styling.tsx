@@ -6,6 +6,8 @@ type submitForm = {
 };
 
 const Styling: any = (props:any) => {
+  // push all of theses states into CodePreview ??? 
+  //then do `${states}` to apple the changes inline ?
 
   const { currentElement, setCurrentElement } = props;
 
@@ -21,13 +23,23 @@ const Styling: any = (props:any) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert(`form submitted`);
+    alert(`form submitted`);  
 
+    // setInputText(inputText);
+    // textAlign(setTextAlign);
+    // textDecoration(setTextDecoration);
+    // backgroundColor(setBackgroundColor);
+    // color(setColor);
+    // margin(setMargin);
+    // height(setHeight);
+    // width(setWidth);
+    // padding(setPadding);
     // if (this.validateForm()) {
     //   const submitSuccess: boolean = await this.submitForm();
     //   this.setState({ submitSuccess });
     // }
   };
+
 console.log('working', currentElement)
 //   /**
 //    * Executes the validation rules for all the fields on the form and sets the error state

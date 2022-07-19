@@ -11047,64 +11047,36 @@ const SideBar = (props)=>{
         console.log('work please', elementsArr[id]);
         console.log(currentElement);
     };
-    const sideStyle = {
-        gridArea: "bar",
-        backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-        borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-        borderWidth: '2px',
-        borderStyle: 'solid',
-        fontSize: "30px",
-        overflow: "scroll"
-    };
-    const dropStyle = {
-        gridArea: "drop",
-        backgroundColor: "#2D3033",
-        borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-        borderWidth: '2px',
-        borderStyle: 'solid',
-        fontSize: "30px",
-        height: "600px"
-    };
-    const styles = {
-        display: "grid",
-        gridTemplate: "auto / repeat(16, 1fr)",
-        gridTemplateAreas: `"bar bar drop drop drop drop drop drop drop drop drop drop drop drop drop drop"
-    "bar bar drop drop drop drop drop drop drop drop drop drop drop drop drop drop"
-    "bar bar drop drop drop drop drop drop drop drop drop drop drop drop drop drop"`,
-        height: "100%",
-        width: "100%",
-        color: '#7e55bb'
-    };
-    const clickStyle = {
-        borderColor: '#2D3033',
-        borderWidth: '8px',
-        borderStyle: 'solid',
-        textAlign: 'center',
-        fontWeight: 'bolder'
-    };
     const htmlTags = elementsArr.map((elements, index)=>{
         return mod.createElement("div", {
+            style: {
+                borderColor: '#2D3033',
+                borderWidth: '8px',
+                borderStyle: 'solid',
+                textAlign: 'center',
+                fontWeight: 'bolder'
+            },
             className: "draggedTags",
             onDragOver: enableDropping,
             onDrop: handleDrop,
             onDragEnter: handleDragOverStart,
             onDragLeave: handleDragOverEnd,
             onClick: ()=>handleClick(index),
-            id: index,
-            style: clickStyle
+            id: index
         }, elementsArr[index]);
     });
     return mod.createElement("div", {
-        style: styles,
         id: "scroll"
     }, mod.createElement("link", {
         rel: 'stylesheet',
         href: './static/css/App.css'
+    }), mod.createElement("link", {
+        rel: 'stylesheet',
+        href: './static/css/sideBarStyle.css'
     }), mod.createElement("div", {
-        className: "app",
-        style: styles
+        className: "app"
     }), mod.createElement("div", {
-        style: sideStyle
+        id: "side"
     }, mod.createElement("div", {
         id: "div",
         onDragStart: handleDragStart
@@ -11130,6 +11102,18 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "PARAGRAPH")), mod.createElement("div", {
+        id: "button",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "100%",
+            fontSize: '20px',
+            fontWeight: 'bolder'
+        },
+        draggable: "true"
+    }, " ", "BUTTON")), mod.createElement("div", {
         id: "image",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
@@ -11142,7 +11126,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "IMAGE")), mod.createElement("div", {
-        id: "form",
+        id: "header 1",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
@@ -11153,8 +11137,8 @@ const SideBar = (props)=>{
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "FORM")), mod.createElement("div", {
-        id: "list",
+    }, " ", "HEADER 1")), mod.createElement("div", {
+        id: "header 2",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
@@ -11165,8 +11149,8 @@ const SideBar = (props)=>{
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "LIST")), mod.createElement("div", {
-        id: "header",
+    }, " ", "HEADER 2")), mod.createElement("div", {
+        id: "header 3",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
@@ -11177,7 +11161,7 @@ const SideBar = (props)=>{
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "HEADER")), mod.createElement("div", {
+    }, " ", "HEADER 3")), mod.createElement("div", {
         id: "footer",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
@@ -11190,6 +11174,42 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "FOOTER")), mod.createElement("div", {
+        id: "ordered list",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "100%",
+            fontSize: '20px',
+            fontWeight: 'bolder'
+        },
+        draggable: "true"
+    }, " ", "ORDERED LIST")), mod.createElement("div", {
+        id: "unordered list",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "100%",
+            fontSize: '20px',
+            fontWeight: 'bolder'
+        },
+        draggable: "true"
+    }, " ", "UNORDERED LIST")), mod.createElement("div", {
+        id: "input",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "100%",
+            fontSize: '20px',
+            fontWeight: 'bolder'
+        },
+        draggable: "true"
+    }, " ", "INPUT")), mod.createElement("div", {
         id: "link",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
@@ -11202,7 +11222,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "LINK")), mod.createElement("div", {
-        id: "idk",
+        id: "label",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
@@ -11213,8 +11233,8 @@ const SideBar = (props)=>{
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "IDK")), mod.createElement("div", {
-        id: "div",
+    }, " ", "LABEL")), mod.createElement("div", {
+        id: "span",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
@@ -11225,19 +11245,7 @@ const SideBar = (props)=>{
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "DIV")), mod.createElement("div", {
-        id: "image",
-        onDragStart: handleDragStart
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "IMAGE")), mod.createElement("div", {
+    }, " ", "SPAN")), mod.createElement("div", {
         id: "form",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
@@ -11250,7 +11258,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "FORM")), mod.createElement("div", {
-        id: "list",
+        id: "menu",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
@@ -11261,8 +11269,8 @@ const SideBar = (props)=>{
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "LIST")), mod.createElement("div", {
-        id: "header",
+    }, " ", "MENU")), mod.createElement("div", {
+        id: "label",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
@@ -11273,8 +11281,8 @@ const SideBar = (props)=>{
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "HEADER")), mod.createElement("div", {
-        id: "footer",
+    }, " ", "LABEL")), mod.createElement("div", {
+        id: "span",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
@@ -11285,8 +11293,8 @@ const SideBar = (props)=>{
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "FOOTER")), mod.createElement("div", {
-        id: "link",
+    }, " ", "SPAN")), mod.createElement("div", {
+        id: "form",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
@@ -11297,19 +11305,32 @@ const SideBar = (props)=>{
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "LINK"))), mod.createElement("div", {
+    }, " ", "FORM")), mod.createElement("div", {
+        id: "menu",
+        onDragStart: handleDragStart
+    }, mod.createElement("button", {
+        style: {
+            backgroundColor: "#2D3033",
+            color: "#e8e1f3",
+            width: "100%",
+            fontSize: '20px',
+            fontWeight: 'bolder'
+        },
+        draggable: "true"
+    }, " ", "MENU"))), mod.createElement("div", {
         onDragOver: enableDropping,
         onDrop: handleDrop,
         onDragEnter: handleDragOverStart,
         onDragLeave: handleDragOverEnd,
-        style: dropStyle
+        id: "drop"
     }, mod.createElement("div", {
         id: "hov",
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
             width: "100%",
-            fontSize: '20px'
+            fontSize: '20px',
+            marginBottom: ''
         }
     }, htmlTags)));
 };
@@ -11545,36 +11566,125 @@ const Customization = (props)=>{
 const CodePreview = (props)=>{
     const { elementsArr , setElementsArr  } = props;
     const htmlTags = elementsArr.map((elements, index)=>{
-        let ele;
+        let eleFirst;
+        let eleSecond;
+        let midText;
+        let endBr;
         if (elementsArr[index] === 'div') {
-            ele = '<' + 'div' + ' ' + 'id' + '=' + `"${index}"` + '></' + 'div' + '>';
+            eleFirst = `<div `;
+            endBr = '>';
+            midText = 'This is your div';
+            eleSecond = `</div>`;
         }
         if (elementsArr[index] === 'paragraph') {
-            ele = `${mod.createElement("div", null, " '", mod.createElement("p", {
-                id: "${index}"
-            }), "' ")}`;
+            eleFirst = `<p `;
+            endBr = '>';
+            midText = 'This is your paragraph';
+            eleSecond = `</p>`;
         }
         if (elementsArr[index] === 'image') {
-            ele = `<img id='${index}'\>`;
+            eleFirst = `<img `;
+            endBr = '';
+            midText = 'src="this is your image"';
+            eleSecond = `/>`;
         }
-        if (elementsArr[index] === 'idk') {
-            ele = `<idk id='${index}'></idk>`;
+        if (elementsArr[index] === 'button') {
+            eleFirst = `<button `;
+            endBr = '>';
+            midText = 'This is your button';
+            eleSecond = `</button>`;
         }
         if (elementsArr[index] === 'form') {
-            ele = `<form id='${index}'></form>`;
+            eleFirst = `<form `;
+            endBr = '>';
+            midText = 'This is your form';
+            eleSecond = `</form>`;
         }
-        if (elementsArr[index] === 'list') {
-            ele = `<ul id='${index}'></ul>`;
+        if (elementsArr[index] === 'ordered list') {
+            eleFirst = `<ol `;
+            endBr = '>';
+            midText = 'This is your Ordered List';
+            eleSecond = `</ol>`;
+        }
+        if (elementsArr[index] === 'unordered list') {
+            eleFirst = `<ul `;
+            endBr = '>';
+            midText = 'This is your Unordered List';
+            eleSecond = `</ul>`;
+        }
+        if (elementsArr[index] === 'header 1') {
+            eleFirst = `<h1 `;
+            endBr = '>';
+            midText = 'This is your header 1';
+            eleSecond = `</h1>`;
+        }
+        if (elementsArr[index] === 'header 2') {
+            eleFirst = `<h2 `;
+            endBr = '>';
+            midText = 'This is your header 2';
+            eleSecond = `</h2>`;
+        }
+        if (elementsArr[index] === 'header 3') {
+            eleFirst = `<h3 `;
+            endBr = '>';
+            midText = 'This is your header 3';
+            eleSecond = `</h3>`;
         }
         if (elementsArr[index] === 'footer') {
-            ele = `<footer id='${index}'></footer>`;
+            eleFirst = `<footer `;
+            endBr = '>';
+            midText = 'This is your footer';
+            eleSecond = `</footer>`;
+        }
+        if (elementsArr[index] === 'span') {
+            eleFirst = `<span `;
+            endBr = '>';
+            midText = 'This is your span';
+            eleSecond = `</span>`;
+        }
+        if (elementsArr[index] === 'menu') {
+            eleFirst = `<menu `;
+            endBr = '>';
+            midText = 'This is your menu';
+            eleSecond = `</menu>`;
+        }
+        if (elementsArr[index] === 'input') {
+            eleFirst = `<input `;
+            endBr = '>';
+            midText = 'This is your input';
+            eleSecond = `</input>`;
+        }
+        if (elementsArr[index] === 'label') {
+            eleFirst = `<label `;
+            endBr = '>';
+            midText = 'This is your label';
+            eleSecond = `</label>`;
         }
         if (elementsArr[index] === 'link') {
-            ele = `<link id='${index}'/>`;
+            eleFirst = `<link `;
+            endBr = '';
+            midText = 'This is your link';
+            eleSecond = `/>`;
         }
         return mod.createElement("div", {
             id: index
-        }, ele);
+        }, mod.createElement("span", {
+            style: {
+                color: '#3DA2A7'
+            }
+        }, eleFirst), mod.createElement("span", {
+            style: {
+                color: '#FCC981'
+            }
+        }, "id=", index), mod.createElement("span", {
+            style: {
+                color: '#3DA2A7'
+            }
+        }, endBr), " ", midText, "  ", mod.createElement("span", {
+            style: {
+                color: '#3DA2A7'
+            }
+        }, eleSecond));
     });
     return mod.createElement("div", {
         id: "codePreview"
@@ -11583,17 +11693,57 @@ const CodePreview = (props)=>{
         href: './static/css/codePreview.css'
     }), mod.createElement("p", {
         id: "import"
-    }, "import ", '{', " h ", '}', ' from "preact"'), mod.createElement("p", {
+    }, mod.createElement("span", {
+        style: {
+            color: '#6C95B3'
+        }
+    }, "import"), " ", mod.createElement("span", {
+        style: {
+            color: '#FCC981'
+        }
+    }, '{', " h ", '}'), " ", mod.createElement("span", {
+        style: {
+            color: '#6C95B3'
+        }
+    }, " from"), " ", mod.createElement("span", {
+        style: {
+            color: '#FCC981'
+        }
+    }, '"preact"')), mod.createElement("p", {
         id: "export"
-    }, "export default function App() ", '{'), mod.createElement("p", {
+    }, mod.createElement("span", {
+        style: {
+            color: '#6C95B3'
+        }
+    }, "export default function "), " ", mod.createElement("span", {
+        style: {
+            color: '#3DA2A7'
+        }
+    }, "App"), "() ", '{'), mod.createElement("p", {
         id: "return"
-    }, "return ("), mod.createElement("p", {
+    }, mod.createElement("span", {
+        style: {
+            color: '#6C95B3'
+        }
+    }, "return "), "("), mod.createElement("p", {
         id: "mainOpeningTag"
-    }, '<main>'), mod.createElement("div", {
+    }, mod.createElement("span", {
+        style: {
+            color: '#FEE68E'
+        }
+    }, '<main>')), mod.createElement("div", {
         id: "htmlTags"
-    }, htmlTags), mod.createElement("p", {
+    }, " ", mod.createElement("span", {
+        style: {
+            color: 'pink'
+        }
+    }, htmlTags)), mod.createElement("p", {
         id: "mainClosingTag"
-    }, '</main>'), mod.createElement("p", {
+    }, mod.createElement("span", {
+        style: {
+            color: '#FEE68E'
+        }
+    }, '</main>')), mod.createElement("p", {
         id: "paren"
     }, ");"), mod.createElement("p", {
         id: "endingCurly"
@@ -11740,8 +11890,7 @@ function Buttons() {
 }
 const App = ()=>{
     const sideBarStyle = {
-        gridArea: 'side',
-        fontSize: '30px'
+        gridArea: 'side'
     };
     const customizationStyle = {
         gridArea: 'cust',
@@ -11749,8 +11898,7 @@ const App = ()=>{
         borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
         borderWidth: '2px',
         borderStyle: 'solid',
-        fontSize: '30px',
-        height: '470px'
+        fontSize: '30px'
     };
     const previewStyle = {
         gridArea: 'prev',
@@ -11787,11 +11935,6 @@ const App = ()=>{
     "side side side side side side prev prev prev prev prev"
     "side side side side side side prev prev prev prev prev"
     "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
@@ -11800,7 +11943,6 @@ const App = ()=>{
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"`,
-        height: '200%',
         width: '100%'
     };
     const [elementsArr, setElementsArr] = mod.useState([]);

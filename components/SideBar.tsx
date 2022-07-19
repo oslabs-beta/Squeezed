@@ -90,40 +90,54 @@ const SideBar = (props:any) => {
 };
 
 // console.log(content)
-  const sideStyle = {
-    gridArea: "bar",
-    backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-    borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-    borderWidth: '2px',
-    borderStyle: 'solid',
-    fontSize: "30px",
-    overflow: "scroll",
-  } as const;
+  // const sideStyle = {
+  //   // gridArea: "bar",
+  //   // backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+  //   // borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
+  //   // borderWidth: '2px',
+  //   // borderStyle: 'solid',
+  //   // fontSize: "30px",
+  //   // width: '50%',
+  //   // float: 'left'
+  //   height: '100px',
+  //   background: 'yellow',
+  //   textAlign: 'center',
+  //   boxSizing: 'border-box',
+  //   border: '1px solid red'
 
-  const dropStyle = {
-    gridArea: "drop",
-    backgroundColor: "#2D3033",
-    borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-    borderWidth: '2px',
-    borderStyle: 'solid',
-    fontSize: "30px",
-    height: "600px",
-  } as const;
+  // } as const;
 
-  const styles = {
-    display: "grid",
-    gridTemplate: "auto / repeat(16, 1fr)",
-    gridTemplateAreas: `"bar bar drop drop drop drop drop drop drop drop drop drop drop drop drop drop"
-    "bar bar drop drop drop drop drop drop drop drop drop drop drop drop drop drop"
-    "bar bar drop drop drop drop drop drop drop drop drop drop drop drop drop drop"`,
-    height: "100%",
-    width: "100%",
-    color: '#7e55bb'
-  };
+  // const dropStyle = {
+  //   // gridArea: "drop",
+  //   // backgroundColor: "#2D3033",
+  //   // borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
+  //   // borderWidth: '2px',
+  //   // borderStyle: 'solid',
+  //   // fontSize: "30px",
+  //   // width: '50%',
+  //   // float: 'right'
+  //   height: '100px',
+  //   background: 'yellow',
+  //   textAlign: 'center',
+  //   boxSizing: 'border-box',
+  //   border: '1px solid red'
 
-  const clickStyle = {
-    borderColor: '#2D3033', borderWidth: '8px', borderStyle: 'solid', textAlign: 'center', fontWeight: 'bolder'
-  } as const;
+  // } as const;
+
+  // const styles = {
+  //   // display: "inline block",
+  //   // gridTemplate: "auto / repeat(16, 1fr)",
+  //   // gridTemplateAreas: `"bar bar drop drop drop drop drop drop drop drop drop drop drop drop drop drop"
+  //   // "bar bar drop drop drop drop drop drop drop drop drop drop drop drop drop drop"
+  //   // "bar bar drop drop drop drop drop drop drop drop drop drop drop drop drop drop"`,
+  //   display: 'grid',
+  //       gridTemplateColumns: '1fr 1fr',
+  //       columnGap: '10px',
+  //   width: "100%",
+  //   color: '#7e55bb'
+  // };
+
+
 // ReactDOM.render(
 //   <React.StrictMode>
 //     <id/>
@@ -141,18 +155,21 @@ const SideBar = (props:any) => {
 const htmlTags = elementsArr.map((elements: any, index: any) =>{
   return (
     <div 
+    style={{borderColor: '#2D3033', borderWidth: '8px', borderStyle: 'solid', textAlign: 'center', fontWeight: 'bolder'}}
 className="draggedTags"
         onDragOver={enableDropping}
     onDrop={handleDrop}
     onDragEnter={handleDragOverStart}
-    onDragLeave={handleDragOverEnd} onClick={() => handleClick(index)} id={index} style={clickStyle}>{elementsArr[index]}</div>
+    onDragLeave={handleDragOverEnd} onClick={() => handleClick(index)} id={index}>{elementsArr[index]}</div>
   )})
 
   return (
 
-    <div style={styles} id="scroll">
-      <link rel={'stylesheet'} href={'./static/css/App.css'} /><div className="app" style={styles}></div>
-      <div style={sideStyle}>
+    <div id="scroll">
+      <link rel={'stylesheet'} href={'./static/css/App.css'} />
+      <link rel={'stylesheet'} href={'./static/css/sideBarStyle.css'} />
+      <div className="app" ></div>
+      <div id='side'>
         <div id="div" onDragStart={handleDragStart}>
           <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
@@ -165,52 +182,10 @@ className="draggedTags"
             PARAGRAPH
           </button>
         </div>
-        <div id="image" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
-            {" "}
-            IMAGE
-          </button>
-        </div>
-        <div id="form" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
-            {" "}
-            FORM
-          </button>
-        </div>
-        <div id="list" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
-            {" "}
-            LIST
-          </button>
-        </div>
-        <div id="header" onDragStart={handleDragStart}>
+        <div id="button" onDragStart={handleDragStart}>
           <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
-            HEADER
-          </button>
-        </div>
-        <div id="footer" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
-            {" "}
-            FOOTER
-          </button>
-        </div>
-        <div id="link" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
-            {" "}
-            LINK
-          </button>
-        </div>
-        <div id="idk" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
-            {" "}
-            IDK
-          </button>
-        </div>
-        <div id="div" onDragStart={handleDragStart}>
-          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
-            {" "}
-            DIV
+            BUTTON
           </button>
         </div>
         <div id="image" onDragStart={handleDragStart}>
@@ -219,22 +194,22 @@ className="draggedTags"
             IMAGE
           </button>
         </div>
-        <div id="form" onDragStart={handleDragStart}>
+        <div id="header 1" onDragStart={handleDragStart}>
           <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
-            FORM
+            HEADER 1
           </button>
         </div>
-        <div id="list" onDragStart={handleDragStart}>
+        <div id="header 2" onDragStart={handleDragStart}>
           <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
-            LIST
+            HEADER 2
           </button>
         </div>
-        <div id="header" onDragStart={handleDragStart}>
+        <div id="header 3" onDragStart={handleDragStart}>
           <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
-            HEADER
+            HEADER 3
           </button>
         </div>
         <div id="footer" onDragStart={handleDragStart}>
@@ -243,22 +218,87 @@ className="draggedTags"
             FOOTER
           </button>
         </div>
+        <div id="ordered list" onDragStart={handleDragStart}>
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+            {" "}
+            ORDERED LIST
+          </button>
+        </div>
+        <div id="unordered list" onDragStart={handleDragStart}>
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+            {" "}
+            UNORDERED LIST
+          </button>
+        </div>
+        <div id="input" onDragStart={handleDragStart}>
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
+            {" "}
+            INPUT
+          </button>
+        </div>
         <div id="link" onDragStart={handleDragStart}>
           <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LINK
           </button>
         </div>
-
+        <div id="label" onDragStart={handleDragStart}>
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+            {" "}
+            LABEL
+          </button>
+        </div>
+        <div id="span" onDragStart={handleDragStart}>
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+            {" "}
+            SPAN
+          </button>
+        </div>
+        <div id="form" onDragStart={handleDragStart}>
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+            {" "}
+            FORM
+          </button>
+        </div>
+        <div id="menu" onDragStart={handleDragStart}>
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
+            {" "}
+            MENU
+          </button>
+        </div>
+        <div id="label" onDragStart={handleDragStart}>
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+            {" "}
+            LABEL
+          </button>
+        </div>
+        <div id="span" onDragStart={handleDragStart}>
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+            {" "}
+            SPAN
+          </button>
+        </div>
+        <div id="form" onDragStart={handleDragStart}>
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+            {" "}
+            FORM
+          </button>
+        </div>
+        <div id="menu" onDragStart={handleDragStart}>
+          <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
+            {" "}
+            MENU
+          </button>
+        </div>
       </div>
       <div
         onDragOver={enableDropping}
         onDrop={handleDrop}
         onDragEnter={handleDragOverStart}
         onDragLeave={handleDragOverEnd}
-        style={dropStyle}
+        id='drop'
         >
-        <div id='hov'style={{ backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033",width: "100%", fontSize: '20px'}}>{htmlTags}</div>
+        <div id='hov'style={{ backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033",width: "100%", fontSize: '20px', marginBottom: ''}}>{htmlTags}</div>
       </div>
     </div>
   );

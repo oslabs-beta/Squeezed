@@ -29,15 +29,10 @@ interface Props{
   //Styling
   const sideBarStyle = { 
     gridArea: 'side',
-    fontSize: '30px',
   } as const;
   
-  const dragAndDropStyle = { 
-    gridArea: 'dd',
-    backgroundColor: 'red',
-    fontSize: '30px',
-    
-  } as const;
+  
+
   
   const customizationStyle = { 
     gridArea: 'cust',
@@ -46,7 +41,6 @@ interface Props{
     borderWidth: '2px',
     borderStyle: 'solid',    
     fontSize: '30px',
-    height: '470px'
   } as const;
   
   const previewStyle = { 
@@ -55,6 +49,8 @@ interface Props{
     borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
     borderWidth: '2px',
     borderStyle: 'solid',    fontSize: '30px',
+
+
   } as const;
   
   const buttonsStyle = { 
@@ -63,7 +59,8 @@ interface Props{
     borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
     borderWidth: '2px',
     borderStyle: 'solid',    
-    fontSize: '30px'
+    fontSize: '30px',
+
   } as const;
   
   const styles = {
@@ -86,11 +83,6 @@ interface Props{
     "side side side side side side prev prev prev prev prev"
     "side side side side side side prev prev prev prev prev"
     "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
@@ -99,8 +91,7 @@ interface Props{
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"`,
-    height: '200%',
-    width: '100%'
+    width: '100%',
   } as const;
   
   //State
