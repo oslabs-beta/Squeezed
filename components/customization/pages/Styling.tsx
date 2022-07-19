@@ -5,7 +5,7 @@ type submitForm = {
   text: string;
 };
 
-const Styling: any = (props: any) => {
+const Styling: any = () => {
 
   const [inputText, setInputText] = (React as any).useState('');
   const [textAlign, setTextAlign] = (React as any).useState('');
@@ -47,7 +47,7 @@ const Styling: any = (props: any) => {
 
     return (
       <form onSubmit={handleSubmit} style={{fontSize: '20px', fontWeight: 'bolder', color: 'white'}}>
-
+<h3>Element being styled:</h3>
         <label htmlFor="inputText">Text </label>  
         <input
           value={inputText}

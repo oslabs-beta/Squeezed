@@ -11018,6 +11018,8 @@ const SideBar = ({ elementsArr , setElementsArr , currentElement , setCurrentEle
     console.log("I'm in sidebar: ", elementsArr, currentElement);
     const [dragOver, setDragOver] = mod.useState(false);
     const [content, setContent] = mod.useState('drag into here');
+    const [currIndex, setCurrIndex] = mod.useState();
+    const [clickedButton, setClickedButton] = mod.useState('');
     const handleDragOverStart = ()=>setDragOver(true);
     const handleDragOverEnd = ()=>setDragOver(false);
     const handleDragStart = (event)=>{
@@ -11030,13 +11032,22 @@ const SideBar = ({ elementsArr , setElementsArr , currentElement , setCurrentEle
     };
     const handleDrop = (event)=>{
         const id = event.dataTransfer.getData("text");
+        console.log(5, id);
         setContent(id);
         const newElementsArr = [
             ...elementsArr
         ];
         newElementsArr.push(id);
+        console.log('b4set', elementsArr);
+        console.log('b4set', newElementsArr);
         setElementsArr(newElementsArr);
         setCurrentElement(id);
+        console.log('hi', elementsArr);
+    };
+    const handleClick = (id)=>{
+        setCurrentElement(id);
+        console.log(id);
+        console.log(currentElement);
     };
     const sideStyle = {
         gridArea: "bar",
@@ -11068,6 +11079,8 @@ const SideBar = ({ elementsArr , setElementsArr , currentElement , setCurrentEle
     };
     const htmlTags = elementsArr.map((elements, index)=>{
         return mod.createElement("div", {
+            onClick: ()=>handleClick(index),
+            id: index,
             style: {
                 borderColor: '#2D3033',
                 borderWidth: '8px',
@@ -11292,7 +11305,7 @@ const SideBar = ({ elementsArr , setElementsArr , currentElement , setCurrentEle
 const Routing = (props)=>{
     return mod.createElement("div", null, "Routing page in react router");
 };
-const Styling = (props)=>{
+const Styling = ()=>{
     const [inputText, setInputText] = mod.useState('');
     const [textAlign, setTextAlign] = mod.useState('');
     const [textDecoration, setTextDecoration] = mod.useState('');
@@ -11313,7 +11326,7 @@ const Styling = (props)=>{
             fontWeight: 'bolder',
             color: 'white'
         }
-    }, mod.createElement("label", {
+    }, mod.createElement("h3", null, "Element being styled:"), mod.createElement("label", {
         htmlFor: "inputText"
     }, "Text "), mod.createElement("input", {
         value: inputText,

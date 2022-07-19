@@ -14,6 +14,9 @@ const SideBar = ({elementsArr, setElementsArr, currentElement, setCurrentElement
   console.log("I'm in sidebar: ", elementsArr, currentElement);
   const [dragOver, setDragOver] = React.useState(false);
   const [content, setContent] = React.useState<string>('drag into here');
+  const [currIndex, setCurrIndex] = React.useState<any>();
+    const [clickedButton, setClickedButton] = React.useState<any>('');
+  // let id2: any;
   // const [elementsArr, setElementsArr] = React.useState<string[]>([]);
   // const content = this.props.content;
   // const setContent = this.props.setContent;
@@ -35,11 +38,12 @@ const SideBar = ({elementsArr, setElementsArr, currentElement, setCurrentElement
     setContent(data);
   };
   
+
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     const id = event.dataTransfer.getData("text");    
     // const draggable = document.getElementById(id);
     // event.target.appendChild(draggable);
-    // console.log(id)
+     console.log(5, id)
     // setContent(newContent);
     setContent(id);
     // console.log(content);
@@ -48,16 +52,32 @@ const SideBar = ({elementsArr, setElementsArr, currentElement, setCurrentElement
     const newElementsArr = [...elementsArr];
     // console.log('Before push: ', newContent)
     // console.log(newC)
+    // console.log('hi')
     newElementsArr.push(id);
+
+    console.log('b4set', elementsArr)
+    console.log('b4set', newElementsArr)
+
     setElementsArr(newElementsArr);
     setCurrentElement(id)
+    // const index = newElementsArr.length-1
+    // id2 = index
+    // return id2;
     // setDragOver(data);
+    console.log('hi', elementsArr)
   };
-  
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+
+  const handleClick = (id: any) => {
     // const id = event.dataTransfer.getData("text");
     // setCurrentElement(id)
-  };
+    // event.preventDefault();
+
+    // const button: HTMLButtonElement = event.currentTarget;
+    // setClickedButton(button.id);
+    setCurrentElement(id);
+    console.log(id)
+    console.log(currentElement)
+};
 
 // console.log(content)
   const sideStyle = {
@@ -105,9 +125,9 @@ const SideBar = ({elementsArr, setElementsArr, currentElement, setCurrentElement
 // console.log('rend', rend)
 
 
-const htmlTags = elementsArr.map((elements: any, index: string|number) =>{
+const htmlTags = elementsArr.map((elements: any, index: any) =>{
   return (
-    <div style={{borderColor: '#2D3033', borderWidth: '8px', borderStyle: 'solid', textAlign: 'center', fontWeight: 'bolder'}}>{elementsArr[index]} </div>
+    <div onClick={() => handleClick(index)} id={index} style={{borderColor: '#2D3033', borderWidth: '8px', borderStyle: 'solid', textAlign: 'center', fontWeight: 'bolder'}}>{elementsArr[index]} </div>
   )
 })
 
@@ -218,7 +238,8 @@ const htmlTags = elementsArr.map((elements: any, index: string|number) =>{
         onDrop={handleDrop}
         onDragEnter={handleDragOverStart}
         onDragLeave={handleDragOverEnd}
-        style={dropStyle} >
+        style={dropStyle}
+        >
         <div style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033",width: "100%", fontSize: '20px'}}>{htmlTags}</div>
       </div>
     </div>
