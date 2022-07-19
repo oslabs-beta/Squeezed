@@ -18,7 +18,7 @@ import Navbar from './Navbar.tsx';
 //   }
 // }
 
-const Preview = () => {
+const Preview = (props:any) => {
 
   // const customizationStyle = { 
   //   gridArea: 'dd',
@@ -26,13 +26,14 @@ const Preview = () => {
   //   border: '2px solid white',
   //   fontSize: '30px',
   // } as const;
+  const {elementsArr, setElementsArr} = props;
 
   const [previewPage, setPreviewPage] = (React as any).useState('codePreview');
 
   return (
     <div className="preview">
       <Navbar setPreviewPage={setPreviewPage} />
-      <MainContainer previewPage={previewPage} setPreviewPage={setPreviewPage} />
+      <MainContainer previewPage={previewPage} setPreviewPage={setPreviewPage} elementsArr={elementsArr} setElementsArr={setElementsArr}/>
     </div>
   );
 };

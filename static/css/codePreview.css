@@ -1,0 +1,43 @@
+#codePreview {
+    margin-left: 4%;
+    font-size: 25px;
+}
+
+#import {
+    color: pink;
+    /* margin-right: 200px */
+}
+
+#export {
+    color: pink;
+    /* margin-right: 200px */
+}
+
+#return {
+    color: pink;
+    margin-left: 7%;
+}
+
+#mainOpeningTag {
+    color: pink;
+    margin-left: 9%;
+}
+
+#htmlTags {
+    margin-left: 12%;
+}
+
+#mainClosingTag {
+    color: pink;
+    margin-left: 9%;
+}
+
+#paren {
+    color: pink;
+    margin-left: 7%;
+}
+
+#endingCurly {
+    color: pink;
+    margin-left: 4%;
+}

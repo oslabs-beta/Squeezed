@@ -1,9 +1,31 @@
-#scroll {
-    display:block;
-    border: 1px solid red;
-    padding:5px;
-    margin-top:5px;
-    width:300px;
-    height:50px;
-    overflow:scroll;
- }
+
+ .draggedTags:hover {
+    background-color: rgb(64, 63, 63)
+} 
+/* .draggedTags:hover{
+    background-color: black;
+    -webkit-user-drag: element;
+    user-select: none;
+}  */
+.draggedTags {
+    border-color: '#2D3033'; border-width: '8px'; border-style: 'solid'; text-align: 'center'; font-weight: 'bolder'
+}
+/* a:visited{
+color: aquamarine;
+} */
+
+.draggedTags:active{
+    background: rgb(0, 0, 0);
+}
+
+/* div.draggedTags.active{
+    background: blue;
+} */
+
+/* .draggedTags:focus{
+    background-color: red;
+} */
+
+/* .draggedTags:focus, .draggedTags:active{
+    background-color: rgb(0, 0, 0);
+ } */

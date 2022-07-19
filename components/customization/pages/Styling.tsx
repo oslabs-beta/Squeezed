@@ -5,7 +5,9 @@ type submitForm = {
   text: string;
 };
 
-const Styling: any = () => {
+const Styling: any = (props:any) => {
+
+  const { currentElement, setCurrentElement } = props;
 
   const [inputText, setInputText] = (React as any).useState('');
   const [textAlign, setTextAlign] = (React as any).useState('');
@@ -26,7 +28,7 @@ const Styling: any = () => {
     //   this.setState({ submitSuccess });
     // }
   };
-
+console.log('working', currentElement)
 //   /**
 //    * Executes the validation rules for all the fields on the form and sets the error state
 //    * @returns {boolean} - Whether the form is valid or not
@@ -47,7 +49,9 @@ const Styling: any = () => {
 
     return (
       <form onSubmit={handleSubmit} style={{fontSize: '20px', fontWeight: 'bolder', color: 'white'}}>
-<h3>Element being styled:</h3>
+<div style={{fontSize: '26px', textDecoration: 'underline',textAlign:'center'}}>Element selected: {currentElement}</div>
+<br></br>
+<div style={{marginLeft: '100px'}}>
         <label htmlFor="inputText">Text </label>  
         <input
           value={inputText}
@@ -103,7 +107,8 @@ const Styling: any = () => {
           style={{backgroundColor: '#68EDA7', color: 'black'}}
         /> 
         <br />
-
+        </div>
+        <div style={{float: 'right', marginTop: '-120px', marginRight: '100px'}}>
         <label htmlFor="margin">Margin </label>  
         <input
           value={margin}
@@ -151,14 +156,17 @@ const Styling: any = () => {
 
         /> 
         <br />
-
-        <button type="submit" className="btn"  style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)"}}>
+</div>
+<br></br>
+        <button type="submit" className="btn"  style={{marginLeft: '50%', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", fontSize: '20px'}}>
           Submit
         </button>
 
       </form>
     );
 };
+
+
 
 export default Styling;
 

@@ -108,10 +108,11 @@ interface Props{
   const [currentElement, setCurrentElement] = React.useState<string>('drag into here');
   
   return (
+    
     <div className="app" style={styles}>
       <div style={sideBarStyle}><SideBar elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} /></div>
-      <div style={customizationStyle}><Customization  /></div>
-      <div style={previewStyle}><Preview /></div>
+      <div style={customizationStyle}><Customization elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement}/></div>
+      <div style={previewStyle}><Preview elementsArr={elementsArr} setElementsArr={setElementsArr} /></div>
       <div style={buttonsStyle}><Buttons /></div>
     </div>
   );

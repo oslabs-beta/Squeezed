@@ -1,4 +1,5 @@
-import {React, ReactDOM } from '../deps.tsx';
+import {React } from '../deps.tsx';
+
 
 // interface Props{
 //   elementsArr: string[];
@@ -10,12 +11,13 @@ import {React, ReactDOM } from '../deps.tsx';
 //   // setCurrentElement: React.Dispatch<React.SetStateAction<string>>
 // }
 
-const SideBar = ({elementsArr, setElementsArr, currentElement, setCurrentElement}) => {
-  console.log("I'm in sidebar: ", elementsArr, currentElement);
+const SideBar = (props:any) => {
+  const {elementsArr, setElementsArr, currentElement, setCurrentElement} = props;
+
   const [dragOver, setDragOver] = React.useState(false);
   const [content, setContent] = React.useState<string>('drag into here');
-  const [currIndex, setCurrIndex] = React.useState<any>();
-    const [clickedButton, setClickedButton] = React.useState<any>('');
+  // const [currIndex, setCurrIndex] = React.useState<any>();
+  //   const [clickedButton, setClickedButton] = React.useState<any>('');
   // let id2: any;
   // const [elementsArr, setElementsArr] = React.useState<string[]>([]);
   // const content = this.props.content;
@@ -66,17 +68,25 @@ const SideBar = ({elementsArr, setElementsArr, currentElement, setCurrentElement
     // setDragOver(data);
     console.log('hi', elementsArr)
   };
-
+ 
   const handleClick = (id: any) => {
     // const id = event.dataTransfer.getData("text");
     // setCurrentElement(id)
     // event.preventDefault();
-
     // const button: HTMLButtonElement = event.currentTarget;
     // setClickedButton(button.id);
-    setCurrentElement(id);
-    console.log(id)
+    // const ele = document.getElementsByClassName('draggedTags')
+    // console.log('e', id)
+    // console.log(1,elementsArr[id])
+    // console.log(2,elementsArr[id].style)
+    // console.log(3,elementsArr[id].style.backgroundColor)
+    // elementsArr[id].style.backgroundColor = 'pink';
+    setCurrentElement(elementsArr[id]);
+    console.log('work please', elementsArr[id])
     console.log(currentElement)
+
+
+  
 };
 
 // console.log(content)
@@ -111,6 +121,9 @@ const SideBar = ({elementsArr, setElementsArr, currentElement, setCurrentElement
     color: '#7e55bb'
   };
 
+  const clickStyle = {
+    borderColor: '#2D3033', borderWidth: '8px', borderStyle: 'solid', textAlign: 'center', fontWeight: 'bolder'
+  } as const;
 // ReactDOM.render(
 //   <React.StrictMode>
 //     <id/>
@@ -122,18 +135,23 @@ const SideBar = ({elementsArr, setElementsArr, currentElement, setCurrentElement
 // for (let i = 0; i< elementsArr.length; i++){
 //   rend.push(<dprops.mentsArr[i]</div>)
 // }
-// console.log('rend', rend)
+// cobuttonle.log('rend', rend)
 
 
 const htmlTags = elementsArr.map((elements: any, index: any) =>{
   return (
-    <div onClick={() => handleClick(index)} id={index} style={{borderColor: '#2D3033', borderWidth: '8px', borderStyle: 'solid', textAlign: 'center', fontWeight: 'bolder'}}>{elementsArr[index]} </div>
-  )
-})
+    <div 
+className="draggedTags"
+        onDragOver={enableDropping}
+    onDrop={handleDrop}
+    onDragEnter={handleDragOverStart}
+    onDragLeave={handleDragOverEnd} onClick={() => handleClick(index)} id={index} style={clickStyle}>{elementsArr[index]}</div>
+  )})
 
   return (
 
     <div style={styles} id="scroll">
+      <link rel={'stylesheet'} href={'./static/css/App.css'} /><div className="app" style={styles}></div>
       <div style={sideStyle}>
         <div id="div" onDragStart={handleDragStart}>
           <button style={{backgroundColor: "#2D3033", color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
@@ -240,7 +258,7 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
         onDragLeave={handleDragOverEnd}
         style={dropStyle}
         >
-        <div style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033",width: "100%", fontSize: '20px'}}>{htmlTags}</div>
+        <div id='hov'style={{ backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033",width: "100%", fontSize: '20px'}}>{htmlTags}</div>
       </div>
     </div>
   );

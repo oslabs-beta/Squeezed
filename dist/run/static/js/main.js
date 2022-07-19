@@ -11014,12 +11014,10 @@ function dew7() {
     return exports7;
 }
 dew7();
-const SideBar = ({ elementsArr , setElementsArr , currentElement , setCurrentElement  })=>{
-    console.log("I'm in sidebar: ", elementsArr, currentElement);
+const SideBar = (props)=>{
+    const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
     const [dragOver, setDragOver] = mod.useState(false);
     const [content, setContent] = mod.useState('drag into here');
-    const [currIndex, setCurrIndex] = mod.useState();
-    const [clickedButton, setClickedButton] = mod.useState('');
     const handleDragOverStart = ()=>setDragOver(true);
     const handleDragOverEnd = ()=>setDragOver(false);
     const handleDragStart = (event)=>{
@@ -11045,8 +11043,8 @@ const SideBar = ({ elementsArr , setElementsArr , currentElement , setCurrentEle
         console.log('hi', elementsArr);
     };
     const handleClick = (id)=>{
-        setCurrentElement(id);
-        console.log(id);
+        setCurrentElement(elementsArr[id]);
+        console.log('work please', elementsArr[id]);
         console.log(currentElement);
     };
     const sideStyle = {
@@ -11077,23 +11075,35 @@ const SideBar = ({ elementsArr , setElementsArr , currentElement , setCurrentEle
         width: "100%",
         color: '#7e55bb'
     };
+    const clickStyle = {
+        borderColor: '#2D3033',
+        borderWidth: '8px',
+        borderStyle: 'solid',
+        textAlign: 'center',
+        fontWeight: 'bolder'
+    };
     const htmlTags = elementsArr.map((elements, index)=>{
         return mod.createElement("div", {
+            className: "draggedTags",
+            onDragOver: enableDropping,
+            onDrop: handleDrop,
+            onDragEnter: handleDragOverStart,
+            onDragLeave: handleDragOverEnd,
             onClick: ()=>handleClick(index),
             id: index,
-            style: {
-                borderColor: '#2D3033',
-                borderWidth: '8px',
-                borderStyle: 'solid',
-                textAlign: 'center',
-                fontWeight: 'bolder'
-            }
-        }, elementsArr[index], " ");
+            style: clickStyle
+        }, elementsArr[index]);
     });
     return mod.createElement("div", {
         style: styles,
         id: "scroll"
-    }, mod.createElement("div", {
+    }, mod.createElement("link", {
+        rel: 'stylesheet',
+        href: './static/css/App.css'
+    }), mod.createElement("div", {
+        className: "app",
+        style: styles
+    }), mod.createElement("div", {
         style: sideStyle
     }, mod.createElement("div", {
         id: "div",
@@ -11294,6 +11304,7 @@ const SideBar = ({ elementsArr , setElementsArr , currentElement , setCurrentEle
         onDragLeave: handleDragOverEnd,
         style: dropStyle
     }, mod.createElement("div", {
+        id: "hov",
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
@@ -11305,7 +11316,8 @@ const SideBar = ({ elementsArr , setElementsArr , currentElement , setCurrentEle
 const Routing = (props)=>{
     return mod.createElement("div", null, "Routing page in react router");
 };
-const Styling = ()=>{
+const Styling = (props)=>{
+    const { currentElement , setCurrentElement  } = props;
     const [inputText, setInputText] = mod.useState('');
     const [textAlign, setTextAlign] = mod.useState('');
     const [textDecoration, setTextDecoration] = mod.useState('');
@@ -11319,6 +11331,7 @@ const Styling = ()=>{
         e.preventDefault();
         alert(`form submitted`);
     };
+    console.log('working', currentElement);
     return mod.createElement("form", {
         onSubmit: handleSubmit,
         style: {
@@ -11326,7 +11339,17 @@ const Styling = ()=>{
             fontWeight: 'bolder',
             color: 'white'
         }
-    }, mod.createElement("h3", null, "Element being styled:"), mod.createElement("label", {
+    }, mod.createElement("div", {
+        style: {
+            fontSize: '26px',
+            textDecoration: 'underline',
+            textAlign: 'center'
+        }
+    }, "Element selected: ", currentElement), mod.createElement("br", null), mod.createElement("div", {
+        style: {
+            marginLeft: '100px'
+        }
+    }, mod.createElement("label", {
         htmlFor: "inputText"
     }, "Text "), mod.createElement("input", {
         value: inputText,
@@ -11378,7 +11401,13 @@ const Styling = ()=>{
             backgroundColor: '#68EDA7',
             color: 'black'
         }
-    }), mod.createElement("br", null), mod.createElement("label", {
+    }), mod.createElement("br", null)), mod.createElement("div", {
+        style: {
+            float: 'right',
+            marginTop: '-120px',
+            marginRight: '100px'
+        }
+    }, mod.createElement("label", {
         htmlFor: "margin"
     }, "Margin "), mod.createElement("input", {
         value: margin,
@@ -11426,18 +11455,24 @@ const Styling = ()=>{
             backgroundColor: '#68EDA7',
             color: 'black'
         }
-    }), mod.createElement("br", null), mod.createElement("button", {
+    }), mod.createElement("br", null)), mod.createElement("br", null), mod.createElement("button", {
         type: "submit",
         className: "btn",
         style: {
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)"
+            marginLeft: '50%',
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            fontSize: '20px'
         }
     }, "Submit"));
 };
 const MainContainer = (props)=>{
     const { customizationPage , setCustomizationPage  } = props;
+    const { currentElement , setCurrentElement  } = props;
     let page;
-    if (customizationPage === 'styling') page = mod.createElement(Styling, null);
+    if (customizationPage === 'styling') page = mod.createElement(Styling, {
+        currentElement: currentElement,
+        setCurrentElement: setCurrentElement
+    });
     if (customizationPage === 'routing') page = mod.createElement(Routing, null);
     return mod.createElement("div", {
         className: "customizationPage"
@@ -11448,16 +11483,24 @@ const Navbar = (props)=>{
     return mod.createElement("div", {
         className: "navBar",
         style: {
-            height: '1%'
+            width: '100%',
+            padding: '0px',
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            fontWeight: 'bolder',
+            height: '40px'
         }
     }, mod.createElement("button", {
         style: {
             width: '50%',
             padding: '0px',
-            fontSize: '20px',
+            fontSize: '15px',
+            marginTop: '-10px',
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            fontWeight: 'bolder'
+            fontWeight: 'bolder',
+            height: '40px',
+            border: 'none'
         },
         className: "stylingBtn",
         onClick: ()=>{
@@ -11469,10 +11512,13 @@ const Navbar = (props)=>{
         style: {
             width: '50%',
             padding: '0px',
-            fontSize: '20px',
+            fontSize: '15px',
+            marginTop: '-10px',
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            fontWeight: 'bolder'
+            fontWeight: 'bolder',
+            height: '40px',
+            border: 'none'
         },
         className: "routingBtn",
         onClick: ()=>{
@@ -11482,7 +11528,8 @@ const Navbar = (props)=>{
         className: "routingBtnText"
     }, "Routing")));
 };
-const Customization = ()=>{
+const Customization = (props)=>{
+    const { currentElement , setCurrentElement  } = props;
     const [customizationPage, setCustomizationPage] = mod.useState('styling');
     return mod.createElement("div", {
         className: "container"
@@ -11490,19 +11537,79 @@ const Customization = ()=>{
         setCustomizationPage: setCustomizationPage
     }), mod.createElement(MainContainer, {
         customizationPage: customizationPage,
-        setCustomizationPage: setCustomizationPage
+        setCustomizationPage: setCustomizationPage,
+        currentElement: currentElement,
+        setCurrentElement: setCurrentElement
     }));
 };
 const CodePreview = (props)=>{
-    return mod.createElement("div", null, "Code Preview page");
+    const { elementsArr , setElementsArr  } = props;
+    const htmlTags = elementsArr.map((elements, index)=>{
+        let ele;
+        if (elementsArr[index] === 'div') {
+            ele = '<' + 'div' + ' ' + 'id' + '=' + `"${index}"` + '></' + 'div' + '>';
+        }
+        if (elementsArr[index] === 'paragraph') {
+            ele = `${mod.createElement("div", null, " '", mod.createElement("p", {
+                id: "${index}"
+            }), "' ")}`;
+        }
+        if (elementsArr[index] === 'image') {
+            ele = `<img id='${index}'\>`;
+        }
+        if (elementsArr[index] === 'idk') {
+            ele = `<idk id='${index}'></idk>`;
+        }
+        if (elementsArr[index] === 'form') {
+            ele = `<form id='${index}'></form>`;
+        }
+        if (elementsArr[index] === 'list') {
+            ele = `<ul id='${index}'></ul>`;
+        }
+        if (elementsArr[index] === 'footer') {
+            ele = `<footer id='${index}'></footer>`;
+        }
+        if (elementsArr[index] === 'link') {
+            ele = `<link id='${index}'/>`;
+        }
+        return mod.createElement("div", {
+            id: index
+        }, ele);
+    });
+    return mod.createElement("div", {
+        id: "codePreview"
+    }, mod.createElement("link", {
+        rel: 'stylesheet',
+        href: './static/css/codePreview.css'
+    }), mod.createElement("p", {
+        id: "import"
+    }, "import ", '{', " h ", '}', ' from "preact"'), mod.createElement("p", {
+        id: "export"
+    }, "export default function App() ", '{'), mod.createElement("p", {
+        id: "return"
+    }, "return ("), mod.createElement("p", {
+        id: "mainOpeningTag"
+    }, '<main>'), mod.createElement("div", {
+        id: "htmlTags"
+    }, htmlTags), mod.createElement("p", {
+        id: "mainClosingTag"
+    }, '</main>'), mod.createElement("p", {
+        id: "paren"
+    }, ");"), mod.createElement("p", {
+        id: "endingCurly"
+    }, "}"));
 };
 const IslandPreview = (props)=>{
     return mod.createElement("div", null, "Island Preview page");
 };
 const MainContainer1 = (props)=>{
     const { previewPage , setPreviewPage  } = props;
+    const { elementsArr , setElementsArr  } = props;
     let page;
-    if (previewPage === 'codePreview') page = mod.createElement(CodePreview, null);
+    if (previewPage === 'codePreview') page = mod.createElement(CodePreview, {
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr
+    });
     if (previewPage === 'islandPreview') page = mod.createElement(IslandPreview, null);
     return mod.createElement("div", {
         className: "previewPage"
@@ -11514,17 +11621,22 @@ const Navbar1 = (props)=>{
         className: "navBar",
         style: {
             width: '100%',
-            height: '1%'
+            padding: '0px',
+            fontSize: '30px',
+            marginTop: '-10px',
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            fontWeight: 'bolder',
+            height: '50px'
         }
     }, mod.createElement("button", {
         style: {
             width: '50%',
             padding: '0px',
-            fontSize: '20px',
-            height: '100px',
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            fontWeight: 'bolder'
+            fontWeight: 'bolder',
+            height: '50px'
         },
         className: "codePreviewBtn",
         onClick: ()=>{
@@ -11536,11 +11648,10 @@ const Navbar1 = (props)=>{
         style: {
             width: '50%',
             padding: '0px',
-            fontSize: '20px',
-            height: '100px',
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            fontWeight: 'bolder'
+            fontWeight: 'bolder',
+            height: '50px'
         },
         className: "islandPreviewBtn",
         onClick: ()=>{
@@ -11550,7 +11661,8 @@ const Navbar1 = (props)=>{
         className: "islandPreviewBtn"
     }, "Island Preview")));
 };
-const Preview = ()=>{
+const Preview = (props)=>{
+    const { elementsArr , setElementsArr  } = props;
     const [previewPage, setPreviewPage] = mod.useState('codePreview');
     return mod.createElement("div", {
         className: "preview"
@@ -11558,7 +11670,9 @@ const Preview = ()=>{
         setPreviewPage: setPreviewPage
     }), mod.createElement(MainContainer1, {
         previewPage: previewPage,
-        setPreviewPage: setPreviewPage
+        setPreviewPage: setPreviewPage,
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr
     }));
 };
 function Buttons() {
@@ -11619,7 +11733,6 @@ function Buttons() {
         },
         id: "exportBtn",
         onClick: (event)=>{
-            alert("Project Exported");
             console.log('clicked');
             exportFunc();
         }
@@ -11704,9 +11817,17 @@ const App = ()=>{
         setCurrentElement: setCurrentElement
     })), mod.createElement("div", {
         style: customizationStyle
-    }, mod.createElement(Customization, null)), mod.createElement("div", {
+    }, mod.createElement(Customization, {
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr,
+        currentElement: currentElement,
+        setCurrentElement: setCurrentElement
+    })), mod.createElement("div", {
         style: previewStyle
-    }, mod.createElement(Preview, null)), mod.createElement("div", {
+    }, mod.createElement(Preview, {
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr
+    })), mod.createElement("div", {
         style: buttonsStyle
     }, mod.createElement(Buttons, null)));
 };

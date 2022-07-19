@@ -18,7 +18,8 @@ import Navbar from './Navbar.tsx';
 //   }
 // }
 
-const Customization = () => {
+const Customization = (props:any) => {
+ 
 
   // const customizationStyle = { 
   //   gridArea: 'dd',
@@ -26,13 +27,14 @@ const Customization = () => {
   //   border: '2px solid white',
   //   fontSize: '30px',
   // } as const;
+  const { currentElement, setCurrentElement } = props;
 
   const [customizationPage, setCustomizationPage] = (React as any).useState('styling');
 
   return (
     <div className="container">
       <Navbar setCustomizationPage={setCustomizationPage} />
-      <MainContainer customizationPage={customizationPage} setCustomizationPage={setCustomizationPage} />
+      <MainContainer customizationPage={customizationPage} setCustomizationPage={setCustomizationPage} currentElement={currentElement} setCurrentElement={setCurrentElement}/>
     </div>
   );
 };
