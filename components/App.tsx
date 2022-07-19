@@ -110,7 +110,7 @@ interface Props{
   return (
     <div className="app" style={styles}>
       <div style={sideBarStyle}><SideBar elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} /></div>
-      <div style={customizationStyle}><Customization /></div>
+      <div style={customizationStyle}><Customization currentElement={currentElement} setCurrentElement={setCurrentElement}/></div>
       <div style={previewStyle}><Preview /></div>
       <div style={buttonsStyle}><Buttons /></div>
     </div>

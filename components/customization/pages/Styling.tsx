@@ -7,6 +7,8 @@ type submitForm = {
 
 const Styling: any = (props: any) => {
 
+  const { currentElement, setCurrentElement } = props;
+
   const [inputText, setInputText] = (React as any).useState('');
   const [textAlign, setTextAlign] = (React as any).useState('');
   const [textDecoration, setTextDecoration] = (React as any).useState('');
@@ -19,8 +21,8 @@ const Styling: any = (props: any) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert(`form submitted`);
-
+    // alert(`form submitted`);
+    writeToFile(createFreshCode(currentElement));
     // if (this.validateForm()) {
     //   const submitSuccess: boolean = await this.submitForm();
     //   this.setState({ submitSuccess });
@@ -162,3 +164,22 @@ const Styling: any = (props: any) => {
 
 export default Styling;
 
+//inside of styling, invoke the following: writeToFile(createFreshCode(currentElement))
+const createFreshCode = (elementType) => {
+  const returnStr =`
+  <${elementType}>
+    Created a ${elementType}
+  </ ${elementType}>`;
+  console.log("inside createFreshCode, code is: ", returnStr);
+  return returnStr;
+}
+
+const writeToFile = async (freshCode) => {
+  console.log("inside writeToFile");
+  // const text = await mod.readFile("../../../txtFiles/test.txt","utf-8");
+  // console.log(text);
+  // const decoder = new TextDecoder("utf-8");
+  // const text = await fs.writeFile("../../../../txtFiles/test.txt","utf-8");
+  // console.log(text);
+  return await Deno.writeTextFile(`../../../../txtFiles/test.txt`, freshCode);
+}
