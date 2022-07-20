@@ -1,6 +1,5 @@
 import {React } from '../deps.tsx';
 
-
 // interface Props{
 //   elementsArr: string[];
 //   // setElementsArr: React.Dispatch<React.SetStateAction<string>>;
@@ -13,6 +12,7 @@ import {React } from '../deps.tsx';
 
 const SideBar = (props:any) => {
   const {elementsArr, setElementsArr, currentElement, setCurrentElement} = props;
+  // const { id, element, text, textAlign, textDecoration, backgroundColor, color, margin, width, height, padding } = props.currentElement;
 
   const [dragOver, setDragOver] = React.useState(false);
   const [content, setContent] = React.useState<string>('drag into here');
@@ -36,37 +36,36 @@ const SideBar = (props:any) => {
   const enableDropping = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     const data = event.dataTransfer.getData("text");
-    // console.log(data)
     setContent(data);
   };
-  
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     const id = event.dataTransfer.getData("text");    
-    // const draggable = document.getElementById(id);
-    // event.target.appendChild(draggable);
-     console.log(5, id)
-    // setContent(newContent);
+    // console.log("id: ", id)
     setContent(id);
-    // console.log(content);
-    // console.log(`After push: ${id}`)
-    //   console.log(newC
     const newElementsArr = [...elementsArr];
-    // console.log('Before push: ', newContent)
-    // console.log(newC)
-    // console.log('hi')
-    newElementsArr.push(id);
-
-    console.log('b4set', elementsArr)
-    console.log('b4set', newElementsArr)
-
+    const newElement = {
+      id: elementsArr.length,      
+      element: id,
+      text: "",
+      texAlign: "",
+      textDecoration: "",
+      backgroundColor: "",
+      color: "",
+      margin: "",
+      width: "",
+      height: "",
+      padding: ""     
+    };
+    newElementsArr.push(newElement);
+    // console.log("newElementsArr:", newElementsArr);
     setElementsArr(newElementsArr);
-    setCurrentElement(id)
+    setCurrentElement(newElement);
     // const index = newElementsArr.length-1
     // id2 = index
     // return id2;
     // setDragOver(data);
-    console.log('hi', elementsArr)
+    // console.log('elementsArr:', elementsArr)
   };
  
   const handleClick = (id: any) => {
@@ -82,12 +81,9 @@ const SideBar = (props:any) => {
     // console.log(3,elementsArr[id].style.backgroundColor)
     // elementsArr[id].style.backgroundColor = 'pink';
     setCurrentElement(elementsArr[id]);
-    console.log('work please', elementsArr[id])
-    console.log(currentElement)
-
-
-  
-};
+    // console.log('work please', elementsArr[id])
+    // console.log(currentElement)
+  };
 
 // console.log(content)
   // const sideStyle = {
@@ -152,15 +148,20 @@ const SideBar = (props:any) => {
 // cobuttonle.log('rend', rend)
 
 
-const htmlTags = elementsArr.map((elements: any, index: any) =>{
+const htmlTags = elementsArr.map((elements: any, index: any) => {
+  console.log("html tags: ", elementsArr[index], index);
   return (
     <div 
     style={{borderColor: '#2D3033', borderWidth: '8px', borderStyle: 'solid', textAlign: 'center', fontWeight: 'bolder'}}
-className="draggedTags"
-        onDragOver={enableDropping}
+    className="draggedTags"
+    onDragOver={enableDropping}
     onDrop={handleDrop}
     onDragEnter={handleDragOverStart}
-    onDragLeave={handleDragOverEnd} onClick={() => handleClick(index)} id={index}>{elementsArr[index]}</div>
+    onDragLeave={handleDragOverEnd} 
+    onClick={() => handleClick(index)} 
+    id={index}>
+      {elementsArr[index].element}
+    </div>
   )})
 
   return (
@@ -297,13 +298,12 @@ className="draggedTags"
         onDragEnter={handleDragOverStart}
         onDragLeave={handleDragOverEnd}
         id='drop'
-        >
-        <div id='hov'style={{ backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033",width: "100%", fontSize: '20px', marginBottom: ''}}>{htmlTags}</div>
+      >
+        <div id='hov' style={{ backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033",width: "100%", fontSize: '20px', marginBottom: ''}}>{htmlTags}</div>
       </div>
     </div>
   );
-// )
-}
+};
 
 export default SideBar;
 

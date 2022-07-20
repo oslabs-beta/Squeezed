@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
     "jsx": "react",
     "noImplicitAny": false,
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
-    ],
-    "module": "commonjs"
+    ]
   }
 }
