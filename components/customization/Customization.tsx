@@ -18,7 +18,8 @@ import Navbar from './Navbar.tsx';
 //   }
 // }
 
-const Customization = () => {
+const Customization = (props:any) => {
+ 
 
   // const customizationStyle = { 
   //   gridArea: 'dd',
@@ -26,13 +27,17 @@ const Customization = () => {
   //   border: '2px solid white',
   //   fontSize: '30px',
   // } as const;
+  const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
+
+  const { currentElement, setCurrentElement } = props;
 
   const [customizationPage, setCustomizationPage] = (React as any).useState('styling');
 
   return (
     <div className="container">
       <Navbar setCustomizationPage={setCustomizationPage} />
-      <MainContainer customizationPage={customizationPage} setCustomizationPage={setCustomizationPage} />
+      <MainContainer customizationPage={customizationPage} setCustomizationPage={setCustomizationPage} currentElement={currentElement} setCurrentElement={setCurrentElement} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding}
+/>
     </div>
   );
 };
