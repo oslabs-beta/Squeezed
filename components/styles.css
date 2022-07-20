@@ -1,9 +1,13 @@
-#scroll {
-    display:block;
-    border: 1px solid red;
-    padding:5px;
-    margin-top:5px;
-    width:300px;
-    height:50px;
-    overflow:scroll;
- }
+/* 
+
+button:hover {
+    background-color: darkred;
+    transition: 0.2s;
+  }
+
+  div  {
+    background-color: pink;
+  }
+* {
+    background-color: palegoldenrod;
+} */

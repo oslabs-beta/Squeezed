@@ -6,21 +6,26 @@ import Preview from './preview/Preview.tsx';
 import Buttons from './Buttons.tsx';
 
 
-const App = () => {
+
+interface Props{
+  elementsArr: string[];
+  setElementsArr: React.Dispatch<React.SetStateAction<string>>;
+  content: string;
+  setContent: React.Dispatch<React.SetStateAction<string>>;
+  // currentElement: string;
+}
+
+// function h(this: any, props: any) {
+  
+  
+  
+  const App = () => {
   
   //Styling
   const sideBarStyle = { 
     gridArea: 'side',
-    fontSize: '30px',
   } as const;
-
-  const dragAndDropStyle = { 
-    gridArea: 'dd',
-    backgroundColor: 'red',
-    fontSize: '30px',
   
-  } as const;
-
   const customizationStyle = { 
     gridArea: 'cust',
     backgroundColor: "#2D3033",
@@ -28,26 +33,28 @@ const App = () => {
     borderWidth: '2px',
     borderStyle: 'solid',    
     fontSize: '30px',
-    height: '470px'
   } as const;
-
+  
   const previewStyle = { 
     gridArea: 'prev',
     backgroundColor: "#2D3033",
     borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
     borderWidth: '2px',
     borderStyle: 'solid',    fontSize: '30px',
-  } as const;
 
+
+  } as const;
+  
   const buttonsStyle = { 
     gridArea: 'buttons',
     backgroundColor: "#2D3033",
     borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
     borderWidth: '2px',
     borderStyle: 'solid',    
-    fontSize: '30px'
-  } as const;
+    fontSize: '30px',
 
+  } as const;
+  
   const styles = {
     display: 'grid',
     backgroundColor: 'black',
@@ -55,11 +62,6 @@ const App = () => {
     gridTemplate: 'auto / repeat(11, 1fr)',
     gridTemplateAreas:
     `"side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
     "side side side side side side prev prev prev prev prev"
     "side side side side side side prev prev prev prev prev"
     "side side side side side side prev prev prev prev prev"
@@ -81,19 +83,22 @@ const App = () => {
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"
     "buttons cust cust cust cust cust prev prev prev prev prev"`,
-    height: '200%',
-    width: '100%'
- } as const;
-
+    width: '100%',
+    height: '100%'
+  } as const;
+  
   //State
-  const [elementsArr, setElementsArr] = React.useState<string[] | number>([]);
+  const [elementsArr, setElementsArr] = React.useState<any[]>([]);
+  const [currentElement, setCurrentElement] = React.useState<any>('drag into here');
+  console.log("elementsArr in app", elementsArr);
 
   return (
     <div className="app" style={styles}>
-      {/* <div style={sideBarStyle} elementsArr={elementsArr} setElementsArr={setElementsArr}><SideBar /></div> */}
-      <div style={sideBarStyle}><SideBar /></div>
-      <div style={customizationStyle}><Customization /></div>
-      <div style={previewStyle}><Preview /></div>
+      <div style={sideBarStyle}><SideBar elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} /></div>
+      {/* <div style={customizationStyle}><Customization elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding} */}
+      <div style={customizationStyle}><Customization elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} /></div>
+      {/* <div style={previewStyle}><Preview elementsArr={elementsArr} setElementsArr={setElementsArr} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding} */}
+      <div style={previewStyle}><Preview elementsArr={elementsArr} setElementsArr={setElementsArr} /></div>
       <div style={buttonsStyle}><Buttons /></div>
     </div>
   );

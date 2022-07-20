@@ -20,7 +20,6 @@
     "react": "https://esm.sh/react@18.2.0",
     "react-dom": "https://esm.sh/react-dom@18.2.0",
     "react-dom/": "https://esm.sh/react-dom@18.2.0/",
-    "postgres": "https://deno.land/x/postgres@v0.16.1/mod.ts",
-    "DragDropContext": "https://esm.sh/react-beautiful-dnd"
+    "postgres": "https://deno.land/x/postgres@v0.16.1/mod.ts"
   }
 }

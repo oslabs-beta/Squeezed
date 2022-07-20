@@ -1,0 +1,39 @@
+#codePreview {
+    margin-left: 4%;
+    font-size: 23px;
+    color: rgb(255, 255, 255);
+    width: 70%;
+}
+
+#import {
+    /* margin-right: 200px */
+}
+
+#export {
+    /* margin-right: 200px */
+}
+
+#return {
+    margin-left: 7%;
+}
+
+#mainOpeningTag {
+    margin-left: 9%;
+}
+
+#htmlTags {
+    margin-left: 15%;
+}
+
+#mainClosingTag {
+    margin-left: 9%;
+}
+
+#paren {
+    margin-left: 7%;
+}
+
+#endingCurly {
+    margin-left: 4%;
+}
+
