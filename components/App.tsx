@@ -97,13 +97,23 @@ interface Props{
   //State
   const [elementsArr, setElementsArr] = React.useState<string[]>([]);
   const [currentElement, setCurrentElement] = React.useState<string>('drag into here');
-  
+  const [inputText, setInputText] = (React as any).useState('');
+  const [textAlign, setTextAlign] = (React as any).useState('');
+  const [textDecoration, setTextDecoration] = (React as any).useState('');
+  const [backgroundColor, setBackgroundColor] = (React as any).useState('');
+  const [color, setColor] = (React as any).useState('');
+  const [margin, setMargin] = (React as any).useState('');
+  const [width, setWidth] = (React as any).useState('');
+  const [height, setHeight] = (React as any).useState('');
+  const [padding, setPadding] = (React as any).useState('');
   return (
     
     <div className="app" style={styles}>
       <div style={sideBarStyle}><SideBar elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} /></div>
-      <div style={customizationStyle}><Customization elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement}/></div>
-      <div style={previewStyle}><Preview elementsArr={elementsArr} setElementsArr={setElementsArr} /></div>
+      <div style={customizationStyle}><Customization elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding}
+/></div>
+      <div style={previewStyle}><Preview elementsArr={elementsArr} setElementsArr={setElementsArr} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding}
+/></div>
       <div style={buttonsStyle}><Buttons /></div>
     </div>
   );

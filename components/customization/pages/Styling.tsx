@@ -11,15 +11,8 @@ const Styling: any = (props:any) => {
 
   const { currentElement, setCurrentElement } = props;
 
-  const [inputText, setInputText] = (React as any).useState('');
-  const [textAlign, setTextAlign] = (React as any).useState('');
-  const [textDecoration, setTextDecoration] = (React as any).useState('');
-  const [backgroundColor, setBackgroundColor] = (React as any).useState('');
-  const [color, setColor] = (React as any).useState('');
-  const [margin, setMargin] = (React as any).useState('');
-  const [width, setWidth] = (React as any).useState('');
-  const [height, setHeight] = (React as any).useState('');
-  const [padding, setPadding] = (React as any).useState('');
+  const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -170,9 +163,9 @@ console.log('working', currentElement)
         <br />
 </div>
 <br></br>
-        <button type="submit" className="btn"  style={{marginLeft: '50%', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", fontSize: '20px'}}>
+        {/* <button type="submit" className="btn"  style={{marginLeft: '50%', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", fontSize: '20px'}}>
           Submit
-        </button>
+        </button> */}
 
       </form>
     );

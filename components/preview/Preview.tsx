@@ -27,13 +27,14 @@ const Preview = (props:any) => {
   //   fontSize: '30px',
   // } as const;
   const {elementsArr, setElementsArr} = props;
+  const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
 
   const [previewPage, setPreviewPage] = (React as any).useState('codePreview');
 
   return (
     <div className="preview">
       <Navbar setPreviewPage={setPreviewPage} />
-      <MainContainer previewPage={previewPage} setPreviewPage={setPreviewPage} elementsArr={elementsArr} setElementsArr={setElementsArr}/>
+      <MainContainer previewPage={previewPage} setPreviewPage={setPreviewPage} elementsArr={elementsArr} setElementsArr={setElementsArr} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding}/>
     </div>
   );
 };

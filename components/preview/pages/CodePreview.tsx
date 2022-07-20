@@ -4,6 +4,8 @@ import { React } from '../../../deps.tsx';
 
 const CodePreview: any = (props: any) => {
 const {elementsArr, setElementsArr} = props;
+const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
+
 const htmlTags = elementsArr.map((elements: any, index: any) =>{
   let eleFirst:any;
   let eleSecond:any;
@@ -14,6 +16,7 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
     endBr = '>'
     midText = 'This is your div'
     eleSecond = `</div>`
+    
     
   }
   if(elementsArr[index] === 'paragraph') {
@@ -93,6 +96,7 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
     endBr = '>'
     midText = 'This is your input'
     eleSecond =`</input>`
+    let color1 = color
   }
   if(elementsArr[index] === 'label') {
     eleFirst = `<label `
@@ -107,7 +111,7 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
    eleSecond = `/>`
   }
   return (
-    <div id={index}><span style={{color: '#3DA2A7'}}>{eleFirst}</span><span style={{color:'#FCC981'}}>id={index}</span><span style={{color: '#3DA2A7'}}>{endBr}</span><span style={{color: 'white'}}> {midText} </span> <span style={{color: '#3DA2A7'}}>{eleSecond}</span></div>
+    <div id={index}><span style={{color: '#3DA2A7'}}>{eleFirst}</span><span style={{color:'#FCC981'}}>class= {'{'} <span style={{color: '#ffff76'}}> {textAlign} {textDecoration} {backgroundColor} {color} {margin}  {width} {height} {padding} </span>  {'}'} id={index}</span><span style={{color: '#3DA2A7'}}>{endBr}</span><span style={{color: 'white'}}> {inputText}</span> <span style={{color: '#3DA2A7'}}>{eleSecond}</span></div>
     )
   })
   return (
@@ -116,11 +120,13 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
       <p id='import'><span style={{color: '#6C95B3'}}>import</span> <span style={{color:'#FCC981'}}>{'{'} h {'}'}</span> <span style={{color: '#6C95B3'}}> from</span> <span style={{color:'#FCC981'}}>"preact";</span></p>
       <p id='import'><span style={{color: '#6C95B3'}}>import</span> <span style={{color:'#FCC981'}}>{'{'} PageProps {'}'}</span> <span style={{color: '#6C95B3'}}> from</span> <span style={{color:'#FCC981'}}>"$fresh/server.ts";</span></p>
       <p id='import'><span style={{color: '#6C95B3'}}>import</span> <span style={{color:'#FCC981'}}>{'{'} useEffect, useState {'}'}</span> <span style={{color: '#6C95B3'}}> from</span> <span style={{color:'#FCC981'}}>"preact/hooks";</span></p>
+      <p id='import'><span style={{color: '#6C95B3'}}>import</span> <span style={{color:'#FCC981'}}>{'{'} tw {'}'}</span> <span style={{color: '#6C95B3'}}> from</span> <span style={{color:'#FCC981'}}>"twind";</span></p>
+
       <p id='export'><span style={{color: '#6C95B3'}}>export default function </span> <span style={{color: '#3DA2A7'}}>App</span>(props: PageProps) {'{'}</p>
       <p id= 'return'><span style={{color: '#6C95B3'}}>return </span>(</p>
-      <p id='mainOpeningTag'><span style={{color: '#FEE68E'}}>{'<main>'}</span></p>
+      <p id='mainOpeningTag'><span style={{color: '#ffff76'}}>{'<main>'}</span></p>
       <div id='htmlTags'> <span style={{color: 'pink'}}>{htmlTags}</span></div>
-      <p id='mainClosingTag'><span style={{color: '#FEE68E'}}>{'</main>'}</span></p>
+      <p id='mainClosingTag'><span style={{color: '#ffff76'}}>{'</main>'}</span></p>
       <p id='paren'>);</p>
       <p id='endingCurly'>{"}"}</p>
       </div>
