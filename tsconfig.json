@@ -6,8 +6,7 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "ESNext",
-    ],
-    
+      "esnext"
+    ]
   }
 }

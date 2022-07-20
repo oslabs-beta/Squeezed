@@ -1,6 +1,11 @@
 import { React } from '../../../deps.tsx';
 // import { setup, tw } from '../../../deps.tsx';
 
+// import { createRequire } from "https://deno.land/std@0.148.0/node/module.ts";
+// const require = createRequire(import.meta.url);
+// const fs = require('fs');
+import { createFreshCode, writeToFile } from '../../../helperFxns.ts'
+
 type submitForm = {
   text: string;
 };
@@ -21,8 +26,9 @@ const Styling: any = (props: any) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // alert(`form submitted`);
-    writeToFile(createFreshCode(currentElement));
+    alert(`form submitted`);
+    // writeToFile(createFreshCode(currentElement));
+    // writeToFile();
     // if (this.validateForm()) {
     //   const submitSuccess: boolean = await this.submitForm();
     //   this.setState({ submitSuccess });
@@ -163,23 +169,3 @@ const Styling: any = (props: any) => {
 };
 
 export default Styling;
-
-//inside of styling, invoke the following: writeToFile(createFreshCode(currentElement))
-const createFreshCode = (elementType) => {
-  const returnStr =`
-  <${elementType}>
-    Created a ${elementType}
-  </ ${elementType}>`;
-  console.log("inside createFreshCode, code is: ", returnStr);
-  return returnStr;
-}
-
-const writeToFile = async (freshCode) => {
-  console.log("inside writeToFile");
-  // const text = await mod.readFile("../../../txtFiles/test.txt","utf-8");
-  // console.log(text);
-  // const decoder = new TextDecoder("utf-8");
-  // const text = await fs.writeFile("../../../../txtFiles/test.txt","utf-8");
-  // console.log(text);
-  return await Deno.writeTextFile(`../../../../txtFiles/test.txt`, freshCode);
-}
