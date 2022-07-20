@@ -1,4 +1,4 @@
-#side {
+/* #side {
     overflow-y: scroll;
     overflow-x: hidden;
     
@@ -15,7 +15,7 @@
 #side::-webkit-scrollbar-thumb {
   background: #4e4e4e;
   border-radius: 25px;
-}
+} */
 
 /* #scroll{
     display: grid;
@@ -69,6 +69,7 @@
 
 
 }
+
 
 /* background-color: #777;
 height: 100%;

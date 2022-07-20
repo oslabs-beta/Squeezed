@@ -11585,7 +11585,7 @@ const CodePreview = (props)=>{
         if (elementsArr[index] === 'image') {
             eleFirst = `<img `;
             endBr = '';
-            midText = 'src="this is your image"';
+            midText = 'src=""';
             eleSecond = `/>`;
         }
         if (elementsArr[index] === 'button') {
@@ -11680,7 +11680,11 @@ const CodePreview = (props)=>{
             style: {
                 color: '#3DA2A7'
             }
-        }, endBr), " ", midText, "  ", mod.createElement("span", {
+        }, endBr), mod.createElement("span", {
+            style: {
+                color: 'white'
+            }
+        }, " ", midText, " "), " ", mod.createElement("span", {
             style: {
                 color: '#3DA2A7'
             }
@@ -11709,7 +11713,43 @@ const CodePreview = (props)=>{
         style: {
             color: '#FCC981'
         }
-    }, '"preact"')), mod.createElement("p", {
+    }, '"preact";')), mod.createElement("p", {
+        id: "import"
+    }, mod.createElement("span", {
+        style: {
+            color: '#6C95B3'
+        }
+    }, "import"), " ", mod.createElement("span", {
+        style: {
+            color: '#FCC981'
+        }
+    }, '{', " PageProps ", '}'), " ", mod.createElement("span", {
+        style: {
+            color: '#6C95B3'
+        }
+    }, " from"), " ", mod.createElement("span", {
+        style: {
+            color: '#FCC981'
+        }
+    }, '"$fresh/server.ts";')), mod.createElement("p", {
+        id: "import"
+    }, mod.createElement("span", {
+        style: {
+            color: '#6C95B3'
+        }
+    }, "import"), " ", mod.createElement("span", {
+        style: {
+            color: '#FCC981'
+        }
+    }, '{', " useEffect, useState ", '}'), " ", mod.createElement("span", {
+        style: {
+            color: '#6C95B3'
+        }
+    }, " from"), " ", mod.createElement("span", {
+        style: {
+            color: '#FCC981'
+        }
+    }, '"preact/hooks";')), mod.createElement("p", {
         id: "export"
     }, mod.createElement("span", {
         style: {
@@ -11719,7 +11759,7 @@ const CodePreview = (props)=>{
         style: {
             color: '#3DA2A7'
         }
-    }, "App"), "() ", '{'), mod.createElement("p", {
+    }, "App"), "(props: PageProps) ", '{'), mod.createElement("p", {
         id: "return"
     }, mod.createElement("span", {
         style: {

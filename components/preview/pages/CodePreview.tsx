@@ -25,7 +25,7 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
   if(elementsArr[index] === 'image') {
     eleFirst = `<img `
     endBr = ''
-    midText = 'src="this is your image"'
+    midText = 'src=""'
     eleSecond = `/>`
   }
   if(elementsArr[index] === 'button') {
@@ -107,14 +107,16 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
    eleSecond = `/>`
   }
   return (
-    <div id={index}><span style={{color: '#3DA2A7'}}>{eleFirst}</span><span style={{color:'#FCC981'}}>id={index}</span><span style={{color: '#3DA2A7'}}>{endBr}</span> {midText}  <span style={{color: '#3DA2A7'}}>{eleSecond}</span></div>
+    <div id={index}><span style={{color: '#3DA2A7'}}>{eleFirst}</span><span style={{color:'#FCC981'}}>id={index}</span><span style={{color: '#3DA2A7'}}>{endBr}</span><span style={{color: 'white'}}> {midText} </span> <span style={{color: '#3DA2A7'}}>{eleSecond}</span></div>
     )
   })
   return (
     <div id='codePreview'>
       <link rel={'stylesheet'} href={'./static/css/codePreview.css'} />
-      <p id='import'><span style={{color: '#6C95B3'}}>import</span> <span style={{color:'#FCC981'}}>{'{'} h {'}'}</span> <span style={{color: '#6C95B3'}}> from</span> <span style={{color:'#FCC981'}}>"preact"</span></p>
-      <p id='export'><span style={{color: '#6C95B3'}}>export default function </span> <span style={{color: '#3DA2A7'}}>App</span>() {'{'}</p>
+      <p id='import'><span style={{color: '#6C95B3'}}>import</span> <span style={{color:'#FCC981'}}>{'{'} h {'}'}</span> <span style={{color: '#6C95B3'}}> from</span> <span style={{color:'#FCC981'}}>"preact";</span></p>
+      <p id='import'><span style={{color: '#6C95B3'}}>import</span> <span style={{color:'#FCC981'}}>{'{'} PageProps {'}'}</span> <span style={{color: '#6C95B3'}}> from</span> <span style={{color:'#FCC981'}}>"$fresh/server.ts";</span></p>
+      <p id='import'><span style={{color: '#6C95B3'}}>import</span> <span style={{color:'#FCC981'}}>{'{'} useEffect, useState {'}'}</span> <span style={{color: '#6C95B3'}}> from</span> <span style={{color:'#FCC981'}}>"preact/hooks";</span></p>
+      <p id='export'><span style={{color: '#6C95B3'}}>export default function </span> <span style={{color: '#3DA2A7'}}>App</span>(props: PageProps) {'{'}</p>
       <p id= 'return'><span style={{color: '#6C95B3'}}>return </span>(</p>
       <p id='mainOpeningTag'><span style={{color: '#FEE68E'}}>{'<main>'}</span></p>
       <div id='htmlTags'> <span style={{color: 'pink'}}>{htmlTags}</span></div>
