@@ -10,31 +10,35 @@ type submitForm = {
   text: string;
 };
 
-const Styling: any = (props: any) => {
+const Styling: any = (props:any) => {
+  // push all of theses states into CodePreview ??? 
+  //then do `${states}` to apple the changes inline ?
 
   const { currentElement, setCurrentElement } = props;
 
-  const [inputText, setInputText] = (React as any).useState('');
-  const [textAlign, setTextAlign] = (React as any).useState('');
-  const [textDecoration, setTextDecoration] = (React as any).useState('');
-  const [backgroundColor, setBackgroundColor] = (React as any).useState('');
-  const [color, setColor] = (React as any).useState('');
-  const [margin, setMargin] = (React as any).useState('');
-  const [width, setWidth] = (React as any).useState('');
-  const [height, setHeight] = (React as any).useState('');
-  const [padding, setPadding] = (React as any).useState('');
+  const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert(`form submitted`);
-    // writeToFile(createFreshCode(currentElement));
-    // writeToFile();
+    alert(`form submitted`);  
+
+    // setInputText(inputText);
+    // textAlign(setTextAlign);
+    // textDecoration(setTextDecoration);
+    // backgroundColor(setBackgroundColor);
+    // color(setColor);
+    // margin(setMargin);
+    // height(setHeight);
+    // width(setWidth);
+    // padding(setPadding);
     // if (this.validateForm()) {
     //   const submitSuccess: boolean = await this.submitForm();
     //   this.setState({ submitSuccess });
     // }
   };
 
+console.log('working', currentElement)
 //   /**
 //    * Executes the validation rules for all the fields on the form and sets the error state
 //    * @returns {boolean} - Whether the form is valid or not
@@ -55,7 +59,9 @@ const Styling: any = (props: any) => {
 
     return (
       <form onSubmit={handleSubmit} style={{fontSize: '20px', fontWeight: 'bolder', color: 'white'}}>
-
+<div style={{fontSize: '26px', textDecoration: 'underline',textAlign:'center'}}>Element selected: {currentElement}</div>
+<br></br>
+<div style={{marginLeft: '100px'}}>
         <label htmlFor="inputText">Text </label>  
         <input
           value={inputText}
@@ -111,7 +117,8 @@ const Styling: any = (props: any) => {
           style={{backgroundColor: '#68EDA7', color: 'black'}}
         /> 
         <br />
-
+        </div>
+        <div style={{float: 'right', marginTop: '-120px', marginRight: '100px'}}>
         <label htmlFor="margin">Margin </label>  
         <input
           value={margin}
@@ -159,13 +166,16 @@ const Styling: any = (props: any) => {
 
         /> 
         <br />
-
-        <button type="submit" className="btn"  style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)"}}>
+</div>
+<br></br>
+        {/* <button type="submit" className="btn"  style={{marginLeft: '50%', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", fontSize: '20px'}}>
           Submit
-        </button>
+        </button> */}
 
       </form>
     );
 };
+
+
 
 export default Styling;

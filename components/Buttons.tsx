@@ -78,7 +78,7 @@ return (
       <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder'}}
         id="exportBtn"
         onClick={(event: React.MouseEvent<HTMLElement>) => {
-          alert("Project Exported");
+          // alert("Project Exported");
           console.log('clicked')
           exportFunc();
         }}
