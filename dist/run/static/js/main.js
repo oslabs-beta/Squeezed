@@ -11015,7 +11015,7 @@ function dew7() {
 }
 dew7();
 const SideBar = (props)=>{
-    const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
+    const { elementsArr , setElementsArr , currentElement , setCurrentElement , inputText , setInputText  } = props;
     const [dragOver, setDragOver] = mod.useState(false);
     const [content, setContent] = mod.useState('drag into here');
     const handleDragOverStart = ()=>setDragOver(true);
@@ -11702,7 +11702,7 @@ const CodePreview = (props)=>{
             style: {
                 color: '#ffff76'
             }
-        }, " ", textAlign, " ", textDecoration, " ", backgroundColor, " ", color, " ", margin, "  ", width, " ", height, " ", padding, " "), "  ", '}', " id=", index), mod.createElement("span", {
+        }, " ", textAlign[index], " ", textDecoration[index], " ", backgroundColor, " ", color, " ", margin, "  ", width, " ", height, " ", padding, " "), "  ", '}', " id=", index), mod.createElement("span", {
             style: {
                 color: '#3DA2A7'
             }
@@ -12087,7 +12087,25 @@ const App = ()=>{
         elementsArr: elementsArr,
         setElementsArr: setElementsArr,
         currentElement: currentElement,
-        setCurrentElement: setCurrentElement
+        setCurrentElement: setCurrentElement,
+        inputText: inputText,
+        setInputText: setInputText,
+        textAlign: textAlign,
+        setTextAlign: setTextAlign,
+        textDecoration: textDecoration,
+        setTextDecoration: setTextDecoration,
+        backgroundColor: backgroundColor,
+        setBackgroundColor: setBackgroundColor,
+        color: color,
+        setColor: setColor,
+        margin: margin,
+        setMargin: setMargin,
+        width: width,
+        setWidth: setWidth,
+        height: height,
+        setHeight: setHeight,
+        padding: padding,
+        setPadding: setPadding
     })), mod.createElement("div", {
         style: customizationStyle
     }, mod.createElement(Customization, {

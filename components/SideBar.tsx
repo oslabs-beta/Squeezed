@@ -12,7 +12,7 @@ import {React } from '../deps.tsx';
 // }
 
 const SideBar = (props:any) => {
-  const {elementsArr, setElementsArr, currentElement, setCurrentElement} = props;
+  const {elementsArr, setElementsArr, currentElement, setCurrentElement, inputText, setInputText} = props;
 
   const [dragOver, setDragOver] = React.useState(false);
   const [content, setContent] = React.useState<string>('drag into here');
@@ -42,12 +42,12 @@ const SideBar = (props:any) => {
   
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    const id = event.dataTransfer.getData("text");    
+    const name = event.dataTransfer.getData("text");    
     // const draggable = document.getElementById(id);
     // event.target.appendChild(draggable);
-     console.log(5, id)
+    //  console.log(5, id)
     // setContent(newContent);
-    setContent(id);
+    setContent(name);
     // console.log(content);
     // console.log(`After push: ${id}`)
     //   console.log(newC
@@ -55,7 +55,7 @@ const SideBar = (props:any) => {
     // console.log('Before push: ', newContent)
     // console.log(newC)
     // console.log('hi')
-    newElementsArr.push(id);
+
 
     console.log('b4set', elementsArr)
     console.log('b4set', newElementsArr)
@@ -82,6 +82,7 @@ const SideBar = (props:any) => {
     // console.log(3,elementsArr[id].style.backgroundColor)
     // elementsArr[id].style.backgroundColor = 'pink';
     setCurrentElement(elementsArr[id]);
+    // setInputText(inputText)
     console.log('work please', elementsArr[id])
     console.log(currentElement)
 
@@ -372,6 +373,7 @@ export default SideBar;
 //   return(
 //     <div>SIDEBAR</div>
 //   )
+
 // }
 
 // export default SideBar;

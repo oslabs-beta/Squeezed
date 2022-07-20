@@ -18,15 +18,6 @@ const Styling: any = (props:any) => {
     e.preventDefault();
     alert(`form submitted`);  
 
-    // setInputText(inputText);
-    // textAlign(setTextAlign);
-    // textDecoration(setTextDecoration);
-    // backgroundColor(setBackgroundColor);
-    // color(setColor);
-    // margin(setMargin);
-    // height(setHeight);
-    // width(setWidth);
-    // padding(setPadding);
     // if (this.validateForm()) {
     //   const submitSuccess: boolean = await this.submitForm();
     //   this.setState({ submitSuccess });
@@ -51,6 +42,11 @@ console.log('working', currentElement)
 //     // TODO - submit the form
 //     return true;
 //   }
+
+// const htmlTags = elementsArr.map((elements: any, index: any) =>{
+//   return (
+    
+//   )})
 
     return (
       <form onSubmit={handleSubmit} style={{fontSize: '20px', fontWeight: 'bolder', color: 'white'}}>

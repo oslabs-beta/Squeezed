@@ -94,9 +94,14 @@ interface Props{
     width: '100%',
   } as const;
   
+  // type elementObj = {
+  //   id: number,
+  //   el
+  // }
+
   //State
-  const [elementsArr, setElementsArr] = React.useState<string[]>([]);
-  const [currentElement, setCurrentElement] = React.useState<string>('drag into here');
+  const [elementsArr, setElementsArr] = React.useState<any[]>([]);
+  const [currentElement, setCurrentElement] = React.useState<any>('drag into here');
   const [inputText, setInputText] = (React as any).useState('');
   const [textAlign, setTextAlign] = (React as any).useState('');
   const [textDecoration, setTextDecoration] = (React as any).useState('');
@@ -109,7 +114,7 @@ interface Props{
   return (
     
     <div className="app" style={styles}>
-      <div style={sideBarStyle}><SideBar elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} /></div>
+      <div style={sideBarStyle}><SideBar elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding} /></div>
       <div style={customizationStyle}><Customization elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding}
 /></div>
       <div style={previewStyle}><Preview elementsArr={elementsArr} setElementsArr={setElementsArr} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding}

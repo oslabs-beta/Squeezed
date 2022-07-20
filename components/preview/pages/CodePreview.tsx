@@ -5,7 +5,7 @@ import { React } from '../../../deps.tsx';
 const CodePreview: any = (props: any) => {
 const {elementsArr, setElementsArr} = props;
 const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
-
+let txtt;
 const htmlTags = elementsArr.map((elements: any, index: any) =>{
   let eleFirst:any;
   let eleSecond:any;
@@ -16,7 +16,6 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
     endBr = '>'
     midText = 'This is your div'
     eleSecond = `</div>`
-    
     
   }
   if(elementsArr[index] === 'paragraph') {
@@ -96,7 +95,6 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
     endBr = '>'
     midText = 'This is your input'
     eleSecond =`</input>`
-    let color1 = color
   }
   if(elementsArr[index] === 'label') {
     eleFirst = `<label `
@@ -111,7 +109,7 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
    eleSecond = `/>`
   }
   return (
-    <div id={index}><span style={{color: '#3DA2A7'}}>{eleFirst}</span><span style={{color:'#FCC981'}}>class= {'{'} <span style={{color: '#ffff76'}}> {textAlign} {textDecoration} {backgroundColor} {color} {margin}  {width} {height} {padding} </span>  {'}'} id={index}</span><span style={{color: '#3DA2A7'}}>{endBr}</span><span style={{color: 'white'}}> {inputText}</span> <span style={{color: '#3DA2A7'}}>{eleSecond}</span></div>
+    <div id={index}><span style={{color: '#3DA2A7'}}>{eleFirst}</span><span style={{color:'#FCC981'}}>class= {'{'} <span style={{color: '#ffff76'}}> {textAlign[index]} {textDecoration[index]} {backgroundColor} {color} {margin}  {width} {height} {padding} </span>  {'}'} id={index}</span><span style={{color: '#3DA2A7'}}>{endBr}</span><span style={{color: 'white'}}> {inputText}</span> <span style={{color: '#3DA2A7'}}>{eleSecond}</span></div>
     )
   })
   return (
