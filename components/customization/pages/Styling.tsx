@@ -52,20 +52,16 @@ const Styling: any = (props:any) => {
     // setElementsArr(newElementsArr);
     elementsArr[currentElement.id] = updateCurrentElement;
     console.log('styling page elements array: ', elementsArr);
-    // alert(`form submitted`); 
-    // setInputText(inputText);
-    // textAlign(setTextAlign);
-    // textDecoration(setTextDecoration);
-    // backgroundColor(setBackgroundColor);
-    // color(setColor);
-    // margin(setMargin);
-    // height(setHeight);
-    // width(setWidth);
-    // padding(setPadding);
-    // if (this.validateForm()) {
-    //   const submitSuccess: boolean = await this.submitForm();
-    //   this.setState({ submitSuccess });
-    // }
+
+    setInputText('')
+    setTextAlign('')
+    setTextDecoration('')
+    setBackgroundColor('')
+    setColor('')
+    setMargin('')
+    setWidth('')
+    setHeight('')
+    setPadding('')
   };
 
 //   /**
@@ -86,12 +82,18 @@ const Styling: any = (props:any) => {
 //     return true;
 //   }
 
+// const htmlTags = elementsArr.map((elements: any, index: any) =>{
+//   return (
+    
+//   )})
+
     return (
-      <form onSubmit={handleSubmit} style={{fontSize: '20px', fontWeight: 'bolder', color: 'white'}}>
-        <div style={{fontSize: '26px', textDecoration: 'underline',textAlign:'center'}}>Element selected: {currentElement.element}</div>  
+      <form onSubmit={handleSubmit} style={{fontSize: '20px', color: 'white'}}>
+        <link rel={'stylesheet'} href={'./static/css/customizationStyles.css'} />
+        <div style={{fontSize: '26px',textAlign:'center' , marginTop: '20px'}} id='selectedEle'>Element selected: {currentElement.element}</div>  
         <br />
-        <div style={{marginLeft: '100px'}}>
-        <label htmlFor="inputText">Text </label>  
+        <div style={{marginLeft: '90px'}}>
+        <label htmlFor="inputText">Input Text </label>  
         <input
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
@@ -102,35 +104,15 @@ const Styling: any = (props:any) => {
         /> 
         <br />
 
-        <label htmlFor="textAlign">Text Align </label>
-        <select onChange={e => setTextAlign(e.target.value)} style={{backgroundColor: '#68EDA7', color: 'black'}}
->
-          <option>center</option>
-          <option>right</option>
-          <option>left</option>
-          <option>justify</option>
-          <option>justify</option>
-        </select>
-        <br />
+       
 
-        <label htmlFor="textDecoration">Text Decoration </label>
-        <select onChange={e => setTextDecoration(e.target.value)} style={{backgroundColor: '#68EDA7', color: 'black'}}
->
-          <option>overline</option>
-          <option>line-through</option>
-          <option>underline</option>
-          <option>none</option>
-        </select>
-        <br />
-
-        <label htmlFor="backgroundColor">Background Color </label>  
+        <label htmlFor="backgroundColor">Background </label>  
         <input
           value={backgroundColor}
           onChange={(e) => setBackgroundColor(e.target.value)}
           type="text"
-          placeholder="Enter hex color code"
+          placeholder="Enter color name"
           className="input"
-          style={{backgroundColor: '#68EDA7', color: 'black'}}
 
         /> 
         <br />
@@ -140,13 +122,10 @@ const Styling: any = (props:any) => {
           value={color}
           onChange={(e) => setColor(e.target.value)}
           type="text"
-          placeholder="Enter hex color code"
+          placeholder="Enter color name"
           className="input"
-          style={{backgroundColor: '#68EDA7', color: 'black'}}
         /> 
         <br />
-        </div>
-        <div style={{float: 'right', marginTop: '-120px', marginRight: '100px'}}>
         <label htmlFor="margin">Margin </label>  
         <input
           value={margin}
@@ -154,11 +133,14 @@ const Styling: any = (props:any) => {
           type="text"
           placeholder="Enter margin value"
           className="input"
-          style={{backgroundColor: '#68EDA7', color: 'black'}}
 
         /> 
         <br />
+        
 
+        </div>
+        <div style={{float: 'right', marginTop: '-130px', marginRight: '100px'}}>
+       
         <label htmlFor="height">Height </label>  
         <input
           value={height}
@@ -166,7 +148,6 @@ const Styling: any = (props:any) => {
           type="text"
           placeholder="Enter height"
           className="input"
-          style={{backgroundColor: '#68EDA7', color: 'black'}}
 
         /> 
         <br />
@@ -178,7 +159,6 @@ const Styling: any = (props:any) => {
           type="text"
           placeholder="Enter width"
           className="input"
-          style={{backgroundColor: '#68EDA7', color: 'black'}}
 
         /> 
         <br />
@@ -190,13 +170,23 @@ const Styling: any = (props:any) => {
           type="text"
           placeholder="Enter padding"
           className="input"
-          style={{backgroundColor: '#68EDA7', color: 'black'}}
 
         /> 
         <br />
+       
+        <label htmlFor="textDecoration">Text Decoration </label>
+        <select className="textDecoration" onChange={e => setTextDecoration(e.target.value)} style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033"}}
+>
+          <option>default</option>
+          <option>overline</option>
+          <option>line-through</option>
+          <option>underline</option>
+          <option>none</option>
+        </select>
+        <br />
 </div>
-<br></br>
-        <button type="submit" className="btn"  style={{marginLeft: '50%', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", fontSize: '20px'}}>
+<br/>
+        <button type="submit" className="btn"  style={{marginLeft: '42%', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", fontSize: '20px', marginBottom: '50px',color: "#2D3033"}}>
           Submit
         </button>
 

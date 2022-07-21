@@ -3,7 +3,7 @@ import db from './db.ts'
 import accountRoutes from './routes/accountRoutes.ts'
 import projectRoutes from './routes/projectRoutes.ts'
 
-const port = 8000;
+const port = 8080;
 const app = new Application();
 
 
