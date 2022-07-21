@@ -6546,7 +6546,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(142,233,172)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6557,7 +6558,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(145,233,172)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '16px',
             fontWeight: 'bolder'
@@ -6568,7 +6570,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(151,233,167)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6579,7 +6582,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(155,233,165)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6590,7 +6594,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(160,233,162)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6601,7 +6606,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(159,233,162)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6612,7 +6618,7 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            color: "rgb(164,233,160)",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6623,7 +6629,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(168,233,158)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6634,7 +6641,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(173,233,155)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6645,7 +6653,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(178,233,153)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6656,7 +6665,7 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            color: "rgb(182,233,150)",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6667,7 +6676,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(181,233,151)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6678,7 +6688,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(5,0,255)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6689,7 +6700,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(186,233,149)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6700,7 +6712,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(192,233,145)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6711,7 +6724,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(5,0,255)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6722,7 +6736,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(5,0,255)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6733,7 +6748,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(5,0,255)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6744,7 +6760,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(5,0,255)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6755,7 +6772,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(5,0,255)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6914,9 +6932,10 @@ const Styling = (props)=>{
         className: "btn",
         style: {
             marginLeft: '42%',
-            backgroundColor: 'white',
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             fontSize: '20px',
-            marginBottom: '50px'
+            marginBottom: '50px',
+            color: "#2D3033"
         }
     }, "Submit"));
 };

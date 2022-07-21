@@ -174,121 +174,121 @@ const htmlTags = elementsArr.map((elements: any, index: any) => {
       <div className="app" ></div>
       <div id='side'>
         <div id="div" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+          <button style={{ backgroundColor:'rgb(142,233,172)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             DIV
           </button>
         </div>
         <div id="paragraph"  onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '16px',fontWeight: 'bolder'}} draggable="true">
+          <button style={{ backgroundColor:'rgb(145,233,172)', color: "#2d3033", width: "100%", fontSize: '16px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             PARAGRAPH
           </button>
         </div>
         <div id="button" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
+          <button style={{ backgroundColor:'rgb(151,233,167)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             BUTTON
           </button>
         </div>
         <div id="image" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+          <button style={{ backgroundColor:'rgb(155,233,165)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             IMAGE
           </button>
         </div>
         <div id="header 1" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+          <button style={{ backgroundColor:'rgb(160,233,162)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             HEADER 1
           </button>
         </div>
         <div id="header 2" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+          <button style={{ backgroundColor:'rgb(159,233,162)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             HEADER 2
           </button>
         </div>
         <div id="header 3" onDragStart={handleDragStart}>
-          <button style={{color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
+          <button style={{color: "rgb(164,233,160)", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             HEADER 3
           </button>
         </div>
         <div id="footer" onDragStart={handleDragStart}>
-          <button style={{color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
+          <button style={{backgroundColor:'rgb(168,233,158)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             FOOTER
           </button>
         </div>
         <div id="ordered list" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+          <button style={{backgroundColor:'rgb(173,233,155)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             ORDERED LIST
           </button>
         </div>
         <div id="unordered list" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+          <button style={{ backgroundColor:'rgb(178,233,153)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             UNORDERED LIST
           </button>
         </div>
         <div id="input" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
+          <button style={{ color: "rgb(182,233,150)", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             INPUT
           </button>
         </div>
         <div id="link" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+          <button style={{backgroundColor:'rgb(181,233,151)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LINK
           </button>
         </div>
         <div id="label" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+          <button style={{backgroundColor:'rgb(5,0,255)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LABEL
           </button>
         </div>
         <div id="span" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+          <button style={{ backgroundColor:'rgb(186,233,149)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             SPAN
           </button>
         </div>
         <div id="form" onDragStart={handleDragStart}>
-          <button style={{color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+          <button style={{ backgroundColor:'rgb(192,233,145)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             FORM
           </button>
         </div>
         <div id="menu" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
+          <button style={{backgroundColor:'rgb(5,0,255)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             MENU
           </button>
         </div>
         <div id="label" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+          <button style={{backgroundColor:'rgb(5,0,255)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LABEL
           </button>
         </div>
         <div id="span" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+          <button style={{ backgroundColor:'rgb(5,0,255)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             SPAN
           </button>
         </div>
         <div id="form" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+          <button style={{ backgroundColor:'rgb(5,0,255)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             FORM
           </button>
         </div>
         <div id="menu" onDragStart={handleDragStart}>
-          <button style={{ color: "#e8e1f3", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
+          <button style={{ backgroundColor:'rgb(5,0,255)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             MENU
           </button>
@@ -313,13 +313,19 @@ export default SideBar;
 
 
 
+// #8FE9AB
+// #98E9A6
+// #AEE99B
+// #C4E88E
+// #D0E888
+// #DAE983
+// #E3E97E
+// #EAE97B
+// #F4E875
+// #F9E873
 
 
-
-
-
-
-// export default function SideBar(this: any){
+// expo#rt default function SideBar(this: any){
 //    this.state = {
 //     htmlElements : ['div', 'paragraph', 'h1', 'form', 'button', 'img']
 //   };

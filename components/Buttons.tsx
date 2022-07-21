@@ -41,6 +41,7 @@ function save(){
  .then((data) => data.json())
  .catch((err) => console.log(err));
 }
+
 function exportFunc(){
   // this should open up the window directory with deno ???
   // Deno.readDir 
