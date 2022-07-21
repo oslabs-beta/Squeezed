@@ -52,20 +52,16 @@ const Styling: any = (props:any) => {
     // setElementsArr(newElementsArr);
     elementsArr[currentElement.id] = updateCurrentElement;
     console.log('styling page elements array: ', elementsArr);
-    // alert(`form submitted`); 
-    // setInputText(inputText);
-    // textAlign(setTextAlign);
-    // textDecoration(setTextDecoration);
-    // backgroundColor(setBackgroundColor);
-    // color(setColor);
-    // margin(setMargin);
-    // height(setHeight);
-    // width(setWidth);
-    // padding(setPadding);
-    // if (this.validateForm()) {
-    //   const submitSuccess: boolean = await this.submitForm();
-    //   this.setState({ submitSuccess });
-    // }
+
+    setInputText('')
+    setTextAlign('')
+    setTextDecoration('')
+    setBackgroundColor('')
+    setColor('')
+    setMargin('')
+    setWidth('')
+    setHeight('')
+    setPadding('')
   };
 
 //   /**
@@ -110,6 +106,7 @@ const Styling: any = (props:any) => {
         <label htmlFor="textAlign">Text Align </label>
         <select onChange={e => setTextAlign(e.target.value)} style={{backgroundColor: '#68EDA7', color: 'black'}}
 >
+          <option>options</option>
           <option>center</option>
           <option>right</option>
           <option>left</option>
@@ -121,6 +118,7 @@ const Styling: any = (props:any) => {
         <label htmlFor="textDecoration">Text Decoration </label>
         <select onChange={e => setTextDecoration(e.target.value)} style={{backgroundColor: '#68EDA7', color: 'black'}}
 >
+          <option>options</option>
           <option>overline</option>
           <option>line-through</option>
           <option>underline</option>
@@ -133,7 +131,7 @@ const Styling: any = (props:any) => {
           value={backgroundColor}
           onChange={(e) => setBackgroundColor(e.target.value)}
           type="text"
-          placeholder="Enter hex color code"
+          placeholder="Enter color name"
           className="input"
           style={{backgroundColor: '#68EDA7', color: 'black'}}
 
@@ -145,7 +143,7 @@ const Styling: any = (props:any) => {
           value={color}
           onChange={(e) => setColor(e.target.value)}
           type="text"
-          placeholder="Enter hex color code"
+          placeholder="Enter color name"
           className="input"
           style={{backgroundColor: '#68EDA7', color: 'black'}}
         /> 

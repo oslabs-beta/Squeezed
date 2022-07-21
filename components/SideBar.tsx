@@ -12,8 +12,7 @@ import {React } from '../deps.tsx';
 
 const SideBar = (props:any) => {
   const {elementsArr, setElementsArr, currentElement, setCurrentElement} = props;
-  // const { id, element, text, textAlign, textDecoration, backgroundColor, color, margin, width, height, padding } = props.currentElement;
-
+  // const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
   const [dragOver, setDragOver] = React.useState(false);
   const [content, setContent] = React.useState<string>('drag into here');
   // const [currIndex, setCurrIndex] = React.useState<any>();
@@ -48,7 +47,7 @@ const SideBar = (props:any) => {
       id: elementsArr.length,      
       element: id,
       text: "",
-      texAlign: "",
+      texAlign: "", // dont change this to textAlign  
       textDecoration: "",
       backgroundColor: "",
       color: "",
@@ -61,6 +60,7 @@ const SideBar = (props:any) => {
     // console.log("newElementsArr:", newElementsArr);
     setElementsArr(newElementsArr);
     setCurrentElement(newElement);
+   
     // const index = newElementsArr.length-1
     // id2 = index
     // return id2;
@@ -81,8 +81,11 @@ const SideBar = (props:any) => {
     // console.log(3,elementsArr[id].style.backgroundColor)
     // elementsArr[id].style.backgroundColor = 'pink';
     setCurrentElement(elementsArr[id]);
+    // setHeight(elementsArr[id][height])
     // console.log('work please', elementsArr[id])
     // console.log(currentElement)
+    // setInputText(inputText)
+    // setTextAlign(textAlign);
   };
 
 // console.log(content)

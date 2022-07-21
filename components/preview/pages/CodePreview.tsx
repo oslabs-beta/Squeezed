@@ -108,9 +108,56 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
     midText = 'This is your link'
    eleSecond = `/>`
   }
-  return (
-    <div id={index}><span style={{color: '#3DA2A7'}}>{eleFirst}</span><span style={{color:'#FCC981'}}>class= {'{'} <span style={{color: '#ffff76'}}> {elementsArr[index].textAlign} {elementsArr[index].textDecoration} {elementsArr[index].backgroundColor} {elementsArr[index].color} {elementsArr[index].margin}  {elementsArr[index].width} {elementsArr[index].height} {elementsArr[index].padding} </span>  {'}'} id={index}</span><span style={{color: '#3DA2A7'}}>{endBr}</span><span style={{color: 'white'}}> {elementsArr[index].text}</span> <span style={{color: '#3DA2A7'}}>{eleSecond}</span></div>
-    )
+  console.log(1, elementsArr[index].textAlign)
+  let bracket = ''
+  let classTag = ''
+  let bracket2 =''
+  if (elementsArr[index].padding !== '' || elementsArr[index].textAlign !== undefined && elementsArr[index].textAlign === '' || elementsArr[index].backgroundColor !== '' || elementsArr[index].color !== '' || elementsArr[index].margin !== '' || elementsArr[index].height !== '' || elementsArr[index].height !== '' || elementsArr[index].padding !== '' || elementsArr[index].width !== ''){
+    classTag = `class =`
+    bracket='{ tw`'
+    bracket2='`}'
+  }
+
+  let text1= ''
+  if (elementsArr[index].textAlign !== '' && elementsArr[index].textAlign !== undefined){
+    text1= 'text-'
+  }
+
+  let bg= ''
+  if (elementsArr[index].backgroundColor !== ''){
+    bg= 'bg-'
+  }
+
+  let color= ''
+  if (elementsArr[index].color !== ''){
+    color= 'text-'
+  }
+
+  let m = ''
+  if (elementsArr[index].margin !== ''){
+    m = 'm-'
+  }
+
+  let h = ''
+  if (elementsArr[index].height !== ''){
+    h = 'h-'
+  }
+  let w = ''
+  if (elementsArr[index].width !== ''){
+    w = 'w-'
+  }
+
+  let p = ''
+  if (elementsArr[index].padding !== ''){
+    p = 'p-'
+  }
+
+ 
+
+    return (
+      <div id={index}><span style={{color: '#3DA2A7'}}>{eleFirst}</span><span style={{color:'#FCC981'}}>{classTag} {bracket} {text1}{elementsArr[index].textAlign} {elementsArr[index].textDecoration} {bg}{elementsArr[index].backgroundColor} {color}{elementsArr[index].color} {m}{elementsArr[index].margin}  {w}{elementsArr[index].width} {h}{elementsArr[index].height} {p}{elementsArr[index].padding}  {bracket2} id={index}</span><span style={{color: '#3DA2A7'}}>{endBr}</span><span style={{color: 'white'}}> {elementsArr[index].text}</span> <span style={{color: '#3DA2A7'}}>{eleSecond}</span></div>
+      )
+  
   })
   return (
     <div id='codePreview'>
