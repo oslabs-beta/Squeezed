@@ -37,7 +37,7 @@
 
 // export default projectController;
 
-
+//deno run --allow-env --allow-net server/server.ts
 import db from '../db.ts'
 import Dex from "https://deno.land/x/dex/mod.ts";
 const dex = Dex({client: 'postgres'}); 
@@ -60,7 +60,7 @@ const projectController: any = {};
 //     }
 // };
 
-projectController.saveProject = async(ctx: any) => {
+projectController.saveProject = async (ctx: any) => {
     try {
         //get request body and store in constants
         const { value } = await ctx.request.body({type: 'json'});
@@ -73,31 +73,68 @@ projectController.saveProject = async(ctx: any) => {
             const newData = await db.queryObject(insertQuery);
             project_id = newData.rows[0].id;
         }
-        console.log(project_id);
+        console.log("project id:", project_id, "elementsArr: ", elementsArr);
 
-        //project doesn't exist, add row to projects table and add its elements to table
-        // if(!data.rows.length){
-        //         let insertQuery = dex("projects").insert(await value).toString(); 
-        //         const newData = await db.queryObject(insertQuery);
-        //         // console.log(data);
-        //     }
-
-        //project does exist
-        //loop through elementsArr, if element already exists, delete from table and create again. if doesn't, create new row
-        elementsArr.forEach(async element => {
-
-            const text = element.text;
-            const textAlign = element.textAlign;
-            const textDecoration = element.textDecoration;
-            const backgroundColor = element.backgroundColor;
-            const color = element.color;
-            const margin = element.margin;
-            const height = element.height;
-            const padding = element.padding;
-            let selectQuery = dex("elements").insert(await text, textAlign, textDecoration, backgroundColor, color, margin, height, padding, project_id).toString();
-            await db.queryObject(selectQuery);
+        //project exists, loop through elementsArr
+        elementsArr.forEach(async el => {
+            //if element already exists, update elements table
+            const elementQuery = 
+              dex
+                .select()
+                .from("elements")
+                .where({project_id: project_id, id: el.id})
+                .returning('id', 'element').toString();
+            const elementData = await db.queryObject(elementQuery);
+            // console.log(`element query output for id ${el.id}: `, elementData.rows);
+            
+            const { id, element, text, textAlign, textDecoration, backgroundColor, color, margin, height, padding } = el;
+            console.log(id, element, text, textAlign, textDecoration)
+            if(elementData.rows.length > 0){
+              const updateQuery = 
+                dex
+                  .from("elements")
+                  .where({id: id})
+                  .update({
+                    element: element,
+                    text: text,
+                    textalign: textAlign,
+                    textdecoration: textDecoration,
+                    backgroundcolor: backgroundColor,
+                    color: color,
+                    margin: margin,
+                    height: height,
+                    padding: padding
+                  })
+                  .returning('id', 'element').toString();
+              const updateData = await db.queryObject(updateQuery);
+            //   console.log("updated output: ", updateData.rows);
+            }
+            else {
+                // create new row in elements with user's input
+                const createQuery = 
+                dex("elements").insert({
+                    id: id, 
+                    element: element,
+                    text: text,
+                    textalign: textAlign,
+                    textdecoration: textDecoration,
+                    backgroundcolor: backgroundColor,
+                    color: color,
+                    margin: margin,
+                    height: height,
+                    padding: padding, 
+                    project_id: project_id
+                })
+                .returning('id', 'element').toString();
+                // console.log('create query: ', createQuery)
+                const createData = await db.queryObject(createQuery);
+                // console.log("created new row in elements: ", createData.rows);
+            }
         })
         ctx.response.status = 200; 
+        ctx.response.body = {
+          project_id: project_id
+        }
         return; 
     } catch (err) {
         ctx.response.body = { status: false, data: null};
@@ -113,3 +150,39 @@ export default projectController;
 // const projectQuery = dex.select().from("projects").where({id: project_id}).toString();
 // const data = await db.queryObject(projectQuery);
 // console.log(data.rows);
+
+//project doesn't exist, add row to projects table and add its elements to table
+// if(!data.rows.length){
+//         let insertQuery = dex("projects").insert(await value).toString(); 
+//         const newData = await db.queryObject(insertQuery);
+//         // console.log(data);
+//     }
+
+// //project exists, loop through elementsArr
+// elementsArr.forEach(async el => {
+//     //if element already exists, delete from table
+//     const elementQuery = 
+//       dex
+//         .select()
+//         .from("elements")
+//         .where({project_id: project_id})
+//         .union(function() {
+//           this.select()
+//             .from('elements')
+//             .where({id: el.id})
+//         })
+//         .returning('id', 'element').toString();
+//     const elementData = await db.queryObject(elementQuery);
+//     // console.log("query output: ", elementData.rows);
+//     if(elementData.rows.length > 0){
+//       const deleteQuery = dex.from("elements").where({id: el.id}).del().returning('id', 'element').toString();
+//       const deleteData = await db.queryObject(deleteQuery);
+//       console.log("delete output: ", deleteData.rows);
+//     }
+
+//     // create new row in elements with user's input
+//     const { element, text, textAlign, textDecoration, backgroundColor, color, margin, height, padding } = el;
+//     const createQuery = dex.insert(await element, text, textAlign, textDecoration, backgroundColor, color, margin, height, padding, project_id).into("elements").returning('id', 'element').toString();
+//     const createData = await db.queryObject(createQuery);
+//     console.log("created: ", createData.rows);
+// })
