@@ -22,6 +22,8 @@ function deleteData(){
  })
  .then((data) => data.json())
  .catch((err) => console.log(err));
+ setElementsArr([]);
+  setCurrentElement('');
 }
 
 
@@ -54,8 +56,9 @@ function exportFunc(){
 
 return (
   <main>
+        <link rel={'stylesheet'} href={'./static/css/sideBarStyle.css'} />
     <div id="buttonContainer">
-      <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder'}}
+      <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px', marginLeft: '7px'}}
         id="clearBtn"
         onClick={() => {
           clear();
@@ -63,17 +66,17 @@ return (
       >
         Clear Project
       </button>
-      <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder'}}
+      <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px' , marginLeft: '7px'}}
         id="saveBtn"
         onClick={() => {
           alert("Project Saved");
           save();
         }}
       >
-        Save
+        Save Progress
       </button>
       <button
-        id="loadBtn" style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder'}}
+        id="loadBtn" style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px', marginLeft: '7px'}}
         onClick={() => {
           alert("Project deleted");
           deleteData();
@@ -81,7 +84,7 @@ return (
       >
         Delete Project
       </button>
-      <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder'}}
+      <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px', marginLeft: '7px'}}
         id="exportBtn"
         onClick={(event: React.MouseEvent<HTMLElement>) => {
           // alert("Project Exported");
@@ -89,7 +92,7 @@ return (
           exportFunc();
         }}
       >
-        Export
+        Export Code
       </button>
     </div>
   </main>

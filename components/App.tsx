@@ -29,8 +29,8 @@ interface Props{
   const customizationStyle = { 
     gridArea: 'cust',
     backgroundColor: "#2D3033",
-    borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-    borderWidth: '2px',
+    borderColor: "rgb(250,224,66)",
+    borderWidth: '5px',
     borderStyle: 'solid',    
     fontSize: '30px',
   } as const;
@@ -38,9 +38,7 @@ interface Props{
   const previewStyle = { 
     gridArea: 'prev',
     backgroundColor: "#2D3033",
-    borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-    borderWidth: '2px',
-    borderStyle: 'solid',    fontSize: '30px',
+     fontSize: '30px',
 
 
   } as const;
@@ -48,9 +46,7 @@ interface Props{
   const buttonsStyle = { 
     gridArea: 'buttons',
     backgroundColor: "#2D3033",
-    borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-    borderWidth: '2px',
-    borderStyle: 'solid',    
+
     fontSize: '30px',
 
   } as const;
@@ -59,30 +55,30 @@ interface Props{
     display: 'grid',
     backgroundColor: 'black',
     color: '#68EDA7',
-    gridTemplate: 'auto / repeat(11, 1fr)',
+    gridTemplate: 'auto / repeat(15, 1fr)',
     gridTemplateAreas:
-    `"side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"`,
+    `"side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"`,
     width: '100%',
     height: '100%'
   } as const;
@@ -180,3 +176,5 @@ export default App;
 // };
 
 // export default App;
+
+

@@ -6520,13 +6520,6 @@ const SideBar = (props)=>{
     const htmlTags = elementsArr.map((elements, index)=>{
         console.log("html tags: ", elementsArr[index], index);
         return mod.createElement("div", {
-            style: {
-                borderColor: '#2D3033',
-                borderWidth: '8px',
-                borderStyle: 'solid',
-                textAlign: 'center',
-                fontWeight: 'bolder'
-            },
             className: "draggedTags",
             onDragOver: enableDropping,
             onDrop: handleDrop,
@@ -6553,7 +6546,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6565,7 +6557,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '16px',
@@ -6577,7 +6568,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6589,7 +6579,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6601,7 +6590,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6613,7 +6601,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6625,7 +6612,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6637,7 +6623,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6649,7 +6634,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6661,7 +6645,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6673,7 +6656,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6685,7 +6667,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6697,7 +6678,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6709,7 +6689,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6721,7 +6700,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6733,7 +6711,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6745,7 +6722,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6757,7 +6733,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6769,7 +6744,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6781,7 +6755,6 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
             color: "#e8e1f3",
             width: "100%",
             fontSize: '20px',
@@ -6795,14 +6768,7 @@ const SideBar = (props)=>{
         onDragLeave: handleDragOverEnd,
         id: "drop"
     }, mod.createElement("div", {
-        id: "hov",
-        style: {
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            width: "100%",
-            fontSize: '20px',
-            marginBottom: ''
-        }
+        id: "hov"
     }, htmlTags)));
 };
 const Routing = (props)=>{
@@ -6852,22 +6818,25 @@ const Styling = (props)=>{
         onSubmit: handleSubmit,
         style: {
             fontSize: '20px',
-            fontWeight: 'bolder',
             color: 'white'
         }
-    }, mod.createElement("div", {
+    }, mod.createElement("link", {
+        rel: 'stylesheet',
+        href: './static/css/customizationStyles.css'
+    }), mod.createElement("div", {
         style: {
             fontSize: '26px',
-            textDecoration: 'underline',
-            textAlign: 'center'
-        }
+            textAlign: 'center',
+            marginTop: '20px'
+        },
+        id: "selectedEle"
     }, "Element selected: ", currentElement.element), mod.createElement("br", null), mod.createElement("div", {
         style: {
-            marginLeft: '100px'
+            marginLeft: '90px'
         }
     }, mod.createElement("label", {
         htmlFor: "inputText"
-    }, "Text "), mod.createElement("input", {
+    }, "Input Text "), mod.createElement("input", {
         value: inputText,
         onChange: (e)=>setInputText(e.target.value),
         type: "text",
@@ -6878,33 +6847,13 @@ const Styling = (props)=>{
             color: 'black'
         }
     }), mod.createElement("br", null), mod.createElement("label", {
-        htmlFor: "textAlign"
-    }, "Text Align "), mod.createElement("select", {
-        onChange: (e)=>setTextAlign(e.target.value),
-        style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
-        }
-    }, mod.createElement("option", null, "options"), mod.createElement("option", null, "center"), mod.createElement("option", null, "right"), mod.createElement("option", null, "left"), mod.createElement("option", null, "justify"), mod.createElement("option", null, "justify")), mod.createElement("br", null), mod.createElement("label", {
-        htmlFor: "textDecoration"
-    }, "Text Decoration "), mod.createElement("select", {
-        onChange: (e)=>setTextDecoration(e.target.value),
-        style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
-        }
-    }, mod.createElement("option", null, "options"), mod.createElement("option", null, "overline"), mod.createElement("option", null, "line-through"), mod.createElement("option", null, "underline"), mod.createElement("option", null, "none")), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "backgroundColor"
-    }, "Background Color "), mod.createElement("input", {
+    }, "Background "), mod.createElement("input", {
         value: backgroundColor,
         onChange: (e)=>setBackgroundColor(e.target.value),
         type: "text",
         placeholder: "Enter color name",
-        className: "input",
-        style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
-        }
+        className: "input"
     }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "color"
     }, "Text Color "), mod.createElement("input", {
@@ -6912,41 +6861,29 @@ const Styling = (props)=>{
         onChange: (e)=>setColor(e.target.value),
         type: "text",
         placeholder: "Enter color name",
-        className: "input",
-        style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
-        }
-    }), mod.createElement("br", null)), mod.createElement("div", {
-        style: {
-            float: 'right',
-            marginTop: '-120px',
-            marginRight: '100px'
-        }
-    }, mod.createElement("label", {
+        className: "input"
+    }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "margin"
     }, "Margin "), mod.createElement("input", {
         value: margin,
         onChange: (e)=>setMargin(e.target.value),
         type: "text",
         placeholder: "Enter margin value",
-        className: "input",
+        className: "input"
+    }), mod.createElement("br", null)), mod.createElement("div", {
         style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
+            float: 'right',
+            marginTop: '-130px',
+            marginRight: '100px'
         }
-    }), mod.createElement("br", null), mod.createElement("label", {
+    }, mod.createElement("label", {
         htmlFor: "height"
     }, "Height "), mod.createElement("input", {
         value: height,
         onChange: (e)=>setHeight(e.target.value),
         type: "text",
         placeholder: "Enter height",
-        className: "input",
-        style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
-        }
+        className: "input"
     }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "width"
     }, "Width "), mod.createElement("input", {
@@ -6954,11 +6891,7 @@ const Styling = (props)=>{
         onChange: (e)=>setWidth(e.target.value),
         type: "text",
         placeholder: "Enter width",
-        className: "input",
-        style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
-        }
+        className: "input"
     }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "padding"
     }, "Padding "), mod.createElement("input", {
@@ -6966,18 +6899,24 @@ const Styling = (props)=>{
         onChange: (e)=>setPadding(e.target.value),
         type: "text",
         placeholder: "Enter padding",
-        className: "input",
+        className: "input"
+    }), mod.createElement("br", null), mod.createElement("label", {
+        htmlFor: "textDecoration"
+    }, "Text Decoration "), mod.createElement("select", {
+        className: "textDecoration",
+        onChange: (e)=>setTextDecoration(e.target.value),
         style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033"
         }
-    }), mod.createElement("br", null)), mod.createElement("br", null), mod.createElement("button", {
+    }, mod.createElement("option", null, "default"), mod.createElement("option", null, "overline"), mod.createElement("option", null, "line-through"), mod.createElement("option", null, "underline"), mod.createElement("option", null, "none")), mod.createElement("br", null)), mod.createElement("br", null), mod.createElement("button", {
         type: "submit",
         className: "btn",
         style: {
-            marginLeft: '50%',
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            fontSize: '20px'
+            marginLeft: '42%',
+            backgroundColor: 'white',
+            fontSize: '20px',
+            marginBottom: '50px'
         }
     }, "Submit"));
 };
@@ -6999,52 +6938,8 @@ const MainContainer = (props)=>{
 const Navbar = (props)=>{
     const { setCustomizationPage  } = props;
     return mod.createElement("div", {
-        className: "navBar",
-        style: {
-            width: '100%',
-            padding: '0px',
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            fontWeight: 'bolder',
-            height: '40px'
-        }
-    }, mod.createElement("button", {
-        style: {
-            width: '50%',
-            padding: '0px',
-            fontSize: '15px',
-            marginTop: '-10px',
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            fontWeight: 'bolder',
-            height: '40px',
-            border: 'none'
-        },
-        className: "stylingBtn",
-        onClick: ()=>{
-            setCustomizationPage('styling');
-        }
-    }, mod.createElement("h3", {
-        className: "stylingBtnText"
-    }, "Styling")), mod.createElement("button", {
-        style: {
-            width: '50%',
-            padding: '0px',
-            fontSize: '15px',
-            marginTop: '-10px',
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            fontWeight: 'bolder',
-            height: '40px',
-            border: 'none'
-        },
-        className: "routingBtn",
-        onClick: ()=>{
-            setCustomizationPage('routing');
-        }
-    }, mod.createElement("h3", {
-        className: "routingBtnText"
-    }, "Routing")));
+        className: "navBar"
+    });
 };
 const Customization = (props)=>{
     const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
@@ -7169,10 +7064,14 @@ const CodePreview = (props)=>{
         let bracket = '';
         let classTag = '';
         let bracket2 = '';
+        let tw = '';
+        let slash = '';
         if (elementsArr[index].padding !== '' || elementsArr[index].textAlign !== undefined && elementsArr[index].textAlign === '' || elementsArr[index].backgroundColor !== '' || elementsArr[index].color !== '' || elementsArr[index].margin !== '' || elementsArr[index].height !== '' || elementsArr[index].height !== '' || elementsArr[index].padding !== '' || elementsArr[index].width !== '') {
             classTag = `class =`;
-            bracket = '{ tw`';
-            bracket2 = '`}';
+            bracket = '{';
+            tw = 'tw`';
+            slash = '`';
+            bracket2 = '}';
         }
         let text1 = '';
         if (elementsArr[index].textAlign !== '' && elementsArr[index].textAlign !== undefined) {
@@ -7206,15 +7105,39 @@ const CodePreview = (props)=>{
             id: index
         }, mod.createElement("span", {
             style: {
-                color: '#3DA2A7'
+                color: '#5FD389'
             }
         }, eleFirst), mod.createElement("span", {
             style: {
-                color: '#FCC981'
+                color: '#37CFE0'
             }
-        }, classTag, " ", bracket, " ", text1, elementsArr[index].textAlign, " ", elementsArr[index].textDecoration, " ", bg, elementsArr[index].backgroundColor, " ", color, elementsArr[index].color, " ", m, elementsArr[index].margin, "  ", w, elementsArr[index].width, " ", h, elementsArr[index].height, " ", p, elementsArr[index].padding, "  ", bracket2, " id=", index), mod.createElement("span", {
+        }, classTag), " ", mod.createElement("span", {
             style: {
-                color: '#3DA2A7'
+                color: 'white'
+            }
+        }, bracket), mod.createElement("span", {
+            style: {
+                color: '#5FD389'
+            }
+        }, " ", tw), mod.createElement("span", {
+            style: {
+                color: '#37CFE0'
+            }
+        }, "  ", text1, elementsArr[index].textAlign, " ", elementsArr[index].textDecoration, " ", bg, elementsArr[index].backgroundColor, " ", color, elementsArr[index].color, " ", m, elementsArr[index].margin, "  ", w, elementsArr[index].width, " ", h, elementsArr[index].height, " ", p, elementsArr[index].padding), mod.createElement("span", {
+            style: {
+                color: '#5FD389'
+            }
+        }, " ", slash), " ", mod.createElement("span", {
+            style: {
+                color: 'white'
+            }
+        }, " ", bracket2), " ", mod.createElement("span", {
+            style: {
+                color: '#FDE086'
+            }
+        }, " id=", index), mod.createElement("span", {
+            style: {
+                color: '#5FD389'
             }
         }, endBr), mod.createElement("span", {
             style: {
@@ -7222,7 +7145,7 @@ const CodePreview = (props)=>{
             }
         }, " ", elementsArr[index].text), " ", mod.createElement("span", {
             style: {
-                color: '#3DA2A7'
+                color: '#5FD389'
             }
         }, eleSecond));
     });
@@ -7235,95 +7158,103 @@ const CodePreview = (props)=>{
         id: "import"
     }, mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
-    }, "import"), " ", mod.createElement("span", {
+    }, "import"), " ", '{', mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '{', " h ", '}'), " ", mod.createElement("span", {
+    }, " h"), " ", '}', " ", mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
     }, " from"), " ", mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '"preact";')), mod.createElement("p", {
+    }, '"preact"'), ";"), mod.createElement("p", {
         id: "import"
     }, mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
-    }, "import"), " ", mod.createElement("span", {
+    }, "import"), " ", '{', mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '{', " PageProps ", '}'), " ", mod.createElement("span", {
+    }, " PageProps "), " ", '}', " ", mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
     }, " from"), " ", mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '"$fresh/server.ts";')), mod.createElement("p", {
+    }, '"$fresh/server.ts"'), " ;"), mod.createElement("p", {
         id: "import"
     }, mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
-    }, "import"), " ", mod.createElement("span", {
+    }, "import"), " ", '{', mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '{', " useEffect, useState ", '}'), " ", mod.createElement("span", {
+    }, " useEffect, useState "), " ", '}', " ", mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
     }, " from"), " ", mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '"preact/hooks";')), mod.createElement("p", {
+    }, '"preact/hooks"'), ";"), mod.createElement("p", {
         id: "import"
     }, mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
-    }, "import"), " ", mod.createElement("span", {
+    }, "import"), " ", '{', mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '{', " tw ", '}'), " ", mod.createElement("span", {
+    }, " tw "), " ", '}', " ", mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
     }, " from"), " ", mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '"twind";')), mod.createElement("p", {
+    }, '"twind"'), ";"), mod.createElement("p", {
         id: "export"
     }, mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
     }, "export default function "), " ", mod.createElement("span", {
         style: {
-            color: '#3DA2A7'
+            color: '#37CFE0'
         }
-    }, "App"), "(props: PageProps) ", '{'), mod.createElement("p", {
+    }, "App "), "(", mod.createElement("span", {
+        style: {
+            color: '#8B7FDA'
+        }
+    }, "props: PageProps"), ") ", mod.createElement("span", {
+        style: {
+            color: 'white'
+        }
+    }, '{')), mod.createElement("p", {
         id: "return"
     }, mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
     }, "return "), "("), mod.createElement("p", {
         id: "mainOpeningTag"
     }, mod.createElement("span", {
         style: {
-            color: '#ffff76'
+            color: '#8B7FDA'
         }
     }, '<main>')), mod.createElement("div", {
         id: "htmlTags"
@@ -7335,13 +7266,13 @@ const CodePreview = (props)=>{
         id: "mainClosingTag"
     }, mod.createElement("span", {
         style: {
-            color: '#ffff76'
+            color: '#8B7FDA'
         }
     }, '</main>')), mod.createElement("p", {
         id: "paren"
     }, ");"), mod.createElement("p", {
         id: "endingCurly"
-    }, "}"));
+    }, "}", ";"));
 };
 const IslandPreview = (props)=>{
     return mod.createElement("div", null, "Island Preview page");
@@ -7425,6 +7356,8 @@ function Buttons(props) {
         fetch('/home', {
             method: 'DELETE'
         }).then((data)=>data.json()).catch((err)=>console.log(err));
+        setElementsArr([]);
+        setCurrentElement('');
     }
     function clear() {
         setElementsArr([]);
@@ -7442,7 +7375,10 @@ function Buttons(props) {
         }).then((data)=>data.json()).catch((err)=>console.log(err));
     }
     function exportFunc() {}
-    return mod.createElement("main", null, mod.createElement("div", {
+    return mod.createElement("main", null, mod.createElement("link", {
+        rel: 'stylesheet',
+        href: './static/css/sideBarStyle.css'
+    }), mod.createElement("div", {
         id: "buttonContainer"
     }, mod.createElement("button", {
         style: {
@@ -7450,7 +7386,9 @@ function Buttons(props) {
             color: "#2D3033",
             width: "90%",
             fontSize: '20px',
-            fontWeight: 'bolder'
+            fontWeight: 'bolder',
+            marginTop: '15px',
+            marginLeft: '7px'
         },
         id: "clearBtn",
         onClick: ()=>{
@@ -7462,21 +7400,25 @@ function Buttons(props) {
             color: "#2D3033",
             width: "90%",
             fontSize: '20px',
-            fontWeight: 'bolder'
+            fontWeight: 'bolder',
+            marginTop: '15px',
+            marginLeft: '7px'
         },
         id: "saveBtn",
         onClick: ()=>{
             alert("Project Saved");
             save();
         }
-    }, "Save"), mod.createElement("button", {
+    }, "Save Progress"), mod.createElement("button", {
         id: "loadBtn",
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
             width: "90%",
             fontSize: '20px',
-            fontWeight: 'bolder'
+            fontWeight: 'bolder',
+            marginTop: '15px',
+            marginLeft: '7px'
         },
         onClick: ()=>{
             alert("Project deleted");
@@ -7488,14 +7430,16 @@ function Buttons(props) {
             color: "#2D3033",
             width: "90%",
             fontSize: '20px',
-            fontWeight: 'bolder'
+            fontWeight: 'bolder',
+            marginTop: '15px',
+            marginLeft: '7px'
         },
         id: "exportBtn",
         onClick: (event)=>{
             console.log('clicked');
             exportFunc();
         }
-    }, "Export")));
+    }, "Export Code")));
 }
 const App = ()=>{
     const sideBarStyle = {
@@ -7504,54 +7448,48 @@ const App = ()=>{
     const customizationStyle = {
         gridArea: 'cust',
         backgroundColor: "#2D3033",
-        borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-        borderWidth: '2px',
+        borderColor: "rgb(250,224,66)",
+        borderWidth: '5px',
         borderStyle: 'solid',
         fontSize: '30px'
     };
     const previewStyle = {
         gridArea: 'prev',
         backgroundColor: "#2D3033",
-        borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-        borderWidth: '2px',
-        borderStyle: 'solid',
         fontSize: '30px'
     };
     const buttonsStyle = {
         gridArea: 'buttons',
         backgroundColor: "#2D3033",
-        borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-        borderWidth: '2px',
-        borderStyle: 'solid',
         fontSize: '30px'
     };
     const styles = {
         display: 'grid',
         backgroundColor: 'black',
         color: '#68EDA7',
-        gridTemplate: 'auto / repeat(11, 1fr)',
-        gridTemplateAreas: `"side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"`,
+        gridTemplate: 'auto / repeat(15, 1fr)',
+        gridTemplateAreas: `"side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"`,
         width: '100%',
         height: '100%'
     };

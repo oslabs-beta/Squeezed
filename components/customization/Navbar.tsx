@@ -4,8 +4,10 @@ const Navbar: any = (props: any) => {
   const { setCustomizationPage } = props;
 
   return (
-    <div className="navBar"  style={{width: '100%', padding: '0px', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", fontWeight: 'bolder', height: '40px'}}>
-      <button style={{width: '50%', padding: '0px', fontSize: '15px',marginTop: '-10px', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", fontWeight: 'bolder', height: '40px', border: 'none'}}
+    <div className="navBar" >
+      {/* <div id='btn1'>
+            <link rel={'stylesheet'} href={'./static/css/styling.css'} />
+      <button 
         className="stylingBtn"
         onClick={() => {
           setCustomizationPage('styling');
@@ -13,7 +15,9 @@ const Navbar: any = (props: any) => {
       >
         <h3 className="stylingBtnText">Styling</h3>
       </button>
-      <button style={{width: '50%', padding: '0px', fontSize: '15px', marginTop: '-10px', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", fontWeight: 'bolder', height: '40px', border: 'none'}}
+      </div>
+      <div id='btn2'>
+      <button 
         className="routingBtn"
         onClick={() => {
           setCustomizationPage('routing');
@@ -21,6 +25,7 @@ const Navbar: any = (props: any) => {
       >
         <h3 className="routingBtnText">Routing</h3>
       </button>
+      </div> */}
     </div>
   )
 }
