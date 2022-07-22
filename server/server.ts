@@ -3,7 +3,7 @@ import db from './db.ts'
 import accountRoutes from './routes/accountRoutes.ts'
 import projectRoutes from './routes/projectRoutes.ts'
 
-const port = 8000;
+const port = 8080;
 const app = new Application();
 
 const router = new Router();
@@ -34,20 +34,24 @@ app.use(accountRoutes.allowedMethods());
 app.use(projectRoutes.routes());
 app.use(projectRoutes.allowedMethods());
 
-app.use(async (ctx, next) => {
-  try {
-    await next();
-  } catch (err) {
-    if (isHttpError(err)) {
-      switch (err.status) {
-        case Status.NotFound:
-          break;
-          default:
-          }
-        } else {
-          throw err;
-        }
-      }
+// app.use(async (ctx, next) => {
+//   try {
+//     await next();
+//   } catch (err) {
+//     if (isHttpError(err)) {
+//       switch (err.status) {
+//         case Status.NotFound:
+//           break;
+//           default:
+//           }
+//         } else {
+//           throw err;
+//         }
+//       }
+// });
+
+app.use((ctx) => {
+  ctx.response.body = "Hello World!";
 });
 
 app.addEventListener("error", (evt) => {
