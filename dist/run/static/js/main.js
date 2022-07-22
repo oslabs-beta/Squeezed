@@ -7371,8 +7371,8 @@ const Preview = (props)=>{
 };
 function Buttons(props) {
     const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
-    function deleteData() {
-        fetch('/home', {
+    async function deleteData() {
+        await fetch('/home', {
             method: 'DELETE'
         }).then((data)=>data.json()).catch((err)=>console.log(err));
         setElementsArr([]);
@@ -7382,16 +7382,20 @@ function Buttons(props) {
         setElementsArr([]);
         setCurrentElement('');
     }
-    function save() {
-        fetch('/home', {
-            method: 'POST',
+    async function save() {
+        const body = {
+            project_id: null,
+            elementsArr: elementsArr
+        };
+        const response = await fetch("http://localhost:8080", {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                elementsArr
-            })
-        }).then((data)=>data.json()).catch((err)=>console.log(err));
+            body: JSON.stringify(body)
+        });
+        console.log(response.text());
+        return response.json();
     }
     function exportFunc() {}
     return mod.createElement("main", null, mod.createElement("link", {
@@ -7425,8 +7429,8 @@ function Buttons(props) {
         },
         id: "saveBtn",
         onClick: ()=>{
-            alert("Project Saved");
             save();
+            console.log('clicked');
         }
     }, "Save Progress"), mod.createElement("button", {
         id: "loadBtn",

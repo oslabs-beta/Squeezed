@@ -12,20 +12,24 @@ app.use(accountRoutes.allowedMethods());
 app.use(projectRoutes.routes());
 app.use(projectRoutes.allowedMethods());
 
-app.use(async (ctx, next) => {
-  try {
-    await next();
-  } catch (err) {
-    if (isHttpError(err)) {
-      switch (err.status) {
-        case Status.NotFound:
-          break;
-          default:
-          }
-        } else {
-          throw err;
-        }
-      }
+// app.use(async (ctx, next) => {
+//   try {
+//     await next();
+//   } catch (err) {
+//     if (isHttpError(err)) {
+//       switch (err.status) {
+//         case Status.NotFound:
+//           break;
+//           default:
+//           }
+//         } else {
+//           throw err;
+//         }
+//       }
+// });
+
+app.use((ctx) => {
+  ctx.response.body = "Hello World!";
 });
 
 app.addEventListener("error", (evt) => {
