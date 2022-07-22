@@ -5,7 +5,7 @@ import projectController from '../controllers/projectController.ts'
 const router = new Router();
 
 router
-  .get('/home/:id', projectController.getproject)
+  // .get('/home/:id', projectController.getproject)
   .post('/home', projectController.saveProject)
 
 

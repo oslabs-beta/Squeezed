@@ -23,7 +23,7 @@ accountController.createAccount = async(ctx: any) => {
 accountController.getAccount = async(ctx: any) => {    
  try{
         let selectQuery = dex.select().from("accounts").where({ id: ctx.params.id }).toString();
-        const data = await db.queryObject(selectQuery)
+        const data = await db.queryObject(selectQuery);
         ctx.response.body = data.rows[0]
         ctx.response.status = 200;
         return;
