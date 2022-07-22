@@ -18,7 +18,7 @@ CREATE TABLE projects
 
 CREATE TABLE elements
 (
-  id SERIAL PRIMARY KEY,
+  id INTEGER NOT NULL,
   element VARCHAR(100) NOT NULL,
   text VARCHAR(100),
   textAlign VARCHAR(100),
@@ -38,5 +38,10 @@ VALUES ('username', 'password', 'user@user.com');
 INSERT INTO projects (name, user_id)
 VALUES ('fresh', 1);
 
+<<<<<<< HEAD
 INSERT INTO elements (element, text, textAlign, textDecoration, backgroundColor, color, margin, width, height, padding, project_id)
 VALUES ('div', 'text', 'textAlign', 'textDecoration', 'backgroundColor', 'color', 'margin', 'width', 'height', 'padding', 1);
+=======
+INSERT INTO elements (id, element, text, textAlign, textDecoration, backgroundColor, color, margin, width, height, padding, project_id)
+VALUES (1, 'div', 'text', 'textAlign', 'textDecoration', 'backgroundColor', 'color', 'margin', 'width', 'height', 'padding', 1);
+>>>>>>> fd7288c73fa51be466a7e6ada14092e20a99c395
