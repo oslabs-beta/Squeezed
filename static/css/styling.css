@@ -1,0 +1,11 @@
+.stylingBtn{
+    height: 20px;
+    background-color: white;
+    width: 50%;
+    color: pink;
+    float: left;
+}
+
+#btn2{
+    height: 20px
+}
