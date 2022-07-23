@@ -26,8 +26,8 @@ async function deleteData(){
   })
   .then((data) => data.json())
   .catch((err) => console.log(err));
-  setElementsArr([]);
-  setCurrentElement('');
+  // setElementsArr([]);
+  // setCurrentElement('');
 }
 
 function clear(){

@@ -4,6 +4,7 @@ import DragAndDrop from './DragAndDrop.tsx';
 import Customization from './customization/Customization.tsx';
 import Preview from './preview/Preview.tsx';
 import Buttons from './Buttons.tsx';
+import { Link } from '../deps.tsx'
 
 
 
@@ -115,6 +116,11 @@ borderButtom: "3px solid #FFE958",
       {/* <div style={previewStyle}><Preview elementsArr={elementsArr} setElementsArr={setElementsArr} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding} */}
       <div style={previewStyle}><Preview elementsArr={elementsArr} setElementsArr={setElementsArr} /></div>
       <div style={buttonsStyle}><Buttons elementsArr={elementsArr} setElementsArr={setElementsArr} /></div>
+      <div>
+        <Link to="/home">
+          <button></button>
+        </Link>
+      </div>
     </div>
   );
 };
