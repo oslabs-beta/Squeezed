@@ -91,7 +91,7 @@ interface Props{
   //State
   const [elementsArr, setElementsArr] = React.useState<any[]>([]);
   const [currentElement, setCurrentElement] = React.useState<any>('drag into here');
-  console.log("elementsArr in app", elementsArr);
+  // console.log("elementsArr in app", elementsArr);
   // const [inputText, setInputText] = (React as any).useState('');
   // const [textAlign, setTextAlign] = (React as any).useState('');
   // const [textDecoration, setTextDecoration] = (React as any).useState('');

@@ -6518,7 +6518,6 @@ const SideBar = (props)=>{
         setCurrentElement(elementsArr[id]);
     };
     const htmlTags = elementsArr.map((elements, index)=>{
-        console.log("html tags: ", elementsArr[index], index);
         return mod.createElement("div", {
             className: "draggedTags",
             onDragOver: enableDropping,
@@ -6819,9 +6818,7 @@ const Styling = (props)=>{
             padding: padding
         };
         setCurrentElement(updateCurrentElement);
-        console.log('styling page current element: ', currentElement);
         elementsArr[currentElement.id] = updateCurrentElement;
-        console.log('styling page elements array: ', elementsArr);
         setInputText('');
         setTextAlign('');
         setTextDecoration('');
@@ -6978,7 +6975,6 @@ const Customization = (props)=>{
 };
 const CodePreview = (props)=>{
     const { elementsArr , setElementsArr  } = props;
-    console.log("elementsArr inside code preview", elementsArr);
     const htmlTags = elementsArr.map((elements, index)=>{
         let eleFirst;
         let eleSecond;
@@ -7372,8 +7368,16 @@ const Preview = (props)=>{
 function Buttons(props) {
     const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
     async function deleteData() {
-        await fetch('/home', {
-            method: 'DELETE'
+        await fetch('http://localhost:8080/home', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                project_id: 20,
+                elementsArr: elementsArr
+            }),
+            mode: 'no-cors'
         }).then((data)=>data.json()).catch((err)=>console.log(err));
         setElementsArr([]);
         setCurrentElement('');
@@ -7383,19 +7387,17 @@ function Buttons(props) {
         setCurrentElement('');
     }
     async function save() {
-        const body = {
-            project_id: null,
-            elementsArr: elementsArr
-        };
-        const response = await fetch("http://localhost:8080", {
-            method: 'GET',
+        await fetch('http://localhost:8080/home', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(body)
-        });
-        console.log(response.text());
-        return response.json();
+            body: JSON.stringify({
+                project_id: null,
+                elementsArr: elementsArr
+            }),
+            mode: 'no-cors'
+        }).then((data)=>data.json()).then((data)=>console.log("I'm on the front end", data)).catch((err)=>console.log(err));
     }
     function exportFunc() {}
     return mod.createElement("main", null, mod.createElement("link", {
@@ -7518,7 +7520,6 @@ const App = ()=>{
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
     const [currentElement, setCurrentElement] = mod.useState('drag into here');
-    console.log("elementsArr in app", elementsArr);
     return mod.createElement("div", {
         className: "app",
         style: styles

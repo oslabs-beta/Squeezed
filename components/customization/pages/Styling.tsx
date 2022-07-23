@@ -46,12 +46,12 @@ const Styling: any = (props:any) => {
     };
     // console.log("updateCurrentElement: ", updateCurrentElement)
     setCurrentElement(updateCurrentElement);
-    console.log('styling page current element: ', currentElement)
+    // console.log('styling page current element: ', currentElement)
     // const newElementsArr = [...elementsArr];
     // newElementsArr.push(updateCurrentElement);
     // setElementsArr(newElementsArr);
     elementsArr[currentElement.id] = updateCurrentElement;
-    console.log('styling page elements array: ', elementsArr);
+    // console.log('styling page elements array: ', elementsArr);
 
     setInputText('')
     setTextAlign('')

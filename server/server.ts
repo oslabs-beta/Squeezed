@@ -15,7 +15,7 @@ router
     index: "index.html",
   });
 })
-  
+
 // app.use(async (context, next) => {
 //   try {
 //     await context.send({
@@ -33,7 +33,7 @@ app.use(accountRoutes.routes());
 app.use(accountRoutes.allowedMethods());
 app.use(projectRoutes.routes());
 app.use(projectRoutes.allowedMethods());
-
+        
 // app.use(async (ctx, next) => {
 //   try {
 //     await next();
@@ -49,17 +49,25 @@ app.use(projectRoutes.allowedMethods());
 //         }
 //       }
 // });
+app.use(async (ctx) => {
+const reqBody = await ctx.request.body().value;
+console.log(reqBody, typeof reqBody);
+ctx.response.status = 200;
+});
 
 app.use((ctx) => {
-  ctx.response.body = "Hello World!";
+console.log("hi we're in the backend");
+ctx.response.body = "Hello World!";
+ctx.response.status = 200;
+return
 });
 
 app.addEventListener("error", (evt) => {
-  console.log(evt.error);
+console.log(evt.error);
 });
 
 app.use((ctx: any) => {
-  ctx.throw(500);
+ctx.throw(500);
 });
 
 app.addEventListener('listen', () => {

@@ -18,8 +18,11 @@ const {elementsArr, setElementsArr, currentElement, setCurrentElement} = props;
 // state
 
 async function deleteData(){
-  await fetch('/home', {
-    method: 'DELETE',
+  await fetch('http://localhost:8080/home', {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ project_id: 20, elementsArr: elementsArr }),
+      mode: 'no-cors',
   })
   .then((data) => data.json())
   .catch((err) => console.log(err));
@@ -27,29 +30,40 @@ async function deleteData(){
   setCurrentElement('');
 }
 
-
 function clear(){
   setElementsArr([]);
   setCurrentElement('');
 }
 
 async function save(){
-//   await fetch('http://localhost:8080/home', {
-//     method: 'POST',
-//     headers: {'Content-Type': 'application/json'},
-//     body: JSON.stringify({ project_id: null, elementsArr: elementsArr })
-//  })
-//  .then((data) => data.json())
-//  .catch((err) => console.log(err));
-  const body = { project_id: null, elementsArr: elementsArr };
-  const response = await fetch("http://localhost:8080", {
-    method: 'GET',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(body)
-  });
-  console.log(response.text())
-  return response.json();
-}
+  await fetch('http://localhost:8080/home', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ project_id: null, elementsArr: elementsArr }),
+      mode: 'no-cors',
+   })
+   .then((data) => data.json())
+   .then(data => console.log("I'm on the front end", data))
+   .catch((err) => console.log(err));
+
+// try{
+//   const body = { project_id: null, elementsArr: elementsArr };
+//   const url = 'https://localhost:8080';
+//   const response = await fetch(url, {
+//     mode: 'no-cors'
+//   });
+//   // let response = await fetch("http://localhost:8080", {
+//   //   method: 'GET',
+//   // });
+//   const data = await response.text();
+//   console.log("I'm on the front end", data)
+//   console.log(response.body)
+//   return response;
+
+// } catch{
+//     console.log("ERROR");
+//   }
+};
 
 function exportFunc(){
   // this should open up the window directory with deno ???
