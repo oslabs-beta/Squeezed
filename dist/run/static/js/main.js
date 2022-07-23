@@ -6479,6 +6479,7 @@ const mod1 = {
 };
 const SideBar = (props)=>{
     const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
+    const { inputText , setInputText , textAlign , setTextAlign , textDecoration , setTextDecoration , backgroundColor , setBackgroundColor , color , setColor , margin , setMargin , width , setWidth , height , setHeight , padding , setPadding ,  } = props;
     const [dragOver, setDragOver] = mod.useState(false);
     const [content, setContent] = mod.useState('drag into here');
     const handleDragOverStart = ()=>setDragOver(true);
@@ -6517,17 +6518,35 @@ const SideBar = (props)=>{
     const handleClick = (id)=>{
         setCurrentElement(elementsArr[id]);
     };
+    const deleteElement = (id)=>{
+        if (elementsArr.length === 1) {
+            setElementsArr([]);
+            setCurrentElement('');
+        } else {
+            const filteredElementsArr = elementsArr.filter((element)=>element.id !== id);
+            console.log('filtered', filteredElementsArr);
+            setElementsArr(filteredElementsArr);
+            setCurrentElement('');
+        }
+    };
     const htmlTags = elementsArr.map((elements, index)=>{
         console.log("html tags: ", elementsArr[index], index);
         return mod.createElement("div", {
+            draggable: "true",
             className: "draggedTags",
-            onDragOver: enableDropping,
-            onDrop: handleDrop,
-            onDragEnter: handleDragOverStart,
-            onDragLeave: handleDragOverEnd,
             onClick: ()=>handleClick(index),
             id: index
-        }, elementsArr[index].element);
+        }, elementsArr[index].element, mod.createElement("button", {
+            style: {
+                backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+                color: "#2D3033",
+                float: 'right',
+                marginTop: '0px',
+                marginRight: '-1px',
+                height: '3px'
+            },
+            onClick: ()=>deleteElement(index)
+        }, "X"));
     });
     return mod.createElement("div", {
         id: "scroll"
@@ -6558,7 +6577,7 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(145,233,172)',
+            backgroundColor: 'rgb(148,233,168)',
             color: "#2d3033",
             width: "100%",
             fontSize: '16px',
@@ -6570,7 +6589,7 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(151,233,167)',
+            backgroundColor: 'rgb(152,233,166)',
             color: "#2d3033",
             width: "100%",
             fontSize: '20px',
@@ -6582,7 +6601,7 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(155,233,165)',
+            backgroundColor: 'rgb(158,233,163)',
             color: "#2d3033",
             width: "100%",
             fontSize: '20px',
@@ -6594,7 +6613,7 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(160,233,162)',
+            backgroundColor: 'rgb(163,233,160)',
             color: "#2d3033",
             width: "100%",
             fontSize: '20px',
@@ -6606,7 +6625,7 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(159,233,162)',
+            backgroundColor: 'rgb(168,233,158)',
             color: "#2d3033",
             width: "100%",
             fontSize: '20px',
@@ -6618,7 +6637,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "rgb(164,233,160)",
+            backgroundColor: "rgb(173,233,155)",
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6629,7 +6649,7 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(168,233,158)',
+            backgroundColor: 'rgb(178,233,152)',
             color: "#2d3033",
             width: "100%",
             fontSize: '20px',
@@ -6641,31 +6661,32 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(173,233,155)',
+            backgroundColor: 'rgb(187,233,147)',
             color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "ORDERED LIST")), mod.createElement("div", {
+    }, " ", "LIST (OL)")), mod.createElement("div", {
         id: "unordered list",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(178,233,153)',
+            backgroundColor: 'rgb(196,233,143)',
             color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "UNORDERED LIST")), mod.createElement("div", {
+    }, " ", "LIST (UL)")), mod.createElement("div", {
         id: "input",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            color: "rgb(182,233,150)",
+            backgroundColor: 'rgb(202,233,139)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6676,7 +6697,7 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(181,233,151)',
+            backgroundColor: 'rgb(207,233,137)',
             color: "#2d3033",
             width: "100%",
             fontSize: '20px',
@@ -6688,7 +6709,7 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(5,0,255)',
+            backgroundColor: 'rgb(212,233,134)',
             color: "#2d3033",
             width: "100%",
             fontSize: '20px',
@@ -6700,7 +6721,7 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(186,233,149)',
+            backgroundColor: 'rgb(218,233,131)',
             color: "#2d3033",
             width: "100%",
             fontSize: '20px',
@@ -6712,7 +6733,7 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(192,233,145)',
+            backgroundColor: 'rgb(222,233,128)',
             color: "#2d3033",
             width: "100%",
             fontSize: '20px',
@@ -6724,7 +6745,7 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(5,0,255)',
+            backgroundColor: 'rgb(227,233,126)',
             color: "#2d3033",
             width: "100%",
             fontSize: '20px',
@@ -6736,50 +6757,26 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(5,0,255)',
+            backgroundColor: 'rgb(232,233,123)',
             color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "LABEL")), mod.createElement("div", {
+    }, " ", "TITLE")), mod.createElement("div", {
         id: "span",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: 'rgb(5,0,255)',
+            backgroundColor: 'rgb(238,233,120)',
             color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "SPAN")), mod.createElement("div", {
-        id: "form",
-        onDragStart: handleDragStart
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(5,0,255)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "FORM")), mod.createElement("div", {
-        id: "menu",
-        onDragStart: handleDragStart
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(5,0,255)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "MENU"))), mod.createElement("div", {
+    }, " ", "AREA"))), mod.createElement("div", {
         onDragOver: enableDropping,
         onDrop: handleDrop,
         onDragEnter: handleDragOverStart,
@@ -6934,7 +6931,7 @@ const Styling = (props)=>{
             marginLeft: '42%',
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             fontSize: '20px',
-            marginBottom: '50px',
+            marginBottom: '20px',
             color: "#2D3033"
         }
     }, "Submit"));
@@ -7316,44 +7313,17 @@ const Navbar1 = (props)=>{
         style: {
             width: '100%',
             padding: '0px',
-            fontSize: '30px',
-            marginTop: '-10px',
+            fontSize: '25px',
+            marginTop: '-29px',
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            fontWeight: 'bolder',
-            height: '50px'
-        }
-    }, mod.createElement("button", {
-        style: {
-            width: '50%',
-            padding: '0px',
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            fontWeight: 'bolder',
-            height: '50px'
-        },
-        className: "codePreviewBtn",
-        onClick: ()=>{
-            setPreviewPage('codePreview');
+            textAlign: 'center'
         }
     }, mod.createElement("h3", {
-        className: "codePreviewBtn"
-    }, "Code Preview")), mod.createElement("button", {
         style: {
-            width: '50%',
-            padding: '0px',
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            fontWeight: 'bolder',
-            height: '50px'
-        },
-        className: "islandPreviewBtn",
-        onClick: ()=>{
-            setPreviewPage('islandPreview');
+            height: '38px'
         }
-    }, mod.createElement("h3", {
-        className: "islandPreviewBtn"
-    }, "Island Preview")));
+    }, "Code Preview"));
 };
 const Preview = (props)=>{
     const { elementsArr , setElementsArr  } = props;
@@ -7468,23 +7438,28 @@ const App = ()=>{
         gridArea: 'cust',
         backgroundColor: "#2D3033",
         borderColor: "rgb(250,224,66)",
-        borderWidth: '5px',
+        borderWidth: '3px',
         borderStyle: 'solid',
         fontSize: '30px'
     };
     const previewStyle = {
         gridArea: 'prev',
         backgroundColor: "#2D3033",
-        fontSize: '30px'
+        fontSize: '30px',
+        borderRight: "3px solid #68EDA7",
+        borderButtom: "3px solid #FFE958"
     };
     const buttonsStyle = {
         gridArea: 'buttons',
         backgroundColor: "#2D3033",
+        borderLeft: "3px solid #FFE958",
+        borderButtom: "3px solid #FFE958",
         fontSize: '30px'
     };
     const styles = {
         display: 'grid',
         backgroundColor: 'black',
+        borderButtom: "3px solid #FFE958",
         color: '#68EDA7',
         gridTemplate: 'auto / repeat(15, 1fr)',
         gridTemplateAreas: `"side side side side side side side side prev prev prev prev prev prev prev"
@@ -7515,6 +7490,15 @@ const App = ()=>{
     const [elementsArr, setElementsArr] = mod.useState([]);
     const [currentElement, setCurrentElement] = mod.useState('drag into here');
     console.log("elementsArr in app", elementsArr);
+    const [inputText, setInputText] = mod.useState('');
+    const [textAlign, setTextAlign] = mod.useState('');
+    const [textDecoration, setTextDecoration] = mod.useState('');
+    const [backgroundColor, setBackgroundColor] = mod.useState('');
+    const [color, setColor] = mod.useState('');
+    const [margin, setMargin] = mod.useState('');
+    const [width, setWidth] = mod.useState('');
+    const [height, setHeight] = mod.useState('');
+    const [padding, setPadding] = mod.useState('');
     return mod.createElement("div", {
         className: "app",
         style: styles
@@ -7524,7 +7508,25 @@ const App = ()=>{
         elementsArr: elementsArr,
         setElementsArr: setElementsArr,
         currentElement: currentElement,
-        setCurrentElement: setCurrentElement
+        setCurrentElement: setCurrentElement,
+        inputText: inputText,
+        setInputText: setInputText,
+        textAlign: textAlign,
+        setTextAlign: setTextAlign,
+        textDecoration: textDecoration,
+        setTextDecoration: setTextDecoration,
+        backgroundColor: backgroundColor,
+        setBackgroundColor: setBackgroundColor,
+        color: color,
+        setColor: setColor,
+        margin: margin,
+        setMargin: setMargin,
+        width: width,
+        setWidth: setWidth,
+        height: height,
+        setHeight: setHeight,
+        padding: padding,
+        setPadding: setPadding
     })), mod.createElement("div", {
         style: customizationStyle
     }, mod.createElement(Customization, {

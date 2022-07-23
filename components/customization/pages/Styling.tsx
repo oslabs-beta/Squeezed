@@ -186,7 +186,7 @@ const Styling: any = (props:any) => {
         <br />
 </div>
 <br/>
-        <button type="submit" className="btn"  style={{marginLeft: '42%', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", fontSize: '20px', marginBottom: '50px',color: "#2D3033"}}>
+        <button type="submit" className="btn"  style={{marginLeft: '42%', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", fontSize: '20px', marginBottom: '20px',color: "#2D3033"}}>
           Submit
         </button>
 

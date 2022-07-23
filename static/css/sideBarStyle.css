@@ -56,14 +56,15 @@
 }
 #side {
     /* width: 250px; */
-    width: 13%;
+    width: 12%;
     background-image: linear-gradient(#68eda7, #ffe958);
     height: 100%;
-    border: 2px solid #68eda7
+    border: 3px solid #68eda7
 }
 #drop {
     /* width: 750px; */
-    width: 86.5%;
+    width: 87%;
+    border-top: 3px solid #68EDA7;
     background-color: #2d3033;
     height: 100%;
     text-align: center;
@@ -72,10 +73,10 @@
 
 button {
     font-size: 20px;
-    color:-webkit-linear-gradient(#68eda7, #ffe958);
+    /* color:-webkit-linear-gradient(#68eda7, #ffe958);
     background: -webkit-linear-gradient(#68eda7, #ffe958);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: rgb(45, 48, 51);
+    -webkit-text-fill-color: rgb(45, 48, 51); */
     font-weight: bold;
   
     
