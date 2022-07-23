@@ -1,21 +1,19 @@
 
  .draggedTags:hover {
-    background-color: rgb(64, 63, 63)
+    background-color: green;
 } 
 /* .draggedTags:hover{
     background-color: black;
     -webkit-user-drag: element;
     user-select: none;
 }  */
-.draggedTags {
-    border-color: '#2D3033'; border-width: '8px'; border-style: 'solid'; text-align: 'center'; font-weight: 'bolder'
-}
+
 /* a:visited{
 color: aquamarine;
 } */
 
 .draggedTags:active{
-    background: rgb(0, 0, 0);
+    background: pink;
 }
 
 /* div.draggedTags.active{

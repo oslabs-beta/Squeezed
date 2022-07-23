@@ -6479,6 +6479,7 @@ const mod1 = {
 };
 const SideBar = (props)=>{
     const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
+    const { inputText , setInputText , textAlign , setTextAlign , textDecoration , setTextDecoration , backgroundColor , setBackgroundColor , color , setColor , margin , setMargin , width , setWidth , height , setHeight , padding , setPadding ,  } = props;
     const [dragOver, setDragOver] = mod.useState(false);
     const [content, setContent] = mod.useState('drag into here');
     const handleDragOverStart = ()=>setDragOver(true);
@@ -6517,24 +6518,35 @@ const SideBar = (props)=>{
     const handleClick = (id)=>{
         setCurrentElement(elementsArr[id]);
     };
+    const deleteElement = (id)=>{
+        if (elementsArr.length === 1) {
+            setElementsArr([]);
+            setCurrentElement('');
+        } else {
+            const filteredElementsArr = elementsArr.filter((element)=>element.id !== id);
+            console.log('filtered', filteredElementsArr);
+            setElementsArr(filteredElementsArr);
+            setCurrentElement('');
+        }
+    };
     const htmlTags = elementsArr.map((elements, index)=>{
         console.log("html tags: ", elementsArr[index], index);
         return mod.createElement("div", {
-            style: {
-                borderColor: '#2D3033',
-                borderWidth: '8px',
-                borderStyle: 'solid',
-                textAlign: 'center',
-                fontWeight: 'bolder'
-            },
+            draggable: "true",
             className: "draggedTags",
-            onDragOver: enableDropping,
-            onDrop: handleDrop,
-            onDragEnter: handleDragOverStart,
-            onDragLeave: handleDragOverEnd,
             onClick: ()=>handleClick(index),
             id: index
-        }, elementsArr[index].element);
+        }, elementsArr[index].element, mod.createElement("button", {
+            style: {
+                backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+                color: "#2D3033",
+                float: 'right',
+                marginTop: '0px',
+                marginRight: '-1px',
+                height: '3px'
+            },
+            onClick: ()=>deleteElement(index)
+        }, "X"));
     });
     return mod.createElement("div", {
         id: "scroll"
@@ -6553,8 +6565,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(142,233,172)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6565,8 +6577,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(148,233,168)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '16px',
             fontWeight: 'bolder'
@@ -6577,8 +6589,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(152,233,166)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6589,8 +6601,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(158,233,163)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6601,8 +6613,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(163,233,160)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6613,8 +6625,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(168,233,158)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6625,8 +6637,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: "rgb(173,233,155)",
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6637,8 +6649,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(178,233,152)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6649,32 +6661,32 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(187,233,147)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "ORDERED LIST")), mod.createElement("div", {
+    }, " ", "LIST (OL)")), mod.createElement("div", {
         id: "unordered list",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(196,233,143)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "UNORDERED LIST")), mod.createElement("div", {
+    }, " ", "LIST (UL)")), mod.createElement("div", {
         id: "input",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(202,233,139)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6685,8 +6697,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(207,233,137)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6697,8 +6709,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(212,233,134)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6709,8 +6721,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(218,233,131)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6721,8 +6733,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(222,233,128)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6733,8 +6745,8 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(227,233,126)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
@@ -6745,64 +6757,33 @@ const SideBar = (props)=>{
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(232,233,123)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "LABEL")), mod.createElement("div", {
+    }, " ", "TITLE")), mod.createElement("div", {
         id: "span",
         onDragStart: handleDragStart
     }, mod.createElement("button", {
         style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
+            backgroundColor: 'rgb(238,233,120)',
+            color: "#2d3033",
             width: "100%",
             fontSize: '20px',
             fontWeight: 'bolder'
         },
         draggable: "true"
-    }, " ", "SPAN")), mod.createElement("div", {
-        id: "form",
-        onDragStart: handleDragStart
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "FORM")), mod.createElement("div", {
-        id: "menu",
-        onDragStart: handleDragStart
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: "#2D3033",
-            color: "#e8e1f3",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "MENU"))), mod.createElement("div", {
+    }, " ", "AREA"))), mod.createElement("div", {
         onDragOver: enableDropping,
         onDrop: handleDrop,
         onDragEnter: handleDragOverStart,
         onDragLeave: handleDragOverEnd,
         id: "drop"
     }, mod.createElement("div", {
-        id: "hov",
-        style: {
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            width: "100%",
-            fontSize: '20px',
-            marginBottom: ''
-        }
+        id: "hov"
     }, htmlTags)));
 };
 const Routing = (props)=>{
@@ -6838,27 +6819,39 @@ const Styling = (props)=>{
         console.log('styling page current element: ', currentElement);
         elementsArr[currentElement.id] = updateCurrentElement;
         console.log('styling page elements array: ', elementsArr);
+        setInputText('');
+        setTextAlign('');
+        setTextDecoration('');
+        setBackgroundColor('');
+        setColor('');
+        setMargin('');
+        setWidth('');
+        setHeight('');
+        setPadding('');
     };
     return mod.createElement("form", {
         onSubmit: handleSubmit,
         style: {
             fontSize: '20px',
-            fontWeight: 'bolder',
             color: 'white'
         }
-    }, mod.createElement("div", {
+    }, mod.createElement("link", {
+        rel: 'stylesheet',
+        href: './static/css/customizationStyles.css'
+    }), mod.createElement("div", {
         style: {
             fontSize: '26px',
-            textDecoration: 'underline',
-            textAlign: 'center'
-        }
+            textAlign: 'center',
+            marginTop: '20px'
+        },
+        id: "selectedEle"
     }, "Element selected: ", currentElement.element), mod.createElement("br", null), mod.createElement("div", {
         style: {
-            marginLeft: '100px'
+            marginLeft: '90px'
         }
     }, mod.createElement("label", {
         htmlFor: "inputText"
-    }, "Text "), mod.createElement("input", {
+    }, "Input Text "), mod.createElement("input", {
         value: inputText,
         onChange: (e)=>setInputText(e.target.value),
         type: "text",
@@ -6869,75 +6862,43 @@ const Styling = (props)=>{
             color: 'black'
         }
     }), mod.createElement("br", null), mod.createElement("label", {
-        htmlFor: "textAlign"
-    }, "Text Align "), mod.createElement("select", {
-        onChange: (e)=>setTextAlign(e.target.value),
-        style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
-        }
-    }, mod.createElement("option", null, "center"), mod.createElement("option", null, "right"), mod.createElement("option", null, "left"), mod.createElement("option", null, "justify"), mod.createElement("option", null, "justify")), mod.createElement("br", null), mod.createElement("label", {
-        htmlFor: "textDecoration"
-    }, "Text Decoration "), mod.createElement("select", {
-        onChange: (e)=>setTextDecoration(e.target.value),
-        style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
-        }
-    }, mod.createElement("option", null, "overline"), mod.createElement("option", null, "line-through"), mod.createElement("option", null, "underline"), mod.createElement("option", null, "none")), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "backgroundColor"
-    }, "Background Color "), mod.createElement("input", {
+    }, "Background "), mod.createElement("input", {
         value: backgroundColor,
         onChange: (e)=>setBackgroundColor(e.target.value),
         type: "text",
-        placeholder: "Enter hex color code",
-        className: "input",
-        style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
-        }
+        placeholder: "Enter color name",
+        className: "input"
     }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "color"
     }, "Text Color "), mod.createElement("input", {
         value: color,
         onChange: (e)=>setColor(e.target.value),
         type: "text",
-        placeholder: "Enter hex color code",
-        className: "input",
-        style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
-        }
-    }), mod.createElement("br", null)), mod.createElement("div", {
-        style: {
-            float: 'right',
-            marginTop: '-120px',
-            marginRight: '100px'
-        }
-    }, mod.createElement("label", {
+        placeholder: "Enter color name",
+        className: "input"
+    }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "margin"
     }, "Margin "), mod.createElement("input", {
         value: margin,
         onChange: (e)=>setMargin(e.target.value),
         type: "text",
         placeholder: "Enter margin value",
-        className: "input",
+        className: "input"
+    }), mod.createElement("br", null)), mod.createElement("div", {
         style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
+            float: 'right',
+            marginTop: '-130px',
+            marginRight: '100px'
         }
-    }), mod.createElement("br", null), mod.createElement("label", {
+    }, mod.createElement("label", {
         htmlFor: "height"
     }, "Height "), mod.createElement("input", {
         value: height,
         onChange: (e)=>setHeight(e.target.value),
         type: "text",
         placeholder: "Enter height",
-        className: "input",
-        style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
-        }
+        className: "input"
     }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "width"
     }, "Width "), mod.createElement("input", {
@@ -6945,11 +6906,7 @@ const Styling = (props)=>{
         onChange: (e)=>setWidth(e.target.value),
         type: "text",
         placeholder: "Enter width",
-        className: "input",
-        style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
-        }
+        className: "input"
     }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "padding"
     }, "Padding "), mod.createElement("input", {
@@ -6957,18 +6914,25 @@ const Styling = (props)=>{
         onChange: (e)=>setPadding(e.target.value),
         type: "text",
         placeholder: "Enter padding",
-        className: "input",
+        className: "input"
+    }), mod.createElement("br", null), mod.createElement("label", {
+        htmlFor: "textDecoration"
+    }, "Text Decoration "), mod.createElement("select", {
+        className: "textDecoration",
+        onChange: (e)=>setTextDecoration(e.target.value),
         style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033"
         }
-    }), mod.createElement("br", null)), mod.createElement("br", null), mod.createElement("button", {
+    }, mod.createElement("option", null, "default"), mod.createElement("option", null, "overline"), mod.createElement("option", null, "line-through"), mod.createElement("option", null, "underline"), mod.createElement("option", null, "none")), mod.createElement("br", null)), mod.createElement("br", null), mod.createElement("button", {
         type: "submit",
         className: "btn",
         style: {
-            marginLeft: '50%',
+            marginLeft: '42%',
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            fontSize: '20px'
+            fontSize: '20px',
+            marginBottom: '20px',
+            color: "#2D3033"
         }
     }, "Submit"));
 };
@@ -6990,52 +6954,8 @@ const MainContainer = (props)=>{
 const Navbar = (props)=>{
     const { setCustomizationPage  } = props;
     return mod.createElement("div", {
-        className: "navBar",
-        style: {
-            width: '100%',
-            padding: '0px',
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            fontWeight: 'bolder',
-            height: '40px'
-        }
-    }, mod.createElement("button", {
-        style: {
-            width: '50%',
-            padding: '0px',
-            fontSize: '15px',
-            marginTop: '-10px',
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            fontWeight: 'bolder',
-            height: '40px',
-            border: 'none'
-        },
-        className: "stylingBtn",
-        onClick: ()=>{
-            setCustomizationPage('styling');
-        }
-    }, mod.createElement("h3", {
-        className: "stylingBtnText"
-    }, "Styling")), mod.createElement("button", {
-        style: {
-            width: '50%',
-            padding: '0px',
-            fontSize: '15px',
-            marginTop: '-10px',
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            fontWeight: 'bolder',
-            height: '40px',
-            border: 'none'
-        },
-        className: "routingBtn",
-        onClick: ()=>{
-            setCustomizationPage('routing');
-        }
-    }, mod.createElement("h3", {
-        className: "routingBtnText"
-    }, "Routing")));
+        className: "navBar"
+    });
 };
 const Customization = (props)=>{
     const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
@@ -7156,23 +7076,84 @@ const CodePreview = (props)=>{
             'This is your link';
             eleSecond = `/>`;
         }
+        console.log(1, elementsArr[index].textAlign);
+        let bracket = '';
+        let classTag = '';
+        let bracket2 = '';
+        let tw = '';
+        let slash = '';
+        if (elementsArr[index].padding !== '' || elementsArr[index].textAlign !== undefined && elementsArr[index].textAlign === '' || elementsArr[index].backgroundColor !== '' || elementsArr[index].color !== '' || elementsArr[index].margin !== '' || elementsArr[index].height !== '' || elementsArr[index].height !== '' || elementsArr[index].padding !== '' || elementsArr[index].width !== '') {
+            classTag = `class =`;
+            bracket = '{';
+            tw = 'tw`';
+            slash = '`';
+            bracket2 = '}';
+        }
+        let text1 = '';
+        if (elementsArr[index].textAlign !== '' && elementsArr[index].textAlign !== undefined) {
+            text1 = 'text-';
+        }
+        let bg = '';
+        if (elementsArr[index].backgroundColor !== '') {
+            bg = 'bg-';
+        }
+        let color = '';
+        if (elementsArr[index].color !== '') {
+            color = 'text-';
+        }
+        let m = '';
+        if (elementsArr[index].margin !== '') {
+            m = 'm-';
+        }
+        let h = '';
+        if (elementsArr[index].height !== '') {
+            h = 'h-';
+        }
+        let w = '';
+        if (elementsArr[index].width !== '') {
+            w = 'w-';
+        }
+        let p = '';
+        if (elementsArr[index].padding !== '') {
+            p = 'p-';
+        }
         return mod.createElement("div", {
             id: index
         }, mod.createElement("span", {
             style: {
-                color: '#3DA2A7'
+                color: '#5FD389'
             }
         }, eleFirst), mod.createElement("span", {
             style: {
-                color: '#FCC981'
+                color: '#37CFE0'
             }
-        }, "class= ", '{', " ", mod.createElement("span", {
+        }, classTag), " ", mod.createElement("span", {
             style: {
-                color: '#ffff76'
+                color: 'white'
             }
-        }, " ", elementsArr[index].textAlign, " ", elementsArr[index].textDecoration, " ", elementsArr[index].backgroundColor, " ", elementsArr[index].color, " ", elementsArr[index].margin, "  ", elementsArr[index].width, " ", elementsArr[index].height, " ", elementsArr[index].padding, " "), "  ", '}', " id=", index), mod.createElement("span", {
+        }, bracket), mod.createElement("span", {
             style: {
-                color: '#3DA2A7'
+                color: '#5FD389'
+            }
+        }, " ", tw), mod.createElement("span", {
+            style: {
+                color: '#37CFE0'
+            }
+        }, "  ", text1, elementsArr[index].textAlign, " ", elementsArr[index].textDecoration, " ", bg, elementsArr[index].backgroundColor, " ", color, elementsArr[index].color, " ", m, elementsArr[index].margin, "  ", w, elementsArr[index].width, " ", h, elementsArr[index].height, " ", p, elementsArr[index].padding), mod.createElement("span", {
+            style: {
+                color: '#5FD389'
+            }
+        }, " ", slash), " ", mod.createElement("span", {
+            style: {
+                color: 'white'
+            }
+        }, " ", bracket2), " ", mod.createElement("span", {
+            style: {
+                color: '#FDE086'
+            }
+        }, " id=", index), mod.createElement("span", {
+            style: {
+                color: '#5FD389'
             }
         }, endBr), mod.createElement("span", {
             style: {
@@ -7180,7 +7161,7 @@ const CodePreview = (props)=>{
             }
         }, " ", elementsArr[index].text), " ", mod.createElement("span", {
             style: {
-                color: '#3DA2A7'
+                color: '#5FD389'
             }
         }, eleSecond));
     });
@@ -7193,95 +7174,103 @@ const CodePreview = (props)=>{
         id: "import"
     }, mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
-    }, "import"), " ", mod.createElement("span", {
+    }, "import"), " ", '{', mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '{', " h ", '}'), " ", mod.createElement("span", {
+    }, " h"), " ", '}', " ", mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
     }, " from"), " ", mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '"preact";')), mod.createElement("p", {
+    }, '"preact"'), ";"), mod.createElement("p", {
         id: "import"
     }, mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
-    }, "import"), " ", mod.createElement("span", {
+    }, "import"), " ", '{', mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '{', " PageProps ", '}'), " ", mod.createElement("span", {
+    }, " PageProps "), " ", '}', " ", mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
     }, " from"), " ", mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '"$fresh/server.ts";')), mod.createElement("p", {
+    }, '"$fresh/server.ts"'), " ;"), mod.createElement("p", {
         id: "import"
     }, mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
-    }, "import"), " ", mod.createElement("span", {
+    }, "import"), " ", '{', mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '{', " useEffect, useState ", '}'), " ", mod.createElement("span", {
+    }, " useEffect, useState "), " ", '}', " ", mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
     }, " from"), " ", mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '"preact/hooks";')), mod.createElement("p", {
+    }, '"preact/hooks"'), ";"), mod.createElement("p", {
         id: "import"
     }, mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
-    }, "import"), " ", mod.createElement("span", {
+    }, "import"), " ", '{', mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '{', " tw ", '}'), " ", mod.createElement("span", {
+    }, " tw "), " ", '}', " ", mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
     }, " from"), " ", mod.createElement("span", {
         style: {
-            color: '#FCC981'
+            color: '#ffff76'
         }
-    }, '"twind";')), mod.createElement("p", {
+    }, '"twind"'), ";"), mod.createElement("p", {
         id: "export"
     }, mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
     }, "export default function "), " ", mod.createElement("span", {
         style: {
-            color: '#3DA2A7'
+            color: '#37CFE0'
         }
-    }, "App"), "(props: PageProps) ", '{'), mod.createElement("p", {
+    }, "App "), "(", mod.createElement("span", {
+        style: {
+            color: '#8B7FDA'
+        }
+    }, "props: PageProps"), ") ", mod.createElement("span", {
+        style: {
+            color: 'white'
+        }
+    }, '{')), mod.createElement("p", {
         id: "return"
     }, mod.createElement("span", {
         style: {
-            color: '#6C95B3'
+            color: '#FF5581'
         }
     }, "return "), "("), mod.createElement("p", {
         id: "mainOpeningTag"
     }, mod.createElement("span", {
         style: {
-            color: '#ffff76'
+            color: '#8B7FDA'
         }
     }, '<main>')), mod.createElement("div", {
         id: "htmlTags"
@@ -7293,13 +7282,13 @@ const CodePreview = (props)=>{
         id: "mainClosingTag"
     }, mod.createElement("span", {
         style: {
-            color: '#ffff76'
+            color: '#8B7FDA'
         }
     }, '</main>')), mod.createElement("p", {
         id: "paren"
     }, ");"), mod.createElement("p", {
         id: "endingCurly"
-    }, "}"));
+    }, "}", ";"));
 };
 const IslandPreview = (props)=>{
     return mod.createElement("div", null, "Island Preview page");
@@ -7324,44 +7313,17 @@ const Navbar1 = (props)=>{
         style: {
             width: '100%',
             padding: '0px',
-            fontSize: '30px',
-            marginTop: '-10px',
+            fontSize: '25px',
+            marginTop: '-29px',
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            fontWeight: 'bolder',
-            height: '50px'
-        }
-    }, mod.createElement("button", {
-        style: {
-            width: '50%',
-            padding: '0px',
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            fontWeight: 'bolder',
-            height: '50px'
-        },
-        className: "codePreviewBtn",
-        onClick: ()=>{
-            setPreviewPage('codePreview');
+            textAlign: 'center'
         }
     }, mod.createElement("h3", {
-        className: "codePreviewBtn"
-    }, "Code Preview")), mod.createElement("button", {
         style: {
-            width: '50%',
-            padding: '0px',
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            fontWeight: 'bolder',
-            height: '50px'
-        },
-        className: "islandPreviewBtn",
-        onClick: ()=>{
-            setPreviewPage('islandPreview');
+            height: '38px'
         }
-    }, mod.createElement("h3", {
-        className: "islandPreviewBtn"
-    }, "Island Preview")));
+    }, "Code Preview"));
 };
 const Preview = (props)=>{
     const { elementsArr , setElementsArr  } = props;
@@ -7377,39 +7339,48 @@ const Preview = (props)=>{
         setElementsArr: setElementsArr
     }));
 };
-function Buttons() {
-    function load() {
-        console.log('loaded');
+function Buttons(props) {
+    const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
+    function deleteData() {
+        fetch('/home', {
+            method: 'DELETE'
+        }).then((data)=>data.json()).catch((err)=>console.log(err));
+        setElementsArr([]);
+        setCurrentElement('');
     }
-    function clear() {}
-    function save() {}
+    function clear() {
+        setElementsArr([]);
+        setCurrentElement('');
+    }
+    function save() {
+        fetch('/home', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                elementsArr
+            })
+        }).then((data)=>data.json()).catch((err)=>console.log(err));
+    }
     function exportFunc() {}
-    return mod.createElement("main", null, mod.createElement("div", {
+    return mod.createElement("main", null, mod.createElement("link", {
+        rel: 'stylesheet',
+        href: './static/css/sideBarStyle.css'
+    }), mod.createElement("div", {
         id: "buttonContainer"
     }, mod.createElement("button", {
-        id: "loadBtn",
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
             width: "90%",
             fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        onClick: ()=>{
-            alert("Project loaded");
-            load();
-        }
-    }, "Load Project"), mod.createElement("button", {
-        style: {
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            width: "90%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
+            fontWeight: 'bolder',
+            marginTop: '15px',
+            marginLeft: '7px'
         },
         id: "clearBtn",
         onClick: ()=>{
-            alert("Canvas cleared");
             clear();
         }
     }, "Clear Project"), mod.createElement("button", {
@@ -7418,27 +7389,46 @@ function Buttons() {
             color: "#2D3033",
             width: "90%",
             fontSize: '20px',
-            fontWeight: 'bolder'
+            fontWeight: 'bolder',
+            marginTop: '15px',
+            marginLeft: '7px'
         },
         id: "saveBtn",
         onClick: ()=>{
             alert("Project Saved");
             save();
         }
-    }, "Save"), mod.createElement("button", {
+    }, "Save Progress"), mod.createElement("button", {
+        id: "loadBtn",
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
             width: "90%",
             fontSize: '20px',
-            fontWeight: 'bolder'
+            fontWeight: 'bolder',
+            marginTop: '15px',
+            marginLeft: '7px'
+        },
+        onClick: ()=>{
+            alert("Project deleted");
+            deleteData();
+        }
+    }, "Delete Project"), mod.createElement("button", {
+        style: {
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            width: "90%",
+            fontSize: '20px',
+            fontWeight: 'bolder',
+            marginTop: '15px',
+            marginLeft: '7px'
         },
         id: "exportBtn",
         onClick: (event)=>{
             console.log('clicked');
             exportFunc();
         }
-    }, "Export")));
+    }, "Export Code")));
 }
 const App = ()=>{
     const sideBarStyle = {
@@ -7447,60 +7437,68 @@ const App = ()=>{
     const customizationStyle = {
         gridArea: 'cust',
         backgroundColor: "#2D3033",
-        borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-        borderWidth: '2px',
+        borderColor: "rgb(250,224,66)",
+        borderWidth: '3px',
         borderStyle: 'solid',
         fontSize: '30px'
     };
     const previewStyle = {
         gridArea: 'prev',
         backgroundColor: "#2D3033",
-        borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-        borderWidth: '2px',
-        borderStyle: 'solid',
-        fontSize: '30px'
+        fontSize: '30px',
+        borderRight: "3px solid #68EDA7",
+        borderButtom: "3px solid #FFE958"
     };
     const buttonsStyle = {
         gridArea: 'buttons',
         backgroundColor: "#2D3033",
-        borderImage: "linear-gradient(180deg, rgb(0,143,104), rgb(250,224,66)) 1",
-        borderWidth: '2px',
-        borderStyle: 'solid',
+        borderLeft: "3px solid #FFE958",
+        borderButtom: "3px solid #FFE958",
         fontSize: '30px'
     };
     const styles = {
         display: 'grid',
         backgroundColor: 'black',
+        borderButtom: "3px solid #FFE958",
         color: '#68EDA7',
-        gridTemplate: 'auto / repeat(11, 1fr)',
-        gridTemplateAreas: `"side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "side side side side side side prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"
-    "buttons cust cust cust cust cust prev prev prev prev prev"`,
+        gridTemplate: 'auto / repeat(15, 1fr)',
+        gridTemplateAreas: `"side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "side side side side side side side side prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
+    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"`,
         width: '100%',
         height: '100%'
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
     const [currentElement, setCurrentElement] = mod.useState('drag into here');
     console.log("elementsArr in app", elementsArr);
+    const [inputText, setInputText] = mod.useState('');
+    const [textAlign, setTextAlign] = mod.useState('');
+    const [textDecoration, setTextDecoration] = mod.useState('');
+    const [backgroundColor, setBackgroundColor] = mod.useState('');
+    const [color, setColor] = mod.useState('');
+    const [margin, setMargin] = mod.useState('');
+    const [width, setWidth] = mod.useState('');
+    const [height, setHeight] = mod.useState('');
+    const [padding, setPadding] = mod.useState('');
     return mod.createElement("div", {
         className: "app",
         style: styles
@@ -7510,7 +7508,25 @@ const App = ()=>{
         elementsArr: elementsArr,
         setElementsArr: setElementsArr,
         currentElement: currentElement,
-        setCurrentElement: setCurrentElement
+        setCurrentElement: setCurrentElement,
+        inputText: inputText,
+        setInputText: setInputText,
+        textAlign: textAlign,
+        setTextAlign: setTextAlign,
+        textDecoration: textDecoration,
+        setTextDecoration: setTextDecoration,
+        backgroundColor: backgroundColor,
+        setBackgroundColor: setBackgroundColor,
+        color: color,
+        setColor: setColor,
+        margin: margin,
+        setMargin: setMargin,
+        width: width,
+        setWidth: setWidth,
+        height: height,
+        setHeight: setHeight,
+        padding: padding,
+        setPadding: setPadding
     })), mod.createElement("div", {
         style: customizationStyle
     }, mod.createElement(Customization, {
@@ -7525,6 +7541,9 @@ const App = ()=>{
         setElementsArr: setElementsArr
     })), mod.createElement("div", {
         style: buttonsStyle
-    }, mod.createElement(Buttons, null)));
+    }, mod.createElement(Buttons, {
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr
+    })));
 };
 mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(App, null)), document.getElementById('root'));
