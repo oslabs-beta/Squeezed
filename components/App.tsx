@@ -30,7 +30,7 @@ interface Props{
     gridArea: 'cust',
     backgroundColor: "#2D3033",
     borderColor: "rgb(250,224,66)",
-    borderWidth: '5px',
+    borderWidth: '3px',
     borderStyle: 'solid',    
     fontSize: '30px',
   } as const;
@@ -39,6 +39,8 @@ interface Props{
     gridArea: 'prev',
     backgroundColor: "#2D3033",
      fontSize: '30px',
+     borderRight: "3px solid #68EDA7",
+     borderButtom: "3px solid #FFE958",
 
 
   } as const;
@@ -46,7 +48,8 @@ interface Props{
   const buttonsStyle = { 
     gridArea: 'buttons',
     backgroundColor: "#2D3033",
-
+borderLeft: "3px solid #FFE958",
+borderButtom: "3px solid #FFE958",
     fontSize: '30px',
 
   } as const;
@@ -54,6 +57,8 @@ interface Props{
   const styles = {
     display: 'grid',
     backgroundColor: 'black',
+    borderButtom: "3px solid #FFE958",
+
     color: '#68EDA7',
     gridTemplate: 'auto / repeat(15, 1fr)',
     gridTemplateAreas:
@@ -91,20 +96,20 @@ interface Props{
   //State
   const [elementsArr, setElementsArr] = React.useState<any[]>([]);
   const [currentElement, setCurrentElement] = React.useState<any>('drag into here');
-  // console.log("elementsArr in app", elementsArr);
-  // const [inputText, setInputText] = (React as any).useState('');
-  // const [textAlign, setTextAlign] = (React as any).useState('');
-  // const [textDecoration, setTextDecoration] = (React as any).useState('');
-  // const [backgroundColor, setBackgroundColor] = (React as any).useState('');
-  // const [color, setColor] = (React as any).useState('');
-  // const [margin, setMargin] = (React as any).useState('');
-  // const [width, setWidth] = (React as any).useState('');
-  // const [height, setHeight] = (React as any).useState('');
-  // const [padding, setPadding] = (React as any).useState('');
+  console.log("elementsArr in app", elementsArr);
+  const [inputText, setInputText] = (React as any).useState('');
+  const [textAlign, setTextAlign] = (React as any).useState('');
+  const [textDecoration, setTextDecoration] = (React as any).useState('');
+  const [backgroundColor, setBackgroundColor] = (React as any).useState('');
+  const [color, setColor] = (React as any).useState('');
+  const [margin, setMargin] = (React as any).useState('');
+  const [width, setWidth] = (React as any).useState('');
+  const [height, setHeight] = (React as any).useState('');
+  const [padding, setPadding] = (React as any).useState('');
 
   return (
     <div className="app" style={styles}>
-      <div style={sideBarStyle}><SideBar elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement}/></div>
+      <div style={sideBarStyle}><SideBar elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding}/></div>
       {/* <div style={customizationStyle}><Customization elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding} */}
       <div style={customizationStyle}><Customization elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} /></div>
       {/* <div style={previewStyle}><Preview elementsArr={elementsArr} setElementsArr={setElementsArr} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding} */}
