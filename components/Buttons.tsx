@@ -2,6 +2,7 @@
 // import React from 'react';
 import { React } from '../deps.tsx';
 // import { useState, useEffect } from "react"
+import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
 
 
 export default function Buttons(props:any){
@@ -16,31 +17,53 @@ const {elementsArr, setElementsArr, currentElement, setCurrentElement} = props;
 // }, []);
 // state
 
-function deleteData(){
-  fetch('/home', {
-    method: 'DELETE',
- })
- .then((data) => data.json())
- .catch((err) => console.log(err));
- setElementsArr([]);
+async function deleteData(){
+  await fetch('http://localhost:8080/home', {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ project_id: 20, elementsArr: elementsArr }),
+      mode: 'no-cors',
+  })
+  .then((data) => data.json())
+  .catch((err) => console.log(err));
+  setElementsArr([]);
   setCurrentElement('');
 }
-
 
 function clear(){
   setElementsArr([]);
   setCurrentElement('');
 }
 
-function save(){
-  fetch('/home', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ elementsArr })
- })
- .then((data) => data.json())
- .catch((err) => console.log(err));
-}
+async function save(){
+  await fetch('http://localhost:8080/home', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ project_id: null, elementsArr: elementsArr }),
+      mode: 'no-cors',
+   })
+   .then((data) => data.json())
+   .then(data => console.log("I'm on the front end", data))
+   .catch((err) => console.log(err));
+
+// try{
+//   const body = { project_id: null, elementsArr: elementsArr };
+//   const url = 'https://localhost:8080';
+//   const response = await fetch(url, {
+//     mode: 'no-cors'
+//   });
+//   // let response = await fetch("http://localhost:8080", {
+//   //   method: 'GET',
+//   // });
+//   const data = await response.text();
+//   console.log("I'm on the front end", data)
+//   console.log(response.body)
+//   return response;
+
+// } catch{
+//     console.log("ERROR");
+//   }
+};
 
 function exportFunc(){
   // this should open up the window directory with deno ???
@@ -70,8 +93,9 @@ return (
       <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px' , marginLeft: '7px'}}
         id="saveBtn"
         onClick={() => {
-          alert("Project Saved");
+          // serve(save);
           save();
+          console.log('clicked');
         }}
       >
         Save Progress

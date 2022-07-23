@@ -37,7 +37,7 @@
 
 // export default projectController;
 
-//deno run --allow-env --allow-net server/server.ts
+//deno-create-react-app run & deno run --allow-env --allow-read --allow-net server/server.ts
 import db from '../db.ts'
 import Dex from "https://deno.land/x/dex/mod.ts";
 const dex = Dex({client: 'postgres'}); 

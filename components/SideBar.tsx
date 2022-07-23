@@ -88,7 +88,7 @@ const deleteElement = (id:any) => {
 
 
 const htmlTags = elementsArr.map((elements: any, index: any) => {
-  console.log("html tags: ", elementsArr[index], index);
+  // console.log("html tags: ", elementsArr[index], index);
   return (
     <div 
      draggable='true'

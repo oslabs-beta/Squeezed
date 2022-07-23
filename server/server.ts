@@ -1,4 +1,4 @@
-import { Application, isHttpError, Status } from "oak";
+import { Application, isHttpError, Status, Router} from "oak";
 import db from './db.ts'
 import accountRoutes from './routes/accountRoutes.ts'
 import projectRoutes from './routes/projectRoutes.ts'
@@ -6,34 +6,68 @@ import projectRoutes from './routes/projectRoutes.ts'
 const port = 8080;
 const app = new Application();
 
+const router = new Router();
 
+router
+.get ('/', async (ctx) => {
+  await ctx.send({
+    root: `${Deno.cwd()}`,
+    index: "index.html",
+  });
+})
+
+// app.use(async (context, next) => {
+//   try {
+//     await context.send({
+//       root: `${Deno.cwd()}/dist/run/static/js`,
+//       index: 'main.js' 
+//     });
+//   } catch {
+//     await next();
+//   }
+// });
+
+app.use(router.routes());
+app.use(router.allowedMethods());
 app.use(accountRoutes.routes());
 app.use(accountRoutes.allowedMethods());
 app.use(projectRoutes.routes());
 app.use(projectRoutes.allowedMethods());
+        
+// app.use(async (ctx, next) => {
+//   try {
+//     await next();
+//   } catch (err) {
+//     if (isHttpError(err)) {
+//       switch (err.status) {
+//         case Status.NotFound:
+//           break;
+//           default:
+//           }
+//         } else {
+//           throw err;
+//         }
+//       }
+// });
+app.use(async (ctx) => {
+const reqBody = await ctx.request.body().value;
+console.log(reqBody, typeof reqBody);
+ctx.response.status = 200;
+});
 
-app.use(async (ctx, next) => {
-  try {
-    await next();
-  } catch (err) {
-    if (isHttpError(err)) {
-      switch (err.status) {
-        case Status.NotFound:
-          break;
-          default:
-          }
-        } else {
-          throw err;
-        }
-      }
+app.use((ctx) => {
+console.log("hi we're in the backend");
+ctx.response.body = "Hello World!";
+ctx.response.status = 200;
+return
 });
 
 app.addEventListener("error", (evt) => {
-  console.log(evt.error);
+console.log(evt.error);
 });
 
 app.use((ctx: any) => {
-  ctx.throw(500);
+ctx.throw(500);
 });
 
 app.addEventListener('listen', () => {
@@ -45,7 +79,7 @@ await app.listen({ port });
         
         // https://stackoverflow.com/questions/62363699/how-to-access-form-body-in-oak-deno
         
-        // deno run --allow-net --allow-env ./server/server.ts
+        // deno run --allow-net --allow-env --allow-read ./server/server.ts
         
         //deno run --allow-net --allow-env server.ts
 

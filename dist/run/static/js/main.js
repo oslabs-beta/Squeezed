@@ -6530,7 +6530,6 @@ const SideBar = (props)=>{
         }
     };
     const htmlTags = elementsArr.map((elements, index)=>{
-        console.log("html tags: ", elementsArr[index], index);
         return mod.createElement("div", {
             draggable: "true",
             className: "draggedTags",
@@ -6816,9 +6815,7 @@ const Styling = (props)=>{
             padding: padding
         };
         setCurrentElement(updateCurrentElement);
-        console.log('styling page current element: ', currentElement);
         elementsArr[currentElement.id] = updateCurrentElement;
-        console.log('styling page elements array: ', elementsArr);
         setInputText('');
         setTextAlign('');
         setTextDecoration('');
@@ -6975,7 +6972,6 @@ const Customization = (props)=>{
 };
 const CodePreview = (props)=>{
     const { elementsArr , setElementsArr  } = props;
-    console.log("elementsArr inside code preview", elementsArr);
     const htmlTags = elementsArr.map((elements, index)=>{
         let eleFirst;
         let eleSecond;
@@ -7341,9 +7337,17 @@ const Preview = (props)=>{
 };
 function Buttons(props) {
     const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
-    function deleteData() {
-        fetch('/home', {
-            method: 'DELETE'
+    async function deleteData() {
+        await fetch('http://localhost:8080/home', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                project_id: 20,
+                elementsArr: elementsArr
+            }),
+            mode: 'no-cors'
         }).then((data)=>data.json()).catch((err)=>console.log(err));
         setElementsArr([]);
         setCurrentElement('');
@@ -7352,16 +7356,18 @@ function Buttons(props) {
         setElementsArr([]);
         setCurrentElement('');
     }
-    function save() {
-        fetch('/home', {
+    async function save() {
+        await fetch('http://localhost:8080/home', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                elementsArr
-            })
-        }).then((data)=>data.json()).catch((err)=>console.log(err));
+                project_id: null,
+                elementsArr: elementsArr
+            }),
+            mode: 'no-cors'
+        }).then((data)=>data.json()).then((data)=>console.log("I'm on the front end", data)).catch((err)=>console.log(err));
     }
     function exportFunc() {}
     return mod.createElement("main", null, mod.createElement("link", {
@@ -7395,8 +7401,8 @@ function Buttons(props) {
         },
         id: "saveBtn",
         onClick: ()=>{
-            alert("Project Saved");
             save();
+            console.log('clicked');
         }
     }, "Save Progress"), mod.createElement("button", {
         id: "loadBtn",
@@ -7489,61 +7495,3 @@ const App = ()=>{
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
     const [currentElement, setCurrentElement] = mod.useState('drag into here');
-    console.log("elementsArr in app", elementsArr);
-    const [inputText, setInputText] = mod.useState('');
-    const [textAlign, setTextAlign] = mod.useState('');
-    const [textDecoration, setTextDecoration] = mod.useState('');
-    const [backgroundColor, setBackgroundColor] = mod.useState('');
-    const [color, setColor] = mod.useState('');
-    const [margin, setMargin] = mod.useState('');
-    const [width, setWidth] = mod.useState('');
-    const [height, setHeight] = mod.useState('');
-    const [padding, setPadding] = mod.useState('');
-    return mod.createElement("div", {
-        className: "app",
-        style: styles
-    }, mod.createElement("div", {
-        style: sideBarStyle
-    }, mod.createElement(SideBar, {
-        elementsArr: elementsArr,
-        setElementsArr: setElementsArr,
-        currentElement: currentElement,
-        setCurrentElement: setCurrentElement,
-        inputText: inputText,
-        setInputText: setInputText,
-        textAlign: textAlign,
-        setTextAlign: setTextAlign,
-        textDecoration: textDecoration,
-        setTextDecoration: setTextDecoration,
-        backgroundColor: backgroundColor,
-        setBackgroundColor: setBackgroundColor,
-        color: color,
-        setColor: setColor,
-        margin: margin,
-        setMargin: setMargin,
-        width: width,
-        setWidth: setWidth,
-        height: height,
-        setHeight: setHeight,
-        padding: padding,
-        setPadding: setPadding
-    })), mod.createElement("div", {
-        style: customizationStyle
-    }, mod.createElement(Customization, {
-        elementsArr: elementsArr,
-        setElementsArr: setElementsArr,
-        currentElement: currentElement,
-        setCurrentElement: setCurrentElement
-    })), mod.createElement("div", {
-        style: previewStyle
-    }, mod.createElement(Preview, {
-        elementsArr: elementsArr,
-        setElementsArr: setElementsArr
-    })), mod.createElement("div", {
-        style: buttonsStyle
-    }, mod.createElement(Buttons, {
-        elementsArr: elementsArr,
-        setElementsArr: setElementsArr
-    })));
-};
-mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(App, null)), document.getElementById('root'));

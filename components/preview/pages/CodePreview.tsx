@@ -5,7 +5,7 @@ import { React } from '../../../deps.tsx';
 const CodePreview: any = (props: any) => {
 const {elementsArr, setElementsArr} = props;
 // const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
-console.log("elementsArr inside code preview", elementsArr);
+// console.log("elementsArr inside code preview", elementsArr);
 const htmlTags = elementsArr.map((elements: any, index: any) =>{
   let eleFirst:any;
   let eleSecond:any;
