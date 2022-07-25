@@ -38,7 +38,8 @@ const SideBar = (props:any) => {
       margin: "",
       width: "",
       height: "",
-      padding: ""     
+      padding: "",   
+      fontSize: ""
     };
     newElementsArr.push(newElement);
     setElementsArr(newElementsArr);
@@ -131,25 +132,25 @@ const htmlTags = elementsArr.map((elements: any, index: any) => {
             BUTTON
           </button>
         </div>
-        <div id="image" onDragStart={handleDragStart}>
+        <div id="img" onDragStart={handleDragStart}>
           <button style={{ backgroundColor:'rgb(158,233,163)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             IMAGE
           </button>
         </div>
-        <div id="header 1" onDragStart={handleDragStart}>
+        <div id="h1" onDragStart={handleDragStart}>
           <button style={{ backgroundColor:'rgb(163,233,160)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             HEADER 1
           </button>
         </div>
-        <div id="header 2" onDragStart={handleDragStart}>
+        <div id="h2" onDragStart={handleDragStart}>
           <button style={{ backgroundColor:'rgb(168,233,158)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             HEADER 2
           </button>
         </div>
-        <div id="header 3" onDragStart={handleDragStart}>
+        <div id="h3" onDragStart={handleDragStart}>
           <button style={{backgroundColor: "rgb(173,233,155)",color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             HEADER 3
@@ -161,13 +162,13 @@ const htmlTags = elementsArr.map((elements: any, index: any) => {
             FOOTER
           </button>
         </div>
-        <div id="ordered list" onDragStart={handleDragStart}>
+        <div id="ol" onDragStart={handleDragStart}>
           <button style={{backgroundColor:'rgb(187,233,147)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LIST (OL)
           </button>
         </div>
-        <div id="unordered list" onDragStart={handleDragStart}>
+        <div id="ul" onDragStart={handleDragStart}>
           <button style={{ backgroundColor:'rgb(196,233,143)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LIST (UL)

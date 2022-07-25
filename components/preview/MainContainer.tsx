@@ -12,7 +12,7 @@ const MainContainer: any = (props: any) => {
 
   // if (previewPage === 'codePreview') page = <CodePreview elementsArr={elementsArr} setElementsArr={setElementsArr} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding}/>;
   if (previewPage === 'codePreview') page = <CodePreview elementsArr={elementsArr} setElementsArr={setElementsArr}  />;
-  if (previewPage === 'islandPreview') page = <IslandPreview />;
+  if (previewPage === 'islandPreview') page = <IslandPreview elementsArr={elementsArr} setElementsArr={setElementsArr} />;
   
   return <div className="previewPage">{page}</div>;
 };
