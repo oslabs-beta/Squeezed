@@ -41,7 +41,7 @@ async function deleteData(){
   await fetch('http://localhost:8080/home', {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ project_id: 21 }),
+      body: JSON.stringify({ project_id: project }),
       mode: 'no-cors',
   })
   .then((data) => data.json())

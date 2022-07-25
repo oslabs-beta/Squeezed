@@ -1,4 +1,4 @@
-import {React } from '../deps.tsx';
+import { React } from '../deps.tsx';
 
 
 
@@ -11,39 +11,100 @@ const SideBar = (props:any) => {
   const handleDragOverStart = () => setDragOver(true);
   const handleDragOverEnd = () => setDragOver(false);
 
-  const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
-    event.dataTransfer.setData("text", event.currentTarget.id);
+  // const dragItem = React.useRef<HTMLDivElement | null>(null);
+  // const dragOverItem = React.useRef<HTMLDivElement | null>(null);
+  const dragItem = React.useRef<any>(null);
+  const dragOverItem = React.useRef<any>(null);
+
+  const handleDragStart = (event: React.DragEvent<HTMLDivElement>, area:string) => {
+    // console.log("handleDragStart area:", area)
+    // console.log("current event target: ", event.currentTarget);
+    if(area === "dragArea"){
+      event.dataTransfer.setData("id", event.currentTarget.id);
+    }
+    else if(area === "dropArea"){
+      // console.log("dragItem.current type:", typeof dragItem.current)
+      dragItem.current = event.currentTarget.id;
+      // console.log("handleDragStart current: ", dragItem.current)
+      // console.log("handleDragStart: ", dragItem)
+    }
+    event.dataTransfer.setData("area", area);
+  };
+
+  const dragEnter = (e, position) => {
+    dragOverItem.current = position;
+    // console.log("drag enter id: ", dragItem.current)
   };
   
   const enableDropping = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-    const data = event.dataTransfer.getData("text");
-    setContent(data);
+    const id = event.dataTransfer.getData("id");
+    setContent(id);
+
+    // const area = event.dataTransfer.getData("area");
+    // if(area === "dragArea"){
+    //   const id = event.dataTransfer.getData("id");
+    //   setContent(id);
+    //   console.log("enableDropping after set content", content)
+    // }
+    // else if(area === "dropArea"){
+    //   // const oldId = event.dataTransfer.getData("oldId");
+    //   // console.log("enable dropping old id: ", oldId)
+    // }
   };
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    const id = event.dataTransfer.getData("text");    
-    // console.log("id: ", id)
-    setContent(id);
+    const area = event.dataTransfer.getData("area");
     const newElementsArr = [...elementsArr];
-    const newElement = {
-      id: elementsArr.length,      
-      element: id,
-      text: "",
-      texAlign: "", // dont change this to textAlign  
-      textDecoration: "",
-      backgroundColor: "",
-      color: "",
-      margin: "",
-      width: "",
-      height: "",
-      padding: "",   
-      fontSize: ""
-    };
-    newElementsArr.push(newElement);
-    setElementsArr(newElementsArr);
-    setCurrentElement(newElement);
+ 
+    if(area === "dragArea"){
+      const id = event.dataTransfer.getData("id");
+      setContent(id);
+      const newElement = {
+        id: elementsArr.length,      
+        element: id,
+        text: "",
+        texAlign: "", // dont change this to textAlign  
+        textDecoration: "",
+        backgroundColor: "",
+        color: "",
+        margin: "",
+        width: "",
+        height: "",
+        padding: ""     
+      };
+      newElementsArr.push(newElement);
+      setElementsArr(newElementsArr);
+      setCurrentElement(newElement);
+      // console.log("handleDrop from dragArea:", id); 
+    }
+    else if(area === "dropArea"){
+      const dragItemContent = newElementsArr[dragItem.current];
+      const dragItemEnterContent = newElementsArr[dragOverItem.current];
+      console.log("handleDrop selected item:", dragItemContent); 
+      console.log("handleDrop drager over item:", dragItemEnterContent); 
+
+      // //reassign ids to match order of elementsArr
+      // const tempId = dragItemContent.id;
+      // dragItemContent.id = dragItemEnterContent.id;
+      // dragItemEnterContent.id = tempId;
+
+      // console.log("dragItemContent:", dragItemContent)
+      newElementsArr.splice(dragItem.current, 1);
+      newElementsArr.splice(dragOverItem.current, 0, dragItemContent);
+      dragItem.current = null;
+      dragOverItem.current = null;
+      reorderElArr(newElementsArr);
+      setElementsArr(newElementsArr);
+      // console.log("handleDrop from dropArea", elementsArr)
+    }
   };
+
+  const reorderElArr = (arr) => {
+    arr.forEach((el, ind) => {
+      el.id = ind;
+    })
+  }
  
   const handleClick = (id: any) => {
     setCurrentElement(elementsArr[id]);
@@ -81,25 +142,35 @@ const deleteElement = (id:any) => {
       .backgroundColor = 'yellow';
   }
 
+  // const dragItem = useRef();
 
+  // function onDragReorder(event, position) {
+  //   dragItem.current = position;
+  //   console.log("onDragReorder:", e.target.innerHTML);
+  // }
 
 
 const htmlTags = elementsArr.map((elements: any, index: any) => {
   // console.log("html tags: ", elementsArr[index], index);
   return (
     <div 
-     draggable='true'
-    // onDrop={handleDrop}
-    //  onDragEnter={handleDragOverStart}
-    //  onDragLeave={handleDragOverEnd}
-    // onDragStart={onDragStart(event)}
-    className="draggedTags"
+      draggable='true'
+      // onDrop={handleDrop}
+      // onDragEnter={handleDragOverStart}
+      // onDragLeave={handleDragOverEnd}
+      onDragStart={(e) => handleDragStart(e, 'dropArea')}
+      onDragEnter={(e) => {dragEnter(e, index)}}
+      className="draggedTags"
     // onDragOver={enableDropping}
-    onClick={() => handleClick(index)} 
-    id={index}>
+      onClick={() => handleClick(index)} 
+      id={index}>
       {elementsArr[index].element}
-    <button style={{backgroundImage:"linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", float: 'right', marginTop: '0px', marginRight: '-1px', height: '3px',}} onClick={()=> deleteElement(index) }
-    >X</button>
+      <button 
+        style={{backgroundImage:"linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", float: 'right', marginTop: '0px', marginRight: '-1px', height: '3px',}} 
+        onClick={()=> deleteElement(index) }
+      >
+        X
+      </button>
     </div>
     )})
 
@@ -110,109 +181,109 @@ const htmlTags = elementsArr.map((elements: any, index: any) => {
       <link rel={'stylesheet'} href={'./static/css/sideBarStyle.css'} />
       <div className="app" ></div>
       <div id='side'>
-        <div id="div" onDragStart={handleDragStart}>
+        <div id="div" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(142,233,172)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             DIV
           </button>
         </div>
-        <div id="paragraph"  onDragStart={handleDragStart}>
+        <div id="paragraph"  onDragStart={(e) => handleDragStart(e, 'dragArea')} >
           <button style={{ backgroundColor:'rgb(148,233,168)', color: "#2d3033", width: "100%", fontSize: '16px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             PARAGRAPH
           </button>
         </div>
-        <div id="button" onDragStart={handleDragStart}>
+        <div id="button" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(152,233,166)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             BUTTON
           </button>
         </div>
-        <div id="img" onDragStart={handleDragStart}>
+        <div id="image" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(158,233,163)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             IMAGE
           </button>
         </div>
-        <div id="h1" onDragStart={handleDragStart}>
+        <div id="header 1" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(163,233,160)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             HEADER 1
           </button>
         </div>
-        <div id="h2" onDragStart={handleDragStart}>
+        <div id="header 2" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(168,233,158)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             HEADER 2
           </button>
         </div>
-        <div id="h3" onDragStart={handleDragStart}>
+        <div id="header 3" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{backgroundColor: "rgb(173,233,155)",color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             HEADER 3
           </button>
         </div>
-        <div id="footer" onDragStart={handleDragStart}>
+        <div id="footer" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{backgroundColor:'rgb(178,233,152)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             FOOTER
           </button>
         </div>
-        <div id="ol" onDragStart={handleDragStart}>
+        <div id="ordered list" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{backgroundColor:'rgb(187,233,147)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LIST (OL)
           </button>
         </div>
-        <div id="ul" onDragStart={handleDragStart}>
+        <div id="unordered list" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(196,233,143)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LIST (UL)
           </button>
         </div>
-        <div id="input" onDragStart={handleDragStart}>
+        <div id="input" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(202,233,139)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             INPUT
           </button>
         </div>
-        <div id="link" onDragStart={handleDragStart}>
+        <div id="link" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{backgroundColor:'rgb(207,233,137)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LINK
           </button>
         </div>
-        <div id="label" onDragStart={handleDragStart}>
+        <div id="label" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{backgroundColor:'rgb(212,233,134)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LABEL
           </button>
         </div>
-        <div id="span" onDragStart={handleDragStart}>
+        <div id="span" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(218,233,131)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             SPAN
           </button>
         </div>
-        <div id="form" onDragStart={handleDragStart}>
+        <div id="form" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(222,233,128)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             FORM
           </button>
         </div>
-        <div id="menu" onDragStart={handleDragStart}>
+        <div id="menu" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{backgroundColor:'rgb(227,233,126)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             MENU
           </button>
         </div>
-        <div id="label" onDragStart={handleDragStart}>
+        <div id="label" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{backgroundColor:'rgb(232,233,123)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             TITLE
           </button>
         </div>
-        <div id="span" onDragStart={handleDragStart}>
+        <div id="span" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(238,233,120)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             AREA
@@ -220,6 +291,7 @@ const htmlTags = elementsArr.map((elements: any, index: any) => {
         </div>
      
       </div>
+
       <div
         onDragOver={enableDropping}
         onDrop={handleDrop}

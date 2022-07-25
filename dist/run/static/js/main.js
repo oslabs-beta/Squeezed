@@ -7105,20 +7105,67 @@ const SideBar = (props)=>{
     const [content, setContent] = mod.useState('drag into here');
     const handleDragOverStart = ()=>setDragOver(true);
     const handleDragOverEnd = ()=>setDragOver(false);
-    const handleDragStart = (event)=>{
-        event.dataTransfer.setData("text", event.currentTarget.id);
+    const dragItem = mod.useRef(null);
+    const dragOverItem = mod.useRef(null);
+    const handleDragStart = (event, area)=>{
+        if (area === "dragArea") {
+            event.dataTransfer.setData("id", event.currentTarget.id);
+        } else if (area === "dropArea") {
+            dragItem.current = event.currentTarget.id;
+        }
+        event.dataTransfer.setData("area", area);
+    };
+    const dragEnter = (e, position)=>{
+        dragOverItem.current = position;
     };
     const enableDropping = (event)=>{
         event.preventDefault();
-        const data = event.dataTransfer.getData("text");
-        setContent(data);
+        const id = event.dataTransfer.getData("id");
+        setContent(id);
     };
     const handleDrop = (event)=>{
-        const id = event.dataTransfer.getData("text");
-        setContent(id);
+        const area = event.dataTransfer.getData("area");
         const newElementsArr = [
             ...elementsArr
         ];
+<<<<<<< HEAD
+        if (area === "dragArea") {
+            const id = event.dataTransfer.getData("id");
+            setContent(id);
+            const newElement = {
+                id: elementsArr.length,
+                element: id,
+                text: "",
+                texAlign: "",
+                textDecoration: "",
+                backgroundColor: "",
+                color: "",
+                margin: "",
+                width: "",
+                height: "",
+                padding: ""
+            };
+            newElementsArr.push(newElement);
+            setElementsArr(newElementsArr);
+            setCurrentElement(newElement);
+        } else if (area === "dropArea") {
+            const dragItemContent = newElementsArr[dragItem.current];
+            const dragItemEnterContent = newElementsArr[dragOverItem.current];
+            console.log("handleDrop selected item:", dragItemContent);
+            console.log("handleDrop drager over item:", dragItemEnterContent);
+            newElementsArr.splice(dragItem.current, 1);
+            newElementsArr.splice(dragOverItem.current, 0, dragItemContent);
+            dragItem.current = null;
+            dragOverItem.current = null;
+            reorderElArr(newElementsArr);
+            setElementsArr(newElementsArr);
+        }
+    };
+    const reorderElArr = (arr)=>{
+        arr.forEach((el, ind)=>{
+            el.id = ind;
+        });
+=======
         const newElement = {
             id: elementsArr.length,
             element: id,
@@ -7136,6 +7183,7 @@ const SideBar = (props)=>{
         newElementsArr.push(newElement);
         setElementsArr(newElementsArr);
         setCurrentElement(newElement);
+>>>>>>> dev
     };
     const handleClick = (id)=>{
         setCurrentElement(elementsArr[id]);
@@ -7154,6 +7202,10 @@ const SideBar = (props)=>{
     const htmlTags = elementsArr.map((elements, index)=>{
         return mod.createElement("div", {
             draggable: "true",
+            onDragStart: (e)=>handleDragStart(e, 'dropArea'),
+            onDragEnter: (e)=>{
+                dragEnter(e, index);
+            },
             className: "draggedTags",
             onClick: ()=>handleClick(index),
             id: index
@@ -7183,7 +7235,7 @@ const SideBar = (props)=>{
         id: "side"
     }, mod.createElement("div", {
         id: "div",
-        onDragStart: handleDragStart
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(142,233,172)',
@@ -7195,7 +7247,7 @@ const SideBar = (props)=>{
         draggable: "true"
     }, " ", "DIV")), mod.createElement("div", {
         id: "paragraph",
-        onDragStart: handleDragStart
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(148,233,168)',
@@ -7207,7 +7259,7 @@ const SideBar = (props)=>{
         draggable: "true"
     }, " ", "PARAGRAPH")), mod.createElement("div", {
         id: "button",
-        onDragStart: handleDragStart
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(152,233,166)',
@@ -7218,8 +7270,13 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "BUTTON")), mod.createElement("div", {
+<<<<<<< HEAD
+        id: "image",
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
+=======
         id: "img",
         onDragStart: handleDragStart
+>>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(158,233,163)',
@@ -7230,8 +7287,13 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "IMAGE")), mod.createElement("div", {
+<<<<<<< HEAD
+        id: "header 1",
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
+=======
         id: "h1",
         onDragStart: handleDragStart
+>>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(163,233,160)',
@@ -7242,8 +7304,13 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "HEADER 1")), mod.createElement("div", {
+<<<<<<< HEAD
+        id: "header 2",
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
+=======
         id: "h2",
         onDragStart: handleDragStart
+>>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(168,233,158)',
@@ -7254,8 +7321,13 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "HEADER 2")), mod.createElement("div", {
+<<<<<<< HEAD
+        id: "header 3",
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
+=======
         id: "h3",
         onDragStart: handleDragStart
+>>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: "rgb(173,233,155)",
@@ -7267,7 +7339,7 @@ const SideBar = (props)=>{
         draggable: "true"
     }, " ", "HEADER 3")), mod.createElement("div", {
         id: "footer",
-        onDragStart: handleDragStart
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(178,233,152)',
@@ -7278,8 +7350,13 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "FOOTER")), mod.createElement("div", {
+<<<<<<< HEAD
+        id: "ordered list",
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
+=======
         id: "ol",
         onDragStart: handleDragStart
+>>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(187,233,147)',
@@ -7290,8 +7367,13 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "LIST (OL)")), mod.createElement("div", {
+<<<<<<< HEAD
+        id: "unordered list",
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
+=======
         id: "ul",
         onDragStart: handleDragStart
+>>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(196,233,143)',
@@ -7303,7 +7385,7 @@ const SideBar = (props)=>{
         draggable: "true"
     }, " ", "LIST (UL)")), mod.createElement("div", {
         id: "input",
-        onDragStart: handleDragStart
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(202,233,139)',
@@ -7315,7 +7397,7 @@ const SideBar = (props)=>{
         draggable: "true"
     }, " ", "INPUT")), mod.createElement("div", {
         id: "link",
-        onDragStart: handleDragStart
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(207,233,137)',
@@ -7327,7 +7409,7 @@ const SideBar = (props)=>{
         draggable: "true"
     }, " ", "LINK")), mod.createElement("div", {
         id: "label",
-        onDragStart: handleDragStart
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(212,233,134)',
@@ -7339,7 +7421,7 @@ const SideBar = (props)=>{
         draggable: "true"
     }, " ", "LABEL")), mod.createElement("div", {
         id: "span",
-        onDragStart: handleDragStart
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(218,233,131)',
@@ -7351,7 +7433,7 @@ const SideBar = (props)=>{
         draggable: "true"
     }, " ", "SPAN")), mod.createElement("div", {
         id: "form",
-        onDragStart: handleDragStart
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(222,233,128)',
@@ -7363,7 +7445,7 @@ const SideBar = (props)=>{
         draggable: "true"
     }, " ", "FORM")), mod.createElement("div", {
         id: "menu",
-        onDragStart: handleDragStart
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(227,233,126)',
@@ -7375,7 +7457,7 @@ const SideBar = (props)=>{
         draggable: "true"
     }, " ", "MENU")), mod.createElement("div", {
         id: "label",
-        onDragStart: handleDragStart
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(232,233,123)',
@@ -7387,7 +7469,7 @@ const SideBar = (props)=>{
         draggable: "true"
     }, " ", "TITLE")), mod.createElement("div", {
         id: "span",
-        onDragStart: handleDragStart
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(238,233,120)',
@@ -7735,7 +7817,6 @@ const CodePreview = (props)=>{
             'This is your link';
             eleSecond = `/>`;
         }
-        console.log(1, elementsArr[index].textAlign);
         let bracket = '';
         let classTag = '';
         let bracket2 = '';
@@ -8090,7 +8171,11 @@ function Buttons(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+<<<<<<< HEAD
+                project_id: project
+=======
                 project_id: 21
+>>>>>>> dev
             }),
             mode: 'no-cors'
         }).then((data)=>data.json()).catch((err)=>console.log(err));
@@ -8103,7 +8188,10 @@ function Buttons(props) {
         const body = {
             project_id: project,
             elementsArr: elementsArr,
+<<<<<<< HEAD
+=======
             project: project,
+>>>>>>> dev
             user: user
         };
         await fetch('http://localhost:8080/home', {
@@ -8245,7 +8333,12 @@ const App = ()=>{
     const [project, setProject] = mod.useState('');
     const [user, setUser] = mod.useState('');
 =======
+<<<<<<< HEAD
+    const [project, setProject] = mod.useState('');
+    const [user, setUser] = mod.useState('');
+=======
     console.log("elementsArr in app", elementsArr);
+>>>>>>> dev
 >>>>>>> dev
     const [inputText, setInputText] = mod.useState('');
     const [textAlign, setTextAlign] = mod.useState('');
@@ -8304,3 +8397,14 @@ const App = ()=>{
         style: buttonsStyle
     }, mod.createElement(Buttons, {
         elementsArr: elementsArr,
+<<<<<<< HEAD
+        setElementsArr: setElementsArr,
+        project: project,
+        setProject: setProject,
+        user: user,
+        setUser: setUser
+    })));
+};
+mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(App, null)), document.getElementById('root'));
+=======
+>>>>>>> dev
