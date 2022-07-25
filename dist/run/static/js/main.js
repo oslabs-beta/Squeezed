@@ -8114,7 +8114,6 @@ const App = ()=>{
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
     const [currentElement, setCurrentElement] = mod.useState('drag into here');
-    console.log("elementsArr in app", elementsArr);
     const [inputText, setInputText] = mod.useState('');
     const [textAlign, setTextAlign] = mod.useState('');
     const [textDecoration, setTextDecoration] = mod.useState('');
@@ -8124,13 +8123,8 @@ const App = ()=>{
     const [width, setWidth] = mod.useState('');
     const [height, setHeight] = mod.useState('');
     const [padding, setPadding] = mod.useState('');
-    return mod.createElement("div", {
-        className: "app",
-        style: styles
-    }, mod.createElement("div", {
-        style: sideBarStyle
+    console.log("elementsArr in app", elementsArr);
     }, mod.createElement(SideBar, {
-        elementsArr: elementsArr,
         setElementsArr: setElementsArr,
         currentElement: currentElement,
         setCurrentElement: setCurrentElement,
@@ -8169,19 +8163,6 @@ const App = ()=>{
     }, mod.createElement(Buttons, {
         elementsArr: elementsArr,
         setElementsArr: setElementsArr
-    })), mod.createElement("div", null, mod.createElement(T1, {
-        to: "/home"
-    }, mod.createElement("button", null))));
+    })));
 };
-const Login = ()=>{
-    return mod.createElement("div", null, mod.createElement("h1", null, "Login Page"), mod.createElement(T1, {
-        to: "/home"
-    }, mod.createElement("button", null, "Click me!")));
-};
-mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(Y1, null, mod.createElement(Ve1, null, mod.createElement(me1, {
-    path: "/",
-    element: mod.createElement(Login, null)
-}), mod.createElement(me1, {
-    path: "/home",
-    element: mod.createElement(App, null)
-})))), document.getElementById('root'));
+mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(App, null)), document.getElementById('root'));

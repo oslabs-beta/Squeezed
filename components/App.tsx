@@ -6,8 +6,6 @@ import Preview from './preview/Preview.tsx';
 import Buttons from './Buttons.tsx';
 import { Link } from '../deps.tsx'
 
-
-
 interface Props{
   elementsArr: string[];
   setElementsArr: React.Dispatch<React.SetStateAction<string>>;
@@ -15,12 +13,8 @@ interface Props{
   setContent: React.Dispatch<React.SetStateAction<string>>;
   // currentElement: string;
 }
-
-// function h(this: any, props: any) {
   
-  
-  
-  const App = () => {
+const App = () => {
   
   //Styling
   const sideBarStyle = { 
@@ -39,27 +33,23 @@ interface Props{
   const previewStyle = { 
     gridArea: 'prev',
     backgroundColor: "#2D3033",
-     fontSize: '30px',
-     borderRight: "3px solid #68EDA7",
-     borderButtom: "3px solid #FFE958",
-
-
+    fontSize: '30px',
+    borderRight: "3px solid #68EDA7",
+    borderButtom: "3px solid #FFE958",  
   } as const;
   
   const buttonsStyle = { 
     gridArea: 'buttons',
     backgroundColor: "#2D3033",
-borderLeft: "3px solid #FFE958",
-borderButtom: "3px solid #FFE958",
-    fontSize: '30px',
-
+    borderLeft: "3px solid #FFE958",
+    borderButtom: "3px solid #FFE958",
+    fontSize: '30px'
   } as const;
   
   const styles = {
     display: 'grid',
     backgroundColor: 'black',
     borderButtom: "3px solid #FFE958",
-
     color: '#68EDA7',
     gridTemplate: 'auto / repeat(15, 1fr)',
     gridTemplateAreas:
@@ -88,16 +78,14 @@ borderButtom: "3px solid #FFE958",
     width: '100%',
     height: '100%'
   } as const;
-  
-  // type elementObj = {
-  //   id: number,
-  //   el
-  // }
 
   //State
   const [elementsArr, setElementsArr] = React.useState<any[]>([]);
   const [currentElement, setCurrentElement] = React.useState<any>('drag into here');
-  console.log("elementsArr in app", elementsArr);
+  const [project, setProject] = React.useState<any>('');
+  const [user, setUser] = React.useState<any>('');
+  
+  //Customization state
   const [inputText, setInputText] = (React as any).useState('');
   const [textAlign, setTextAlign] = (React as any).useState('');
   const [textDecoration, setTextDecoration] = (React as any).useState('');
@@ -108,18 +96,31 @@ borderButtom: "3px solid #FFE958",
   const [height, setHeight] = (React as any).useState('');
   const [padding, setPadding] = (React as any).useState('');
 
+  console.log("elementsArr in app", elementsArr);
+
   return (
     <div className="app" style={styles}>
       <div style={sideBarStyle}><SideBar elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding}/></div>
       {/* <div style={customizationStyle}><Customization elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding} */}
       <div style={customizationStyle}><Customization elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} /></div>
       {/* <div style={previewStyle}><Preview elementsArr={elementsArr} setElementsArr={setElementsArr} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding} */}
-      <div style={previewStyle}><Preview elementsArr={elementsArr} setElementsArr={setElementsArr} /></div>
-      <div style={buttonsStyle}><Buttons elementsArr={elementsArr} setElementsArr={setElementsArr} /></div>
-      <div>
-        <Link to="/home">
-          <button></button>
-        </Link>
+      
+      <div style={previewStyle}>
+        <Preview 
+          elementsArr={elementsArr} 
+          setElementsArr={setElementsArr} 
+        />
+      </div>
+      
+      <div style={buttonsStyle}>
+        <Buttons 
+          elementsArr={elementsArr} 
+          setElementsArr={setElementsArr} 
+          project={project}
+          setProject={setProject}
+          user={user}
+          setUser={setUser}
+        />
       </div>
     </div>
   );
@@ -129,63 +130,5 @@ export default App;
 
 // green #68EDA7
 //yellow #FFE958
-
-// const App = () => {
-
-//   const SideBar = styled.div `
-//     gridArea: side;
-//     backgroundColor: rgb(255, 123, 0);
-//     border: 2px solid black;
-//     fontSize: 30px;
-
-
-//   const Container = styled.div` 
-//     display: grid;
-//     backgroundColor: black;
-//     gridTemplate: auto / repeat(7, 1fr);
-//     border: 2px solid pink;
-//     gridTemplateAreas:
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "side dd dd dd dd prev prev"
-//     "buttons cust cust cust cust prev prev"
-//     "buttons cust cust cust cust prev prev"
-//     "buttons cust cust cust cust prev prev"
-//     "buttons cust cust cust cust prev prev"
-//     "buttons cust cust cust cust prev prev"
-//     "buttons cust cust cust cust prev prev"
-//     "buttons cust cust cust cust prev prev"
-//     "buttons cust cust cust cust prev prev"
-//     "buttons cust cust cust cust prev prev"
-//     "buttons cust cust cust cust prev prev"
-//     "buttons cust cust cust cust prev prev";
-//     height: 100%;
-//     width: 100%;
-
-
-//  `;
-
-//   return (
-
-//   <Container>
-//     <SideBar>SideBar</SideBar>
-//   </Container>
-//   )
-// };
-
-// export default App;
 
 
