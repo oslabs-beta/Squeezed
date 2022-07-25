@@ -7100,7 +7100,7 @@ const mod1 = {
 };
 const SideBar = (props)=>{
     const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
-    const { inputText , setInputText , textAlign , setTextAlign , textDecoration , setTextDecoration , backgroundColor , setBackgroundColor , color , setColor , margin , setMargin , width , setWidth , height , setHeight , padding , setPadding ,  } = props;
+    const { setInputText , setTextAlign , setTextDecoration , setBackgroundColor , setColor , setMargin , setWidth , setHeight , setPadding , setFontSize , setClassName  } = props;
     const [dragOver, setDragOver] = mod.useState(false);
     const [content, setContent] = mod.useState('drag into here');
     const handleDragOverStart = ()=>setDragOver(true);
@@ -7128,7 +7128,6 @@ const SideBar = (props)=>{
         const newElementsArr = [
             ...elementsArr
         ];
-<<<<<<< HEAD
         if (area === "dragArea") {
             const id = event.dataTransfer.getData("id");
             setContent(id);
@@ -7165,28 +7164,31 @@ const SideBar = (props)=>{
         arr.forEach((el, ind)=>{
             el.id = ind;
         });
-=======
-        const newElement = {
-            id: elementsArr.length,
-            element: id,
-            text: "",
-            texAlign: "",
-            textDecoration: "",
-            backgroundColor: "",
-            color: "",
-            margin: "",
-            width: "",
-            height: "",
-            padding: "",
-            fontSize: ""
-        };
-        newElementsArr.push(newElement);
-        setElementsArr(newElementsArr);
-        setCurrentElement(newElement);
->>>>>>> dev
     };
     const handleClick = (id)=>{
         setCurrentElement(elementsArr[id]);
+        const a = elementsArr[id].text;
+        const b = elementsArr[id].textAlign;
+        const c = elementsArr[id].textDecoration;
+        const d = elementsArr[id].backgroundColor;
+        const e = elementsArr[id].color;
+        const f = elementsArr[id].margin;
+        const g = elementsArr[id].width;
+        const h = elementsArr[id].height;
+        const i = elementsArr[id].padding;
+        const j = elementsArr[id].setFontSize;
+        const k = elementsArr[id].setClassName;
+        setInputText(a);
+        setTextAlign(b);
+        setTextDecoration(c);
+        setBackgroundColor(d);
+        setColor(e);
+        setMargin(f);
+        setWidth(g);
+        setHeight(h);
+        setPadding(i);
+        setFontSize(j);
+        setClassName(k);
     };
     const deleteElement = (id)=>{
         if (elementsArr.length === 1) {
@@ -7270,13 +7272,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "BUTTON")), mod.createElement("div", {
-<<<<<<< HEAD
         id: "image",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
-        id: "img",
-        onDragStart: handleDragStart
->>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(158,233,163)',
@@ -7287,13 +7284,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "IMAGE")), mod.createElement("div", {
-<<<<<<< HEAD
         id: "header 1",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
-        id: "h1",
-        onDragStart: handleDragStart
->>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(163,233,160)',
@@ -7304,13 +7296,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "HEADER 1")), mod.createElement("div", {
-<<<<<<< HEAD
         id: "header 2",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
-        id: "h2",
-        onDragStart: handleDragStart
->>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(168,233,158)',
@@ -7321,13 +7308,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "HEADER 2")), mod.createElement("div", {
-<<<<<<< HEAD
         id: "header 3",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
-        id: "h3",
-        onDragStart: handleDragStart
->>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: "rgb(173,233,155)",
@@ -7350,13 +7332,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "FOOTER")), mod.createElement("div", {
-<<<<<<< HEAD
         id: "ordered list",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
-        id: "ol",
-        onDragStart: handleDragStart
->>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(187,233,147)',
@@ -7367,13 +7344,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "LIST (OL)")), mod.createElement("div", {
-<<<<<<< HEAD
         id: "unordered list",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
-        id: "ul",
-        onDragStart: handleDragStart
->>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(196,233,143)',
@@ -7493,19 +7465,7 @@ const Routing = (props)=>{
     return mod.createElement("div", null, "Routing page in react router");
 };
 const Styling = (props)=>{
-    const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
-    const [inputText, setInputText] = mod.useState('');
-    const [textAlign, setTextAlign] = mod.useState('');
-    const [textDecoration, setTextDecoration] = mod.useState('');
-    const [backgroundColor, setBackgroundColor] = mod.useState('');
-    const [color, setColor] = mod.useState('');
-    const [margin, setMargin] = mod.useState('');
-    const [width, setWidth] = mod.useState('');
-    const [height, setHeight] = mod.useState('');
-    const [padding, setPadding] = mod.useState('');
-    const [fontSize, setFontSize] = mod.useState('');
-    const [className, setClassName] = mod.useState('');
-    const [border, setBorder] = mod.useState('');
+    const { elementsArr , setElementsArr , currentElement , setCurrentElement , inputText , setInputText , textAlign , setTextAlign , textDecoration , setTextDecoration , backgroundColor , setBackgroundColor , color , setColor , margin , setMargin , width , setWidth , height , setHeight , padding , setPadding , fontSize , setFontSize , className , setClassName ,  } = props;
     const handleSubmit = async (e)=>{
         e.preventDefault();
         const updateCurrentElement = {
@@ -7521,8 +7481,7 @@ const Styling = (props)=>{
             height: height,
             padding: padding,
             fontSize: fontSize,
-            className: className,
-            border: border
+            className: className
         };
         setCurrentElement(updateCurrentElement);
         elementsArr[currentElement.id] = updateCurrentElement;
@@ -7537,7 +7496,6 @@ const Styling = (props)=>{
         setPadding('');
         setFontSize('');
         setClassName('');
-        setBorder('');
     };
     return mod.createElement("form", {
         onSubmit: handleSubmit,
@@ -7603,15 +7561,7 @@ const Styling = (props)=>{
         type: "text",
         placeholder: "Enter margin value",
         className: "input"
-    }), mod.createElement("br", null), mod.createElement("label", {
-        htmlFor: "border"
-    }, "Border "), mod.createElement("input", {
-        value: border,
-        onChange: (e)=>setBorder(e.target.value),
-        type: "text",
-        placeholder: "Enter border",
-        className: "input"
-    })), mod.createElement("div", {
+    }), mod.createElement("br", null)), mod.createElement("div", {
         style: {
             float: 'right',
             marginTop: '-130px',
@@ -7679,14 +7629,36 @@ const Styling = (props)=>{
     }, "Submit"));
 };
 const MainContainer = (props)=>{
-    const { elementsArr , setElementsArr , customizationPage , setCustomizationPage  } = props;
-    const { currentElement , setCurrentElement  } = props;
+    const { elementsArr , setElementsArr , currentElement , setCurrentElement , inputText , setInputText , textAlign , setTextAlign , textDecoration , setTextDecoration , backgroundColor , setBackgroundColor , color , setColor , margin , setMargin , width , setWidth , height , setHeight , padding , setPadding , fontSize , setFontSize , className , setClassName ,  } = props;
+    const { customizationPage , setCustomizationPage  } = props;
     let page;
     if (customizationPage === 'styling') page = mod.createElement(Styling, {
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr,
         currentElement: currentElement,
         setCurrentElement: setCurrentElement,
-        elementsArr: elementsArr,
-        setElementsArr: setElementsArr
+        inputText: inputText,
+        setInputText: setInputText,
+        textAlign: textAlign,
+        setTextAlign: setTextAlign,
+        textDecoration: textDecoration,
+        setTextDecoration: setTextDecoration,
+        backgroundColor: backgroundColor,
+        setBackgroundColor: setBackgroundColor,
+        color: color,
+        setColor: setColor,
+        margin: margin,
+        setMargin: setMargin,
+        width: width,
+        setWidth: setWidth,
+        height: height,
+        setHeight: setHeight,
+        padding: padding,
+        setPadding: setPadding,
+        fontSize: fontSize,
+        setFontSize: setFontSize,
+        className: className,
+        setClassName: setClassName
     });
     if (customizationPage === 'routing') page = mod.createElement(Routing, null);
     return mod.createElement("div", {
@@ -7700,19 +7672,41 @@ const Navbar = (props)=>{
     });
 };
 const Customization = (props)=>{
-    const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
+    const { elementsArr , setElementsArr , currentElement , setCurrentElement , inputText , setInputText , textAlign , setTextAlign , textDecoration , setTextDecoration , backgroundColor , setBackgroundColor , color , setColor , margin , setMargin , width , setWidth , height , setHeight , padding , setPadding , fontSize , setFontSize , className , setClassName ,  } = props;
     const [customizationPage, setCustomizationPage] = mod.useState('styling');
     return mod.createElement("div", {
         className: "container"
     }, mod.createElement(Navbar, {
         setCustomizationPage: setCustomizationPage
     }), mod.createElement(MainContainer, {
-        customizationPage: customizationPage,
-        setCustomizationPage: setCustomizationPage,
         elementsArr: elementsArr,
         setElementsArr: setElementsArr,
+        customizationPage: customizationPage,
+        setCustomizationPage: setCustomizationPage,
         currentElement: currentElement,
-        setCurrentElement: setCurrentElement
+        setCurrentElement: setCurrentElement,
+        inputText: inputText,
+        setInputText: setInputText,
+        textAlign: textAlign,
+        setTextAlign: setTextAlign,
+        textDecoration: textDecoration,
+        setTextDecoration: setTextDecoration,
+        backgroundColor: backgroundColor,
+        setBackgroundColor: setBackgroundColor,
+        color: color,
+        setColor: setColor,
+        margin: margin,
+        setMargin: setMargin,
+        width: width,
+        setWidth: setWidth,
+        height: height,
+        setHeight: setHeight,
+        padding: padding,
+        setPadding: setPadding,
+        fontSize: fontSize,
+        setFontSize: setFontSize,
+        className: className,
+        setClassName: setClassName
     }));
 };
 const CodePreview = (props)=>{
@@ -8171,11 +8165,7 @@ function Buttons(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-<<<<<<< HEAD
                 project_id: project
-=======
-                project_id: 21
->>>>>>> dev
             }),
             mode: 'no-cors'
         }).then((data)=>data.json()).catch((err)=>console.log(err));
@@ -8188,10 +8178,7 @@ function Buttons(props) {
         const body = {
             project_id: project,
             elementsArr: elementsArr,
-<<<<<<< HEAD
-=======
             project: project,
->>>>>>> dev
             user: user
         };
         await fetch('http://localhost:8080/home', {
@@ -8329,17 +8316,8 @@ const App = ()=>{
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
     const [currentElement, setCurrentElement] = mod.useState('drag into here');
-<<<<<<< HEAD
     const [project, setProject] = mod.useState('');
     const [user, setUser] = mod.useState('');
-=======
-<<<<<<< HEAD
-    const [project, setProject] = mod.useState('');
-    const [user, setUser] = mod.useState('');
-=======
-    console.log("elementsArr in app", elementsArr);
->>>>>>> dev
->>>>>>> dev
     const [inputText, setInputText] = mod.useState('');
     const [textAlign, setTextAlign] = mod.useState('');
     const [textDecoration, setTextDecoration] = mod.useState('');
@@ -8349,10 +8327,9 @@ const App = ()=>{
     const [width, setWidth] = mod.useState('');
     const [height, setHeight] = mod.useState('');
     const [padding, setPadding] = mod.useState('');
-<<<<<<< HEAD
+    const [fontSize, setFontSize] = mod.useState('');
+    const [className, setClassName] = mod.useState('');
     console.log("elementsArr in app", elementsArr);
-=======
->>>>>>> dev
     return mod.createElement("div", {
         className: "app",
         style: styles
@@ -8380,14 +8357,40 @@ const App = ()=>{
         height: height,
         setHeight: setHeight,
         padding: padding,
-        setPadding: setPadding
+        setPadding: setPadding,
+        fontSize: fontSize,
+        setFontSize: setFontSize,
+        className: className,
+        setClassName: setClassName
     })), mod.createElement("div", {
         style: customizationStyle
     }, mod.createElement(Customization, {
         elementsArr: elementsArr,
         setElementsArr: setElementsArr,
         currentElement: currentElement,
-        setCurrentElement: setCurrentElement
+        setCurrentElement: setCurrentElement,
+        inputText: inputText,
+        setInputText: setInputText,
+        textAlign: textAlign,
+        setTextAlign: setTextAlign,
+        textDecoration: textDecoration,
+        setTextDecoration: setTextDecoration,
+        backgroundColor: backgroundColor,
+        setBackgroundColor: setBackgroundColor,
+        color: color,
+        setColor: setColor,
+        margin: margin,
+        setMargin: setMargin,
+        width: width,
+        setWidth: setWidth,
+        height: height,
+        setHeight: setHeight,
+        padding: padding,
+        setPadding: setPadding,
+        fontSize: fontSize,
+        setFontSize: setFontSize,
+        className: className,
+        setClassName: setClassName
     })), mod.createElement("div", {
         style: previewStyle
     }, mod.createElement(Preview, {
@@ -8397,7 +8400,6 @@ const App = ()=>{
         style: buttonsStyle
     }, mod.createElement(Buttons, {
         elementsArr: elementsArr,
-<<<<<<< HEAD
         setElementsArr: setElementsArr,
         project: project,
         setProject: setProject,
@@ -8405,6 +8407,27 @@ const App = ()=>{
         setUser: setUser
     })));
 };
-mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(App, null)), document.getElementById('root'));
-=======
->>>>>>> dev
+const Login = ()=>{
+    return mod.createElement("div", null, mod.createElement("h1", null, "Login Page"), mod.createElement(T1, {
+        to: "/home"
+    }, mod.createElement("button", null, "Click me!")), mod.createElement(T1, {
+        to: "/signup"
+    }, mod.createElement("button", null, "Click me to go to Signup!")));
+};
+const Signup = ()=>{
+    return mod.createElement("div", null, mod.createElement("h1", null, "Signup"), mod.createElement(T1, {
+        to: "/home"
+    }, mod.createElement("button", null, "Click me to go to App!")), mod.createElement(T1, {
+        to: "/"
+    }, mod.createElement("button", null, "Click me to go to Login!")));
+};
+mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(Y1, null, mod.createElement(Ve1, null, mod.createElement(me1, {
+    path: "/",
+    element: mod.createElement(Login, null)
+}), mod.createElement(me1, {
+    path: "/signup",
+    element: mod.createElement(Signup, null)
+}), mod.createElement(me1, {
+    path: "/home",
+    element: mod.createElement(App, null)
+})))), document.getElementById('root'));
