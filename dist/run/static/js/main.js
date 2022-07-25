@@ -7495,7 +7495,6 @@ const App = ()=>{
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
     const [currentElement, setCurrentElement] = mod.useState('drag into here');
-    console.log("elementsArr in app", elementsArr);
     const [inputText, setInputText] = mod.useState('');
     const [textAlign, setTextAlign] = mod.useState('');
     const [textDecoration, setTextDecoration] = mod.useState('');
@@ -7505,6 +7504,7 @@ const App = ()=>{
     const [width, setWidth] = mod.useState('');
     const [height, setHeight] = mod.useState('');
     const [padding, setPadding] = mod.useState('');
+    console.log("elementsArr in app", elementsArr);
     return mod.createElement("div", {
         className: "app",
         style: styles
