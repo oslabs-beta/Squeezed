@@ -1,45 +1,72 @@
 //import statements
-// import React from 'react';
 import { React } from '../deps.tsx';
-// import { useState, useEffect } from "react"
 import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
 
-
-export default function Buttons(props:any){
+export default function Buttons(props:any) {
 
 // const [error, setError] = useState(null);
 // const [isLoaded, setIsLoaded] = useState(false);
 // const [items, setItems] = useState([]);
-const {elementsArr, setElementsArr, currentElement, setCurrentElement} = props;
+const {
+  elementsArr, 
+  setElementsArr, 
+  currentElement, 
+  setCurrentElement,
+  project,
+  setProject,
+  user,
+  setUser } = props;
 // const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
 // useEffect(() => {
 //   fetchResult()
 // }, []);
 // state
 
+// async function loadProject() {
+//   //fetch request to load project -> need to 
+//   await fetch('http://localhost:8080/home', {
+//       method: 'GET',
+//       mode: 'no-cors',
+//   })
+//   .then((data) => data.json())
+//   .then((data) => console.log(data))
+//   .catch((err) => console.log(err));
+
+//   // set user and project state to the info pulled from backend
+//   setProject(data.project);
+//   setUser(data.user);
+// }
+
 async function deleteData(){
   await fetch('http://localhost:8080/home', {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ project_id: 20, elementsArr: elementsArr }),
+      body: JSON.stringify({ project_id: 21 }),
       mode: 'no-cors',
   })
   .then((data) => data.json())
   .catch((err) => console.log(err));
-  setElementsArr([]);
-  setCurrentElement('');
+  // setElementsArr([]);
+  // setCurrentElement('');
 }
 
 function clear(){
+  //clears front end
   setElementsArr([]);
   setCurrentElement('');
 }
 
 async function save(){
+  const body = {
+    project_id: project,
+    elementsArr: elementsArr,
+    project: project,
+    user: user
+  }
   await fetch('http://localhost:8080/home', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ project_id: null, elementsArr: elementsArr }),
+      body: JSON.stringify(body),
       mode: 'no-cors',
    })
    .then((data) => data.json())

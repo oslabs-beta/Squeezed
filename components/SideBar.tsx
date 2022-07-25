@@ -8,7 +8,6 @@ const SideBar = (props:any) => {
   const [dragOver, setDragOver] = React.useState(false);
   const [content, setContent] = React.useState<string>('drag into here');
 
-
   const handleDragOverStart = () => setDragOver(true);
   const handleDragOverEnd = () => setDragOver(false);
 
@@ -44,13 +43,10 @@ const SideBar = (props:any) => {
     newElementsArr.push(newElement);
     setElementsArr(newElementsArr);
     setCurrentElement(newElement);
-
   };
  
   const handleClick = (id: any) => {
-
     setCurrentElement(elementsArr[id]);
-
   };
 
 const deleteElement = (id:any) => {

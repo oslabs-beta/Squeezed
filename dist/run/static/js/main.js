@@ -367,27 +367,648 @@ const mod = {
     useTransition: He,
     version: We
 };
+var f = Object.defineProperty;
+var s = (n, t)=>{
+    for(var r in t)f(n, r, {
+        get: t[r],
+        enumerable: !0
+    });
+};
+var o = {};
+s(o, {
+    default: ()=>e
+});
+function e() {
+    return e = Object.assign ? Object.assign.bind() : function(n) {
+        for(var t = 1; t < arguments.length; t++){
+            var r = arguments[t];
+            for(var a in r)Object.prototype.hasOwnProperty.call(r, a) && (n[a] = r[a]);
+        }
+        return n;
+    }, e.apply(this, arguments);
+}
+var { default: u , ...l } = o, i = (e ?? u) ?? l;
+var b;
+(function(e) {
+    e.Pop = "POP", e.Push = "PUSH", e.Replace = "REPLACE";
+})(b || (b = {}));
+var R = function(e) {
+    return e;
+};
+var M1 = "beforeunload", Y = "popstate";
+function K(e) {
+    e === void 0 && (e = {});
+    var y = e, s = y.window, i1 = s === void 0 ? document.defaultView : s, h = i1.history;
+    function f() {
+        var r = i1.location, n = r.pathname, t = r.search, c = r.hash, l = h.state || {};
+        return [
+            l.idx,
+            R({
+                pathname: n,
+                search: t,
+                hash: c,
+                state: l.usr || null,
+                key: l.key || "default"
+            })
+        ];
+    }
+    var u = null;
+    function L() {
+        if (u) v.call(u), u = null;
+        else {
+            var r = b.Pop, n = f(), t = n[0], c = n[1];
+            if (v.length) {
+                if (t != null) {
+                    var l = p - t;
+                    l && (u = {
+                        action: r,
+                        location: c,
+                        retry: function() {
+                            d(l * -1);
+                        }
+                    }, d(l));
+                }
+            } else T(r);
+        }
+    }
+    i1.addEventListener(Y, L);
+    var x = b.Pop, O = f(), p = O[0], k = O[1], _ = $1(), v = $1();
+    p == null && (p = 0, h.replaceState(i({}, h.state, {
+        idx: p
+    }), ""));
+    function A(r) {
+        return typeof r == "string" ? r : D(r);
+    }
+    function S(r, n) {
+        return n === void 0 && (n = null), R(i({
+            pathname: k.pathname,
+            hash: "",
+            search: ""
+        }, typeof r == "string" ? J(r) : r, {
+            state: n,
+            key: j()
+        }));
+    }
+    function H(r, n) {
+        return [
+            {
+                usr: r.state,
+                key: r.key,
+                idx: n
+            },
+            A(r)
+        ];
+    }
+    function E(r, n, t) {
+        return !v.length || (v.call({
+            action: r,
+            location: n,
+            retry: t
+        }), !1);
+    }
+    function T(r) {
+        x = r;
+        var n = f();
+        p = n[0], k = n[1], _.call({
+            action: x,
+            location: k
+        });
+    }
+    function a(r, n) {
+        var t = b.Push, c = S(r, n);
+        function l() {
+            a(r, n);
+        }
+        if (E(t, c, l)) {
+            var w = H(c, p + 1), m = w[0], P = w[1];
+            try {
+                h.pushState(m, "", P);
+            } catch  {
+                i1.location.assign(P);
+            }
+            T(t);
+        }
+    }
+    function o(r, n) {
+        var t = b.Replace, c = S(r, n);
+        function l() {
+            o(r, n);
+        }
+        if (E(t, c, l)) {
+            var w = H(c, p), m = w[0], P = w[1];
+            h.replaceState(m, "", P), T(t);
+        }
+    }
+    function d(r) {
+        h.go(r);
+    }
+    var g = {
+        get action () {
+            return x;
+        },
+        get location () {
+            return k;
+        },
+        createHref: A,
+        push: a,
+        replace: o,
+        go: d,
+        back: function() {
+            d(-1);
+        },
+        forward: function() {
+            d(1);
+        },
+        listen: function(n) {
+            return _.push(n);
+        },
+        block: function(n) {
+            var t = v.push(n);
+            return v.length === 1 && i1.addEventListener(M1, B1), function() {
+                t(), v.length || i1.removeEventListener(M1, B1);
+            };
+        }
+    };
+    return g;
+}
+function B1(e) {
+    e.preventDefault(), e.returnValue = "";
+}
+function $1() {
+    var e = [];
+    return {
+        get length () {
+            return e.length;
+        },
+        push: function(s) {
+            return e.push(s), function() {
+                e = e.filter(function(i) {
+                    return i !== s;
+                });
+            };
+        },
+        call: function(s) {
+            e.forEach(function(i) {
+                return i && i(s);
+            });
+        }
+    };
+}
+function j() {
+    return Math.random().toString(36).substr(2, 8);
+}
+function D(e) {
+    var y = e.pathname, s = y === void 0 ? "/" : y, i = e.search, h = i === void 0 ? "" : i, f = e.hash, u = f === void 0 ? "" : f;
+    return h && h !== "?" && (s += h.charAt(0) === "?" ? h : "?" + h), u && u !== "#" && (s += u.charAt(0) === "#" ? u : "#" + u), s;
+}
+function J(e) {
+    var y = {};
+    if (e) {
+        var s = e.indexOf("#");
+        s >= 0 && (y.hash = e.substr(s), e = e.substr(0, s));
+        var i = e.indexOf("?");
+        i >= 0 && (y.search = e.substr(i), e = e.substr(0, i)), e && (y.pathname = e);
+    }
+    return y;
+}
+var _ = Re(null), w1 = Re(null), y = Re({
+    outlet: null,
+    matches: []
+});
+function h(e, t) {
+    if (!e) throw new Error(t);
+}
+function k1(e, t, n) {
+    n === void 0 && (n = "/");
+    let a = typeof t == "string" ? J(t) : t, o = L1(a.pathname || "/", n);
+    if (o == null) return null;
+    let s = W(e);
+    G(s);
+    let r = null;
+    for(let i = 0; r == null && i < s.length; ++i)r = ae(s[i], o);
+    return r;
+}
+function W(e, t, n, a) {
+    return t === void 0 && (t = []), n === void 0 && (n = []), a === void 0 && (a = ""), e.forEach((o, s)=>{
+        let r = {
+            relativePath: o.path || "",
+            caseSensitive: o.caseSensitive === !0,
+            childrenIndex: s,
+            route: o
+        };
+        r.relativePath.startsWith("/") && (r.relativePath.startsWith(a) || h(!1), r.relativePath = r.relativePath.slice(a.length));
+        let i = m([
+            a,
+            r.relativePath
+        ]), l = n.concat(r);
+        o.children && o.children.length > 0 && (o.index === !0 && h(!1), W(o.children, t, l, i)), !(o.path == null && !o.index) && t.push({
+            path: i,
+            score: te(i, o.index),
+            routesMeta: l
+        });
+    }), t;
+}
+function G(e) {
+    e.sort((t, n)=>t.score !== n.score ? n.score - t.score : ne(t.routesMeta.map((a)=>a.childrenIndex), n.routesMeta.map((a)=>a.childrenIndex)));
+}
+var q1 = /^:\w+$/, K1 = 3, Q = 2, X = 1, Z = 10, ee = -2, S = (e)=>e === "*";
+function te(e, t) {
+    let n = e.split("/"), a = n.length;
+    return n.some(S) && (a += ee), t && (a += Q), n.filter((o)=>!S(o)).reduce((o, s)=>o + (q1.test(s) ? K1 : s === "" ? X : Z), a);
+}
+function ne(e, t) {
+    return e.length === t.length && e.slice(0, -1).every((a, o)=>a === t[o]) ? e[e.length - 1] - t[t.length - 1] : 0;
+}
+function ae(e, t) {
+    let { routesMeta: n  } = e, a = {}, o = "/", s = [];
+    for(let r = 0; r < n.length; ++r){
+        let i = n[r], l = r === n.length - 1, c = o === "/" ? t : t.slice(o.length) || "/", u = B2({
+            path: i.relativePath,
+            caseSensitive: i.caseSensitive,
+            end: l
+        }, c);
+        if (!u) return null;
+        Object.assign(a, u.params);
+        let f = i.route;
+        s.push({
+            params: a,
+            pathname: m([
+                o,
+                u.pathname
+            ]),
+            pathnameBase: T(m([
+                o,
+                u.pathnameBase
+            ])),
+            route: f
+        }), u.pathnameBase !== "/" && (o = m([
+            o,
+            u.pathnameBase
+        ]));
+    }
+    return s;
+}
+function B2(e, t) {
+    typeof e == "string" && (e = {
+        path: e,
+        caseSensitive: !1,
+        end: !0
+    });
+    let [n, a] = oe(e.path, e.caseSensitive, e.end), o = t.match(n);
+    if (!o) return null;
+    let s = o[0], r = s.replace(/(.)\/+$/, "$1"), i = o.slice(1);
+    return {
+        params: a.reduce((c, u, f)=>{
+            if (u === "*") {
+                let g = i[f] || "";
+                r = s.slice(0, s.length - g.length).replace(/(.)\/+$/, "$1");
+            }
+            return c[u] = re(i[f] || "", u), c;
+        }, {}),
+        pathname: s,
+        pathnameBase: r,
+        pattern: e
+    };
+}
+function oe(e, t, n) {
+    t === void 0 && (t = !1), n === void 0 && (n = !0);
+    let a = [], o = "^" + e.replace(/\/*\*?$/, "").replace(/^\/*/, "/").replace(/[\\.*+^$?{}|()[\]]/g, "\\$&").replace(/:(\w+)/g, (r, i)=>(a.push(i), "([^\\/]+)"));
+    return e.endsWith("*") ? (a.push("*"), o += e === "*" || e === "/*" ? "(.*)$" : "(?:\\/(.+)|\\/*)$") : o += n ? "\\/*$" : "(?:(?=[.~-]|%[0-9A-F]{2})|\\b|\\/|$)", [
+        new RegExp(o, t ? void 0 : "i"),
+        a
+    ];
+}
+function re(e, t) {
+    try {
+        return decodeURIComponent(e);
+    } catch  {
+        return e;
+    }
+}
+function ie1(e, t) {
+    t === void 0 && (t = "/");
+    let { pathname: n , search: a = "" , hash: o = ""  } = typeof e == "string" ? J(e) : e;
+    return {
+        pathname: n ? n.startsWith("/") ? n : se(n, t) : t,
+        search: ue(a),
+        hash: ce1(o)
+    };
+}
+function se(e, t) {
+    let n = t.replace(/\/+$/, "").split("/");
+    return e.split("/").forEach((o)=>{
+        o === ".." ? n.length > 1 && n.pop() : o !== "." && n.push(o);
+    }), n.length > 1 ? n.join("/") : "/";
+}
+function $2(e, t, n) {
+    let a = typeof e == "string" ? J(e) : e, o = e === "" || a.pathname === "" ? "/" : a.pathname, s;
+    if (o == null) s = n;
+    else {
+        let i = t.length - 1;
+        if (o.startsWith("..")) {
+            let l = o.split("/");
+            for(; l[0] === "..";)l.shift(), i -= 1;
+            a.pathname = l.join("/");
+        }
+        s = i >= 0 ? t[i] : "/";
+    }
+    let r = ie1(a, s);
+    return o && o !== "/" && o.endsWith("/") && !r.pathname.endsWith("/") && (r.pathname += "/"), r;
+}
+function le(e) {
+    return e === "" || e.pathname === "" ? "/" : typeof e == "string" ? J(e).pathname : e.pathname;
+}
+function L1(e, t) {
+    if (t === "/") return e;
+    if (!e.toLowerCase().startsWith(t.toLowerCase())) return null;
+    let n = e.charAt(t.length);
+    return n && n !== "/" ? null : e.slice(t.length) || "/";
+}
+var m = (e)=>e.join("/").replace(/\/\/+/g, "/"), T = (e)=>e.replace(/\/+$/, "").replace(/^\/*/, "/"), ue = (e)=>!e || e === "?" ? "" : e.startsWith("?") ? e : "?" + e, ce1 = (e)=>!e || e === "#" ? "" : e.startsWith("#") ? e : "#" + e;
+function Ee1(e) {
+    v() || h(!1);
+    let { basename: t , navigator: n  } = Pe(_), { hash: a , pathname: o , search: s  } = de1(e), r = o;
+    if (t !== "/") {
+        let i = le(e), l = i != null && i.endsWith("/");
+        r = o === "/" ? t + (l ? "/" : "") : m([
+            t,
+            o
+        ]);
+    }
+    return n.createHref({
+        pathname: r,
+        search: s,
+        hash: a
+    });
+}
+function v() {
+    return Pe(w1) != null;
+}
+function O() {
+    return v() || h(!1), Pe(w1).location;
+}
+function he1() {
+    v() || h(!1);
+    let { basename: e , navigator: t  } = Pe(_), { matches: n  } = Pe(y), { pathname: a  } = O(), o = JSON.stringify(n.map((i)=>i.pathnameBase)), s = Me(!1);
+    return Ve(()=>{
+        s.current = !0;
+    }), ge(function(i, l) {
+        if (l === void 0 && (l = {}), !s.current) return;
+        if (typeof i == "number") {
+            t.go(i);
+            return;
+        }
+        let c = $2(i, JSON.parse(o), a);
+        e !== "/" && (c.pathname = m([
+            e,
+            c.pathname
+        ])), (l.replace ? t.replace : t.push)(c, l.state);
+    }, [
+        e,
+        t,
+        o,
+        a
+    ]);
+}
+Re(null);
+function de1(e) {
+    let { matches: t  } = Pe(y), { pathname: n  } = O(), a = JSON.stringify(t.map((o)=>o.pathnameBase));
+    return qe(()=>$2(e, JSON.parse(a), n), [
+        e,
+        a,
+        n
+    ]);
+}
+function fe(e, t) {
+    v() || h(!1);
+    let { matches: n  } = Pe(y), a = n[n.length - 1], o = a ? a.params : {}, s = a ? a.pathname : "/", r = a ? a.pathnameBase : "/", i = a && a.route, l = O(), c;
+    if (t) {
+        var u;
+        let p = typeof t == "string" ? J(t) : t;
+        r === "/" || ((u = p.pathname) == null ? void 0 : u.startsWith(r)) || h(!1), c = p;
+    } else c = l;
+    let f = c.pathname || "/", g = r === "/" ? f : f.slice(r.length) || "/", E = k1(e, {
+        pathname: g
+    });
+    return I(E && E.map((p)=>Object.assign({}, p, {
+            params: Object.assign({}, o, p.params),
+            pathname: m([
+                r,
+                p.pathname
+            ]),
+            pathnameBase: p.pathnameBase === "/" ? r : m([
+                r,
+                p.pathnameBase
+            ])
+        })), n);
+}
+function I(e, t) {
+    return t === void 0 && (t = []), e == null ? null : e.reduceRight((n, a, o)=>Ce(y.Provider, {
+            children: a.route.element !== void 0 ? a.route.element : n,
+            value: {
+                outlet: n,
+                matches: t.concat(e.slice(0, o + 1))
+            }
+        }), null);
+}
+function me1(e) {
+    h(!1);
+}
+function ve1(e) {
+    let { basename: t = "/" , children: n = null , location: a , navigationType: o = b.Pop , navigator: s , static: r = !1  } = e;
+    v() && h(!1);
+    let i = T(t), l = qe(()=>({
+            basename: i,
+            navigator: s,
+            static: r
+        }), [
+        i,
+        s,
+        r
+    ]);
+    typeof a == "string" && (a = J(a));
+    let { pathname: c = "/" , search: u = "" , hash: f = "" , state: g = null , key: E = "default"  } = a, p = qe(()=>{
+        let V = L1(c, i);
+        return V == null ? null : {
+            pathname: V,
+            search: u,
+            hash: f,
+            state: g,
+            key: E
+        };
+    }, [
+        i,
+        c,
+        u,
+        f,
+        g,
+        E
+    ]);
+    return p == null ? null : Ce(_.Provider, {
+        value: l
+    }, Ce(w1.Provider, {
+        children: n,
+        value: {
+            location: p,
+            navigationType: o
+        }
+    }));
+}
+function Ve1(e) {
+    let { children: t , location: n  } = e;
+    return fe(b1(t), n);
+}
+function b1(e) {
+    let t = [];
+    return pe.forEach(e, (n)=>{
+        if (!be(n)) return;
+        if (n.type === de) {
+            t.push.apply(t, b1(n.props.children));
+            return;
+        }
+        n.type !== me1 && h(!1);
+        let a = {
+            caseSensitive: n.props.caseSensitive,
+            element: n.props.element,
+            index: n.props.index,
+            path: n.props.path
+        };
+        n.props.children && (a.children = b1(n.props.children)), t.push(a);
+    }), t;
+}
+function d() {
+    return d = Object.assign || function(e) {
+        for(var n = 1; n < arguments.length; n++){
+            var r = arguments[n];
+            for(var t in r)Object.prototype.hasOwnProperty.call(r, t) && (e[t] = r[t]);
+        }
+        return e;
+    }, d.apply(this, arguments);
+}
+function x(e, n) {
+    if (e == null) return {};
+    var r = {}, t = Object.keys(e), o, a;
+    for(a = 0; a < t.length; a++)o = t[a], !(n.indexOf(o) >= 0) && (r[o] = e[o]);
+    return r;
+}
+var I1 = [
+    "onClick",
+    "reloadDocument",
+    "replace",
+    "state",
+    "target",
+    "to"
+], K2 = [
+    "aria-current",
+    "caseSensitive",
+    "className",
+    "end",
+    "style",
+    "to",
+    "children"
+];
+function Y1(e) {
+    let { basename: n , children: r , window: t  } = e, o = Me();
+    o.current == null && (o.current = K({
+        window: t
+    }));
+    let a = o.current, [i, s] = ze({
+        action: a.action,
+        location: a.location
+    });
+    return Ue(()=>a.listen(s), [
+        a
+    ]), Ce(ve1, {
+        basename: n,
+        children: r,
+        location: i.location,
+        navigationType: i.action,
+        navigator: a
+    });
+}
+function M2(e) {
+    return !!(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey);
+}
+var T1 = we(function(n, r) {
+    let { onClick: t , reloadDocument: o , replace: a = !1 , state: i , target: s , to: l  } = n, u = x(n, I1), m = Ee1(l), y = F1(l, {
+        replace: a,
+        state: i,
+        target: s
+    });
+    function v(c) {
+        t && t(c), !c.defaultPrevented && !o && y(c);
+    }
+    return Ce("a", d({}, u, {
+        href: m,
+        onClick: v,
+        ref: r,
+        target: s
+    }));
+}), G1 = we(function(n, r) {
+    let { "aria-current": t = "page" , caseSensitive: o = !1 , className: a = "" , end: i = !1 , style: s , to: l , children: u  } = n, m = x(n, K2), y = O(), v = de1(l), c = y.pathname, f = v.pathname;
+    o || (c = c.toLowerCase(), f = f.toLowerCase());
+    let h = c === f || !i && c.startsWith(f) && c.charAt(f.length) === "/", A = h ? t : void 0, g;
+    typeof a == "function" ? g = a({
+        isActive: h
+    }) : g = [
+        a,
+        h ? "active" : null
+    ].filter(Boolean).join(" ");
+    let H = typeof s == "function" ? s({
+        isActive: h
+    }) : s;
+    return Ce(T1, d({}, m, {
+        "aria-current": A,
+        className: g,
+        ref: r,
+        style: H,
+        to: l
+    }), typeof u == "function" ? u({
+        isActive: h
+    }) : u);
+});
+function F1(e, n) {
+    let { target: r , replace: t , state: o  } = n === void 0 ? {} : n, a = he1(), i = O(), s = de1(e);
+    return ge((l)=>{
+        if (l.button === 0 && (!r || r === "_self") && !M2(l)) {
+            l.preventDefault();
+            let u = !!t || D(i) === D(s);
+            a(e, {
+                replace: u,
+                state: o
+            });
+        }
+    }, [
+        i,
+        a,
+        s,
+        t,
+        o,
+        r,
+        e
+    ]);
+}
 var __setImmediate$ = (cb, ...args)=>setTimeout(cb, 0, ...args);
 var U1 = Object.create;
-var $1 = Object.defineProperty;
-var X = Object.getOwnPropertyDescriptor;
-var Z = Object.getOwnPropertyNames;
-var ee = Object.getPrototypeOf, ne = Object.prototype.hasOwnProperty;
-var B1 = (e, n)=>()=>(n || e((n = {
+var $3 = Object.defineProperty;
+var X1 = Object.getOwnPropertyDescriptor;
+var Z1 = Object.getOwnPropertyNames;
+var ee1 = Object.getPrototypeOf, ne1 = Object.prototype.hasOwnProperty;
+var B3 = (e, n)=>()=>(n || e((n = {
             exports: {}
         }).exports, n), n.exports);
-var te = (e, n, t, l)=>{
-    if (n && typeof n == "object" || typeof n == "function") for (let i of Z(n))!ne.call(e, i) && i !== t && $1(e, i, {
+var te1 = (e, n, t, l)=>{
+    if (n && typeof n == "object" || typeof n == "function") for (let i of Z1(n))!ne1.call(e, i) && i !== t && $3(e, i, {
         get: ()=>n[i],
-        enumerable: !(l = X(n, i)) || l.enumerable
+        enumerable: !(l = X1(n, i)) || l.enumerable
     });
     return e;
 };
-var D = (e, n, t)=>(t = e != null ? U1(ee(e)) : {}, te(n || !e || !e.__esModule ? $1(t, "default", {
+var D1 = (e, n, t)=>(t = e != null ? U1(ee1(e)) : {}, te1(n || !e || !e.__esModule ? $3(t, "default", {
         value: e,
         enumerable: !0
     }) : t, e));
-var K = B1((r)=>{
+var K3 = B3((r)=>{
     "use strict";
     function T(e, n) {
         var t = e.length;
@@ -598,11 +1219,11 @@ var K = B1((r)=>{
         };
     };
 });
-var R = B1((oe, Q)=>{
+var R1 = B3((oe, Q)=>{
     "use strict";
-    Q.exports = K();
+    Q.exports = K3();
 });
-var S = D(R()), V = D(R()), { unstable_now: se , unstable_IdlePriority: ce1 , unstable_ImmediatePriority: fe , unstable_LowPriority: be1 , unstable_NormalPriority: pe1 , unstable_Profiling: _e1 , unstable_UserBlockingPriority: de1 , unstable_cancelCallback: ve1 , unstable_continueExecution: ye1 , unstable_forceFrameRate: me1 , unstable_getCurrentPriorityLevel: ge1 , unstable_getFirstCallbackNode: he1 , unstable_next: ke1 , unstable_pauseExecution: Pe1 , unstable_requestPaint: we1 , unstable_runWithPriority: xe1 , unstable_scheduleCallback: Ie1 , unstable_shouldYield: Ce1 , unstable_wrapCallback: Ee1  } = V, { default: le , ...ie1 } = V, Te1 = (S.default ?? le) ?? ie1;
+var S1 = D1(R1()), V = D1(R1()), { unstable_now: se1 , unstable_IdlePriority: ce2 , unstable_ImmediatePriority: fe1 , unstable_LowPriority: be1 , unstable_NormalPriority: pe1 , unstable_Profiling: _e1 , unstable_UserBlockingPriority: de2 , unstable_cancelCallback: ve2 , unstable_continueExecution: ye1 , unstable_forceFrameRate: me2 , unstable_getCurrentPriorityLevel: ge1 , unstable_getFirstCallbackNode: he2 , unstable_next: ke1 , unstable_pauseExecution: Pe1 , unstable_requestPaint: we1 , unstable_runWithPriority: xe1 , unstable_scheduleCallback: Ie1 , unstable_shouldYield: Ce1 , unstable_wrapCallback: Ee2  } = V, { default: le1 , ...ie2 } = V, Te1 = (S1.default ?? le1) ?? ie2;
 var Sa = Object.create;
 var lu = Object.defineProperty;
 var ka = Object.getOwnPropertyDescriptor;
@@ -7461,7 +8082,7 @@ const Preview = (props)=>{
     }));
 };
 function Buttons(props) {
-    const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
+    const { elementsArr , setElementsArr , currentElement , setCurrentElement , project , setProject , user , setUser  } = props;
     async function deleteData() {
         await fetch('http://localhost:8080/home', {
             method: 'DELETE',
@@ -7469,28 +8090,28 @@ function Buttons(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                project_id: 20,
-                elementsArr: elementsArr
+                project_id: 21
             }),
             mode: 'no-cors'
         }).then((data)=>data.json()).catch((err)=>console.log(err));
-        setElementsArr([]);
-        setCurrentElement('');
     }
     function clear() {
         setElementsArr([]);
         setCurrentElement('');
     }
     async function save() {
+        const body = {
+            project_id: project,
+            elementsArr: elementsArr,
+            project: project,
+            user: user
+        };
         await fetch('http://localhost:8080/home', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                project_id: null,
-                elementsArr: elementsArr
-            }),
+            body: JSON.stringify(body),
             mode: 'no-cors'
         }).then((data)=>data.json()).then((data)=>console.log("I'm on the front end", data)).catch((err)=>console.log(err));
     }
@@ -7620,7 +8241,12 @@ const App = ()=>{
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
     const [currentElement, setCurrentElement] = mod.useState('drag into here');
+<<<<<<< HEAD
+    const [project, setProject] = mod.useState('');
+    const [user, setUser] = mod.useState('');
+=======
     console.log("elementsArr in app", elementsArr);
+>>>>>>> dev
     const [inputText, setInputText] = mod.useState('');
     const [textAlign, setTextAlign] = mod.useState('');
     const [textDecoration, setTextDecoration] = mod.useState('');
@@ -7630,6 +8256,10 @@ const App = ()=>{
     const [width, setWidth] = mod.useState('');
     const [height, setHeight] = mod.useState('');
     const [padding, setPadding] = mod.useState('');
+<<<<<<< HEAD
+    console.log("elementsArr in app", elementsArr);
+=======
+>>>>>>> dev
     return mod.createElement("div", {
         className: "app",
         style: styles
@@ -7674,7 +8304,3 @@ const App = ()=>{
         style: buttonsStyle
     }, mod.createElement(Buttons, {
         elementsArr: elementsArr,
-        setElementsArr: setElementsArr
-    })));
-};
-mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(App, null)), document.getElementById('root'));

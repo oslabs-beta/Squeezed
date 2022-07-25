@@ -7,6 +7,6 @@ const router = new Router();
 router
   // .get('/home/:id', projectController.getproject)
   .post('/home', projectController.saveProject)
-
+  .delete('/home', projectController.deleteProject)
 
   export default router

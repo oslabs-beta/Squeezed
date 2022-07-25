@@ -2,6 +2,7 @@ import { Application, isHttpError, Status, Router} from "oak";
 import db from './db.ts'
 import accountRoutes from './routes/accountRoutes.ts'
 import projectRoutes from './routes/projectRoutes.ts'
+import { oakCors } from "https://deno.land/x/cors/mod.ts";
 
 const port = 8080;
 const app = new Application();
@@ -55,12 +56,14 @@ console.log(reqBody, typeof reqBody);
 ctx.response.status = 200;
 });
 
-app.use((ctx) => {
-console.log("hi we're in the backend");
-ctx.response.body = "Hello World!";
-ctx.response.status = 200;
-return
-});
+// app.use((ctx) => {
+// console.log("hi we're in the backend");
+// ctx.response.body = "Hello World!";
+// ctx.response.status = 200;
+// return
+// });
+
+app.use(oakCors());
 
 app.addEventListener("error", (evt) => {
 console.log(evt.error);
