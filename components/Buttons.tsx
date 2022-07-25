@@ -46,8 +46,8 @@ async function deleteData(){
   })
   .then((data) => data.json())
   .catch((err) => console.log(err));
-  setElementsArr([]);
-  setCurrentElement('');
+  // setElementsArr([]);
+  // setCurrentElement('');
 }
 
 function clear(){
@@ -60,6 +60,7 @@ async function save(){
   const body = {
     project_id: project,
     elementsArr: elementsArr,
+    project: project,
     user: user
   }
   await fetch('http://localhost:8080/home', {

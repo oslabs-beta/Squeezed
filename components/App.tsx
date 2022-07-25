@@ -4,6 +4,7 @@ import DragAndDrop from './DragAndDrop.tsx';
 import Customization from './customization/Customization.tsx';
 import Preview from './preview/Preview.tsx';
 import Buttons from './Buttons.tsx';
+import { Link } from '../deps.tsx'
 
 interface Props{
   elementsArr: string[];

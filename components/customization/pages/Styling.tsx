@@ -27,6 +27,10 @@ const Styling: any = (props:any) => {
   const [width, setWidth] = (React as any).useState('');
   const [height, setHeight] = (React as any).useState('');
   const [padding, setPadding] = (React as any).useState('');
+  const [fontSize, setFontSize] = (React as any).useState('');
+  const [className, setClassName] = (React as any).useState('');
+  const [border, setBorder] = (React as any).useState('');
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,7 +46,11 @@ const Styling: any = (props:any) => {
       margin: margin,
       width: width,
       height: height,
-      padding: padding
+      padding: padding,
+      fontSize: fontSize,
+      className: className,
+      border: border,
+
     };
     // console.log("updateCurrentElement: ", updateCurrentElement)
     setCurrentElement(updateCurrentElement);
@@ -62,6 +70,9 @@ const Styling: any = (props:any) => {
     setWidth('')
     setHeight('')
     setPadding('')
+    setFontSize('')
+    setClassName('')
+    setBorder('')
   };
 
 //   /**
@@ -103,8 +114,17 @@ const Styling: any = (props:any) => {
           style={{backgroundColor: '#68EDA7', color: 'black'}}
         /> 
         <br />
+        <label htmlFor="fontSize">Font Size </label>  
+        <input
+          value={fontSize}
+          onChange={(e) => setFontSize(e.target.value)}
+          type="text"
+          placeholder="Enter font size"
+          className="input"
 
-       
+        /> 
+
+       <br/>
 
         <label htmlFor="backgroundColor">Background </label>  
         <input
@@ -136,6 +156,15 @@ const Styling: any = (props:any) => {
 
         /> 
         <br />
+        <label htmlFor="border">Border </label>  
+        <input
+          value={border}
+          onChange={(e) => setBorder(e.target.value)}
+          type="text"
+          placeholder="Enter border"
+          className="input"
+
+        /> 
         
 
         </div>
@@ -184,8 +213,28 @@ const Styling: any = (props:any) => {
           <option>none</option>
         </select>
         <br />
-</div>
+        <label htmlFor="className">Class Name </label>  
+                <input
+                  value={className}
+                  onChange={(e) => setClassName(e.target.value)}
+                  type="text"
+                  placeholder="Enter Class Name"
+                  className="input"
+                  
+          /> 
+          <br/>
+        <label htmlFor="textAlign">Text Align </label>
+        <select onChange={e => setTextAlign(e.target.value)} style={{backgroundColor: '#68EDA7', color: 'black'}}
+>
+          <option>default</option>
+          <option>center</option>
+          <option>right</option>
+          <option>left</option>
+          <option>justify</option>
+        </select>
 <br/>
+        <br/>
+          </div>
         <button type="submit" className="btn"  style={{marginLeft: '42%', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", fontSize: '20px', marginBottom: '20px',color: "#2D3033"}}>
           Submit
         </button>
