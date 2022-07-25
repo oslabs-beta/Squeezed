@@ -8,6 +8,9 @@ const Login = () => {
             <Link to="/home">
             <button>Click me!</button>
             </Link>   
+            <Link to="/signup">
+            <button>Click me to go to Signup!</button>
+            </Link>
         </div>
     )
 }
