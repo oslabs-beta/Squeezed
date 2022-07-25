@@ -4,9 +4,8 @@ const Navbar: any = (props: any) => {
   const { setPreviewPage } = props;
 
   return (
-    <div className="navBar" style={{width: '100%', padding: '0px',fontSize: '25px',marginTop: '-29px', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033",  textAlign: 'center'}}>
-      <h3 style={{height: '38px'}}>Code Preview</h3>
-      {/* <button style={{width: '50%', padding: '0px', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", fontWeight: 'bolder', height: '50px'}}
+    <div className="navBar" style={{width: '100%', padding: '0px',fontSize: '25px',marginTop: '-29px', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033",  textAlign: 'center', border:'none'}}>
+      <button style={{width: '50%', padding: '0px', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", fontWeight: 'bolder', height: '50px', border:'none'}}
         className="codePreviewBtn"
         onClick={() => {
           setPreviewPage('codePreview');
@@ -14,14 +13,14 @@ const Navbar: any = (props: any) => {
       >
         <h3 className="codePreviewBtn">Code Preview</h3>
       </button>
-      <button style={{width: '50%', padding: '0px', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", fontWeight: 'bolder', height: '50px'}}
+      <button style={{width: '50%', padding: '0px', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", fontWeight: 'bolder', height: '50px',border: 'none', borderLeft:'2px solid black'}}
         className="islandPreviewBtn"
         onClick={() => {
           setPreviewPage('islandPreview');
         }}
       >
         <h3 className="islandPreviewBtn">Island Preview</h3>
-      </button> */}
+      </button>
     </div>
   )
 }

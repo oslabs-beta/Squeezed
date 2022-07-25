@@ -14,6 +14,7 @@ color: aquamarine;
 
 .draggedTags:active{
     background: pink;
+    
 }
 
 /* div.draggedTags.active{
