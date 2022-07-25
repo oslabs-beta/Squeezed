@@ -7128,7 +7128,6 @@ const SideBar = (props)=>{
         const newElementsArr = [
             ...elementsArr
         ];
-<<<<<<< HEAD
         if (area === "dragArea") {
             const id = event.dataTransfer.getData("id");
             setContent(id);
@@ -7143,7 +7142,9 @@ const SideBar = (props)=>{
                 margin: "",
                 width: "",
                 height: "",
-                padding: ""
+                padding: "",
+                fontSize: "",
+                fontWeight: ""
             };
             newElementsArr.push(newElement);
             setElementsArr(newElementsArr);
@@ -7165,25 +7166,6 @@ const SideBar = (props)=>{
         arr.forEach((el, ind)=>{
             el.id = ind;
         });
-=======
-        const newElement = {
-            id: elementsArr.length,
-            element: id,
-            text: "",
-            texAlign: "",
-            textDecoration: "",
-            backgroundColor: "",
-            color: "",
-            margin: "",
-            width: "",
-            height: "",
-            padding: "",
-            fontSize: ""
-        };
-        newElementsArr.push(newElement);
-        setElementsArr(newElementsArr);
-        setCurrentElement(newElement);
->>>>>>> dev
     };
     const handleClick = (id)=>{
         setCurrentElement(elementsArr[id]);
@@ -7270,13 +7252,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "BUTTON")), mod.createElement("div", {
-<<<<<<< HEAD
-        id: "image",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
         id: "img",
-        onDragStart: handleDragStart
->>>>>>> dev
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(158,233,163)',
@@ -7287,13 +7264,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "IMAGE")), mod.createElement("div", {
-<<<<<<< HEAD
-        id: "header 1",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
         id: "h1",
-        onDragStart: handleDragStart
->>>>>>> dev
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(163,233,160)',
@@ -7304,13 +7276,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "HEADER 1")), mod.createElement("div", {
-<<<<<<< HEAD
-        id: "header 2",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
         id: "h2",
-        onDragStart: handleDragStart
->>>>>>> dev
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(168,233,158)',
@@ -7321,13 +7288,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "HEADER 2")), mod.createElement("div", {
-<<<<<<< HEAD
-        id: "header 3",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
         id: "h3",
-        onDragStart: handleDragStart
->>>>>>> dev
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: "rgb(173,233,155)",
@@ -7350,13 +7312,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "FOOTER")), mod.createElement("div", {
-<<<<<<< HEAD
-        id: "ordered list",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
         id: "ol",
-        onDragStart: handleDragStart
->>>>>>> dev
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(187,233,147)',
@@ -7367,13 +7324,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "LIST (OL)")), mod.createElement("div", {
-<<<<<<< HEAD
-        id: "unordered list",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
         id: "ul",
-        onDragStart: handleDragStart
->>>>>>> dev
+        onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(196,233,143)',
@@ -7505,7 +7457,7 @@ const Styling = (props)=>{
     const [padding, setPadding] = mod.useState('');
     const [fontSize, setFontSize] = mod.useState('');
     const [className, setClassName] = mod.useState('');
-    const [border, setBorder] = mod.useState('');
+    const [fontWeight, setFontWeight] = mod.useState('');
     const handleSubmit = async (e)=>{
         e.preventDefault();
         const updateCurrentElement = {
@@ -7522,7 +7474,7 @@ const Styling = (props)=>{
             padding: padding,
             fontSize: fontSize,
             className: className,
-            border: border
+            fontWeight: fontWeight
         };
         setCurrentElement(updateCurrentElement);
         elementsArr[currentElement.id] = updateCurrentElement;
@@ -7537,7 +7489,7 @@ const Styling = (props)=>{
         setPadding('');
         setFontSize('');
         setClassName('');
-        setBorder('');
+        setFontWeight('');
     };
     return mod.createElement("form", {
         onSubmit: handleSubmit,
@@ -7557,7 +7509,7 @@ const Styling = (props)=>{
         id: "selectedEle"
     }, "Element selected: ", currentElement.element), mod.createElement("br", null), mod.createElement("div", {
         style: {
-            marginLeft: '90px'
+            marginLeft: '40px'
         }
     }, mod.createElement("label", {
         htmlFor: "inputText"
@@ -7604,18 +7556,18 @@ const Styling = (props)=>{
         placeholder: "Enter margin value",
         className: "input"
     }), mod.createElement("br", null), mod.createElement("label", {
-        htmlFor: "border"
-    }, "Border "), mod.createElement("input", {
-        value: border,
-        onChange: (e)=>setBorder(e.target.value),
+        htmlFor: "fontWeight"
+    }, "font weight "), mod.createElement("input", {
+        value: fontWeight,
+        onChange: (e)=>setFontWeight(e.target.value),
         type: "text",
-        placeholder: "Enter border",
+        placeholder: "Enter Font Weight",
         className: "input"
     })), mod.createElement("div", {
         style: {
             float: 'right',
-            marginTop: '-130px',
-            marginRight: '100px'
+            marginTop: '-200px',
+            marginRight: '40px'
         }
     }, mod.createElement("label", {
         htmlFor: "height"
@@ -7861,6 +7813,10 @@ const CodePreview = (props)=>{
         if (elementsArr[index].fontSize !== '') {
             fs = 'text-';
         }
+        let fw = '';
+        if (elementsArr[index].fontWeight !== '') {
+            fw = 'font-';
+        }
         let cn = '';
         console.log(1000, elementsArr[index].className);
         if (elementsArr[index].className !== undefined && elementsArr[index].className !== '') {
@@ -7889,7 +7845,7 @@ const CodePreview = (props)=>{
             style: {
                 color: '#37CFE0'
             }
-        }, " ", elementsArr[index].textDecoration, " ", bg, elementsArr[index].backgroundColor, " ", color, elementsArr[index].color, " ", m, elementsArr[index].margin, "  ", w, elementsArr[index].width, " ", h, elementsArr[index].height, " ", p, elementsArr[index].padding, " ", fs, elementsArr[index].fontSize, " ", text1, elementsArr[index].textAlign), mod.createElement("span", {
+        }, " ", elementsArr[index].textDecoration, " ", bg, " ", elementsArr[index].backgroundColor, " ", color, elementsArr[index].color, " ", m, elementsArr[index].margin, "  ", w, elementsArr[index].width, " ", h, elementsArr[index].height, " ", p, elementsArr[index].padding, " ", fs, elementsArr[index].fontSize, " ", text1, elementsArr[index].textAlign, " ", fw, elementsArr[index].fontWeight, " "), mod.createElement("span", {
             style: {
                 color: '#5FD389'
             }
@@ -8053,6 +8009,7 @@ const IslandPreview = (props)=>{
     let htmlHeight;
     let htmlPadding;
     let htmlFontSize;
+    let htmlFontWeight;
     const testArray = [];
     elementsArr.forEach((ele)=>{
         for(let key in ele){
@@ -8067,8 +8024,9 @@ const IslandPreview = (props)=>{
             htmlHeight = Object.values(ele)[9];
             htmlPadding = Object.values(ele)[10];
             htmlFontSize = Object.values(ele)[11];
+            htmlFontWeight = Object.values(ele)[12];
         }
-        testArray.push(`<${htmlElement} style='color:${htmlColor};background-color:${htmlBackground};height:${htmlHeight};width:${htmlWidth};text-align:${htmlTextAlign};margin:${htmlMargin};text-decoration:${htmlTextDecoration};padding:${htmlPadding};font-size:${htmlFontSize}'>${htmlText}</${htmlElement}>`);
+        testArray.push(`<${htmlElement} style='color:${htmlColor};background-color:${htmlBackground};height:${htmlHeight};width:${htmlWidth};text-align:${htmlTextAlign};margin:${htmlMargin};text-decoration:${htmlTextDecoration};padding:${htmlPadding};font-size:${htmlFontSize};font-weight:${htmlFontWeight}'>${htmlText}</${htmlElement}>`);
     });
     let html = testArray.map((e, i)=>e).join(' ');
     return mod.createElement("div", {
@@ -8171,11 +8129,7 @@ function Buttons(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-<<<<<<< HEAD
                 project_id: project
-=======
-                project_id: 21
->>>>>>> dev
             }),
             mode: 'no-cors'
         }).then((data)=>data.json()).catch((err)=>console.log(err));
@@ -8188,10 +8142,7 @@ function Buttons(props) {
         const body = {
             project_id: project,
             elementsArr: elementsArr,
-<<<<<<< HEAD
-=======
             project: project,
->>>>>>> dev
             user: user
         };
         await fetch('http://localhost:8080/home', {
@@ -8216,7 +8167,7 @@ function Buttons(props) {
             width: "90%",
             fontSize: '20px',
             fontWeight: 'bolder',
-            marginTop: '15px',
+            marginTop: '10px',
             marginLeft: '7px'
         },
         id: "clearBtn",
@@ -8254,6 +8205,21 @@ function Buttons(props) {
             deleteData();
         }
     }, "Delete Project"), mod.createElement("button", {
+        style: {
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            width: "90%",
+            fontSize: '20px',
+            fontWeight: 'bolder',
+            marginTop: '15px',
+            marginLeft: '7px'
+        },
+        id: "exportBtn",
+        onClick: (event)=>{
+            console.log('clicked');
+            exportFunc();
+        }
+    }, "Load Project"), mod.createElement("button", {
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
@@ -8329,17 +8295,8 @@ const App = ()=>{
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
     const [currentElement, setCurrentElement] = mod.useState('drag into here');
-<<<<<<< HEAD
     const [project, setProject] = mod.useState('');
     const [user, setUser] = mod.useState('');
-=======
-<<<<<<< HEAD
-    const [project, setProject] = mod.useState('');
-    const [user, setUser] = mod.useState('');
-=======
-    console.log("elementsArr in app", elementsArr);
->>>>>>> dev
->>>>>>> dev
     const [inputText, setInputText] = mod.useState('');
     const [textAlign, setTextAlign] = mod.useState('');
     const [textDecoration, setTextDecoration] = mod.useState('');
@@ -8349,10 +8306,8 @@ const App = ()=>{
     const [width, setWidth] = mod.useState('');
     const [height, setHeight] = mod.useState('');
     const [padding, setPadding] = mod.useState('');
-<<<<<<< HEAD
+    const [border, setBorder] = mod.useState('');
     console.log("elementsArr in app", elementsArr);
-=======
->>>>>>> dev
     return mod.createElement("div", {
         className: "app",
         style: styles
@@ -8380,7 +8335,9 @@ const App = ()=>{
         height: height,
         setHeight: setHeight,
         padding: padding,
-        setPadding: setPadding
+        setPadding: setPadding,
+        border: border,
+        setBorder: setBorder
     })), mod.createElement("div", {
         style: customizationStyle
     }, mod.createElement(Customization, {
@@ -8397,7 +8354,6 @@ const App = ()=>{
         style: buttonsStyle
     }, mod.createElement(Buttons, {
         elementsArr: elementsArr,
-<<<<<<< HEAD
         setElementsArr: setElementsArr,
         project: project,
         setProject: setProject,
@@ -8405,6 +8361,27 @@ const App = ()=>{
         setUser: setUser
     })));
 };
-mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(App, null)), document.getElementById('root'));
-=======
->>>>>>> dev
+const Login = ()=>{
+    return mod.createElement("div", null, mod.createElement("h1", null, "Login Page"), mod.createElement(T1, {
+        to: "/home"
+    }, mod.createElement("button", null, "Click me!")), mod.createElement(T1, {
+        to: "/signup"
+    }, mod.createElement("button", null, "Click me to go to Signup!")));
+};
+const Signup = ()=>{
+    return mod.createElement("div", null, mod.createElement("h1", null, "Signup"), mod.createElement(T1, {
+        to: "/home"
+    }, mod.createElement("button", null, "Click me to go to App!")), mod.createElement(T1, {
+        to: "/"
+    }, mod.createElement("button", null, "Click me to go to Login!")));
+};
+mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(Y1, null, mod.createElement(Ve1, null, mod.createElement(me1, {
+    path: "/",
+    element: mod.createElement(Login, null)
+}), mod.createElement(me1, {
+    path: "/signup",
+    element: mod.createElement(Signup, null)
+}), mod.createElement(me1, {
+    path: "/home",
+    element: mod.createElement(App, null)
+})))), document.getElementById('root'));

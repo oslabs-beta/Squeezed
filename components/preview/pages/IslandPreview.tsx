@@ -13,6 +13,8 @@ const IslandPreview: any = (props: any) => {
   let htmlHeight;
   let htmlPadding;
   let htmlFontSize;
+  let htmlFontWeight;
+
   const testArray:string[]=[];
   elementsArr.forEach(ele => {
     for (let key in ele){
@@ -27,10 +29,10 @@ const IslandPreview: any = (props: any) => {
       htmlHeight = Object.values(ele)[9]
       htmlPadding = Object.values(ele)[10]
       htmlFontSize = Object.values(ele)[11]
+      htmlFontWeight = Object.values(ele)[12]
     }
     
-
-    testArray.push(`<${htmlElement} style='color:${htmlColor};background-color:${htmlBackground};height:${htmlHeight};width:${htmlWidth};text-align:${htmlTextAlign};margin:${htmlMargin};text-decoration:${htmlTextDecoration};padding:${htmlPadding};font-size:${htmlFontSize}'>${htmlText}</${htmlElement}>`)
+    testArray.push(`<${htmlElement} style='color:${htmlColor};background-color:${htmlBackground};height:${htmlHeight};width:${htmlWidth};text-align:${htmlTextAlign};margin:${htmlMargin};text-decoration:${htmlTextDecoration};padding:${htmlPadding};font-size:${htmlFontSize};font-weight:${htmlFontWeight}'>${htmlText}</${htmlElement}>`)
   })
 
   let html = testArray.map((e,i) => (e)).join(' ');

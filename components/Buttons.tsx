@@ -109,7 +109,7 @@ return (
   <main>
         <link rel={'stylesheet'} href={'./static/css/sideBarStyle.css'} />
     <div id="buttonContainer">
-      <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px', marginLeft: '7px'}}
+      <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '10px', marginLeft: '7px'}}
         id="clearBtn"
         onClick={() => {
           clear();
@@ -135,6 +135,16 @@ return (
         }}
       >
         Delete Project
+      </button>
+      <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px', marginLeft: '7px'}}
+        id="exportBtn"
+        onClick={(event: React.MouseEvent<HTMLElement>) => {
+          // alert("Project Exported");
+          console.log('clicked')
+          exportFunc();
+        }}
+      >
+        Load Project
       </button>
       <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px', marginLeft: '7px'}}
         id="exportBtn"

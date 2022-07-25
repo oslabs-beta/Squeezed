@@ -29,7 +29,8 @@ const Styling: any = (props:any) => {
   const [padding, setPadding] = (React as any).useState('');
   const [fontSize, setFontSize] = (React as any).useState('');
   const [className, setClassName] = (React as any).useState('');
-  const [border, setBorder] = (React as any).useState('');
+  const [fontWeight, setFontWeight] = (React as any).useState('');
+  // const [border, setBorder] = (React as any).useState('');
 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -49,7 +50,7 @@ const Styling: any = (props:any) => {
       padding: padding,
       fontSize: fontSize,
       className: className,
-      border: border,
+       fontWeight: fontWeight,
 
     };
     // console.log("updateCurrentElement: ", updateCurrentElement)
@@ -72,7 +73,7 @@ const Styling: any = (props:any) => {
     setPadding('')
     setFontSize('')
     setClassName('')
-    setBorder('')
+    setFontWeight('')
   };
 
 //   /**
@@ -103,7 +104,7 @@ const Styling: any = (props:any) => {
         <link rel={'stylesheet'} href={'./static/css/customizationStyles.css'} />
         <div style={{fontSize: '26px',textAlign:'center' , marginTop: '20px'}} id='selectedEle'>Element selected: {currentElement.element}</div>  
         <br />
-        <div style={{marginLeft: '90px'}}>
+        <div style={{marginLeft: '40px'}}>
         <label htmlFor="inputText">Input Text </label>  
         <input
           value={inputText}
@@ -156,19 +157,19 @@ const Styling: any = (props:any) => {
 
         /> 
         <br />
-        <label htmlFor="border">Border </label>  
+        <label htmlFor="fontWeight">font weight </label>  
         <input
-          value={border}
-          onChange={(e) => setBorder(e.target.value)}
+          value={fontWeight}
+          onChange={(e) => setFontWeight(e.target.value)}
           type="text"
-          placeholder="Enter border"
+          placeholder="Enter Font Weight"
           className="input"
 
         /> 
         
 
         </div>
-        <div style={{float: 'right', marginTop: '-130px', marginRight: '100px'}}>
+        <div style={{float: 'right', marginTop: '-200px', marginRight: '40px'}}>
        
         <label htmlFor="height">Height </label>  
         <input
