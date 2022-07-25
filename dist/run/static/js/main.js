@@ -6995,7 +6995,7 @@ const CodePreview = (props)=>{
             eleSecond = `/>`;
         }
         if (elementsArr[index].element === 'button') {
-            eleFirst = `<button `;
+            eleFirst = `<button`;
             endBr = '>';
             'This is your button';
             eleSecond = `</button>`;
@@ -7113,6 +7113,7 @@ const CodePreview = (props)=>{
         if (elementsArr[index].padding !== '') {
             p = 'p-';
         }
+        console.log(45, elementsArr[index]);
         return mod.createElement("div", {
             id: index
         }, mod.createElement("span", {
@@ -7161,6 +7162,36 @@ const CodePreview = (props)=>{
             }
         }, eleSecond));
     });
+    let htmlElement;
+    let htmlText;
+    let htmlTextAlign;
+    let htmlTextDecoration;
+    let htmlBackground;
+    let htmlColor;
+    let htmlMargin;
+    let htmlWidth;
+    let htmlHeight;
+    let htmlPadding;
+    const testArray = [];
+    elementsArr.forEach((ele)=>{
+        for(let key in ele){
+            htmlElement = Object.values(ele)[1];
+            htmlText = Object.values(ele)[2];
+            htmlTextAlign = Object.values(ele)[3];
+            htmlTextDecoration = Object.values(ele)[4];
+            htmlBackground = Object.values(ele)[5];
+            htmlColor = Object.values(ele)[6];
+            htmlMargin = Object.values(ele)[7];
+            htmlWidth = Object.values(ele)[8];
+            htmlHeight = Object.values(ele)[9];
+            htmlPadding = Object.values(ele)[10];
+        }
+        testArray.push(`<${htmlElement} style='color:${htmlColor};background-color:${htmlBackground};height:${htmlHeight};width:${htmlWidth};text-align:${htmlTextAlign};margin:${htmlMargin};text-decoration:${htmlTextDecoration};padding:${htmlPadding}'>${htmlText}</${htmlElement}>`);
+    });
+    console.log(8, htmlElement);
+    let html = `${testArray}`;
+    console.log(89, testArray);
+    console.log(809, html);
     return mod.createElement("div", {
         id: "codePreview"
     }, mod.createElement("link", {
@@ -7184,7 +7215,7 @@ const CodePreview = (props)=>{
         style: {
             color: '#ffff76'
         }
-    }, '"preact"'), ";"), mod.createElement("p", {
+    }, "'preact'"), ";"), mod.createElement("p", {
         id: "import"
     }, mod.createElement("span", {
         style: {
@@ -7202,7 +7233,7 @@ const CodePreview = (props)=>{
         style: {
             color: '#ffff76'
         }
-    }, '"$fresh/server.ts"'), " ;"), mod.createElement("p", {
+    }, "'$fresh/server.ts'"), " ;"), mod.createElement("p", {
         id: "import"
     }, mod.createElement("span", {
         style: {
@@ -7220,7 +7251,7 @@ const CodePreview = (props)=>{
         style: {
             color: '#ffff76'
         }
-    }, '"preact/hooks"'), ";"), mod.createElement("p", {
+    }, "'preact/hooks'"), ";"), mod.createElement("p", {
         id: "import"
     }, mod.createElement("span", {
         style: {
@@ -7238,7 +7269,7 @@ const CodePreview = (props)=>{
         style: {
             color: '#ffff76'
         }
-    }, '"twind"'), ";"), mod.createElement("p", {
+    }, "'twind'"), ";"), mod.createElement("p", {
         id: "export"
     }, mod.createElement("span", {
         style: {
@@ -7270,7 +7301,7 @@ const CodePreview = (props)=>{
         }
     }, '<main>')), mod.createElement("div", {
         id: "htmlTags"
-    }, " ", mod.createElement("span", {
+    }, mod.createElement("span", {
         style: {
             color: 'pink'
         }
@@ -7284,7 +7315,11 @@ const CodePreview = (props)=>{
         id: "paren"
     }, ");"), mod.createElement("p", {
         id: "endingCurly"
-    }, "}", ";"));
+    }, '}', ";"), mod.createElement("iframe", {
+        width: "1000px",
+        height: "1000px",
+        srcDoc: html
+    }));
 };
 const IslandPreview = (props)=>{
     return mod.createElement("div", null, "Island Preview page");
@@ -7495,3 +7530,61 @@ const App = ()=>{
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
     const [currentElement, setCurrentElement] = mod.useState('drag into here');
+    console.log("elementsArr in app", elementsArr);
+    const [inputText, setInputText] = mod.useState('');
+    const [textAlign, setTextAlign] = mod.useState('');
+    const [textDecoration, setTextDecoration] = mod.useState('');
+    const [backgroundColor, setBackgroundColor] = mod.useState('');
+    const [color, setColor] = mod.useState('');
+    const [margin, setMargin] = mod.useState('');
+    const [width, setWidth] = mod.useState('');
+    const [height, setHeight] = mod.useState('');
+    const [padding, setPadding] = mod.useState('');
+    return mod.createElement("div", {
+        className: "app",
+        style: styles
+    }, mod.createElement("div", {
+        style: sideBarStyle
+    }, mod.createElement(SideBar, {
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr,
+        currentElement: currentElement,
+        setCurrentElement: setCurrentElement,
+        inputText: inputText,
+        setInputText: setInputText,
+        textAlign: textAlign,
+        setTextAlign: setTextAlign,
+        textDecoration: textDecoration,
+        setTextDecoration: setTextDecoration,
+        backgroundColor: backgroundColor,
+        setBackgroundColor: setBackgroundColor,
+        color: color,
+        setColor: setColor,
+        margin: margin,
+        setMargin: setMargin,
+        width: width,
+        setWidth: setWidth,
+        height: height,
+        setHeight: setHeight,
+        padding: padding,
+        setPadding: setPadding
+    })), mod.createElement("div", {
+        style: customizationStyle
+    }, mod.createElement(Customization, {
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr,
+        currentElement: currentElement,
+        setCurrentElement: setCurrentElement
+    })), mod.createElement("div", {
+        style: previewStyle
+    }, mod.createElement(Preview, {
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr
+    })), mod.createElement("div", {
+        style: buttonsStyle
+    }, mod.createElement(Buttons, {
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr
+    })));
+};
+mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(App, null)), document.getElementById('root'));
