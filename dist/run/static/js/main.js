@@ -7957,7 +7957,7 @@ const Preview = (props)=>{
     }));
 };
 function Buttons(props) {
-    const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
+    const { elementsArr , setElementsArr , currentElement , setCurrentElement , project , setProject , user , setUser  } = props;
     async function deleteData() {
         await fetch('http://localhost:8080/home', {
             method: 'DELETE',
@@ -7965,8 +7965,7 @@ function Buttons(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                project_id: 20,
-                elementsArr: elementsArr
+                project_id: 21
             }),
             mode: 'no-cors'
         }).then((data)=>data.json()).catch((err)=>console.log(err));
@@ -7976,15 +7975,18 @@ function Buttons(props) {
         setCurrentElement('');
     }
     async function save() {
+        const body = {
+            project_id: project,
+            elementsArr: elementsArr,
+            project: project,
+            user: user
+        };
         await fetch('http://localhost:8080/home', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                project_id: null,
-                elementsArr: elementsArr
-            }),
+            body: JSON.stringify(body),
             mode: 'no-cors'
         }).then((data)=>data.json()).then((data)=>console.log("I'm on the front end", data)).catch((err)=>console.log(err));
     }
@@ -8114,6 +8116,8 @@ const App = ()=>{
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
     const [currentElement, setCurrentElement] = mod.useState('drag into here');
+    const [project, setProject] = mod.useState('');
+    const [user, setUser] = mod.useState('');
     const [inputText, setInputText] = mod.useState('');
     const [textAlign, setTextAlign] = mod.useState('');
     const [textDecoration, setTextDecoration] = mod.useState('');
@@ -8124,7 +8128,13 @@ const App = ()=>{
     const [height, setHeight] = mod.useState('');
     const [padding, setPadding] = mod.useState('');
     console.log("elementsArr in app", elementsArr);
+    return mod.createElement("div", {
+        className: "app",
+        style: styles
+    }, mod.createElement("div", {
+        style: sideBarStyle
     }, mod.createElement(SideBar, {
+        elementsArr: elementsArr,
         setElementsArr: setElementsArr,
         currentElement: currentElement,
         setCurrentElement: setCurrentElement,
@@ -8162,7 +8172,34 @@ const App = ()=>{
         style: buttonsStyle
     }, mod.createElement(Buttons, {
         elementsArr: elementsArr,
-        setElementsArr: setElementsArr
+        setElementsArr: setElementsArr,
+        project: project,
+        setProject: setProject,
+        user: user,
+        setUser: setUser
     })));
 };
-mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(App, null)), document.getElementById('root'));
+const Login = ()=>{
+    return mod.createElement("div", null, mod.createElement("h1", null, "Login Page"), mod.createElement(T1, {
+        to: "/home"
+    }, mod.createElement("button", null, "Click me!")), mod.createElement(T1, {
+        to: "/signup"
+    }, mod.createElement("button", null, "Click me to go to Signup!")));
+};
+const Signup = ()=>{
+    return mod.createElement("div", null, mod.createElement("h1", null, "Signup"), mod.createElement(T1, {
+        to: "/home"
+    }, mod.createElement("button", null, "Click me to go to App!")), mod.createElement(T1, {
+        to: "/"
+    }, mod.createElement("button", null, "Click me to go to Login!")));
+};
+mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(Y1, null, mod.createElement(Ve1, null, mod.createElement(me1, {
+    path: "/",
+    element: mod.createElement(Login, null)
+}), mod.createElement(me1, {
+    path: "/signup",
+    element: mod.createElement(Signup, null)
+}), mod.createElement(me1, {
+    path: "/home",
+    element: mod.createElement(App, null)
+})))), document.getElementById('root'));

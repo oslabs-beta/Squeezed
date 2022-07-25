@@ -26,8 +26,10 @@ projectController.deleteProject = async (ctx: any) => {
     const { value } = await ctx.request.body({type: 'json'});
     const obj = await value;
     let { project_id } = obj;
-    let deleteQuery = dex("projects").where('id', project_id).del()
-    await db.queryArray(deleteQuery);
+    let deletElQuery = dex("elements").where('project_id', project_id).del()
+    let deleteProjQuery = dex("projects").where('id', project_id).del()
+    await db.queryArray(deletElQuery);
+    await db.queryArray(deleteProjQuery);
     return ctx.response.status = 200;
   } catch (err) {
     ctx.response.body = { status: false, data: null};
