@@ -41,7 +41,7 @@ async function deleteData(){
   await fetch('http://localhost:8080/home', {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ project_id: project, elementsArr: elementsArr }),
+      body: JSON.stringify({ project_id: project }),
       mode: 'no-cors',
   })
   .then((data) => data.json())
@@ -59,14 +59,13 @@ function clear(){
 async function save(){
   const body = {
     project_id: project,
-    elementsArr: ,
-    project: ,
-    user:
+    elementsArr: elementsArr,
+    user: user
   }
   await fetch('http://localhost:8080/home', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ project_id: null, elementsArr: elementsArr }),
+      body: JSON.stringify(body),
       mode: 'no-cors',
    })
    .then((data) => data.json())

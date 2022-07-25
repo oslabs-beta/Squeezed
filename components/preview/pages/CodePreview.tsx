@@ -108,7 +108,7 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
     midText = 'This is your link'
    eleSecond = `/>`
   }
-  console.log(1, elementsArr[index].textAlign)
+  // console.log(1, elementsArr[index].textAlign)
   let bracket = ''
   let classTag = ''
   let bracket2 =''
