@@ -279,13 +279,13 @@ const htmlTags = elementsArr.map((elements: any, index: any) => {
             MENU
           </button>
         </div>
-        <div id="label" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
+        <div id="title" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{backgroundColor:'rgb(232,233,123)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             TITLE
           </button>
         </div>
-        <div id="span" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
+        <div id="area" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(238,233,120)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             AREA

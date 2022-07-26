@@ -7408,7 +7408,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "MENU")), mod.createElement("div", {
-        id: "label",
+        id: "title",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7420,7 +7420,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "TITLE")), mod.createElement("div", {
-        id: "span",
+        id: "area",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7557,7 +7557,7 @@ const Styling = (props)=>{
         className: "input"
     }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "fontWeight"
-    }, "font weight "), mod.createElement("input", {
+    }, "Font Weight "), mod.createElement("input", {
         value: fontWeight,
         onChange: (e)=>setFontWeight(e.target.value),
         type: "text",
@@ -7594,6 +7594,14 @@ const Styling = (props)=>{
         placeholder: "Enter padding",
         className: "input"
     }), mod.createElement("br", null), mod.createElement("label", {
+        htmlFor: "className"
+    }, "Class Name "), mod.createElement("input", {
+        value: className,
+        onChange: (e)=>setClassName(e.target.value),
+        type: "text",
+        placeholder: "Enter Class Name",
+        className: "input"
+    }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "textDecoration"
     }, "Text Decoration "), mod.createElement("select", {
         className: "textDecoration",
@@ -7603,22 +7611,14 @@ const Styling = (props)=>{
             color: "#2D3033"
         }
     }, mod.createElement("option", null, "default"), mod.createElement("option", null, "overline"), mod.createElement("option", null, "line-through"), mod.createElement("option", null, "underline"), mod.createElement("option", null, "none")), mod.createElement("br", null), mod.createElement("label", {
-        htmlFor: "className"
-    }, "Class Name "), mod.createElement("input", {
-        value: className,
-        onChange: (e)=>setClassName(e.target.value),
-        type: "text",
-        placeholder: "Enter Class Name",
-        className: "input"
-    }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "textAlign"
     }, "Text Align "), mod.createElement("select", {
         onChange: (e)=>setTextAlign(e.target.value),
         style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033"
         }
-    }, mod.createElement("option", null, "default"), mod.createElement("option", null, "center"), mod.createElement("option", null, "right"), mod.createElement("option", null, "left"), mod.createElement("option", null, "justify")), mod.createElement("br", null), mod.createElement("br", null)), mod.createElement("button", {
+    }, mod.createElement("option", null, "default"), mod.createElement("option", null, "center"), mod.createElement("option", null, "right"), mod.createElement("option", null, "left"), mod.createElement("option", null, "justify")), mod.createElement("br", null), mod.createElement("br", null), mod.createElement("br", null)), mod.createElement("button", {
         type: "submit",
         className: "btn",
         style: {
@@ -7626,7 +7626,8 @@ const Styling = (props)=>{
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             fontSize: '20px',
             marginBottom: '20px',
-            color: "#2D3033"
+            color: "#2D3033",
+            marginTop: '20px'
         }
     }, "Submit"));
 };
@@ -7769,6 +7770,18 @@ const CodePreview = (props)=>{
             'This is your link';
             eleSecond = `/>`;
         }
+        if (elementsArr[index].element === 'title') {
+            eleFirst = `<title `;
+            endBr = '>';
+            'This is your title';
+            eleSecond = `</title>`;
+        }
+        if (elementsArr[index].element === 'area') {
+            eleFirst = `<area `;
+            endBr = '>';
+            'This is your area';
+            eleSecond = `</area>`;
+        }
         let bracket = '';
         let classTag = '';
         let bracket2 = '';
@@ -7857,7 +7870,7 @@ const CodePreview = (props)=>{
             style: {
                 color: '#FDE086'
             }
-        }, " id=", index), mod.createElement("span", {
+        }, " id='", index, "'"), mod.createElement("span", {
             style: {
                 color: '#5FD389'
             }
@@ -7994,7 +8007,13 @@ const CodePreview = (props)=>{
         id: "paren"
     }, ");"), mod.createElement("p", {
         id: "endingCurly"
-    }, '}', ";"));
+    }, '}', ";"), mod.createElement("button", {
+        onClick: ()=>{
+            navigator.clipboard.writeText(`html: ${mod.createElement("p", {
+                id: "endingCurly"
+            }, '}', ";")}`);
+        }
+    }, "Copy"));
 };
 const IslandPreview = (props)=>{
     const { elementsArr , setElementsArr  } = props;
@@ -8039,7 +8058,9 @@ const IslandPreview = (props)=>{
         width: "100%",
         frameBorder: "0",
         srcDoc: html
-    }));
+    }), mod.createElement("button", {
+        onClick: ()=>navigator.clipboard.writeText(`html: ${html}`)
+    }, "Copy"));
 };
 const MainContainer1 = (props)=>{
     const { previewPage , setPreviewPage  } = props;
@@ -8231,6 +8252,7 @@ function Buttons(props) {
         },
         id: "exportBtn",
         onClick: (event)=>{
+            alert("Project Exported");
             console.log('clicked');
             exportFunc();
         }
