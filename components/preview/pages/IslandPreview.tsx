@@ -50,4 +50,3 @@ const IslandPreview: any = (props: any) => {
 
 export default IslandPreview;
 
-html: <div style='color:;background-color:;height:;width:;text-align:;margin:;text-decoration:;padding:;font-size:;font-weight:'></div> <h1 style='color:;background-color:;height:;width:;text-align:;margin:;text-decoration:;padding:;font-size:;font-weight:'></h1> <h2 style='color:;background-color:;height:;width:;text-align:;margin:;text-decoration:;padding:;font-size:;font-weight:'></h2>

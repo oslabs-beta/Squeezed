@@ -222,7 +222,7 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
      
       </div>
   )
-
+  }
  export default CodePreview;
 
 // import { h } from "preact";
@@ -254,3 +254,4 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
 // YELLOW: #FDE086
 // BLYE: #37CFE0
 // PURPLE: #8B7FDA
+  

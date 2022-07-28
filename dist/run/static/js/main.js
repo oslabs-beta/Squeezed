@@ -8007,13 +8007,7 @@ const CodePreview = (props)=>{
         id: "paren"
     }, ");"), mod.createElement("p", {
         id: "endingCurly"
-    }, '}', ";"), mod.createElement("button", {
-        onClick: ()=>{
-            navigator.clipboard.writeText(`html: ${mod.createElement("p", {
-                id: "endingCurly"
-            }, '}', ";")}`);
-        }
-    }, "Copy"));
+    }, '}', ";"));
 };
 const IslandPreview = (props)=>{
     const { elementsArr , setElementsArr  } = props;
