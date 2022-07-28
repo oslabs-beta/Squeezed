@@ -4,7 +4,7 @@ import { React } from '../deps.tsx';
 
 const SideBar = (props:any) => {
   const {elementsArr, setElementsArr, currentElement, setCurrentElement} = props;
-  const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
+  const { setInputText, setTextAlign, setTextDecoration, setBackgroundColor, setColor, setMargin, setWidth, setHeight, setPadding, setFontSize, setClassName }= props;
   const [dragOver, setDragOver] = React.useState(false);
   const [content, setContent] = React.useState<string>('drag into here');
 
@@ -108,6 +108,30 @@ const SideBar = (props:any) => {
  
   const handleClick = (id: any) => {
     setCurrentElement(elementsArr[id]);
+
+    const a = elementsArr[id].text;
+    const b = elementsArr[id].textAlign;
+    const c = elementsArr[id].textDecoration;
+    const d = elementsArr[id].backgroundColor;
+    const e = elementsArr[id].color;
+    const f = elementsArr[id].margin; 
+    const g = elementsArr[id].width;
+    const h = elementsArr[id].height; 
+    const i = elementsArr[id].padding; 
+    const j = elementsArr[id].setFontSize;
+    const k = elementsArr[id].setClassName;
+    
+    setInputText(a);
+    setTextAlign(b)
+    setTextDecoration(c)
+    setBackgroundColor(d)
+    setColor(e)
+    setMargin(f)
+    setWidth(g)
+    setHeight(h)
+    setPadding(i)
+    setFontSize(j)
+    setClassName(k)
   };
 
 const deleteElement = (id:any) => {
