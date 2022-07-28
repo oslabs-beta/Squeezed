@@ -7873,6 +7873,7 @@ const CodePreview = (props)=>{
         if (elementsArr[index].className !== undefined && elementsArr[index].className !== '') {
             cn = 'className= ';
         }
+        console.log(45, elementsArr[index]);
         return mod.createElement("div", {
             id: index
         }, mod.createElement("span", {
