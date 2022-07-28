@@ -35,33 +35,12 @@ app.use(accountRoutes.allowedMethods());
 app.use(projectRoutes.routes());
 app.use(projectRoutes.allowedMethods());
         
-// app.use(async (ctx, next) => {
-//   try {
-//     await next();
-//   } catch (err) {
-//     if (isHttpError(err)) {
-//       switch (err.status) {
-//         case Status.NotFound:
-//           break;
-//           default:
-//           }
-//         } else {
-//           throw err;
-//         }
-//       }
-// });
 app.use(async (ctx) => {
 const reqBody = await ctx.request.body().value;
 console.log(reqBody, typeof reqBody);
 ctx.response.status = 200;
 });
 
-// app.use((ctx) => {
-// console.log("hi we're in the backend");
-// ctx.response.body = "Hello World!";
-// ctx.response.status = 200;
-// return
-// });
 
 app.use(oakCors());
 

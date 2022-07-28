@@ -14,22 +14,48 @@ const Styling: any = (props:any) => {
   // push all of theses states into CodePreview ??? 
   //then do `${states}` to apple the changes inline ?
 
-  const { elementsArr, setElementsArr, currentElement, setCurrentElement } = props;
+  const { elementsArr, 
+    setElementsArr, 
+    currentElement, 
+    setCurrentElement, 
+    inputText, 
+    setInputText, 
+    textAlign, 
+    setTextAlign, 
+    textDecoration, 
+    setTextDecoration, 
+    backgroundColor,
+    setBackgroundColor,
+    color,
+    setColor,
+    margin,
+    setMargin,
+    width,
+    setWidth,
+    height,
+    setHeight,
+    padding,
+    setPadding,
+    fontSize,
+    setFontSize,
+    className,
+    setClassName,
+  } = props;
 
   // const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
 
-  const [inputText, setInputText] = (React as any).useState('');
-  const [textAlign, setTextAlign] = (React as any).useState('');
-  const [textDecoration, setTextDecoration] = (React as any).useState('');
-  const [backgroundColor, setBackgroundColor] = (React as any).useState('');
-  const [color, setColor] = (React as any).useState('');
-  const [margin, setMargin] = (React as any).useState('');
-  const [width, setWidth] = (React as any).useState('');
-  const [height, setHeight] = (React as any).useState('');
-  const [padding, setPadding] = (React as any).useState('');
-  const [fontSize, setFontSize] = (React as any).useState('');
-  const [className, setClassName] = (React as any).useState('');
-  const [border, setBorder] = (React as any).useState('');
+  // const [inputText, setInputText] = (React as any).useState('');
+  // const [textAlign, setTextAlign] = (React as any).useState('');
+  // const [textDecoration, setTextDecoration] = (React as any).useState('');
+  // const [backgroundColor, setBackgroundColor] = (React as any).useState('');
+  // const [color, setColor] = (React as any).useState('');
+  // const [margin, setMargin] = (React as any).useState('');
+  // const [width, setWidth] = (React as any).useState('');
+  // const [height, setHeight] = (React as any).useState('');
+  // const [padding, setPadding] = (React as any).useState('');
+  // const [fontSize, setFontSize] = (React as any).useState('');
+  // const [className, setClassName] = (React as any).useState('');
+  // const [border, setBorder] = (React as any).useState('');
 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -49,7 +75,7 @@ const Styling: any = (props:any) => {
       padding: padding,
       fontSize: fontSize,
       className: className,
-      border: border,
+      // border: border,
 
     };
     // console.log("updateCurrentElement: ", updateCurrentElement)
@@ -72,7 +98,7 @@ const Styling: any = (props:any) => {
     setPadding('')
     setFontSize('')
     setClassName('')
-    setBorder('')
+    // setBorder('')
   };
 
 //   /**
@@ -156,7 +182,7 @@ const Styling: any = (props:any) => {
 
         /> 
         <br />
-        <label htmlFor="border">Border </label>  
+        {/* <label htmlFor="border">Border </label>  
         <input
           value={border}
           onChange={(e) => setBorder(e.target.value)}
@@ -164,7 +190,7 @@ const Styling: any = (props:any) => {
           placeholder="Enter border"
           className="input"
 
-        /> 
+        />  */}
         
 
         </div>
