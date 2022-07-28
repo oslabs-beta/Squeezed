@@ -54,7 +54,9 @@ const SideBar = (props:any) => {
         margin: "",
         width: "",
         height: "",
-        padding: ""     
+        padding: "",
+        fontSize: "",
+        fontWeight: ""   
       };
       newElementsArr.push(newElement);
       setElementsArr(newElementsArr);
@@ -176,25 +178,25 @@ const SideBar = (props:any) => {
             BUTTON
           </button>
         </div>
-        <div id="image" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
+        <div id="img" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(158,233,163)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             IMAGE
           </button>
         </div>
-        <div id="header 1" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
+        <div id="h1" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(163,233,160)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             HEADER 1
           </button>
         </div>
-        <div id="header 2" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
+        <div id="h2" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(168,233,158)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             HEADER 2
           </button>
         </div>
-        <div id="header 3" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
+        <div id="h3" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{backgroundColor: "rgb(173,233,155)",color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}}  draggable="true">
             {" "}
             HEADER 3
@@ -206,13 +208,13 @@ const SideBar = (props:any) => {
             FOOTER
           </button>
         </div>
-        <div id="ordered list" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
+        <div id="ol" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{backgroundColor:'rgb(187,233,147)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LIST (OL)
           </button>
         </div>
-        <div id="unordered list" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
+        <div id="ul" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(196,233,143)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             LIST (UL)
@@ -254,13 +256,13 @@ const SideBar = (props:any) => {
             MENU
           </button>
         </div>
-        <div id="label" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
+        <div id="title" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{backgroundColor:'rgb(232,233,123)', color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             TITLE
           </button>
         </div>
-        <div id="span" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
+        <div id="area" onDragStart={(e) => handleDragStart(e, 'dragArea')}>
           <button style={{ backgroundColor:'rgb(238,233,120)',color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
             {" "}
             AREA

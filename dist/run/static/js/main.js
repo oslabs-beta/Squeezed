@@ -7142,7 +7142,9 @@ const SideBar = (props)=>{
                 margin: "",
                 width: "",
                 height: "",
-                padding: ""
+                padding: "",
+                fontSize: "",
+                fontWeight: ""
             };
             newElementsArr.push(newElement);
             setElementsArr(newElementsArr);
@@ -7267,7 +7269,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "BUTTON")), mod.createElement("div", {
-        id: "image",
+        id: "img",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7279,7 +7281,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "IMAGE")), mod.createElement("div", {
-        id: "header 1",
+        id: "h1",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7291,7 +7293,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "HEADER 1")), mod.createElement("div", {
-        id: "header 2",
+        id: "h2",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7303,7 +7305,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "HEADER 2")), mod.createElement("div", {
-        id: "header 3",
+        id: "h3",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7327,7 +7329,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "FOOTER")), mod.createElement("div", {
-        id: "ordered list",
+        id: "ol",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7339,7 +7341,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "LIST (OL)")), mod.createElement("div", {
-        id: "unordered list",
+        id: "ul",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7423,7 +7425,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "MENU")), mod.createElement("div", {
-        id: "label",
+        id: "title",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7435,7 +7437,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "TITLE")), mod.createElement("div", {
-        id: "span",
+        id: "area",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7510,7 +7512,7 @@ const Styling = (props)=>{
         id: "selectedEle"
     }, "Element selected: ", currentElement.element), mod.createElement("br", null), mod.createElement("div", {
         style: {
-            marginLeft: '90px'
+            marginLeft: '40px'
         }
     }, mod.createElement("label", {
         htmlFor: "inputText"
@@ -7559,8 +7561,8 @@ const Styling = (props)=>{
     }), mod.createElement("br", null)), mod.createElement("div", {
         style: {
             float: 'right',
-            marginTop: '-130px',
-            marginRight: '100px'
+            marginTop: '-200px',
+            marginRight: '40px'
         }
     }, mod.createElement("label", {
         htmlFor: "height"
@@ -7587,6 +7589,14 @@ const Styling = (props)=>{
         placeholder: "Enter padding",
         className: "input"
     }), mod.createElement("br", null), mod.createElement("label", {
+        htmlFor: "className"
+    }, "Class Name "), mod.createElement("input", {
+        value: className,
+        onChange: (e)=>setClassName(e.target.value),
+        type: "text",
+        placeholder: "Enter Class Name",
+        className: "input"
+    }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "textDecoration"
     }, "Text Decoration "), mod.createElement("select", {
         className: "textDecoration",
@@ -7596,22 +7606,14 @@ const Styling = (props)=>{
             color: "#2D3033"
         }
     }, mod.createElement("option", null, "default"), mod.createElement("option", null, "overline"), mod.createElement("option", null, "line-through"), mod.createElement("option", null, "underline"), mod.createElement("option", null, "none")), mod.createElement("br", null), mod.createElement("label", {
-        htmlFor: "className"
-    }, "Class Name "), mod.createElement("input", {
-        value: className,
-        onChange: (e)=>setClassName(e.target.value),
-        type: "text",
-        placeholder: "Enter Class Name",
-        className: "input"
-    }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "textAlign"
     }, "Text Align "), mod.createElement("select", {
         onChange: (e)=>setTextAlign(e.target.value),
         style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033"
         }
-    }, mod.createElement("option", null, "default"), mod.createElement("option", null, "center"), mod.createElement("option", null, "right"), mod.createElement("option", null, "left"), mod.createElement("option", null, "justify")), mod.createElement("br", null), mod.createElement("br", null)), mod.createElement("button", {
+    }, mod.createElement("option", null, "default"), mod.createElement("option", null, "center"), mod.createElement("option", null, "right"), mod.createElement("option", null, "left"), mod.createElement("option", null, "justify")), mod.createElement("br", null), mod.createElement("br", null), mod.createElement("br", null)), mod.createElement("button", {
         type: "submit",
         className: "btn",
         style: {
@@ -7619,7 +7621,8 @@ const Styling = (props)=>{
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             fontSize: '20px',
             marginBottom: '20px',
-            color: "#2D3033"
+            color: "#2D3033",
+            marginTop: '20px'
         }
     }, "Submit"));
 };
@@ -7806,6 +7809,18 @@ const CodePreview = (props)=>{
             'This is your link';
             eleSecond = `/>`;
         }
+        if (elementsArr[index].element === 'title') {
+            eleFirst = `<title `;
+            endBr = '>';
+            'This is your title';
+            eleSecond = `</title>`;
+        }
+        if (elementsArr[index].element === 'area') {
+            eleFirst = `<area `;
+            endBr = '>';
+            'This is your area';
+            eleSecond = `</area>`;
+        }
         let bracket = '';
         let classTag = '';
         let bracket2 = '';
@@ -7850,6 +7865,10 @@ const CodePreview = (props)=>{
         if (elementsArr[index].fontSize !== '') {
             fs = 'text-';
         }
+        let fw = '';
+        if (elementsArr[index].fontWeight !== '') {
+            fw = 'font-';
+        }
         let cn = '';
         if (elementsArr[index].className !== undefined && elementsArr[index].className !== '') {
             cn = 'className= ';
@@ -7876,7 +7895,7 @@ const CodePreview = (props)=>{
             style: {
                 color: '#37CFE0'
             }
-        }, " ", elementsArr[index].textDecoration, " ", bg, elementsArr[index].backgroundColor, " ", color, elementsArr[index].color, " ", m, elementsArr[index].margin, "  ", w, elementsArr[index].width, " ", h, elementsArr[index].height, " ", p, elementsArr[index].padding, " ", fs, elementsArr[index].fontSize, " ", text1, elementsArr[index].textAlign), mod.createElement("span", {
+        }, " ", elementsArr[index].textDecoration, " ", bg, " ", elementsArr[index].backgroundColor, " ", color, elementsArr[index].color, " ", m, elementsArr[index].margin, "  ", w, elementsArr[index].width, " ", h, elementsArr[index].height, " ", p, elementsArr[index].padding, " ", fs, elementsArr[index].fontSize, " ", text1, elementsArr[index].textAlign, " ", fw, elementsArr[index].fontWeight, " "), mod.createElement("span", {
             style: {
                 color: '#5FD389'
             }
@@ -7888,7 +7907,7 @@ const CodePreview = (props)=>{
             style: {
                 color: '#FDE086'
             }
-        }, " id=", index), mod.createElement("span", {
+        }, " id='", index, "'"), mod.createElement("span", {
             style: {
                 color: '#5FD389'
             }
@@ -8040,6 +8059,7 @@ const IslandPreview = (props)=>{
     let htmlHeight;
     let htmlPadding;
     let htmlFontSize;
+    let htmlFontWeight;
     const testArray = [];
     elementsArr.forEach((ele)=>{
         for(let key in ele){
@@ -8054,8 +8074,9 @@ const IslandPreview = (props)=>{
             htmlHeight = Object.values(ele)[9];
             htmlPadding = Object.values(ele)[10];
             htmlFontSize = Object.values(ele)[11];
+            htmlFontWeight = Object.values(ele)[12];
         }
-        testArray.push(`<${htmlElement} style='color:${htmlColor};background-color:${htmlBackground};height:${htmlHeight};width:${htmlWidth};text-align:${htmlTextAlign};margin:${htmlMargin};text-decoration:${htmlTextDecoration};padding:${htmlPadding};font-size:${htmlFontSize}'>${htmlText}</${htmlElement}>`);
+        testArray.push(`<${htmlElement} style='color:${htmlColor};background-color:${htmlBackground};height:${htmlHeight};width:${htmlWidth};text-align:${htmlTextAlign};margin:${htmlMargin};text-decoration:${htmlTextDecoration};padding:${htmlPadding};font-size:${htmlFontSize};font-weight:${htmlFontWeight}'>${htmlText}</${htmlElement}>`);
     });
     let html = testArray.map((e, i)=>e).join(' ');
     return mod.createElement("div", {
@@ -8068,7 +8089,9 @@ const IslandPreview = (props)=>{
         width: "100%",
         frameBorder: "0",
         srcDoc: html
-    }));
+    }), mod.createElement("button", {
+        onClick: ()=>navigator.clipboard.writeText(`html: ${html}`)
+    }, "Copy"));
 };
 const MainContainer1 = (props)=>{
     const { previewPage , setPreviewPage  } = props;
@@ -8196,7 +8219,7 @@ function Buttons(props) {
             width: "90%",
             fontSize: '20px',
             fontWeight: 'bolder',
-            marginTop: '15px',
+            marginTop: '10px',
             marginLeft: '7px'
         },
         id: "clearBtn",
@@ -8245,6 +8268,22 @@ function Buttons(props) {
         },
         id: "exportBtn",
         onClick: (event)=>{
+            console.log('clicked');
+            exportFunc();
+        }
+    }, "Load Project"), mod.createElement("button", {
+        style: {
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            width: "90%",
+            fontSize: '20px',
+            fontWeight: 'bolder',
+            marginTop: '15px',
+            marginLeft: '7px'
+        },
+        id: "exportBtn",
+        onClick: (event)=>{
+            alert("Project Exported");
             console.log('clicked');
             exportFunc();
         }
