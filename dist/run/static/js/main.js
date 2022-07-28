@@ -7274,7 +7274,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "BUTTON")), mod.createElement("div", {
-        id: "image",
+        id: "img",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7286,7 +7286,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "IMAGE")), mod.createElement("div", {
-        id: "header 1",
+        id: "h1",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7298,7 +7298,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "HEADER 1")), mod.createElement("div", {
-        id: "header 2",
+        id: "h2",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7310,7 +7310,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "HEADER 2")), mod.createElement("div", {
-        id: "header 3",
+        id: "h3",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7334,7 +7334,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "FOOTER")), mod.createElement("div", {
-        id: "ordered list",
+        id: "ol",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7346,7 +7346,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "LIST (OL)")), mod.createElement("div", {
-        id: "unordered list",
+        id: "ul",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7494,6 +7494,10 @@ const Styling = (props)=>{
         setColor('');
         setMargin('');
         setWidth('');
+        setHeight('');
+        setPadding('');
+        setFontSize('');
+        setClassName('');
     };
     return mod.createElement("form", {
         onSubmit: handleSubmit,
