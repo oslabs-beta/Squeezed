@@ -5,7 +5,7 @@ import projectRoutes from './routes/projectRoutes.ts'
 import { oakCors } from "https://deno.land/x/cors/mod.ts";
 
 const port = 8080;
-const app = new Application();
+const app: Application = new Application();
 
 const router = new Router();
 

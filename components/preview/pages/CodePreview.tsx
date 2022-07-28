@@ -188,11 +188,12 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
     fw = 'font-'
   }
   let cn = ''
-  console.log(1000, elementsArr[index].className)
+  // console.log(1000, elementsArr[index].className)
   if (elementsArr[index].className !== undefined && elementsArr[index].className !== ''){
     cn = 'className= '
   }
 
+  // console.log(45, elementsArr[index])
   console.log(45, elementsArr[index])
 
 

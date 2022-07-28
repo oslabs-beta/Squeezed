@@ -7151,15 +7151,13 @@ const SideBar = (props)=>{
             setCurrentElement(newElement);
         } else if (area === "dropArea") {
             const dragItemContent = newElementsArr[dragItem.current];
-            const dragItemEnterContent = newElementsArr[dragOverItem.current];
-            console.log("handleDrop selected item:", dragItemContent);
-            console.log("handleDrop drager over item:", dragItemEnterContent);
+            newElementsArr[dragOverItem.current];
             newElementsArr.splice(dragItem.current, 1);
             newElementsArr.splice(dragOverItem.current, 0, dragItemContent);
-            dragItem.current = null;
-            dragOverItem.current = null;
             reorderElArr(newElementsArr);
             setElementsArr(newElementsArr);
+            dragItem.current = null;
+            dragOverItem.current = null;
         }
     };
     const reorderElArr = (arr)=>{
@@ -7193,15 +7191,12 @@ const SideBar = (props)=>{
         setClassName(k);
     };
     const deleteElement = (id)=>{
-        if (elementsArr.length === 1) {
-            setElementsArr([]);
-            setCurrentElement('');
-        } else {
-            const filteredElementsArr = elementsArr.filter((element)=>element.id !== id);
-            console.log('filtered', filteredElementsArr);
-            setElementsArr(filteredElementsArr);
-            setCurrentElement('');
-        }
+        let newElementsArr = [
+            ...elementsArr
+        ];
+        newElementsArr.splice(id, 1);
+        reorderElArr(newElementsArr);
+        setElementsArr(newElementsArr);
     };
     const htmlTags = elementsArr.map((elements, index)=>{
         return mod.createElement("div", {
@@ -7875,11 +7870,9 @@ const CodePreview = (props)=>{
             fw = 'font-';
         }
         let cn = '';
-        console.log(1000, elementsArr[index].className);
         if (elementsArr[index].className !== undefined && elementsArr[index].className !== '') {
             cn = 'className= ';
         }
-        console.log(45, elementsArr[index]);
         return mod.createElement("div", {
             id: index
         }, mod.createElement("span", {
