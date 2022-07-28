@@ -32,15 +32,69 @@ const Customization = (props:any) => {
 
   // const { inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding } = props;
 
-  const { elementsArr, setElementsArr, currentElement, setCurrentElement } = props;
+  const { elementsArr, 
+    setElementsArr, 
+    currentElement, 
+    setCurrentElement, 
+    inputText, 
+    setInputText, 
+    textAlign, 
+    setTextAlign, 
+    textDecoration, 
+    setTextDecoration, 
+    backgroundColor,
+    setBackgroundColor,
+    color,
+    setColor,
+    margin,
+    setMargin,
+    width,
+    setWidth,
+    height,
+    setHeight,
+    padding,
+    setPadding,
+    fontSize,
+    setFontSize,
+    className,
+    setClassName,
+   } = props;
   
   const [customizationPage, setCustomizationPage] = (React as any).useState('styling');
 
   return (
     <div className="container">
       <Navbar setCustomizationPage={setCustomizationPage} />
-      {/* <MainContainer customizationPage={customizationPage} setCustomizationPage={setCustomizationPage} currentElement={currentElement} setCurrentElement={setCurrentElement} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding} */}
-      <MainContainer customizationPage={customizationPage} setCustomizationPage={setCustomizationPage} elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} />
+      <MainContainer 
+      elementsArr={elementsArr} 
+      setElementsArr={setElementsArr}
+      customizationPage={customizationPage} 
+      setCustomizationPage={setCustomizationPage} 
+      currentElement={currentElement} 
+      setCurrentElement={setCurrentElement} 
+      inputText={inputText} 
+      setInputText={setInputText} 
+      textAlign={textAlign} 
+      setTextAlign={setTextAlign} 
+      textDecoration={textDecoration} 
+      setTextDecoration={setTextDecoration} 
+      backgroundColor={backgroundColor} 
+      setBackgroundColor={setBackgroundColor} 
+      color={color} 
+      setColor={setColor} 
+      margin={margin} 
+      setMargin={setMargin} 
+      width={width} 
+      setWidth={setWidth} 
+      height={height} 
+      setHeight={setHeight} 
+      padding={padding} 
+      setPadding={setPadding}
+      fontSize = {fontSize}
+      setFontSize = {setFontSize}
+      className = {className}
+      setClassName = {setClassName} />
+      {/* <MainContainer customizationPage={customizationPage} setCustomizationPage={setCustomizationPage} elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} /> */}
     </div>
   );
 };

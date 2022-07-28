@@ -7100,7 +7100,7 @@ const mod1 = {
 };
 const SideBar = (props)=>{
     const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
-    const { inputText , setInputText , textAlign , setTextAlign , textDecoration , setTextDecoration , backgroundColor , setBackgroundColor , color , setColor , margin , setMargin , width , setWidth , height , setHeight , padding , setPadding ,  } = props;
+    const { setInputText , setTextAlign , setTextDecoration , setBackgroundColor , setColor , setMargin , setWidth , setHeight , setPadding , setFontSize , setClassName  } = props;
     const [dragOver, setDragOver] = mod.useState(false);
     const [content, setContent] = mod.useState('drag into here');
     const handleDragOverStart = ()=>setDragOver(true);
@@ -7169,6 +7169,28 @@ const SideBar = (props)=>{
     };
     const handleClick = (id)=>{
         setCurrentElement(elementsArr[id]);
+        const a = elementsArr[id].text;
+        const b = elementsArr[id].textAlign;
+        const c = elementsArr[id].textDecoration;
+        const d = elementsArr[id].backgroundColor;
+        const e = elementsArr[id].color;
+        const f = elementsArr[id].margin;
+        const g = elementsArr[id].width;
+        const h = elementsArr[id].height;
+        const i = elementsArr[id].padding;
+        const j = elementsArr[id].setFontSize;
+        const k = elementsArr[id].setClassName;
+        setInputText(a);
+        setTextAlign(b);
+        setTextDecoration(c);
+        setBackgroundColor(d);
+        setColor(e);
+        setMargin(f);
+        setWidth(g);
+        setHeight(h);
+        setPadding(i);
+        setFontSize(j);
+        setClassName(k);
     };
     const deleteElement = (id)=>{
         if (elementsArr.length === 1) {
@@ -7252,7 +7274,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "BUTTON")), mod.createElement("div", {
-        id: "img",
+        id: "image",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7264,7 +7286,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "IMAGE")), mod.createElement("div", {
-        id: "h1",
+        id: "header 1",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7276,7 +7298,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "HEADER 1")), mod.createElement("div", {
-        id: "h2",
+        id: "header 2",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7288,7 +7310,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "HEADER 2")), mod.createElement("div", {
-        id: "h3",
+        id: "header 3",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7312,7 +7334,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "FOOTER")), mod.createElement("div", {
-        id: "ol",
+        id: "ordered list",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7324,7 +7346,7 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "LIST (OL)")), mod.createElement("div", {
-        id: "ul",
+        id: "unordered list",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
     }, mod.createElement("button", {
         style: {
@@ -7445,19 +7467,7 @@ const Routing = (props)=>{
     return mod.createElement("div", null, "Routing page in react router");
 };
 const Styling = (props)=>{
-    const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
-    const [inputText, setInputText] = mod.useState('');
-    const [textAlign, setTextAlign] = mod.useState('');
-    const [textDecoration, setTextDecoration] = mod.useState('');
-    const [backgroundColor, setBackgroundColor] = mod.useState('');
-    const [color, setColor] = mod.useState('');
-    const [margin, setMargin] = mod.useState('');
-    const [width, setWidth] = mod.useState('');
-    const [height, setHeight] = mod.useState('');
-    const [padding, setPadding] = mod.useState('');
-    const [fontSize, setFontSize] = mod.useState('');
-    const [className, setClassName] = mod.useState('');
-    const [fontWeight, setFontWeight] = mod.useState('');
+    const { elementsArr , setElementsArr , currentElement , setCurrentElement , inputText , setInputText , textAlign , setTextAlign , textDecoration , setTextDecoration , backgroundColor , setBackgroundColor , color , setColor , margin , setMargin , width , setWidth , height , setHeight , padding , setPadding , fontSize , setFontSize , className , setClassName ,  } = props;
     const handleSubmit = async (e)=>{
         e.preventDefault();
         const updateCurrentElement = {
@@ -7473,8 +7483,7 @@ const Styling = (props)=>{
             height: height,
             padding: padding,
             fontSize: fontSize,
-            className: className,
-            fontWeight: fontWeight
+            className: className
         };
         setCurrentElement(updateCurrentElement);
         elementsArr[currentElement.id] = updateCurrentElement;
@@ -7485,11 +7494,6 @@ const Styling = (props)=>{
         setColor('');
         setMargin('');
         setWidth('');
-        setHeight('');
-        setPadding('');
-        setFontSize('');
-        setClassName('');
-        setFontWeight('');
     };
     return mod.createElement("form", {
         onSubmit: handleSubmit,
@@ -7555,15 +7559,7 @@ const Styling = (props)=>{
         type: "text",
         placeholder: "Enter margin value",
         className: "input"
-    }), mod.createElement("br", null), mod.createElement("label", {
-        htmlFor: "fontWeight"
-    }, "Font Weight "), mod.createElement("input", {
-        value: fontWeight,
-        onChange: (e)=>setFontWeight(e.target.value),
-        type: "text",
-        placeholder: "Enter Font Weight",
-        className: "input"
-    })), mod.createElement("div", {
+    }), mod.createElement("br", null)), mod.createElement("div", {
         style: {
             float: 'right',
             marginTop: '-200px',
@@ -7632,14 +7628,36 @@ const Styling = (props)=>{
     }, "Submit"));
 };
 const MainContainer = (props)=>{
-    const { elementsArr , setElementsArr , customizationPage , setCustomizationPage  } = props;
-    const { currentElement , setCurrentElement  } = props;
+    const { elementsArr , setElementsArr , currentElement , setCurrentElement , inputText , setInputText , textAlign , setTextAlign , textDecoration , setTextDecoration , backgroundColor , setBackgroundColor , color , setColor , margin , setMargin , width , setWidth , height , setHeight , padding , setPadding , fontSize , setFontSize , className , setClassName ,  } = props;
+    const { customizationPage , setCustomizationPage  } = props;
     let page;
     if (customizationPage === 'styling') page = mod.createElement(Styling, {
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr,
         currentElement: currentElement,
         setCurrentElement: setCurrentElement,
-        elementsArr: elementsArr,
-        setElementsArr: setElementsArr
+        inputText: inputText,
+        setInputText: setInputText,
+        textAlign: textAlign,
+        setTextAlign: setTextAlign,
+        textDecoration: textDecoration,
+        setTextDecoration: setTextDecoration,
+        backgroundColor: backgroundColor,
+        setBackgroundColor: setBackgroundColor,
+        color: color,
+        setColor: setColor,
+        margin: margin,
+        setMargin: setMargin,
+        width: width,
+        setWidth: setWidth,
+        height: height,
+        setHeight: setHeight,
+        padding: padding,
+        setPadding: setPadding,
+        fontSize: fontSize,
+        setFontSize: setFontSize,
+        className: className,
+        setClassName: setClassName
     });
     if (customizationPage === 'routing') page = mod.createElement(Routing, null);
     return mod.createElement("div", {
@@ -7653,19 +7671,41 @@ const Navbar = (props)=>{
     });
 };
 const Customization = (props)=>{
-    const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
+    const { elementsArr , setElementsArr , currentElement , setCurrentElement , inputText , setInputText , textAlign , setTextAlign , textDecoration , setTextDecoration , backgroundColor , setBackgroundColor , color , setColor , margin , setMargin , width , setWidth , height , setHeight , padding , setPadding , fontSize , setFontSize , className , setClassName ,  } = props;
     const [customizationPage, setCustomizationPage] = mod.useState('styling');
     return mod.createElement("div", {
         className: "container"
     }, mod.createElement(Navbar, {
         setCustomizationPage: setCustomizationPage
     }), mod.createElement(MainContainer, {
-        customizationPage: customizationPage,
-        setCustomizationPage: setCustomizationPage,
         elementsArr: elementsArr,
         setElementsArr: setElementsArr,
+        customizationPage: customizationPage,
+        setCustomizationPage: setCustomizationPage,
         currentElement: currentElement,
-        setCurrentElement: setCurrentElement
+        setCurrentElement: setCurrentElement,
+        inputText: inputText,
+        setInputText: setInputText,
+        textAlign: textAlign,
+        setTextAlign: setTextAlign,
+        textDecoration: textDecoration,
+        setTextDecoration: setTextDecoration,
+        backgroundColor: backgroundColor,
+        setBackgroundColor: setBackgroundColor,
+        color: color,
+        setColor: setColor,
+        margin: margin,
+        setMargin: setMargin,
+        width: width,
+        setWidth: setWidth,
+        height: height,
+        setHeight: setHeight,
+        padding: padding,
+        setPadding: setPadding,
+        fontSize: fontSize,
+        setFontSize: setFontSize,
+        className: className,
+        setClassName: setClassName
     }));
 };
 const CodePreview = (props)=>{
@@ -8322,7 +8362,8 @@ const App = ()=>{
     const [width, setWidth] = mod.useState('');
     const [height, setHeight] = mod.useState('');
     const [padding, setPadding] = mod.useState('');
-    const [border, setBorder] = mod.useState('');
+    const [fontSize, setFontSize] = mod.useState('');
+    const [className, setClassName] = mod.useState('');
     console.log("elementsArr in app", elementsArr);
     return mod.createElement("div", {
         className: "app",
@@ -8352,15 +8393,39 @@ const App = ()=>{
         setHeight: setHeight,
         padding: padding,
         setPadding: setPadding,
-        border: border,
-        setBorder: setBorder
+        fontSize: fontSize,
+        setFontSize: setFontSize,
+        className: className,
+        setClassName: setClassName
     })), mod.createElement("div", {
         style: customizationStyle
     }, mod.createElement(Customization, {
         elementsArr: elementsArr,
         setElementsArr: setElementsArr,
         currentElement: currentElement,
-        setCurrentElement: setCurrentElement
+        setCurrentElement: setCurrentElement,
+        inputText: inputText,
+        setInputText: setInputText,
+        textAlign: textAlign,
+        setTextAlign: setTextAlign,
+        textDecoration: textDecoration,
+        setTextDecoration: setTextDecoration,
+        backgroundColor: backgroundColor,
+        setBackgroundColor: setBackgroundColor,
+        color: color,
+        setColor: setColor,
+        margin: margin,
+        setMargin: setMargin,
+        width: width,
+        setWidth: setWidth,
+        height: height,
+        setHeight: setHeight,
+        padding: padding,
+        setPadding: setPadding,
+        fontSize: fontSize,
+        setFontSize: setFontSize,
+        className: className,
+        setClassName: setClassName
     })), mod.createElement("div", {
         style: previewStyle
     }, mod.createElement(Preview, {
@@ -8378,11 +8443,32 @@ const App = ()=>{
     })));
 };
 const Login = ()=>{
-    return mod.createElement("div", null, mod.createElement("h1", null, "Login Page"), mod.createElement(T1, {
-        to: "/home"
-    }, mod.createElement("button", null, "Click me!")), mod.createElement(T1, {
-        to: "/signup"
-    }, mod.createElement("button", null, "Click me to go to Signup!")));
+    return mod.createElement("div", {
+        id: "outerBox"
+    }, mod.createElement("div", {
+        id: "loginBox"
+    }, mod.createElement("img", {
+        src: "../static/images/Finallogo.png"
+    }), mod.createElement("label", null, mod.createElement("strong", null, "Log In"), mod.createElement("br", null), mod.createElement("br", null)), mod.createElement("form", {
+        method: "POST",
+        action: "/api/login"
+    }, mod.createElement("input", {
+        type: "text",
+        placeholder: "Username",
+        name: "username",
+        required: true
+    }), mod.createElement("input", {
+        type: "password",
+        placeholder: "Password",
+        name: "password",
+        required: true
+    }), mod.createElement("button", {
+        type: "submit",
+        id: "loginlink"
+    }, "Login")), mod.createElement(T1, {
+        to: "/signup",
+        id: "signuplink"
+    }, mod.createElement("p", null, "Sign up?"))));
 };
 const Signup = ()=>{
     return mod.createElement("div", null, mod.createElement("h1", null, "Signup"), mod.createElement(T1, {
