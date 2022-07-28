@@ -8408,11 +8408,32 @@ const App = ()=>{
     })));
 };
 const Login = ()=>{
-    return mod.createElement("div", null, mod.createElement("h1", null, "Login Page"), mod.createElement(T1, {
-        to: "/home"
-    }, mod.createElement("button", null, "Click me!")), mod.createElement(T1, {
-        to: "/signup"
-    }, mod.createElement("button", null, "Click me to go to Signup!")));
+    return mod.createElement("div", {
+        id: "outerBox"
+    }, mod.createElement("div", {
+        id: "loginBox"
+    }, mod.createElement("img", {
+        src: "../static/images/Finallogo.png"
+    }), mod.createElement("label", null, mod.createElement("strong", null, "Log In"), mod.createElement("br", null), mod.createElement("br", null)), mod.createElement("form", {
+        method: "POST",
+        action: "/api/login"
+    }, mod.createElement("input", {
+        type: "text",
+        placeholder: "Username",
+        name: "username",
+        required: true
+    }), mod.createElement("input", {
+        type: "password",
+        placeholder: "Password",
+        name: "password",
+        required: true
+    }), mod.createElement("button", {
+        type: "submit",
+        id: "loginlink"
+    }, "Login")), mod.createElement(T1, {
+        to: "/signup",
+        id: "signuplink"
+    }, mod.createElement("p", null, "Sign up?"))));
 };
 const Signup = ()=>{
     return mod.createElement("div", null, mod.createElement("h1", null, "Signup"), mod.createElement(T1, {
