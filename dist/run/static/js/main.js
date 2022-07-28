@@ -7128,7 +7128,6 @@ const SideBar = (props)=>{
         const newElementsArr = [
             ...elementsArr
         ];
-<<<<<<< HEAD
         if (area === "dragArea") {
             const id = event.dataTransfer.getData("id");
             setContent(id);
@@ -7150,54 +7149,30 @@ const SideBar = (props)=>{
             setCurrentElement(newElement);
         } else if (area === "dropArea") {
             const dragItemContent = newElementsArr[dragItem.current];
-            const dragItemEnterContent = newElementsArr[dragOverItem.current];
-            console.log("handleDrop selected item:", dragItemContent);
-            console.log("handleDrop drager over item:", dragItemEnterContent);
+            newElementsArr[dragOverItem.current];
             newElementsArr.splice(dragItem.current, 1);
             newElementsArr.splice(dragOverItem.current, 0, dragItemContent);
-            dragItem.current = null;
-            dragOverItem.current = null;
             reorderElArr(newElementsArr);
             setElementsArr(newElementsArr);
+            dragItem.current = null;
+            dragOverItem.current = null;
         }
     };
     const reorderElArr = (arr)=>{
         arr.forEach((el, ind)=>{
             el.id = ind;
         });
-=======
-        const newElement = {
-            id: elementsArr.length,
-            element: id,
-            text: "",
-            texAlign: "",
-            textDecoration: "",
-            backgroundColor: "",
-            color: "",
-            margin: "",
-            width: "",
-            height: "",
-            padding: "",
-            fontSize: ""
-        };
-        newElementsArr.push(newElement);
-        setElementsArr(newElementsArr);
-        setCurrentElement(newElement);
->>>>>>> dev
     };
     const handleClick = (id)=>{
         setCurrentElement(elementsArr[id]);
     };
     const deleteElement = (id)=>{
-        if (elementsArr.length === 1) {
-            setElementsArr([]);
-            setCurrentElement('');
-        } else {
-            const filteredElementsArr = elementsArr.filter((element)=>element.id !== id);
-            console.log('filtered', filteredElementsArr);
-            setElementsArr(filteredElementsArr);
-            setCurrentElement('');
-        }
+        let newElementsArr = [
+            ...elementsArr
+        ];
+        newElementsArr.splice(id, 1);
+        reorderElArr(newElementsArr);
+        setElementsArr(newElementsArr);
     };
     const htmlTags = elementsArr.map((elements, index)=>{
         return mod.createElement("div", {
@@ -7270,13 +7245,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "BUTTON")), mod.createElement("div", {
-<<<<<<< HEAD
         id: "image",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
-        id: "img",
-        onDragStart: handleDragStart
->>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(158,233,163)',
@@ -7287,13 +7257,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "IMAGE")), mod.createElement("div", {
-<<<<<<< HEAD
         id: "header 1",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
-        id: "h1",
-        onDragStart: handleDragStart
->>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(163,233,160)',
@@ -7304,13 +7269,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "HEADER 1")), mod.createElement("div", {
-<<<<<<< HEAD
         id: "header 2",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
-        id: "h2",
-        onDragStart: handleDragStart
->>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(168,233,158)',
@@ -7321,13 +7281,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "HEADER 2")), mod.createElement("div", {
-<<<<<<< HEAD
         id: "header 3",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
-        id: "h3",
-        onDragStart: handleDragStart
->>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: "rgb(173,233,155)",
@@ -7350,13 +7305,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "FOOTER")), mod.createElement("div", {
-<<<<<<< HEAD
         id: "ordered list",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
-        id: "ol",
-        onDragStart: handleDragStart
->>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(187,233,147)',
@@ -7367,13 +7317,8 @@ const SideBar = (props)=>{
         },
         draggable: "true"
     }, " ", "LIST (OL)")), mod.createElement("div", {
-<<<<<<< HEAD
         id: "unordered list",
         onDragStart: (e)=>handleDragStart(e, 'dragArea')
-=======
-        id: "ul",
-        onDragStart: handleDragStart
->>>>>>> dev
     }, mod.createElement("button", {
         style: {
             backgroundColor: 'rgb(196,233,143)',
@@ -7862,11 +7807,9 @@ const CodePreview = (props)=>{
             fs = 'text-';
         }
         let cn = '';
-        console.log(1000, elementsArr[index].className);
         if (elementsArr[index].className !== undefined && elementsArr[index].className !== '') {
             cn = 'className= ';
         }
-        console.log(45, elementsArr[index]);
         return mod.createElement("div", {
             id: index
         }, mod.createElement("span", {
@@ -8171,11 +8114,7 @@ function Buttons(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-<<<<<<< HEAD
                 project_id: project
-=======
-                project_id: 21
->>>>>>> dev
             }),
             mode: 'no-cors'
         }).then((data)=>data.json()).catch((err)=>console.log(err));
@@ -8188,10 +8127,7 @@ function Buttons(props) {
         const body = {
             project_id: project,
             elementsArr: elementsArr,
-<<<<<<< HEAD
-=======
             project: project,
->>>>>>> dev
             user: user
         };
         await fetch('http://localhost:8080/home', {
@@ -8329,17 +8265,8 @@ const App = ()=>{
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
     const [currentElement, setCurrentElement] = mod.useState('drag into here');
-<<<<<<< HEAD
     const [project, setProject] = mod.useState('');
     const [user, setUser] = mod.useState('');
-=======
-<<<<<<< HEAD
-    const [project, setProject] = mod.useState('');
-    const [user, setUser] = mod.useState('');
-=======
-    console.log("elementsArr in app", elementsArr);
->>>>>>> dev
->>>>>>> dev
     const [inputText, setInputText] = mod.useState('');
     const [textAlign, setTextAlign] = mod.useState('');
     const [textDecoration, setTextDecoration] = mod.useState('');
@@ -8349,10 +8276,7 @@ const App = ()=>{
     const [width, setWidth] = mod.useState('');
     const [height, setHeight] = mod.useState('');
     const [padding, setPadding] = mod.useState('');
-<<<<<<< HEAD
     console.log("elementsArr in app", elementsArr);
-=======
->>>>>>> dev
     return mod.createElement("div", {
         className: "app",
         style: styles
@@ -8397,7 +8321,6 @@ const App = ()=>{
         style: buttonsStyle
     }, mod.createElement(Buttons, {
         elementsArr: elementsArr,
-<<<<<<< HEAD
         setElementsArr: setElementsArr,
         project: project,
         setProject: setProject,
@@ -8405,6 +8328,27 @@ const App = ()=>{
         setUser: setUser
     })));
 };
-mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(App, null)), document.getElementById('root'));
-=======
->>>>>>> dev
+const Login = ()=>{
+    return mod.createElement("div", null, mod.createElement("h1", null, "Login Page"), mod.createElement(T1, {
+        to: "/home"
+    }, mod.createElement("button", null, "Click me!")), mod.createElement(T1, {
+        to: "/signup"
+    }, mod.createElement("button", null, "Click me to go to Signup!")));
+};
+const Signup = ()=>{
+    return mod.createElement("div", null, mod.createElement("h1", null, "Signup"), mod.createElement(T1, {
+        to: "/home"
+    }, mod.createElement("button", null, "Click me to go to App!")), mod.createElement(T1, {
+        to: "/"
+    }, mod.createElement("button", null, "Click me to go to Login!")));
+};
+mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(Y1, null, mod.createElement(Ve1, null, mod.createElement(me1, {
+    path: "/",
+    element: mod.createElement(Login, null)
+}), mod.createElement(me1, {
+    path: "/signup",
+    element: mod.createElement(Signup, null)
+}), mod.createElement(me1, {
+    path: "/home",
+    element: mod.createElement(App, null)
+})))), document.getElementById('root'));

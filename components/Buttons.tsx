@@ -104,7 +104,6 @@ function exportFunc(){
 //   fontSize: '30px'
 // } as const;
 
-
 return (
   <main>
         <link rel={'stylesheet'} href={'./static/css/sideBarStyle.css'} />

@@ -160,12 +160,12 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
     fs = 'text-'
   }
   let cn = ''
-  console.log(1000, elementsArr[index].className)
+  // console.log(1000, elementsArr[index].className)
   if (elementsArr[index].className !== undefined && elementsArr[index].className !== ''){
     cn = 'className= '
   }
 
-  console.log(45, elementsArr[index])
+  // console.log(45, elementsArr[index])
   
   return (
     <div id={index}><span style={{color: '#5FD389'}}>{eleFirst} {cn}{elementsArr[index].className} </span><span style={{color:'#37CFE0'}}>{classTag}</span> <span style={{color:'white'}}>{bracket}</span><span style={{color:'#5FD389'}}> {tw}</span><span style={{color:'#37CFE0'}}> {elementsArr[index].textDecoration} {bg}{elementsArr[index].backgroundColor} {color}{elementsArr[index].color} {m}{elementsArr[index].margin}  {w}{elementsArr[index].width} {h}{elementsArr[index].height} {p}{elementsArr[index].padding} {fs}{elementsArr[index].fontSize} {text1}{elementsArr[index].textAlign}</span><span style={{color: '#5FD389'}}> {slash}</span> <span style={{color:'white'}}> {bracket2}</span> <span style={{color: '#FDE086'}}> id={index}</span><span style={{color: '#5FD389'}}>{endBr}</span><span style={{color: 'white'}}> {elementsArr[index].text}</span> <span style={{color: '#5FD389'}}>{eleSecond}</span></div>
