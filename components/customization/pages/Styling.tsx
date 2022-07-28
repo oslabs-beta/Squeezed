@@ -129,7 +129,7 @@ const Styling: any = (props:any) => {
         <link rel={'stylesheet'} href={'./static/css/customizationStyles.css'} />
         <div style={{fontSize: '26px',textAlign:'center' , marginTop: '20px'}} id='selectedEle'>Element selected: {currentElement.element}</div>  
         <br />
-        <div style={{marginLeft: '90px'}}>
+        <div style={{marginLeft: '40px'}}>
         <label htmlFor="inputText">Input Text </label>  
         <input
           value={inputText}
@@ -184,17 +184,17 @@ const Styling: any = (props:any) => {
         <br />
         {/* <label htmlFor="border">Border </label>  
         <input
-          value={border}
-          onChange={(e) => setBorder(e.target.value)}
+          value={fontWeight}
+          onChange={(e) => setFontWeight(e.target.value)}
           type="text"
-          placeholder="Enter border"
+          placeholder="Enter Font Weight"
           className="input"
 
         />  */}
         
 
         </div>
-        <div style={{float: 'right', marginTop: '-130px', marginRight: '100px'}}>
+        <div style={{float: 'right', marginTop: '-200px', marginRight: '40px'}}>
        
         <label htmlFor="height">Height </label>  
         <input
@@ -229,16 +229,6 @@ const Styling: any = (props:any) => {
         /> 
         <br />
        
-        <label htmlFor="textDecoration">Text Decoration </label>
-        <select className="textDecoration" onChange={e => setTextDecoration(e.target.value)} style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033"}}
->
-          <option>default</option>
-          <option>overline</option>
-          <option>line-through</option>
-          <option>underline</option>
-          <option>none</option>
-        </select>
-        <br />
         <label htmlFor="className">Class Name </label>  
                 <input
                   value={className}
@@ -249,8 +239,18 @@ const Styling: any = (props:any) => {
                   
           /> 
           <br/>
+        <label htmlFor="textDecoration">Text Decoration </label>
+        <select className="textDecoration" onChange={e => setTextDecoration(e.target.value)} style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033"}}
+>
+          <option>default</option>
+          <option>overline</option>
+          <option>line-through</option>
+          <option>underline</option>
+          <option>none</option>
+        </select>
+        <br />
         <label htmlFor="textAlign">Text Align </label>
-        <select onChange={e => setTextAlign(e.target.value)} style={{backgroundColor: '#68EDA7', color: 'black'}}
+        <select onChange={e => setTextAlign(e.target.value)} style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033"}}
 >
           <option>default</option>
           <option>center</option>
@@ -259,9 +259,10 @@ const Styling: any = (props:any) => {
           <option>justify</option>
         </select>
 <br/>
+<br/>
         <br/>
           </div>
-        <button type="submit" className="btn"  style={{marginLeft: '42%', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", fontSize: '20px', marginBottom: '20px',color: "#2D3033"}}>
+        <button type="submit" className="btn"  style={{marginLeft: '42%', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", fontSize: '20px', marginBottom: '20px',color: "#2D3033", marginTop:'20px'}}>
           Submit
         </button>
 
