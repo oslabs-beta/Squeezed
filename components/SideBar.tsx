@@ -168,12 +168,12 @@ const deleteElement = (id:any) => {
       .backgroundColor = 'yellow';
   }
 
-  function addNesting(index: any) {
-  }
+  // function addNesting(index: any) {
+  // }
 
 
-  function removeNesting(index: any) {
-  }
+  // function removeNesting(index: any) {
+  // }
 
 
   const elementsList = 
@@ -300,25 +300,9 @@ const deleteElement = (id:any) => {
           onDragEnter={(e) => {dragEnter(e, index)}}
           className="draggedTags"
           onDragOver={enableDropping}
-          // onClick={() => handleClick(index)} 
+          onClick={() => handleClick(index)} 
           id={index}>
           {elementsArr[index].element}
-          
-          <button 
-            id='add-nesting-btn'
-            style={{backgroundImage:"linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", float: 'right', marginTop: '0px', marginRight: '-1px', height: '3px',}} 
-            onClick={ () => addNesting(index) }
-          >
-            +
-          </button>
-          
-          <button 
-            id='remove-nesting-btn'
-            style={{backgroundImage:"linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", float: 'right', marginTop: '0px', marginRight: '-1px', height: '3px',}} 
-            onClick={()=> removeNesting(index) }
-          >
-            -
-          </button>
 
           <button 
             id='delete-btn'

@@ -7167,6 +7167,31 @@ const SideBar = (props)=>{
             el.id = ind;
         });
     };
+    const handleClick = (id)=>{
+        setCurrentElement(elementsArr[id]);
+        const a = elementsArr[id].text;
+        const b = elementsArr[id].textAlign;
+        const c = elementsArr[id].textDecoration;
+        const d = elementsArr[id].backgroundColor;
+        const e = elementsArr[id].color;
+        const f = elementsArr[id].margin;
+        const g = elementsArr[id].width;
+        const h = elementsArr[id].height;
+        const i = elementsArr[id].padding;
+        const j = elementsArr[id].setFontSize;
+        const k = elementsArr[id].setClassName;
+        setInputText(a);
+        setTextAlign(b);
+        setTextDecoration(c);
+        setBackgroundColor(d);
+        setColor(e);
+        setMargin(f);
+        setWidth(g);
+        setHeight(h);
+        setPadding(i);
+        setFontSize(j);
+        setClassName(k);
+    };
     const deleteElement = (id)=>{
         if (elementsArr.length === 1) {
             setElementsArr([]);
@@ -7178,8 +7203,6 @@ const SideBar = (props)=>{
             setCurrentElement('');
         }
     };
-    function addNesting(index) {}
-    function removeNesting(index) {}
     const elementsList = [
         {
             id: 'div',
@@ -7302,30 +7325,9 @@ const SideBar = (props)=>{
             },
             className: "draggedTags",
             onDragOver: enableDropping,
+            onClick: ()=>handleClick(index),
             id: index
         }, elementsArr[index].element, mod.createElement("button", {
-            id: "add-nesting-btn",
-            style: {
-                backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-                color: "#2D3033",
-                float: 'right',
-                marginTop: '0px',
-                marginRight: '-1px',
-                height: '3px'
-            },
-            onClick: ()=>addNesting(index)
-        }, "+"), mod.createElement("button", {
-            id: "remove-nesting-btn",
-            style: {
-                backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-                color: "#2D3033",
-                float: 'right',
-                marginTop: '0px',
-                marginRight: '-1px',
-                height: '3px'
-            },
-            onClick: ()=>removeNesting(index)
-        }, "-"), mod.createElement("button", {
             id: "delete-btn",
             style: {
                 backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
@@ -7760,7 +7762,7 @@ const CodePreview = (props)=>{
         } else {
             elementsArr[index].className = index;
         }
-        console.log(45, elementsArr[index]);
+        testArray.push(`${eleFirst} ${cn}"${elementsArr[index].className}" ${classTag}${bracket}${tw}${bg}${elementsArr[index].backgroundColor}${color}${elementsArr[index].color}${m}${elementsArr[index].margin}${w}${elementsArr[index].width}${h}${elementsArr[index].height}${p}${elementsArr[index].padding}${fs}${elementsArr[index].fontSize}${text1}${fw}${elementsArr[index].fontWeight}${elementsArr[index].textDecoration}${text1}${elementsArr[index].textAlign}${slash}${bracket2} id="${index}"${endBr} ${elementsArr[index].text} ${eleSecond}`);
         return mod.createElement("div", {
             id: index
         }, mod.createElement("span", {
@@ -8109,7 +8111,6 @@ function Buttons(props) {
     const [data, setData] = mod.useState('');
     const { elementsArr , setElementsArr , currentElement , setCurrentElement , project , setProject , user , setUser ,  } = props;
     async function togglePopup() {
-        setIsOpen(!isOpen);
         const data = await fetch("http://localhost:8080/home/get", {
             method: "POST",
             headers: {
@@ -8121,38 +8122,39 @@ function Buttons(props) {
             mode: "no-cors"
         }).then((data)=>data.json()).then((data)=>console.log("I'm on the front end", data)).catch((err)=>console.log(err));
         console.log(data);
-    }
-    async function deleteData() {
-        await fetch("http://localhost:8080/home", {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                project_id: project
-            }),
-            mode: "no-cors"
-        }).then((data)=>data.json()).catch((err)=>console.log(err));
-    }
-    function clear() {
-        setElementsArr([]);
-        setCurrentElement("");
+        setIsOpen(!isOpen);
     }
     async function save() {
         const body = {
             project_id: project,
             elementsArr: elementsArr,
             project: project,
-            user: user
+            user_id: user
         };
-<<<<<<< HEAD
-        await fetch("http://localhost:8080/home", {
-            method: "POST",
-=======
-                "Content-Type": "application/json"
+        await fetch('http://localhost:8080/home/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
             },
-            mode: "no-cors"
+            body: JSON.stringify(body),
+            mode: 'no-cors'
         }).then((data)=>data.json()).then((data)=>console.log("I'm on the front end", data)).catch((err)=>console.log(err));
+    }
+    async function deleteData() {
+        await fetch('http://localhost:8080/home', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                project_id: project
+            }),
+            mode: 'no-cors'
+        }).then((data)=>data.json()).catch((err)=>console.log(err));
+    }
+    function clear() {
+        setElementsArr([]);
+        setCurrentElement('');
     }
     return mod.createElement("main", null, mod.createElement("link", {
         rel: "stylesheet",
@@ -8486,13 +8488,7 @@ const Signup = ()=>{
         className: "right-text"
     }))));
 };
-mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(Y1, null, mod.createElement(T1, {
-    to: "/"
-}, "login"), mod.createElement(T1, {
-    to: "/signup"
-}, "Signup"), mod.createElement(T1, {
-    to: "/home"
-}, "App"), mod.createElement(Ve1, null, mod.createElement(me1, {
+mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(Y1, null, mod.createElement(Ve1, null, mod.createElement(me1, {
     path: "/",
     element: mod.createElement(Login, null)
 }), mod.createElement(me1, {

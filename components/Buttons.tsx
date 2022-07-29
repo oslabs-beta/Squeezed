@@ -21,66 +21,61 @@ export default function Buttons(props: any) {
     setUser,
   } = props;
 
-async function togglePopup() {
-  setIsOpen(!isOpen);
-  // const body = {
-  //   project_id: project,
-  //   elementsArr: elementsArr,
-  //   project: project,
-  //   user: user,
-  // };
-  const data = await fetch("http://localhost:8080/home/get", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({user_id: 1 }),
-    mode: "no-cors",
-  })
-    .then((data) => data.json())
-    .then((data) => console.log("I'm on the front end", data))
-    .catch((err) => console.log(err));
+  async function togglePopup() {
 
-  // setElementsArr([]);
-  // setCurrentElement('');
-  console.log(data)
-}
+    const data = await fetch("http://localhost:8080/home/get", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({user_id: 1}),
+      mode: "no-cors",
+    })
+      .then((data) => data.json())
+      .then((data) => console.log("I'm on the front end", data))
+      .catch((err) => console.log(err));
+      
+      console.log(data)
+    setIsOpen(!isOpen);
 
-async function save(){
-  const body = {
-    project_id: project,
-    elementsArr: elementsArr,
-    project: project,
-    user: user
+
   }
-  await fetch('http://localhost:8080/home/save', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(body),
-      mode: 'no-cors',
-   })
-   .then((data) => data.json())
-   .then(data => console.log("I'm on the front end", data))
-   .catch((err) => console.log(err));
-}
 
-async function deleteData(){
-  await fetch('http://localhost:8080/home', {
-      method: 'DELETE',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ project_id: project }),
-      mode: 'no-cors',
-  })
-  .then((data) => data.json())
-  .catch((err) => console.log(err));
-  // setElementsArr([]);
-  // setCurrentElement('');
-}
+  async function save(){
+    const body = {
+      project_id: project,
+      elementsArr: elementsArr,
+      project: project,
+      user_id: user
+    }
+    await fetch('http://localhost:8080/home/save', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(body),
+        mode: 'no-cors',
+    })
+    .then((data) => data.json())
+    .then(data => console.log("I'm on the front end", data))
+    .catch((err) => console.log(err));
+  }
 
-function clear(){
-  //clears front end
-  setElementsArr([]);
-  setCurrentElement('');
-}
-  
+  async function deleteData(){
+    await fetch('http://localhost:8080/home', {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ project_id: project }),
+        mode: 'no-cors',
+    })
+    .then((data) => data.json())
+    .catch((err) => console.log(err));
+    // setElementsArr([]);
+    // setCurrentElement('');
+  }
+
+  function clear(){
+    //clears front end
+    setElementsArr([]);
+    setCurrentElement('');
+  }
+    
 
   function exportFunc() {
     // this should open up the window directory with deno ???
@@ -192,4 +187,4 @@ function clear(){
       </div>
     </main>
   );
-            }
+};
