@@ -21,115 +21,66 @@ export default function Buttons(props: any) {
     setUser,
   } = props;
 
-  async function togglePopup() {
-    setIsOpen(!isOpen);
-    // const body = {
-    //   project_id: project,
-    //   elementsArr: elementsArr,
-    //   project: project,
-    //   user: user,
-    // };
-    const data = await fetch("http://localhost:8080/home/get", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({user_id: 1 }),
-      mode: "no-cors",
-    })
-      .then((data) => data.json())
-      .then((data) => console.log("I'm on the front end", data))
-      .catch((err) => console.log(err));
+async function togglePopup() {
+  setIsOpen(!isOpen);
+  // const body = {
+  //   project_id: project,
+  //   elementsArr: elementsArr,
+  //   project: project,
+  //   user: user,
+  // };
+  const data = await fetch("http://localhost:8080/home/get", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({user_id: 1 }),
+    mode: "no-cors",
+  })
+    .then((data) => data.json())
+    .then((data) => console.log("I'm on the front end", data))
+    .catch((err) => console.log(err));
 
-    // setElementsArr([]);
-    // setCurrentElement('');
-    console.log(data)
+  // setElementsArr([]);
+  // setCurrentElement('');
+  console.log(data)
+}
+
+async function save(){
+  const body = {
+    project_id: project,
+    elementsArr: elementsArr,
+    project: project,
+    user: user
   }
-  
-  // const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
-  // useEffect(() => {
-  //   fetchResult()
-  // }, []);
-  // state
-
-  // async function loadProject() {
-  //   //fetch request to load project -> need to
-  //   await fetch('http://localhost:8080/home', {
-  //       method: 'GET',
-  //       mode: 'no-cors',
-  //   })
-  //   .then((data) => data.json())
-  //   .then((data) => console.log(data))
-  //   .catch((err) => console.log(err));
-
-  //   // set user and project state to the info pulled from backend
-  //   setProject(data.project);
-  //   setUser(data.user);
-  // }
-
-  // function loadProject(){
-  //   let newWindow = open("http://localhost:8000/", "example", "width=1100px,height=800px");
-
-  //   // (*) about:blank, loading hasn't started yet
-
-  //  newWindow.onload = function () {
-  //    let html1 = `<div style="font-size:30px">Welcome!</div>`;
-  //    newWindow.document.body.insertAdjacentHTML("afterbegin", html1);
-  // }
-  // }
-
-  async function deleteData() {
-    await fetch("http://localhost:8080/home", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ project_id: project }),
-      mode: "no-cors",
-    })
-      .then((data) => data.json())
-      .catch((err) => console.log(err));
-    // setElementsArr([]);
-    // setCurrentElement('');
-  }
-
-  function clear() {
-    //clears front end
-    setElementsArr([]);
-    setCurrentElement("");
-  }
-
-  async function save() {
-    const body = {
-      project_id: project,
-      elementsArr: elementsArr,
-      project: project,
-      user: user,
-    };
-    await fetch("http://localhost:8080/home", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+  await fetch('http://localhost:8080/home/save', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(body),
-      mode: "no-cors",
-    })
-      .then((data) => data.json())
-      .then((data) => console.log("I'm on the front end", data))
-      .catch((err) => console.log(err));
+      mode: 'no-cors',
+   })
+   .then((data) => data.json())
+   .then(data => console.log("I'm on the front end", data))
+   .catch((err) => console.log(err));
+}
 
-    // try{
-    //   const body = { project_id: null, elementsArr: elementsArr };
-    //   const url = 'https://localhost:8080';
-    //   const response = await fetch(url, {
-    //     mode: 'no-cors'
-    //   });
-    //   // let response = await fetch("http://localhost:8080", {
-    //   //   method: 'GET',
-    //   // });
-    //   const data = await response.text();
-    //   console.log("I'm on the front end", data)
-    //   console.log(response.body)
-    //   return response;
+async function deleteData(){
+  await fetch('http://localhost:8080/home', {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ project_id: project }),
+      mode: 'no-cors',
+  })
+  .then((data) => data.json())
+  .catch((err) => console.log(err));
+  // setElementsArr([]);
+  // setCurrentElement('');
+}
 
-    // } catch{
-    //     console.log("ERROR");
-    //   }
-  }
+function clear(){
+  //clears front end
+  setElementsArr([]);
+  setCurrentElement('');
+}
+  
 
   function exportFunc() {
     // this should open up the window directory with deno ???
@@ -241,4 +192,4 @@ export default function Buttons(props: any) {
       </div>
     </main>
   );
-}
+            }

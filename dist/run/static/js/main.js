@@ -7167,31 +7167,6 @@ const SideBar = (props)=>{
             el.id = ind;
         });
     };
-    const handleClick = (id)=>{
-        setCurrentElement(elementsArr[id]);
-        const a = elementsArr[id].text;
-        const b = elementsArr[id].textAlign;
-        const c = elementsArr[id].textDecoration;
-        const d = elementsArr[id].backgroundColor;
-        const e = elementsArr[id].color;
-        const f = elementsArr[id].margin;
-        const g = elementsArr[id].width;
-        const h = elementsArr[id].height;
-        const i = elementsArr[id].padding;
-        const j = elementsArr[id].setFontSize;
-        const k = elementsArr[id].setClassName;
-        setInputText(a);
-        setTextAlign(b);
-        setTextDecoration(c);
-        setBackgroundColor(d);
-        setColor(e);
-        setMargin(f);
-        setWidth(g);
-        setHeight(h);
-        setPadding(i);
-        setFontSize(j);
-        setClassName(k);
-    };
     const deleteElement = (id)=>{
         if (elementsArr.length === 1) {
             setElementsArr([]);
@@ -7203,17 +7178,155 @@ const SideBar = (props)=>{
             setCurrentElement('');
         }
     };
-    const htmlTags = elementsArr.map((elements, index)=>{
+    function addNesting(index) {}
+    function removeNesting(index) {}
+    const elementsList = [
+        {
+            id: 'div',
+            element: 'DIV',
+            backgroundColor: 'rgb(142,233,172)'
+        },
+        {
+            id: 'paragraph',
+            element: 'PARAGRAPH',
+            backgroundColor: 'rgb(148,233,168)'
+        },
+        {
+            id: 'button',
+            element: 'BUTTON',
+            backgroundColor: 'rgb(152,233,166)'
+        },
+        {
+            id: 'img',
+            element: 'IMAGE',
+            backgroundColor: 'rgb(158,233,163)'
+        },
+        {
+            id: 'h1',
+            element: 'HEADER 1',
+            backgroundColor: 'rgb(163,233,160)'
+        },
+        {
+            id: 'h2',
+            element: 'HEADER 2',
+            backgroundColor: 'rgb(168,233,158)'
+        },
+        {
+            id: 'h3',
+            element: 'HEADER 3',
+            backgroundColor: 'rgb(173,233,155)'
+        },
+        {
+            id: 'footer',
+            element: 'FOOTER',
+            backgroundColor: 'rgb(178,233,152)'
+        },
+        {
+            id: 'ol',
+            element: 'LIST (OL)',
+            backgroundColor: 'rgb(187,233,147)'
+        },
+        {
+            id: 'ul',
+            element: 'LIST (UL)',
+            backgroundColor: 'rgb(196,233,143'
+        },
+        {
+            id: 'input',
+            element: 'INPUT',
+            backgroundColor: 'rgb(202,233,139)'
+        },
+        {
+            id: 'link',
+            element: 'LINK',
+            backgroundColor: 'rgb(207,233,137)'
+        },
+        {
+            id: 'label',
+            element: 'LABEL',
+            backgroundColor: 'rgb(212,233,134)'
+        },
+        {
+            id: 'span',
+            element: 'SPAN',
+            backgroundColor: 'rgb(218,233,131)'
+        },
+        {
+            id: 'button',
+            element: 'LIST (UL)',
+            backgroundColor: 'rgb(152,233,166)'
+        },
+        {
+            id: 'form',
+            element: 'FORM',
+            backgroundColor: 'rgb(222,233,128)'
+        },
+        {
+            id: 'menu',
+            element: 'MENU',
+            backgroundColor: 'rgb(227,233,126)'
+        },
+        {
+            id: 'title',
+            element: 'TITLE',
+            backgroundColor: 'rgb(232,233,123)'
+        },
+        {
+            id: 'area',
+            element: 'AREA',
+            backgroundColor: 'rgb(238,233,120)'
+        }
+    ];
+    const renderElementsList = elementsList.map((el)=>{
+        return mod.createElement("div", {
+            id: el.id,
+            onDragStart: (e)=>handleDragStart(e, 'dragArea')
+        }, mod.createElement("button", {
+            style: {
+                backgroundColor: el.backgroundColor,
+                color: "#2d3033",
+                width: "100%",
+                fontSize: '20px',
+                fontWeight: 'bolder'
+            },
+            draggable: "true"
+        }, " ", el.element));
+    });
+    const createdElements = elementsArr.map((elements, index)=>{
         return mod.createElement("div", {
             draggable: "true",
+            onDrop: handleDrop,
             onDragStart: (e)=>handleDragStart(e, 'dropArea'),
             onDragEnter: (e)=>{
                 dragEnter(e, index);
             },
             className: "draggedTags",
-            onClick: ()=>handleClick(index),
+            onDragOver: enableDropping,
             id: index
         }, elementsArr[index].element, mod.createElement("button", {
+            id: "add-nesting-btn",
+            style: {
+                backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+                color: "#2D3033",
+                float: 'right',
+                marginTop: '0px',
+                marginRight: '-1px',
+                height: '3px'
+            },
+            onClick: ()=>addNesting(index)
+        }, "+"), mod.createElement("button", {
+            id: "remove-nesting-btn",
+            style: {
+                backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+                color: "#2D3033",
+                float: 'right',
+                marginTop: '0px',
+                marginRight: '-1px',
+                height: '3px'
+            },
+            onClick: ()=>removeNesting(index)
+        }, "-"), mod.createElement("button", {
+            id: "delete-btn",
             style: {
                 backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
                 color: "#2D3033",
@@ -7237,231 +7350,15 @@ const SideBar = (props)=>{
         className: "app"
     }), mod.createElement("div", {
         id: "side"
-    }, mod.createElement("div", {
-        id: "div",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(142,233,172)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "DIV")), mod.createElement("div", {
-        id: "paragraph",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(148,233,168)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '16px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "PARAGRAPH")), mod.createElement("div", {
-        id: "button",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(152,233,166)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "BUTTON")), mod.createElement("div", {
-        id: "img",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(158,233,163)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "IMAGE")), mod.createElement("div", {
-        id: "h1",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(163,233,160)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "HEADER 1")), mod.createElement("div", {
-        id: "h2",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(168,233,158)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "HEADER 2")), mod.createElement("div", {
-        id: "h3",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: "rgb(173,233,155)",
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "HEADER 3")), mod.createElement("div", {
-        id: "footer",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(178,233,152)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "FOOTER")), mod.createElement("div", {
-        id: "ol",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(187,233,147)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "LIST (OL)")), mod.createElement("div", {
-        id: "ul",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(196,233,143)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "LIST (UL)")), mod.createElement("div", {
-        id: "input",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(202,233,139)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "INPUT")), mod.createElement("div", {
-        id: "link",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(207,233,137)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "LINK")), mod.createElement("div", {
-        id: "label",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(212,233,134)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "LABEL")), mod.createElement("div", {
-        id: "span",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(218,233,131)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "SPAN")), mod.createElement("div", {
-        id: "form",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(222,233,128)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "FORM")), mod.createElement("div", {
-        id: "menu",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(227,233,126)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "MENU")), mod.createElement("div", {
-        id: "title",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(232,233,123)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "TITLE")), mod.createElement("div", {
-        id: "area",
-        onDragStart: (e)=>handleDragStart(e, 'dragArea')
-    }, mod.createElement("button", {
-        style: {
-            backgroundColor: 'rgb(238,233,120)',
-            color: "#2d3033",
-            width: "100%",
-            fontSize: '20px',
-            fontWeight: 'bolder'
-        },
-        draggable: "true"
-    }, " ", "AREA"))), mod.createElement("div", {
+    }, renderElementsList), mod.createElement("div", {
+        id: "drop",
         onDragOver: enableDropping,
         onDrop: handleDrop,
         onDragEnter: handleDragOverStart,
-        onDragLeave: handleDragOverEnd,
-        id: "drop"
+        onDragLeave: handleDragOverEnd
     }, mod.createElement("div", {
         id: "hov"
-    }, htmlTags)));
+    }, createdElements)));
 };
 const Routing = (props)=>{
     return mod.createElement("div", null, "Routing page in react router");
@@ -7863,7 +7760,7 @@ const CodePreview = (props)=>{
         } else {
             elementsArr[index].className = index;
         }
-        testArray.push(`${eleFirst} ${cn}"${elementsArr[index].className}" ${classTag}${bracket}${tw}${bg}${elementsArr[index].backgroundColor}${color}${elementsArr[index].color}${m}${elementsArr[index].margin}${w}${elementsArr[index].width}${h}${elementsArr[index].height}${p}${elementsArr[index].padding}${fs}${elementsArr[index].fontSize}${text1}${fw}${elementsArr[index].fontWeight}${elementsArr[index].textDecoration}${text1}${elementsArr[index].textAlign}${slash}${bracket2} id="${index}"${endBr} ${elementsArr[index].text} ${eleSecond}`);
+        console.log(45, elementsArr[index]);
         return mod.createElement("div", {
             id: index
         }, mod.createElement("span", {
@@ -8248,12 +8145,12 @@ function Buttons(props) {
             project: project,
             user: user
         };
+<<<<<<< HEAD
         await fetch("http://localhost:8080/home", {
             method: "POST",
-            headers: {
+=======
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(body),
             mode: "no-cors"
         }).then((data)=>data.json()).then((data)=>console.log("I'm on the front end", data)).catch((err)=>console.log(err));
     }
@@ -8589,7 +8486,13 @@ const Signup = ()=>{
         className: "right-text"
     }))));
 };
-mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(Y1, null, mod.createElement(Ve1, null, mod.createElement(me1, {
+mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(Y1, null, mod.createElement(T1, {
+    to: "/"
+}, "login"), mod.createElement(T1, {
+    to: "/signup"
+}, "Signup"), mod.createElement(T1, {
+    to: "/home"
+}, "App"), mod.createElement(Ve1, null, mod.createElement(me1, {
     path: "/",
     element: mod.createElement(Login, null)
 }), mod.createElement(me1, {
