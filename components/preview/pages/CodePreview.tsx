@@ -17,8 +17,8 @@ const {elementsArr, setElementsArr} = props;
 //   };
 // const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
 // console.log("elementsArr inside code preview", elementsArr);
+let testArray: string[]= [];
 const htmlTags = elementsArr.map((elements: any, index: any) =>{
- 
   let eleFirst:any;
   let eleSecond:any;
   let midText: any;
@@ -26,110 +26,92 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
   if(elementsArr[index].element === 'div') {
     eleFirst = `<div `
     endBr = '>'
-    midText = 'This is your div'
     eleSecond = `</div>`
     
   }
   if(elementsArr[index].element === 'paragraph') {
     eleFirst = `<p `
     endBr = '>'
-    midText = 'This is your paragraph'
     eleSecond = `</p>`
   }
   if(elementsArr[index].element === 'img') {
     eleFirst = `<img `
     endBr = ' src='
-    midText = 'src=""'
     eleSecond = `/>`
   }
   if(elementsArr[index].element === 'button') {
     eleFirst = `<button`
     endBr = '>'
-    midText = 'This is your button'
     eleSecond = `</button>`
   }
   if(elementsArr[index].element === 'form') {
     eleFirst = `<form `
     endBr = '>'
-    midText = 'This is your form'
     eleSecond= `</form>`
   }
   if(elementsArr[index].element === 'ol') {
     eleFirst = `<ol `
     endBr = '>'
-    midText = 'This is your Ordered List'
     eleSecond = `</ol>`
   }
   if(elementsArr[index].element === 'ul') {
     eleFirst = `<ul `
     endBr = '>'
-    midText = 'This is your Unordered List'
     eleSecond = `</ul>`
   }
   if(elementsArr[index].element === 'h1') {
     eleFirst = `<h1 `
     endBr = '>'
-    midText = 'This is your header 1'
     eleSecond =`</h1>`
   }
   if(elementsArr[index].element === 'h2') {
     eleFirst = `<h2 `
     endBr = '>'
-    midText = 'This is your header 2'
     eleSecond =`</h2>`
   }
   if(elementsArr[index].element === 'h3') {
     eleFirst = `<h3 `
     endBr = '>'
-    midText = 'This is your header 3'
     eleSecond =`</h3>`
   }
   if(elementsArr[index].element === 'footer') {
     eleFirst = `<footer `
     endBr = '>'
-    midText = 'This is your footer'
     eleSecond =`</footer>`
   }
   if(elementsArr[index].element === 'span') {
     eleFirst = `<span `
     endBr = '>'
-    midText = 'This is your span'
     eleSecond =`</span>`
   }
   if(elementsArr[index].element === 'menu') {
     eleFirst = `<menu `
     endBr = '>'
-    midText = 'This is your menu'
     eleSecond =`</menu>`
   }
   if(elementsArr[index].element === 'input') {
     eleFirst = `<input `
     endBr = '>'
-    midText = 'This is your input'
     eleSecond =`</input>`
   }
   if(elementsArr[index].element === 'label') {
     eleFirst = `<label `
     endBr = '>'
-    midText = 'This is your label'
     eleSecond =`</label>`
   }
   if(elementsArr[index].element === 'link') {
     eleFirst = `<link `
     endBr = ''
-    midText = 'This is your link'
    eleSecond = `/>`
   }
   if(elementsArr[index].element === 'title') {
     eleFirst = `<title `
     endBr = '>'
-    midText = 'This is your title'
    eleSecond = `</title>`
   }
   if(elementsArr[index].element === 'area') {
     eleFirst = `<area `
     endBr = '>'
-    midText = 'This is your area'
    eleSecond = `</area>`
   }
   // console.log(1, elementsArr[index].textAlign)
@@ -139,7 +121,7 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
   let tw=''
   let slash = ''
   if (elementsArr[index].padding !== '' || elementsArr[index].textAlign !== undefined || elementsArr[index].backgroundColor !== '' || elementsArr[index].color !== '' || elementsArr[index].margin !== '' || elementsArr[index].height !== '' || elementsArr[index].height !== '' || elementsArr[index].padding !== '' || elementsArr[index].width !== ''){
-    classTag = `class =`
+    classTag = `class=`
     bracket='{'
     tw= 'tw`'
     slash= '`'
@@ -190,11 +172,12 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
   let cn = ''
   // console.log(1000, elementsArr[index].className)
   if (elementsArr[index].className !== undefined && elementsArr[index].className !== ''){
-    cn = 'className= '
+    cn = 'className='
+  } else {
+    elementsArr[index].className= index
+  
   }
-
-  // console.log(45, elementsArr[index])
-  console.log(45, elementsArr[index])
+  testArray.push(`${eleFirst} ${cn}"${elementsArr[index].className}" ${classTag}${bracket}${tw}${bg}${elementsArr[index].backgroundColor}${color}${elementsArr[index].color}${m}${elementsArr[index].margin}${w}${elementsArr[index].width}${h}${elementsArr[index].height}${p}${elementsArr[index].padding}${fs}${elementsArr[index].fontSize}${text1}${fw}${elementsArr[index].fontWeight}${elementsArr[index].textDecoration}${text1}${elementsArr[index].textAlign}${slash}${bracket2} id="${index}"${endBr} ${elementsArr[index].text} ${eleSecond}`)
 
 
   
@@ -203,10 +186,12 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
     )
     
   })
-
-
+  let html = testArray.map((e,i) => (e)).join('\n');
+  
+  // console.log('testtt', Array)
   return (
     <div id='codePreview'>
+      
       <link rel={'stylesheet'} href={'./static/css/codePreview.css'} />
       <p id='import'><span style={{color: '#FF5581'}}>import</span> {'{'}<span style={{color:'#ffff76'}}> h</span> {'}'} <span style={{color: '#FF5581'}}> from</span> <span style={{color:'#ffff76'}}>'preact'</span>;</p>
       <p id='import'><span style={{color: '#FF5581'}}>import</span> {'{'}<span style={{color:'#ffff76'}}> PageProps </span> {'}'} <span style={{color: '#FF5581'}}> from</span> <span style={{color:'#ffff76'}}>'$fresh/server.ts'</span> ;</p>
@@ -219,13 +204,45 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
       <p id='mainClosingTag'><span style={{color: '#8B7FDA'}}>{'</main>'}</span></p>
       <p id='paren'>);</p>
       <p id='endingCurly'>{'}'};</p>
-     
-     
+      <div className="tooltip">
+      <button  id='btn'
+    onClick={() => 
+      
+      navigator.clipboard.writeText(`
+      import { h } from 'preact';
+      
+      import { PageProps } from '$fresh/server.ts' ;
+      
+      import { useEffect, useState } from 'preact/hooks';
+      
+      import { tw } from 'twind';
+      
+      export default function App (props: PageProps) {
+      
+        return (
+      
+          <main>
+      
+              ${html} 
+       
+          </main>
+
+        );
+       
+       };`
+       )}
+  >
+
+  <p id='clip'>&#128203;</p>
+  </button>
+  
+  <span className="tooltiptext">Click to copy!</span>
+</div>
       </div>
   )
   }
  export default CodePreview;
-
+ 
 // import { h } from "preact";
 
 // import { PageProps } from "$fresh/server.ts";
@@ -255,4 +272,93 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
 // YELLOW: #FDE086
 // BLYE: #37CFE0
 // PURPLE: #8B7FDA
-  
+
+
+
+
+
+
+
+
+
+// import { h } from 'preact';
+      
+// import { PageProps } from '$fresh/server.ts' ;
+
+// import { useEffect, useState } from 'preact/hooks';
+
+// import { tw } from 'twind';
+
+// export default function App (props: PageProps) {
+
+//   return (
+
+//     <main>
+
+//         <img  "undefined"  id="0" src=  />
+// <h2  "undefined"  id="1">  </h2> 
+ 
+//     </main>
+
+//   );
+ 
+//  };
+
+
+// import { h } from 'preact';
+      
+// import { PageProps } from '$fresh/server.ts' ;
+
+// import { useEffect, useState } from 'preact/hooks';
+
+// import { tw } from 'twind';
+
+// export default function App (props: PageProps) {
+
+//   return (
+
+//     <main>
+
+//         <img  "undefined"  id="0" src=  /> 
+// <h2  "undefined"  id="1">  </h2> 
+ 
+//     </main>
+
+//   );
+ 
+//  };
+
+
+// import { h } from 'preact';
+      
+// import { PageProps } from '$fresh/server.ts' ;
+
+// import { useEffect, useState } from 'preact/hooks';
+
+// import { tw } from 'twind';
+
+// export default function App (props: PageProps) {
+
+//   return (
+
+//     <main>
+
+//         <img  "undefined"  id="0" src=  />
+// <h2  "undefined"  id="1">  </h2> 
+ 
+//     </main>
+
+//   );
+ 
+//  };
+
+
+
+
+
+
+
+
+
+
+

@@ -2,21 +2,21 @@ import { React } from '../../../deps.tsx';
 
 const IslandPreview: any = (props: any) => {
   const {elementsArr, setElementsArr} = props;
-  let htmlElement;
-  let htmlText;
-  let htmlTextAlign;
-  let htmlTextDecoration;
-  let htmlBackground;
-  let htmlColor;
-  let htmlMargin;
-  let htmlWidth;
-  let htmlHeight;
-  let htmlPadding;
-  let htmlFontSize;
-  let htmlFontWeight;
+  let htmlElement: unknown;
+  let htmlText: unknown;
+  let htmlTextAlign: unknown;
+  let htmlTextDecoration: unknown;
+  let htmlBackground: unknown;
+  let htmlColor: unknown;
+  let htmlMargin: unknown;
+  let htmlWidth: unknown;
+  let htmlHeight: unknown;
+  let htmlPadding: unknown;
+  let htmlFontSize: unknown;
+  let htmlFontWeight: unknown;
 
   const testArray:string[]=[];
-  elementsArr.forEach(ele => {
+  elementsArr.forEach((ele: { [s: string]: unknown; }|ArrayLike<unknown>) => {
     for (let key in ele){
       htmlElement = Object.values(ele)[1]
       htmlText = Object.values(ele)[2]
@@ -34,16 +34,12 @@ const IslandPreview: any = (props: any) => {
     testArray.push(`<${htmlElement} style='color:${htmlColor};background-color:${htmlBackground};height:${htmlHeight};width:${htmlWidth};text-align:${htmlTextAlign};margin:${htmlMargin};text-decoration:${htmlTextDecoration};padding:${htmlPadding};font-size:${htmlFontSize};font-weight:${htmlFontWeight}'>${htmlText}</${htmlElement}>`)
     
   })
-
+console.log(73, testArray)
   let html = testArray.map((e,i) => (e)).join(' ');
+  console.log(74, html)
   return (
     <div style={{height: '100%', width: '100%'}}>
       <iframe  height='750px' width='100%' frameBorder="0" srcDoc = {html}></iframe>
-      <button 
-    onClick={() =>  navigator.clipboard.writeText(`html: ${html}`)}
-  >
-    Copy
-  </button>
     </div>
   )
 }

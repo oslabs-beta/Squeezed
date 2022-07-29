@@ -146,7 +146,7 @@ return (
       >
         Load Project
       </button>
-      <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px', marginLeft: '7px'}}
+      {/* <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px', marginLeft: '7px'}}
         id="exportBtn"
         onClick={(event: React.MouseEvent<HTMLElement>) => {
            alert("Project Exported");
@@ -155,7 +155,7 @@ return (
         }}
       >
         Export Code
-      </button>
+      </button> */}
     </div>
   </main>
 );
