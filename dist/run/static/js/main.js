@@ -8466,15 +8466,14 @@ const Login = ()=>{
             body: JSON.stringify(body),
             mode: 'no-cors'
         }).then((data)=>{
-            console.log('res: ', data);
             return data.json();
         }).then((data)=>{
-            console.log('hereee');
+            console.log('res on front end: ', data);
             if (data === true) {
                 console.log(data);
                 navigateToHome();
             } else {
-                console.log('Wrong username and password combination');
+                alert('Wrong username and password combination');
             }
         }).catch((error)=>console.log(error));
     };
