@@ -17,6 +17,21 @@ router
   });
 })
 
+app.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (err) {
+    if (isHttpError(err)) {
+      switch (err.status) {
+        case Status.NotFound:
+          break;
+          default:
+          }
+        } else {
+          throw err;
+        }
+      }
+});
 // app.use(async (context, next) => {
 //   try {
 //     await context.send({

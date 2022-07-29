@@ -5,8 +5,9 @@ import projectController from '../controllers/projectController.ts'
 const router = new Router();
 
 router
-  .get('/home/all', projectController.getproject)
-  .post('/home', projectController.saveProject)
-  .delete('/home', projectController.deleteProject)
+.post('/home/get', projectController.getproject)
+.post('/home/load', projectController.loadProject)
+.post('/home/save', projectController.saveProject)
+.delete('/home', projectController.deleteProject)
 
   export default router

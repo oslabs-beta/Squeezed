@@ -3,27 +3,13 @@ import { React } from "../deps.tsx";
 import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
 import Popup from "./popup.tsx";
 
+
 export default function Buttons(props: any) {
   // const [error, setError] = useState(null);
   // const [isLoaded, setIsLoaded] = useState(false);
   // const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = React.useState(false);
   const [data, setData] = React.useState('');
-
-  async function togglePopup() {
-    setIsOpen(!isOpen);
-    const setData = await fetch("http://localhost:8080/home", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ project_id: 1 }),
-      mode: "no-cors",
-    })
-      .then((data) => data.json())
-      .catch((err) => console.log(err));
-    // setElementsArr([]);
-    // setCurrentElement('');
-  }
-  
   const {
     elementsArr,
     setElementsArr,
@@ -34,6 +20,30 @@ export default function Buttons(props: any) {
     user,
     setUser,
   } = props;
+
+  async function togglePopup() {
+    setIsOpen(!isOpen);
+    // const body = {
+    //   project_id: project,
+    //   elementsArr: elementsArr,
+    //   project: project,
+    //   user: user,
+    // };
+    const data = await fetch("http://localhost:8080/home/get", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({user_id: 1 }),
+      mode: "no-cors",
+    })
+      .then((data) => data.json())
+      .then((data) => console.log("I'm on the front end", data))
+      .catch((err) => console.log(err));
+
+    // setElementsArr([]);
+    // setCurrentElement('');
+    console.log(data)
+  }
+  
   // const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
   // useEffect(() => {
   //   fetchResult()

@@ -6,19 +6,37 @@ const dex = Dex({client: 'postgres'});
 const projectController: any = {};
 
 projectController.getproject = async(ctx: any) => {
-    try {
-        const id = await ctx.params.id;
-        const data = await db.queryObject({
-          text: `SELECT * FROM projects WHERE account_id = ${id}`
-        });
-        ctx.response.body = data.rows[0]
-        ctx.response.status = 200;
-        return;
-    } catch (err) {
-        ctx.response.body = { status: false, data: null};
-        ctx.response.status = 500;
-        console.log(err);         
-    }
+  try {
+    const { value } = await ctx.request.body({type: 'json'});
+    const obj = await value;
+    let { user_id } = obj;
+    let getQuery = dex.select().from("projects").where({user_id: user_id}).toString();
+    const data = await db.queryObject(getQuery);
+    ctx.response.status = 200; 
+    ctx.response.body = data.rows
+    return;
+  } catch (err) {
+    ctx.response.body = { status: false, data: null};
+    ctx.response.status = 500;
+    console.log(err);
+  }
+};
+
+projectController.loadProject = async (ctx: any) => {
+  try {
+    const { value } = await ctx.request.body({type: 'json'});
+    const obj = await value;
+    let { project_id } = obj;
+    let loadQuery = dex.select().from("elements").where({project_id: project_id}).toString();
+    const data = await db.queryObject(loadQuery);
+    ctx.response.status = 200; 
+    ctx.response.body = data.rows
+    return;
+  } catch (err) {
+      ctx.response.body = { status: false, data: null};
+      ctx.response.status = 500;
+      console.log(err);
+  }
 };
 
 projectController.deleteProject = async (ctx: any) => {
@@ -36,18 +54,18 @@ projectController.deleteProject = async (ctx: any) => {
     ctx.response.status = 500;
     console.log(err);
   }
-}
+};
 
 projectController.saveProject = async (ctx: any) => {
     try {
         //get request body and store in constants
         const { value } = await ctx.request.body({type: 'json'});
         const obj = await value;
-        let { project_id, elementsArr } = obj;
+        let { project_id, elementsArr, user_id } = obj;
 
         //if project doesn't exist in db, create a new row in projects table
         if(!project_id){
-            let insertQuery = dex("projects").insert({}).returning('id').toString(); 
+            let insertQuery = dex("projects").insert({user_id: user_id}).returning('id').toString(); 
             const newData = await db.queryObject(insertQuery);
             project_id = newData.rows[0].id;
         }
@@ -120,6 +138,7 @@ projectController.saveProject = async (ctx: any) => {
         console.log(err);
     }
 };
+
 
 export default projectController;
 

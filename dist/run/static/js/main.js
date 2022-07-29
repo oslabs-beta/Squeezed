@@ -8210,20 +8210,21 @@ const Popup = (props)=>{
 function Buttons(props) {
     const [isOpen, setIsOpen] = mod.useState(false);
     const [data, setData] = mod.useState('');
+    const { elementsArr , setElementsArr , currentElement , setCurrentElement , project , setProject , user , setUser ,  } = props;
     async function togglePopup() {
         setIsOpen(!isOpen);
-        await fetch("http://localhost:8080/home", {
+        const data = await fetch("http://localhost:8080/home/get", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                project_id: 1
+                user_id: 1
             }),
             mode: "no-cors"
-        }).then((data)=>data.json()).catch((err)=>console.log(err));
+        }).then((data)=>data.json()).then((data)=>console.log("I'm on the front end", data)).catch((err)=>console.log(err));
+        console.log(data);
     }
-    const { elementsArr , setElementsArr , currentElement , setCurrentElement , project , setProject , user , setUser ,  } = props;
     async function deleteData() {
         await fetch("http://localhost:8080/home", {
             method: "DELETE",
