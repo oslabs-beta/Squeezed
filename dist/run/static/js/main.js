@@ -8111,33 +8111,33 @@ function Buttons(props) {
     const [data, setData] = mod.useState('');
     const { elementsArr , setElementsArr , currentElement , setCurrentElement , project , setProject , user , setUser ,  } = props;
     async function togglePopup() {
-        const data = await fetch("http://localhost:8080/home/get", {
+        let output;
+        await fetch("http://localhost:8080/home/get", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 user_id: 1
-            }),
-            mode: "no-cors"
-        }).then((data)=>data.json()).then((data)=>console.log("I'm on the front end", data)).catch((err)=>console.log(err));
-        console.log(data);
-        setIsOpen(!isOpen);
+            })
+        }).then((data)=>data.json()).then((data)=>{
+            output = data;
+        }).catch((err)=>console.log(err));
+        console.log(output);
     }
     async function save() {
         const body = {
             project_id: project,
             elementsArr: elementsArr,
             project: project,
-            user_id: user
+            user: user
         };
         await fetch('http://localhost:8080/home/save', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(body),
-            mode: 'no-cors'
+            body: JSON.stringify(body)
         }).then((data)=>data.json()).then((data)=>console.log("I'm on the front end", data)).catch((err)=>console.log(err));
     }
     async function deleteData() {
@@ -8148,8 +8148,7 @@ function Buttons(props) {
             },
             body: JSON.stringify({
                 project_id: project
-            }),
-            mode: 'no-cors'
+            })
         }).then((data)=>data.json()).catch((err)=>console.log(err));
     }
     function clear() {

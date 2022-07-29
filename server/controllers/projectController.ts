@@ -61,15 +61,14 @@ projectController.saveProject = async (ctx: any) => {
         //get request body and store in constants
         const { value } = await ctx.request.body({type: 'json'});
         const obj = await value;
-        let { project_id, elementsArr, user_id } = obj;
+        let { project_id, elementsArr} = obj;
 
         //if project doesn't exist in db, create a new row in projects table
         if(!project_id){
-            let insertQuery = dex("projects").insert({user_id: user_id}).returning('id').toString(); 
+            let insertQuery = dex("projects").insert({}).returning('id').toString(); 
             const newData = await db.queryObject(insertQuery);
             project_id = newData.rows[0].id;
         }
-        console.log("project id:", project_id, "elementsArr: ", elementsArr);
 
         //project exists, loop through elementsArr
         elementsArr.forEach(async el => {
@@ -81,10 +80,8 @@ projectController.saveProject = async (ctx: any) => {
                 .where({project_id: project_id, id: el.id})
                 .returning('id', 'element').toString();
             const elementData = await db.queryObject(elementQuery);
-            // console.log(`element query output for id ${el.id}: `, elementData.rows);
             
             const { id, element, text, textAlign, textDecoration, backgroundColor, color, margin, height, padding } = el;
-            console.log(id, element, text, textAlign, textDecoration)
             if(elementData.rows.length > 0){
               const updateQuery = 
                 dex

@@ -22,19 +22,21 @@ export default function Buttons(props: any) {
   } = props;
 
   async function togglePopup() {
-
-    const data = await fetch("http://localhost:8080/home/get", {
+    let output;
+    await fetch("http://localhost:8080/home/get", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({user_id: 1}),
-      mode: "no-cors",
+      body: JSON.stringify({ user_id: 1 }),
     })
+      
       .then((data) => data.json())
-      .then((data) => console.log("I'm on the front end", data))
+      .then((data) => {
+        output = data
+      })
       .catch((err) => console.log(err));
       
-      console.log(data)
-    setIsOpen(!isOpen);
+      console.log(output)
+    // setIsOpen(!isOpen);
 
 
   }
@@ -44,17 +46,17 @@ export default function Buttons(props: any) {
       project_id: project,
       elementsArr: elementsArr,
       project: project,
-      user_id: user
+      user: user
     }
     await fetch('http://localhost:8080/home/save', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(body),
-        mode: 'no-cors',
     })
     .then((data) => data.json())
     .then(data => console.log("I'm on the front end", data))
     .catch((err) => console.log(err));
+  
   }
 
   async function deleteData(){
@@ -62,7 +64,6 @@ export default function Buttons(props: any) {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ project_id: project }),
-        mode: 'no-cors',
     })
     .then((data) => data.json())
     .catch((err) => console.log(err));
