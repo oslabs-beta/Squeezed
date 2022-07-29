@@ -11,10 +11,11 @@ import {
     BrowserRouter,
     Routes,
     Route,
+    useNavigate,
     Link
   } from "https://esm.sh/react-router-dom@6.3.0"
 
-export { BrowserRouter, Routes, Route, Link }
+export { BrowserRouter, Routes, Route, Link, useNavigate}
 //Twind
 import { setup, tw } from "https://esm.sh/twind@0.16.16";
 import { getStyleTag, virtualSheet } from "https://esm.sh/twind@0.16.16/sheets";

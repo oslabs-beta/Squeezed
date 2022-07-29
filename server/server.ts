@@ -42,7 +42,7 @@ ctx.response.status = 200;
 });
 
 
-app.use(oakCors());
+app.use(oakCors()); 
 
 app.addEventListener("error", (evt) => {
 console.log(evt.error);
@@ -61,7 +61,7 @@ await app.listen({ port });
         
         // https://stackoverflow.com/questions/62363699/how-to-access-form-body-in-oak-deno
         
-        // deno run --allow-net --allow-env --allow-read ./server/server.ts
+        // deno-create-react-app run & deno run --allow-net --allow-env --allow-read ./server/server.ts
         
         //deno run --allow-net --allow-env server.ts
 

@@ -6,8 +6,9 @@ const router = new Router();
 
 router
   .post("/account", accountController.createAccount)
-  .get('/account/:id', accountController.getAccount)
+  .post('/login',  accountController.loginCheck)
   .get('/account', accountController.getAll);
+  // .post('/userInfo', accountController.getUserInfo);
 
 
 export default router;

@@ -7151,13 +7151,15 @@ const SideBar = (props)=>{
             setCurrentElement(newElement);
         } else if (area === "dropArea") {
             const dragItemContent = newElementsArr[dragItem.current];
-            newElementsArr[dragOverItem.current];
+            const dragItemEnterContent = newElementsArr[dragOverItem.current];
+            console.log("handleDrop selected item:", dragItemContent);
+            console.log("handleDrop drager over item:", dragItemEnterContent);
             newElementsArr.splice(dragItem.current, 1);
             newElementsArr.splice(dragOverItem.current, 0, dragItemContent);
-            reorderElArr(newElementsArr);
-            setElementsArr(newElementsArr);
             dragItem.current = null;
             dragOverItem.current = null;
+            reorderElArr(newElementsArr);
+            setElementsArr(newElementsArr);
         }
     };
     const reorderElArr = (arr)=>{
@@ -7191,12 +7193,15 @@ const SideBar = (props)=>{
         setClassName(k);
     };
     const deleteElement = (id)=>{
-        let newElementsArr = [
-            ...elementsArr
-        ];
-        newElementsArr.splice(id, 1);
-        reorderElArr(newElementsArr);
-        setElementsArr(newElementsArr);
+        if (elementsArr.length === 1) {
+            setElementsArr([]);
+            setCurrentElement('');
+        } else {
+            const filteredElementsArr = elementsArr.filter((element)=>element.id !== id);
+            console.log('filtered', filteredElementsArr);
+            setElementsArr(filteredElementsArr);
+            setCurrentElement('');
+        }
     };
     const htmlTags = elementsArr.map((elements, index)=>{
         return mod.createElement("div", {
@@ -7561,7 +7566,7 @@ const Styling = (props)=>{
     }), mod.createElement("br", null)), mod.createElement("div", {
         style: {
             float: 'right',
-            marginTop: '-200px',
+            marginTop: '-175px',
             marginRight: '40px'
         }
     }, mod.createElement("label", {
@@ -7709,6 +7714,7 @@ const Customization = (props)=>{
 };
 const CodePreview = (props)=>{
     const { elementsArr , setElementsArr  } = props;
+    let testArray = [];
     const htmlTags = elementsArr.map((elements, index)=>{
         let eleFirst;
         let eleSecond;
@@ -7716,109 +7722,91 @@ const CodePreview = (props)=>{
         if (elementsArr[index].element === 'div') {
             eleFirst = `<div `;
             endBr = '>';
-            'This is your div';
             eleSecond = `</div>`;
         }
         if (elementsArr[index].element === 'paragraph') {
             eleFirst = `<p `;
             endBr = '>';
-            'This is your paragraph';
             eleSecond = `</p>`;
         }
         if (elementsArr[index].element === 'img') {
             eleFirst = `<img `;
             endBr = ' src=';
-            'src=""';
             eleSecond = `/>`;
         }
         if (elementsArr[index].element === 'button') {
             eleFirst = `<button`;
             endBr = '>';
-            'This is your button';
             eleSecond = `</button>`;
         }
         if (elementsArr[index].element === 'form') {
             eleFirst = `<form `;
             endBr = '>';
-            'This is your form';
             eleSecond = `</form>`;
         }
         if (elementsArr[index].element === 'ol') {
             eleFirst = `<ol `;
             endBr = '>';
-            'This is your Ordered List';
             eleSecond = `</ol>`;
         }
         if (elementsArr[index].element === 'ul') {
             eleFirst = `<ul `;
             endBr = '>';
-            'This is your Unordered List';
             eleSecond = `</ul>`;
         }
         if (elementsArr[index].element === 'h1') {
             eleFirst = `<h1 `;
             endBr = '>';
-            'This is your header 1';
             eleSecond = `</h1>`;
         }
         if (elementsArr[index].element === 'h2') {
             eleFirst = `<h2 `;
             endBr = '>';
-            'This is your header 2';
             eleSecond = `</h2>`;
         }
         if (elementsArr[index].element === 'h3') {
             eleFirst = `<h3 `;
             endBr = '>';
-            'This is your header 3';
             eleSecond = `</h3>`;
         }
         if (elementsArr[index].element === 'footer') {
             eleFirst = `<footer `;
             endBr = '>';
-            'This is your footer';
             eleSecond = `</footer>`;
         }
         if (elementsArr[index].element === 'span') {
             eleFirst = `<span `;
             endBr = '>';
-            'This is your span';
             eleSecond = `</span>`;
         }
         if (elementsArr[index].element === 'menu') {
             eleFirst = `<menu `;
             endBr = '>';
-            'This is your menu';
             eleSecond = `</menu>`;
         }
         if (elementsArr[index].element === 'input') {
             eleFirst = `<input `;
             endBr = '>';
-            'This is your input';
             eleSecond = `</input>`;
         }
         if (elementsArr[index].element === 'label') {
             eleFirst = `<label `;
             endBr = '>';
-            'This is your label';
             eleSecond = `</label>`;
         }
         if (elementsArr[index].element === 'link') {
             eleFirst = `<link `;
             endBr = '';
-            'This is your link';
             eleSecond = `/>`;
         }
         if (elementsArr[index].element === 'title') {
             eleFirst = `<title `;
             endBr = '>';
-            'This is your title';
             eleSecond = `</title>`;
         }
         if (elementsArr[index].element === 'area') {
             eleFirst = `<area `;
             endBr = '>';
-            'This is your area';
             eleSecond = `</area>`;
         }
         let bracket = '';
@@ -7827,7 +7815,7 @@ const CodePreview = (props)=>{
         let tw = '';
         let slash = '';
         if (elementsArr[index].padding !== '' || elementsArr[index].textAlign !== undefined || elementsArr[index].backgroundColor !== '' || elementsArr[index].color !== '' || elementsArr[index].margin !== '' || elementsArr[index].height !== '' || elementsArr[index].height !== '' || elementsArr[index].padding !== '' || elementsArr[index].width !== '') {
-            classTag = `class =`;
+            classTag = `class=`;
             bracket = '{';
             tw = 'tw`';
             slash = '`';
@@ -7871,8 +7859,11 @@ const CodePreview = (props)=>{
         }
         let cn = '';
         if (elementsArr[index].className !== undefined && elementsArr[index].className !== '') {
-            cn = 'className= ';
+            cn = 'className=';
+        } else {
+            elementsArr[index].className = index;
         }
+        testArray.push(`${eleFirst} ${cn}"${elementsArr[index].className}" ${classTag}${bracket}${tw}${bg}${elementsArr[index].backgroundColor}${color}${elementsArr[index].color}${m}${elementsArr[index].margin}${w}${elementsArr[index].width}${h}${elementsArr[index].height}${p}${elementsArr[index].padding}${fs}${elementsArr[index].fontSize}${text1}${fw}${elementsArr[index].fontWeight}${elementsArr[index].textDecoration}${text1}${elementsArr[index].textAlign}${slash}${bracket2} id="${index}"${endBr} ${elementsArr[index].text} ${eleSecond}`);
         return mod.createElement("div", {
             id: index
         }, mod.createElement("span", {
@@ -7921,6 +7912,7 @@ const CodePreview = (props)=>{
             }
         }, eleSecond));
     });
+    let html = testArray.map((e, i)=>e).join('\n');
     return mod.createElement("div", {
         id: "codePreview"
     }, mod.createElement("link", {
@@ -8044,7 +8036,37 @@ const CodePreview = (props)=>{
         id: "paren"
     }, ");"), mod.createElement("p", {
         id: "endingCurly"
-    }, '}', ";"));
+    }, '}', ";"), mod.createElement("div", {
+        className: "tooltip"
+    }, mod.createElement("button", {
+        id: "btn",
+        onClick: ()=>navigator.clipboard.writeText(`
+      import { h } from 'preact';
+      
+      import { PageProps } from '$fresh/server.ts' ;
+      
+      import { useEffect, useState } from 'preact/hooks';
+      
+      import { tw } from 'twind';
+      
+      export default function App (props: PageProps) {
+      
+        return (
+      
+          <main>
+      
+              ${html} 
+       
+          </main>
+
+        );
+       
+       };`)
+    }, mod.createElement("p", {
+        id: "clip"
+    }, "\u{1F4CB}")), mod.createElement("span", {
+        className: "tooltiptext"
+    }, "Click to copy!")));
 };
 const IslandPreview = (props)=>{
     const { elementsArr , setElementsArr  } = props;
@@ -8078,7 +8100,9 @@ const IslandPreview = (props)=>{
         }
         testArray.push(`<${htmlElement} style='color:${htmlColor};background-color:${htmlBackground};height:${htmlHeight};width:${htmlWidth};text-align:${htmlTextAlign};margin:${htmlMargin};text-decoration:${htmlTextDecoration};padding:${htmlPadding};font-size:${htmlFontSize};font-weight:${htmlFontWeight}'>${htmlText}</${htmlElement}>`);
     });
+    console.log(73, testArray);
     let html = testArray.map((e, i)=>e).join(' ');
+    console.log(74, html);
     return mod.createElement("div", {
         style: {
             height: '100%',
@@ -8089,9 +8113,7 @@ const IslandPreview = (props)=>{
         width: "100%",
         frameBorder: "0",
         srcDoc: html
-    }), mod.createElement("button", {
-        onClick: ()=>navigator.clipboard.writeText(`html: ${html}`)
-    }, "Copy"));
+    }));
 };
 const MainContainer1 = (props)=>{
     const { previewPage , setPreviewPage  } = props;
@@ -8271,23 +8293,7 @@ function Buttons(props) {
             console.log('clicked');
             exportFunc();
         }
-    }, "Load Project"), mod.createElement("button", {
-        style: {
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            width: "90%",
-            fontSize: '20px',
-            fontWeight: 'bolder',
-            marginTop: '15px',
-            marginLeft: '7px'
-        },
-        id: "exportBtn",
-        onClick: (event)=>{
-            alert("Project Exported");
-            console.log('clicked');
-            exportFunc();
-        }
-    }, "Export Code")));
+    }, "Load Project")));
 }
 const App = ()=>{
     const sideBarStyle = {
@@ -8440,16 +8446,53 @@ const App = ()=>{
     })));
 };
 const Login = ()=>{
-    return mod.createElement("div", {
-        id: "outerBox"
+    const [username, usernameOnChange] = mod.useState('');
+    const [password, passwordOnChange] = mod.useState('');
+    const navigate = he1();
+    const navigateToHome = ()=>{
+        navigate('http://localhost:8000/home');
+    };
+    const handleClick = (e)=>{
+        e.preventDefault();
+        const body = {
+            username: username,
+            password: password
+        };
+        fetch('http://localhost:8080/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body),
+            mode: 'no-cors'
+        }).then((data)=>{
+            console.log('res: ', data);
+            return data.json();
+        }).then((data)=>{
+            console.log('hereee');
+            if (data === true) {
+                console.log(data);
+                navigateToHome();
+            } else {
+                console.log('Wrong username and password combination');
+            }
+        }).catch((error)=>console.log(error));
+    };
+    return mod.createElement("div", null, mod.createElement("link", {
+        rel: 'stylesheet',
+        href: './static/css/login.css'
+    }), mod.createElement("div", {
+        className: "login"
+    }), mod.createElement("div", {
+        className: "login_box"
     }, mod.createElement("div", {
-        id: "loginBox"
-    }, mod.createElement("img", {
-        src: "../static/images/Finallogo.png"
-    }), mod.createElement("label", null, mod.createElement("strong", null, "Log In"), mod.createElement("br", null), mod.createElement("br", null)), mod.createElement("form", {
+        className: "left"
+    }, mod.createElement("div", {
+        className: "contact"
+    }, mod.createElement("form", {
         method: "POST",
-        action: "/api/login"
-    }, mod.createElement("input", {
+        action: "/login"
+    }, mod.createElement("h3", null, "LOG IN"), mod.createElement("input", {
         type: "text",
         placeholder: "Username",
         name: "username",
@@ -8460,19 +8503,58 @@ const Login = ()=>{
         name: "password",
         required: true
     }), mod.createElement("button", {
-        type: "submit",
-        id: "loginlink"
-    }, "Login")), mod.createElement(T1, {
+        onClick: handleClick,
+        className: "submit"
+    }, "LOG IN"), " ", mod.createElement("br", null), mod.createElement(T1, {
         to: "/signup",
         id: "signuplink"
-    }, mod.createElement("p", null, "Sign up?"))));
+    }, mod.createElement("p", null, "Need an account? Sign up!"))))), mod.createElement("div", {
+        className: "right"
+    }, mod.createElement("div", {
+        className: "right-text"
+    }))));
 };
 const Signup = ()=>{
-    return mod.createElement("div", null, mod.createElement("h1", null, "Signup"), mod.createElement(T1, {
+    return mod.createElement("div", null, mod.createElement("link", {
+        rel: 'stylesheet',
+        href: './static/css/signup.css'
+    }), mod.createElement("div", {
+        className: "signup"
+    }), mod.createElement("div", {
+        className: "signup_box"
+    }, mod.createElement("div", {
+        className: "left"
+    }, mod.createElement("div", {
+        className: "contact"
+    }, mod.createElement("form", {
+        method: "POST"
+    }, mod.createElement("h3", null, "SIGN UP"), mod.createElement("input", {
+        type: "text",
+        placeholder: "Email",
+        name: "email",
+        required: true
+    }), mod.createElement("input", {
+        type: "text",
+        placeholder: "Username",
+        name: "username",
+        required: true
+    }), mod.createElement("input", {
+        type: "password",
+        placeholder: "Password",
+        name: "password",
+        required: true
+    }), mod.createElement(T1, {
         to: "/home"
-    }, mod.createElement("button", null, "Click me to go to App!")), mod.createElement(T1, {
-        to: "/"
-    }, mod.createElement("button", null, "Click me to go to Login!")));
+    }, mod.createElement("button", {
+        className: "submit"
+    }, "SIGN UP"), " "), mod.createElement("br", null), mod.createElement(T1, {
+        to: "/",
+        id: "loginlink"
+    }, mod.createElement("p", null, "Have an account? Log in!"))))), mod.createElement("div", {
+        className: "right"
+    }, mod.createElement("div", {
+        className: "right-text"
+    }))));
 };
 mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(Y1, null, mod.createElement(Ve1, null, mod.createElement(me1, {
     path: "/",

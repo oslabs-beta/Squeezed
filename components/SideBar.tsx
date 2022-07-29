@@ -17,23 +17,40 @@ const SideBar = (props:any) => {
   const dragOverItem = React.useRef<any>(null);
 
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>, area:string) => {
+    // console.log("handleDragStart area:", area)
+    // console.log("current event target: ", event.currentTarget);
     if(area === "dragArea"){
       event.dataTransfer.setData("id", event.currentTarget.id);
     }
     else if(area === "dropArea"){
+      // console.log("dragItem.current type:", typeof dragItem.current)
       dragItem.current = event.currentTarget.id;
+      // console.log("handleDragStart current: ", dragItem.current)
+      // console.log("handleDragStart: ", dragItem)
     }
     event.dataTransfer.setData("area", area);
   };
 
   const dragEnter = (e, position) => {
     dragOverItem.current = position;
+    // console.log("drag enter id: ", dragItem.current)
   };
   
   const enableDropping = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     const id = event.dataTransfer.getData("id");
     setContent(id);
+
+    // const area = event.dataTransfer.getData("area");
+    // if(area === "dragArea"){
+    //   const id = event.dataTransfer.getData("id");
+    //   setContent(id);
+    //   console.log("enableDropping after set content", content)
+    // }
+    // else if(area === "dropArea"){
+    //   // const oldId = event.dataTransfer.getData("oldId");
+    //   // console.log("enable dropping old id: ", oldId)
+    // }
   };
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
@@ -61,19 +78,26 @@ const SideBar = (props:any) => {
       newElementsArr.push(newElement);
       setElementsArr(newElementsArr);
       setCurrentElement(newElement);
+      // console.log("handleDrop from dragArea:", id); 
     }
     else if(area === "dropArea"){
       const dragItemContent = newElementsArr[dragItem.current];
       const dragItemEnterContent = newElementsArr[dragOverItem.current];
-      // console.log("handleDrop selected item:", dragItemContent); 
-      // console.log("handleDrop drager over item:", dragItemEnterContent); 
+      console.log("handleDrop selected item:", dragItemContent); 
+      console.log("handleDrop drager over item:", dragItemEnterContent); 
 
+      // //reassign ids to match order of elementsArr
+      // const tempId = dragItemContent.id;
+      // dragItemContent.id = dragItemEnterContent.id;
+      // dragItemEnterContent.id = tempId;
+
+      // console.log("dragItemContent:", dragItemContent)
       newElementsArr.splice(dragItem.current, 1);
       newElementsArr.splice(dragOverItem.current, 0, dragItemContent);
-      reorderElArr(newElementsArr);
-      setElementsArr(newElementsArr);
       dragItem.current = null;
       dragOverItem.current = null;
+      reorderElArr(newElementsArr);
+      setElementsArr(newElementsArr);
       // console.log("handleDrop from dropArea", elementsArr)
     }
   };
@@ -112,12 +136,26 @@ const SideBar = (props:any) => {
     setClassName(k)
   };
 
-  const deleteElement = (id: any) => {
-    let newElementsArr = [...elementsArr];
-    newElementsArr.splice(id, 1);
-    reorderElArr(newElementsArr);
-    setElementsArr(newElementsArr);
+const deleteElement = (id:any) => {
+  // console.log('before', id)
+  if (elementsArr.length===1){
+    setElementsArr([]);
+    setCurrentElement('');
+  } else {
+    const filteredElementsArr = elementsArr.filter((element: any)=> element.id !== id);
+    console.log('filtered',filteredElementsArr)
+    setElementsArr(filteredElementsArr);
+    setCurrentElement('');
   }
+}
+  //  elementsArr = elementsArr.splice(id, 1)
+  //  console.log('after',newArr)
+
+  //  const filteredElementsArr = elementsArr.filter((element: any) => element[id] !== elementsArr[id]);
+  // //  console.log(11,filteredElementsArr)
+  // setElementsArr(filteredElementsArr);
+  // setCurrentElement('');
+
 
   function onDragStart(event) {
     event
@@ -130,31 +168,40 @@ const SideBar = (props:any) => {
       .backgroundColor = 'yellow';
   }
 
-  const htmlTags = elementsArr.map((elements: any, index: any) => {
-    // console.log("html tags: ", elementsArr[index], index);
-    return (
-      <div 
-        draggable='true'
-        // onDrop={handleDrop}
-        // onDragEnter={handleDragOverStart}
-        // onDragLeave={handleDragOverEnd}
-        onDragStart={(e) => handleDragStart(e, 'dropArea')}
-        onDragEnter={(e) => {dragEnter(e, index)}}
-        className="draggedTags"
-      // onDragOver={enableDropping}
-        onClick={() => handleClick(index)} 
-        id={index}>
-        {elementsArr[index].element}
-        <button 
-          style={{backgroundImage:"linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", float: 'right', marginTop: '0px', marginRight: '-1px', height: '3px',}} 
-          onClick={()=> deleteElement(index) }
-        >
-          X
-        </button>
-      </div>
+  // const dragItem = useRef();
+
+  // function onDragReorder(event, position) {
+  //   dragItem.current = position;
+  //   console.log("onDragReorder:", e.target.innerHTML);
+  // }
+
+
+const htmlTags = elementsArr.map((elements: any, index: any) => {
+  // console.log("html tags: ", elementsArr[index], index);
+  return (
+    <div 
+      draggable='true'
+      // onDrop={handleDrop}
+      // onDragEnter={handleDragOverStart}
+      // onDragLeave={handleDragOverEnd}
+      onDragStart={(e) => handleDragStart(e, 'dropArea')}
+      onDragEnter={(e) => {dragEnter(e, index)}}
+      className="draggedTags"
+    // onDragOver={enableDropping}
+      onClick={() => handleClick(index)} 
+      id={index}>
+      {elementsArr[index].element}
+      <button 
+        style={{backgroundImage:"linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", float: 'right', marginTop: '0px', marginRight: '-1px', height: '3px',}} 
+        onClick={()=> deleteElement(index) }
+      >
+        X
+      </button>
+    </div>
     )})
 
   return (
+
     <div id="scroll">
       <link rel={'stylesheet'} href={'./static/css/App.css'} />
       <link rel={'stylesheet'} href={'./static/css/sideBarStyle.css'} />
@@ -285,3 +332,7 @@ const SideBar = (props:any) => {
 };
 
 export default SideBar;
+
+
+
+
