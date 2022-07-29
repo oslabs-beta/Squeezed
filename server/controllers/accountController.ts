@@ -24,7 +24,7 @@ accountController.createAccount = async(ctx: any) => {
     }
 }
 
-accountController.loginCheck = async(ctx: any) => {    
+accountController.loginCheck = async(ctx: any, next: any) => {    
  try{
         const { value } = await ctx.request.body({type: 'json'});
         const obj = await value;
@@ -38,7 +38,7 @@ accountController.loginCheck = async(ctx: any) => {
             console.log(password, data.rows[0].password);
             ctx.response.body = result;
             // console.log('ctx.response.body', ctx.response.body)
-            return;
+            return next();
         }
         else{ 
             console.log('Wrong Username and Password')
@@ -47,7 +47,7 @@ accountController.loginCheck = async(ctx: any) => {
     catch (err) {
         ctx.response.body = { status: false, data: null};
         ctx.response.status = 500;
-        console.log(err);
+        return next(err);
     }
 }
 

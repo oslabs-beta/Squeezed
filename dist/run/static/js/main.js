@@ -8194,23 +8194,51 @@ const Preview = (props)=>{
         setElementsArr: setElementsArr
     }));
 };
+const Popup = (props)=>{
+    return mod.createElement("div", {
+        className: "popup-box"
+    }, mod.createElement("link", {
+        rel: "stylesheet",
+        href: "./static/css/popup.css"
+    }), mod.createElement("div", {
+        className: "box"
+    }, mod.createElement("span", {
+        className: "close-icon",
+        onClick: props.handleClose
+    }, "x"), props.content));
+};
 function Buttons(props) {
-    const { elementsArr , setElementsArr , currentElement , setCurrentElement , project , setProject , user , setUser  } = props;
-    async function deleteData() {
-        await fetch('http://localhost:8080/home', {
-            method: 'DELETE',
+    const [isOpen, setIsOpen] = mod.useState(false);
+    const [data, setData] = mod.useState('');
+    async function togglePopup() {
+        setIsOpen(!isOpen);
+        await fetch("http://localhost:8080/home", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                project_id: 1
+            }),
+            mode: "no-cors"
+        }).then((data)=>data.json()).catch((err)=>console.log(err));
+    }
+    const { elementsArr , setElementsArr , currentElement , setCurrentElement , project , setProject , user , setUser ,  } = props;
+    async function deleteData() {
+        await fetch("http://localhost:8080/home", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 project_id: project
             }),
-            mode: 'no-cors'
+            mode: "no-cors"
         }).then((data)=>data.json()).catch((err)=>console.log(err));
     }
     function clear() {
         setElementsArr([]);
-        setCurrentElement('');
+        setCurrentElement("");
     }
     async function save() {
         const body = {
@@ -8219,19 +8247,18 @@ function Buttons(props) {
             project: project,
             user: user
         };
-        await fetch('http://localhost:8080/home', {
-            method: 'POST',
+        await fetch("http://localhost:8080/home", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(body),
-            mode: 'no-cors'
+            mode: "no-cors"
         }).then((data)=>data.json()).then((data)=>console.log("I'm on the front end", data)).catch((err)=>console.log(err));
     }
-    function exportFunc() {}
     return mod.createElement("main", null, mod.createElement("link", {
-        rel: 'stylesheet',
-        href: './static/css/sideBarStyle.css'
+        rel: "stylesheet",
+        href: "./static/css/sideBarStyle.css"
     }), mod.createElement("div", {
         id: "buttonContainer"
     }, mod.createElement("button", {
@@ -8239,10 +8266,10 @@ function Buttons(props) {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
             width: "90%",
-            fontSize: '20px',
-            fontWeight: 'bolder',
-            marginTop: '10px',
-            marginLeft: '7px'
+            fontSize: "20px",
+            fontWeight: "bolder",
+            marginTop: "10px",
+            marginLeft: "7px"
         },
         id: "clearBtn",
         onClick: ()=>{
@@ -8253,15 +8280,15 @@ function Buttons(props) {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
             width: "90%",
-            fontSize: '20px',
-            fontWeight: 'bolder',
-            marginTop: '15px',
-            marginLeft: '7px'
+            fontSize: "20px",
+            fontWeight: "bolder",
+            marginTop: "15px",
+            marginLeft: "7px"
         },
         id: "saveBtn",
         onClick: ()=>{
             save();
-            console.log('clicked');
+            console.log("clicked");
         }
     }, "Save Progress"), mod.createElement("button", {
         id: "loadBtn",
@@ -8269,31 +8296,37 @@ function Buttons(props) {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
             width: "90%",
-            fontSize: '20px',
-            fontWeight: 'bolder',
-            marginTop: '15px',
-            marginLeft: '7px'
+            fontSize: "20px",
+            fontWeight: "bolder",
+            marginTop: "15px",
+            marginLeft: "7px"
         },
         onClick: ()=>{
             alert("Project deleted");
             deleteData();
         }
-    }, "Delete Project"), mod.createElement("button", {
+    }, "Delete Project"), mod.createElement("div", null, mod.createElement("button", {
+        onClick: togglePopup,
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
             width: "90%",
-            fontSize: '20px',
-            fontWeight: 'bolder',
-            marginTop: '15px',
-            marginLeft: '7px'
-        },
-        id: "exportBtn",
-        onClick: (event)=>{
-            console.log('clicked');
-            exportFunc();
+            fontSize: "20px",
+            fontWeight: "bolder",
+            marginTop: "15px",
+            marginLeft: "7px"
         }
-    }, "Load Project")));
+    }, "Load Project"), isOpen && mod.createElement(Popup, {
+        content: mod.createElement(mod.Fragment, null, mod.createElement("div", {
+            id: "search"
+        }, mod.createElement("div", {
+            id: "tableDiv"
+        }, mod.createElement("table", null, mod.createElement("tbody", null, data))), mod.createElement("button", {
+            type: "submit",
+            id: "loadButton"
+        }, "Load project"))),
+        handleClose: togglePopup
+    }))));
 }
 const App = ()=>{
     const sideBarStyle = {

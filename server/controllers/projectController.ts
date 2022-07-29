@@ -5,21 +5,21 @@ const dex = Dex({client: 'postgres'});
 
 const projectController: any = {};
 
-// projectController.getproject = async(ctx: any) => {
-//     try {
-//         const id = await ctx.params.id;
-//         const data = await db.queryObject({
-//           text: `SELECT * FROM projects WHERE account_id = ${id}`
-//         });
-//         ctx.response.body = data.rows[0]
-//         ctx.response.status = 200;
-//         return;
-//     } catch (err) {
-//         ctx.response.body = { status: false, data: null};
-//         ctx.response.status = 500;
-//         console.log(err);         
-//     }
-// };
+projectController.getproject = async(ctx: any) => {
+    try {
+        const id = await ctx.params.id;
+        const data = await db.queryObject({
+          text: `SELECT * FROM projects WHERE account_id = ${id}`
+        });
+        ctx.response.body = data.rows[0]
+        ctx.response.status = 200;
+        return;
+    } catch (err) {
+        ctx.response.body = { status: false, data: null};
+        ctx.response.status = 500;
+        console.log(err);         
+    }
+};
 
 projectController.deleteProject = async (ctx: any) => {
   try {
