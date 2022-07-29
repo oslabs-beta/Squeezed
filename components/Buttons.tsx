@@ -63,7 +63,7 @@ async function save(){
     project: project,
     user: user
   }
-  await fetch('http://localhost:8080/home', {
+  await fetch('http://localhost:8080/home/save', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(body),
