@@ -194,7 +194,7 @@ const Styling: any = (props:any) => {
         
 
         </div>
-        <div style={{float: 'right', marginTop: '-200px', marginRight: '40px'}}>
+        <div style={{float: 'right', marginTop: '-175px', marginRight: '40px'}}>
        
         <label htmlFor="height">Height </label>  
         <input

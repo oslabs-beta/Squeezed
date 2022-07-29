@@ -61,11 +61,11 @@ projectController.saveProject = async (ctx: any) => {
         //get request body and store in constants
         const { value } = await ctx.request.body({type: 'json'});
         const obj = await value;
-        let { project_id, elementsArr } = obj;
+        let { project_id, elementsArr, user_id } = obj;
 
         //if project doesn't exist in db, create a new row in projects table
         if(!project_id){
-            let insertQuery = dex("projects").insert({}).returning('id').toString(); 
+            let insertQuery = dex("projects").insert({user_id: user_id}).returning('id').toString(); 
             const newData = await db.queryObject(insertQuery);
             project_id = newData.rows[0].id;
         }
@@ -138,7 +138,6 @@ projectController.saveProject = async (ctx: any) => {
         console.log(err);
     }
 };
-
 
 
 export default projectController;

@@ -1,13 +1,13 @@
 img{
 	width: 100%;
 }
-.login {
+.signup {
     height: 1000px;
     width: 100%;
     background-image: linear-gradient(rgb(129, 174, 120), rgb(231, 218, 72));
     position: relative;
 }
-.login_box {
+.signup_box {
     width: 50%;
     height: 55%;
     position: absolute;
@@ -20,13 +20,13 @@ img{
     display: flex;
     overflow: hidden;
 }
-.login_box .left{
+.signup_box .left{
   width: 41%;
   height: 100%;
-  padding: 5px 25px;
+  padding: 0px 25px;
   
 }
-.login_box .right{
+.signup_box .right{
   width: 59%;
   height: 100%  
 }
@@ -49,7 +49,7 @@ img{
 .left input {
     border: none;
     width: 80%;
-    margin: 15px 0px;
+    margin: 5px 0px;
     border-bottom: 1px solid #ffffff;
     padding: 7px 9px;
     width: 100%;
@@ -106,7 +106,7 @@ img{
 }
 
 
-#signuplink {
+#loginlink {
   text-align: center;
   color:#f3f5f6;
   padding-top: 30px;

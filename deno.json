@@ -1,6 +1,7 @@
 {
   "tasks": {
-    "start": "deno run -A --watch=static/,routes/ dev.ts"
+    "start": "deno run -A --watch=static/,routes/ dev.ts",
+    "dev": "deno-create-react-app run & denon run --allow-net --allow-env --allow-read ./server/server.ts"
   },
   "compilerOptions": {
     "allowJs": true,
