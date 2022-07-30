@@ -1,6 +1,7 @@
 //import statements
 import { React } from '../deps.tsx';
 import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
+import { useNavigate } from '../deps.tsx'
 
 export default function Buttons(props:any) {
 
@@ -36,6 +37,8 @@ const {
 //   setProject(data.project);
 //   setUser(data.user);
 // }
+
+
 
 async function deleteData(){
   await fetch('http://localhost:8080/home', {
@@ -99,10 +102,13 @@ async function save(){
 //   }
 };
 
-function exportFunc(){
-  // this should open up the window directory with deno ???
-  // Deno.readDir 
-  // handle = await window.showDirectoryPicker()({mode: 'read' })
+const navigate = useNavigate()
+const navigateToLogin = () => {
+  navigate('/')
+}
+function logout(){
+  sessionStorage.clear();
+  navigateToLogin();
 }
 
 // const buttonsStyle = { 
@@ -147,22 +153,19 @@ return (
         id="exportBtn"
         onClick={(event: React.MouseEvent<HTMLElement>) => {
           // alert("Project Exported");
-          console.log('clicked')
-          exportFunc();
+          // exportFunc();
         }}
       >
         Load Project
       </button>
-      {/* <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px', marginLeft: '7px'}}
-        id="exportBtn"
+      <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px', marginLeft: '7px'}}
+        id="logoutBtn"
         onClick={(event: React.MouseEvent<HTMLElement>) => {
-           alert("Project Exported");
-          console.log('clicked')
-          exportFunc();
+            logout();
         }}
       >
-        Export Code
-      </button> */}
+        Logout
+      </button>
     </div>
   </main>
 );

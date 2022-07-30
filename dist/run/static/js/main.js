@@ -8231,7 +8231,14 @@ function Buttons(props) {
             body: JSON.stringify(body)
         }).then((data)=>data.json()).catch((err)=>console.log(err));
     }
-    function exportFunc() {}
+    const navigate = he1();
+    const navigateToLogin = ()=>{
+        navigate('/');
+    };
+    function logout() {
+        sessionStorage.clear();
+        navigateToLogin();
+    }
     return mod.createElement("main", null, mod.createElement("link", {
         rel: 'stylesheet',
         href: './static/css/sideBarStyle.css'
@@ -8292,11 +8299,22 @@ function Buttons(props) {
             marginLeft: '7px'
         },
         id: "exportBtn",
+        onClick: (event)=>{}
+    }, "Load Project"), mod.createElement("button", {
+        style: {
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            width: "90%",
+            fontSize: '20px',
+            fontWeight: 'bolder',
+            marginTop: '15px',
+            marginLeft: '7px'
+        },
+        id: "logoutBtn",
         onClick: (event)=>{
-            console.log('clicked');
-            exportFunc();
+            logout();
         }
-    }, "Load Project")));
+    }, "Logout")));
 }
 const App = ()=>{
     const sideBarStyle = {
