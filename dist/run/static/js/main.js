@@ -395,20 +395,20 @@ var b;
 var R = function(e) {
     return e;
 };
-var M1 = "beforeunload", Y = "popstate";
-function K(e) {
+var M1 = "beforeunload", q1 = "hashchange", Y = "popstate";
+function U1(e) {
     e === void 0 && (e = {});
     var y = e, s = y.window, i1 = s === void 0 ? document.defaultView : s, h = i1.history;
     function f() {
-        var r = i1.location, n = r.pathname, t = r.search, c = r.hash, l = h.state || {};
+        var n = J(i1.location.hash.substr(1)), t = n.pathname, c = t === void 0 ? "/" : t, l = n.search, w = l === void 0 ? "" : l, m = n.hash, P = m === void 0 ? "" : m, N = h.state || {};
         return [
-            l.idx,
+            N.idx,
             R({
-                pathname: n,
-                search: t,
-                hash: c,
-                state: l.usr || null,
-                key: l.key || "default"
+                pathname: c,
+                search: w,
+                hash: P,
+                state: N.usr || null,
+                key: N.key || "default"
             })
         ];
     }
@@ -416,120 +416,131 @@ function K(e) {
     function L() {
         if (u) v.call(u), u = null;
         else {
-            var r = b.Pop, n = f(), t = n[0], c = n[1];
+            var n = b.Pop, t = f(), c = t[0], l = t[1];
             if (v.length) {
-                if (t != null) {
-                    var l = p - t;
-                    l && (u = {
-                        action: r,
-                        location: c,
+                if (c != null) {
+                    var w = p - c;
+                    w && (u = {
+                        action: n,
+                        location: l,
                         retry: function() {
-                            d(l * -1);
+                            g(w * -1);
                         }
-                    }, d(l));
+                    }, g(w));
                 }
-            } else T(r);
+            } else a(n);
         }
     }
-    i1.addEventListener(Y, L);
+    i1.addEventListener(Y, L), i1.addEventListener(q1, function() {
+        var n = f(), t = n[1];
+        D(t) !== D(k) && L();
+    });
     var x = b.Pop, O = f(), p = O[0], k = O[1], _ = $1(), v = $1();
     p == null && (p = 0, h.replaceState(i({}, h.state, {
         idx: p
     }), ""));
-    function A(r) {
-        return typeof r == "string" ? r : D(r);
+    function A() {
+        var n = document.querySelector("base"), t = "";
+        if (n && n.getAttribute("href")) {
+            var c = i1.location.href, l = c.indexOf("#");
+            t = l === -1 ? c : c.slice(0, l);
+        }
+        return t;
     }
-    function S(r, n) {
-        return n === void 0 && (n = null), R(i({
+    function S(n) {
+        return A() + "#" + (typeof n == "string" ? n : D(n));
+    }
+    function H(n, t) {
+        return t === void 0 && (t = null), R(i({
             pathname: k.pathname,
             hash: "",
             search: ""
-        }, typeof r == "string" ? J(r) : r, {
-            state: n,
+        }, typeof n == "string" ? J(n) : n, {
+            state: t,
             key: j()
         }));
     }
-    function H(r, n) {
+    function E(n, t) {
         return [
             {
-                usr: r.state,
-                key: r.key,
-                idx: n
+                usr: n.state,
+                key: n.key,
+                idx: t
             },
-            A(r)
+            S(n)
         ];
     }
-    function E(r, n, t) {
+    function T(n, t, c) {
         return !v.length || (v.call({
-            action: r,
-            location: n,
-            retry: t
+            action: n,
+            location: t,
+            retry: c
         }), !1);
     }
-    function T(r) {
-        x = r;
-        var n = f();
-        p = n[0], k = n[1], _.call({
+    function a(n) {
+        x = n;
+        var t = f();
+        p = t[0], k = t[1], _.call({
             action: x,
             location: k
         });
     }
-    function a(r, n) {
-        var t = b.Push, c = S(r, n);
-        function l() {
-            a(r, n);
+    function o(n, t) {
+        var c = b.Push, l = H(n, t);
+        function w() {
+            o(n, t);
         }
-        if (E(t, c, l)) {
-            var w = H(c, p + 1), m = w[0], P = w[1];
+        if (T(c, l, w)) {
+            var m = E(l, p + 1), P = m[0], N = m[1];
             try {
-                h.pushState(m, "", P);
+                h.pushState(P, "", N);
             } catch  {
-                i1.location.assign(P);
+                i1.location.assign(N);
             }
-            T(t);
+            a(c);
         }
     }
-    function o(r, n) {
-        var t = b.Replace, c = S(r, n);
-        function l() {
-            o(r, n);
+    function d(n, t) {
+        var c = b.Replace, l = H(n, t);
+        function w() {
+            d(n, t);
         }
-        if (E(t, c, l)) {
-            var w = H(c, p), m = w[0], P = w[1];
-            h.replaceState(m, "", P), T(t);
+        if (T(c, l, w)) {
+            var m = E(l, p), P = m[0], N = m[1];
+            h.replaceState(P, "", N), a(c);
         }
     }
-    function d(r) {
-        h.go(r);
+    function g(n) {
+        h.go(n);
     }
-    var g = {
+    var r = {
         get action () {
             return x;
         },
         get location () {
             return k;
         },
-        createHref: A,
-        push: a,
-        replace: o,
-        go: d,
+        createHref: S,
+        push: o,
+        replace: d,
+        go: g,
         back: function() {
-            d(-1);
+            g(-1);
         },
         forward: function() {
-            d(1);
+            g(1);
         },
-        listen: function(n) {
-            return _.push(n);
+        listen: function(t) {
+            return _.push(t);
         },
-        block: function(n) {
-            var t = v.push(n);
+        block: function(t) {
+            var c = v.push(t);
             return v.length === 1 && i1.addEventListener(M1, B1), function() {
-                t(), v.length || i1.removeEventListener(M1, B1);
+                c(), v.length || i1.removeEventListener(M1, B1);
             };
         }
     };
-    return g;
+    return r;
 }
 function B1(e) {
     e.preventDefault(), e.returnValue = "";
@@ -611,10 +622,10 @@ function W(e, t, n, a) {
 function G(e) {
     e.sort((t, n)=>t.score !== n.score ? n.score - t.score : ne(t.routesMeta.map((a)=>a.childrenIndex), n.routesMeta.map((a)=>a.childrenIndex)));
 }
-var q1 = /^:\w+$/, K1 = 3, Q = 2, X = 1, Z = 10, ee = -2, S = (e)=>e === "*";
+var q2 = /^:\w+$/, K = 3, Q = 2, X = 1, Z = 10, ee = -2, S = (e)=>e === "*";
 function te(e, t) {
     let n = e.split("/"), a = n.length;
-    return n.some(S) && (a += ee), t && (a += Q), n.filter((o)=>!S(o)).reduce((o, s)=>o + (q1.test(s) ? K1 : s === "" ? X : Z), a);
+    return n.some(S) && (a += ee), t && (a += Q), n.filter((o)=>!S(o)).reduce((o, s)=>o + (q2.test(s) ? K : s === "" ? X : Z), a);
 }
 function ne(e, t) {
     return e.length === t.length && e.slice(0, -1).every((a, o)=>a === t[o]) ? e[e.length - 1] - t[t.length - 1] : 0;
@@ -898,7 +909,7 @@ var I1 = [
     "state",
     "target",
     "to"
-], K2 = [
+], K1 = [
     "aria-current",
     "caseSensitive",
     "className",
@@ -907,9 +918,9 @@ var I1 = [
     "to",
     "children"
 ];
-function Y1(e) {
+function q3(e) {
     let { basename: n , children: r , window: t  } = e, o = Me();
-    o.current == null && (o.current = K({
+    o.current == null && (o.current = U1({
         window: t
     }));
     let a = o.current, [i, s] = ze({
@@ -945,7 +956,7 @@ var T1 = we(function(n, r) {
         target: s
     }));
 }), G1 = we(function(n, r) {
-    let { "aria-current": t = "page" , caseSensitive: o = !1 , className: a = "" , end: i = !1 , style: s , to: l , children: u  } = n, m = x(n, K2), y = O(), v = de1(l), c = y.pathname, f = v.pathname;
+    let { "aria-current": t = "page" , caseSensitive: o = !1 , className: a = "" , end: i = !1 , style: s , to: l , children: u  } = n, m = x(n, K1), y = O(), v = de1(l), c = y.pathname, f = v.pathname;
     o || (c = c.toLowerCase(), f = f.toLowerCase());
     let h = c === f || !i && c.startsWith(f) && c.charAt(f.length) === "/", A = h ? t : void 0, g;
     typeof a == "function" ? g = a({
@@ -989,7 +1000,7 @@ function F1(e, n) {
     ]);
 }
 var __setImmediate$ = (cb, ...args)=>setTimeout(cb, 0, ...args);
-var U1 = Object.create;
+var U2 = Object.create;
 var $3 = Object.defineProperty;
 var X1 = Object.getOwnPropertyDescriptor;
 var Z1 = Object.getOwnPropertyNames;
@@ -1004,11 +1015,11 @@ var te1 = (e, n, t, l)=>{
     });
     return e;
 };
-var D1 = (e, n, t)=>(t = e != null ? U1(ee1(e)) : {}, te1(n || !e || !e.__esModule ? $3(t, "default", {
+var D1 = (e, n, t)=>(t = e != null ? U2(ee1(e)) : {}, te1(n || !e || !e.__esModule ? $3(t, "default", {
         value: e,
         enumerable: !0
     }) : t, e));
-var K3 = B3((r)=>{
+var K2 = B3((r)=>{
     "use strict";
     function T(e, n) {
         var t = e.length;
@@ -1221,7 +1232,7 @@ var K3 = B3((r)=>{
 });
 var R1 = B3((oe, Q)=>{
     "use strict";
-    Q.exports = K3();
+    Q.exports = K2();
 });
 var S1 = D1(R1()), V = D1(R1()), { unstable_now: se1 , unstable_IdlePriority: ce2 , unstable_ImmediatePriority: fe1 , unstable_LowPriority: be1 , unstable_NormalPriority: pe1 , unstable_Profiling: _e1 , unstable_UserBlockingPriority: de2 , unstable_cancelCallback: ve2 , unstable_continueExecution: ye1 , unstable_forceFrameRate: me2 , unstable_getCurrentPriorityLevel: ge1 , unstable_getFirstCallbackNode: he2 , unstable_next: ke1 , unstable_pauseExecution: Pe1 , unstable_requestPaint: we1 , unstable_runWithPriority: xe1 , unstable_scheduleCallback: Ie1 , unstable_shouldYield: Ce1 , unstable_wrapCallback: Ee2  } = V, { default: le1 , ...ie2 } = V, Te1 = (S1.default ?? le1) ?? ie2;
 var Sa = Object.create;
@@ -9094,7 +9105,7 @@ const Signup = ()=>{
         className: "right-text"
     }))));
 };
-mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(Y1, null, mod.createElement(Ve1, null, mod.createElement(me1, {
+mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(q3, null, mod.createElement(Ve1, null, mod.createElement(me1, {
     path: "/",
     element: mod.createElement(Login, null)
 }), mod.createElement(me1, {
