@@ -8,6 +8,6 @@ router
   .post('/home/get', projectController.getproject)
   .post('/home/load', projectController.loadProject)
   .post('/home/save', projectController.saveProject)
-  .delete('/home', projectController.deleteProject)
+  .post('/home/delete', projectController.deleteProject)
 
   export default router
