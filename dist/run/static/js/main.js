@@ -7252,7 +7252,7 @@ const SideBar = (props)=>{
         {
             id: 'ul',
             element: 'LIST (UL)',
-            backgroundColor: 'rgb(196,233,143'
+            backgroundColor: 'rgb(196,233,143)'
         },
         {
             id: 'input',
@@ -7277,7 +7277,7 @@ const SideBar = (props)=>{
         {
             id: 'button',
             element: 'LIST (UL)',
-            backgroundColor: 'rgb(152,233,166)'
+            backgroundColor: 'rgb(220,233,129)'
         },
         {
             id: 'form',
@@ -8106,12 +8106,36 @@ const Popup = (props)=>{
         onClick: props.handleClose
     }, "x"), props.content));
 };
+const Popup2 = (props)=>{
+    return mod.createElement("div", {
+        className: "popup-box"
+    }, mod.createElement("link", {
+        rel: "stylesheet",
+        href: "./static/css/popup.css"
+    }), mod.createElement("div", {
+        className: "box"
+    }, mod.createElement("span", {
+        className: "close-icon",
+        onClick: props.handleClose
+    }, "x"), props.content));
+};
 function Buttons(props) {
     const [isOpen, setIsOpen] = mod.useState(false);
-    const [data, setData] = mod.useState('');
-    const { elementsArr , setElementsArr , currentElement , setCurrentElement , project , setProject , user , setUser ,  } = props;
+    const [isOpen2, setIsOpen2] = mod.useState(false);
+    const [saveName, setSaveName] = mod.useState("");
+    const { elementsArr , setElementsArr , currentElement , setCurrentElement , projectId , setProjectId , user , setUser , projectList , setProjectList , loadProj , setLoadProj  } = props;
     async function togglePopup() {
-        let output;
+        setIsOpen(!isOpen);
+    }
+    async function togglePopup2() {
+        if (!projectId) {
+            setIsOpen2(!isOpen2);
+        } else {
+            alert('Project Saved');
+            save();
+        }
+    }
+    async function load() {
         await fetch("http://localhost:8080/home/get", {
             method: "POST",
             headers: {
@@ -8121,16 +8145,16 @@ function Buttons(props) {
                 user_id: 1
             })
         }).then((data)=>data.json()).then((data)=>{
-            output = data;
+            setProjectList(data);
         }).catch((err)=>console.log(err));
-        console.log(output);
+        console.log(projectList);
     }
     async function save() {
         const body = {
-            project_id: project,
+            project_id: projectId,
             elementsArr: elementsArr,
-            project: project,
-            user: user
+            project_name: saveName,
+            user_id: 1
         };
         await fetch('http://localhost:8080/home/save', {
             method: 'POST',
@@ -8141,25 +8165,82 @@ function Buttons(props) {
         }).then((data)=>data.json()).then((data)=>console.log("I'm on the front end", data)).catch((err)=>console.log(err));
     }
     async function deleteData() {
-        await fetch('http://localhost:8080/home', {
-            method: 'DELETE',
+        console.log('deleting', projectId);
+        await fetch('http://localhost:8080/home/delete', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                project_id: project
+                project_id: projectId
             })
         }).then((data)=>data.json()).catch((err)=>console.log(err));
+        setElementsArr([]);
+        setCurrentElement('');
     }
     function clear() {
         setElementsArr([]);
         setCurrentElement('');
     }
+    function startNew() {
+        setProjectId('');
+        setElementsArr([]);
+        setCurrentElement('');
+        setProjectList([]);
+        setLoadProj('');
+    }
+    async function loadProject(id) {
+        await fetch('http://localhost:8080/home/load', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                project_id: id
+            })
+        }).then((data)=>data.json()).then((data)=>{
+            setElementsArr(data);
+            console.log('data is here', data);
+        }).catch((err)=>console.log(err));
+        setProjectId(id);
+    }
+    const projs = projectList.map((elements, index)=>{
+        return mod.createElement("div", null, mod.createElement("link", {
+            rel: "stylesheet",
+            href: "./static/css/buttons.css"
+        }), mod.createElement("div", {
+            id: "test",
+            style: {
+                backgroundColor: '#2d3033',
+                color: 'white',
+                fontWeight: 'bolder',
+                borderRadius: '5px',
+                width: '100%',
+                overflow: 'auto',
+                marginTop: '10px'
+            },
+            onClick: ()=>{
+                setLoadProj(elements.id);
+            }
+        }, mod.createElement("div", {
+            id: "test",
+            style: {
+                padding: '15px'
+            }
+        }, " ", elements.name, " ")));
+    });
     return mod.createElement("main", null, mod.createElement("link", {
         rel: "stylesheet",
         href: "./static/css/sideBarStyle.css"
+    }), mod.createElement("link", {
+        rel: "stylesheet",
+        href: "./static/css/buttons.css"
     }), mod.createElement("div", {
-        id: "buttonContainer"
+        id: "buttonContainer",
+        style: {
+            maxHeight: '300px',
+            overflow: 'scroll'
+        }
     }, mod.createElement("button", {
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
@@ -8186,10 +8267,32 @@ function Buttons(props) {
         },
         id: "saveBtn",
         onClick: ()=>{
-            save();
-            console.log("clicked");
+            togglePopup2();
         }
-    }, "Save Progress"), mod.createElement("button", {
+    }, "Save Progress"), isOpen2 && mod.createElement(Popup2, {
+        content: mod.createElement(mod.Fragment, null, mod.createElement("div", {
+            id: "inputName"
+        }, mod.createElement("form", {
+            onSubmit: ()=>{
+                save();
+                togglePopup2();
+            }
+        }, mod.createElement("input", {
+            value: saveName,
+            onChange: (e)=>setSaveName(e.target.value),
+            type: "text",
+            style: {
+                border: 'black',
+                color: 'black'
+            },
+            placeholder: "Enter Name",
+            required: true
+        }), mod.createElement("button", {
+            id: "SaveProject",
+            type: "submit"
+        }, "Save project")))),
+        handleClose: togglePopup2
+    }), mod.createElement("button", {
         id: "loadBtn",
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
@@ -8205,7 +8308,10 @@ function Buttons(props) {
             deleteData();
         }
     }, "Delete Project"), mod.createElement("div", null, mod.createElement("button", {
-        onClick: togglePopup,
+        onClick: ()=>{
+            load();
+            togglePopup();
+        },
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
@@ -8217,19 +8323,59 @@ function Buttons(props) {
         }
     }, "Load Project"), isOpen && mod.createElement(Popup, {
         content: mod.createElement(mod.Fragment, null, mod.createElement("div", {
-            id: "search"
-        }, mod.createElement("div", {
             id: "tableDiv"
-        }, mod.createElement("table", null, mod.createElement("tbody", null, data))), mod.createElement("button", {
-            type: "submit",
-            id: "loadButton"
-        }, "Load project"))),
+        }, mod.createElement("table", null, mod.createElement("tbody", null, mod.createElement("div", {
+            id: "tableEle"
+        }, projs)))), mod.createElement("button", {
+            style: {
+                backgroundColor: '#2d3033',
+                color: '#68EDA7',
+                marginLeft: '20%'
+            },
+            id: "loadButton",
+            onClick: ()=>{
+                loadProject(loadProj);
+                togglePopup();
+            }
+        }, "Load project")),
         handleClose: togglePopup
-    }))));
+    })), mod.createElement("button", {
+        onClick: ()=>{
+            startNew();
+        },
+        style: {
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            width: "90%",
+            fontSize: "20px",
+            fontWeight: "bolder",
+            marginTop: "15px",
+            marginLeft: "7px"
+        }
+    }, "New Project"), mod.createElement("button", {
+        id: "loadBtn",
+        style: {
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            width: "90%",
+            fontSize: "20px",
+            fontWeight: "bolder",
+            marginTop: "15px",
+            marginLeft: "7px"
+        },
+        onClick: ()=>{
+            alert("Logged out");
+        }
+    }, mod.createElement(T1, {
+        to: "/",
+        id: "logOutLink"
+    }, mod.createElement("p", null, "Log Out")))));
 }
 const App = ()=>{
     const sideBarStyle = {
-        gridArea: 'side'
+        gridArea: 'side',
+        overflow: 'scroll',
+        maxHeight: '500px'
     };
     const customizationStyle = {
         gridArea: 'cust',
@@ -8286,8 +8432,10 @@ const App = ()=>{
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
     const [currentElement, setCurrentElement] = mod.useState('drag into here');
-    const [project, setProject] = mod.useState('');
+    const [projectId, setProjectId] = mod.useState('');
     const [user, setUser] = mod.useState('');
+    const [projectList, setProjectList] = mod.useState([]);
+    const [loadProj, setLoadProj] = mod.useState('');
     const [inputText, setInputText] = mod.useState('');
     const [textAlign, setTextAlign] = mod.useState('');
     const [textDecoration, setTextDecoration] = mod.useState('');
@@ -8371,10 +8519,14 @@ const App = ()=>{
     }, mod.createElement(Buttons, {
         elementsArr: elementsArr,
         setElementsArr: setElementsArr,
-        project: project,
-        setProject: setProject,
+        projectId: projectId,
+        setProjectId: setProjectId,
         user: user,
-        setUser: setUser
+        setUser: setUser,
+        projectList: projectList,
+        setProjectList: setProjectList,
+        loadProj: loadProj,
+        setLoadProj: setLoadProj
     })));
 };
 const Login = ()=>{

@@ -226,7 +226,7 @@ const deleteElement = (id:any) => {
       {
         id: 'ul',
         element: 'LIST (UL)',
-        backgroundColor: 'rgb(196,233,143'
+        backgroundColor: 'rgb(196,233,143)'
       },
       {
         id: 'input',
@@ -251,7 +251,7 @@ const deleteElement = (id:any) => {
       {
         id: 'button',
         element: 'LIST (UL)',
-        backgroundColor: 'rgb(152,233,166)'
+        backgroundColor: 'rgb(220,233,129)'
       },
       {
         id: 'form',
@@ -325,11 +325,13 @@ const deleteElement = (id:any) => {
       </div>
 
       <div 
+    
         id='drop'
         onDragOver={enableDropping}
         onDrop={handleDrop}
         onDragEnter={handleDragOverStart}
         onDragLeave={handleDragOverEnd}
+
       >
         <div id='hov'>{createdElements}</div>
       </div>

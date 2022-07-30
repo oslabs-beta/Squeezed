@@ -13,6 +13,7 @@ CREATE TABLE projects
   id SERIAL PRIMARY KEY,
   name VARCHAR(50),
   date TIMESTAMP default CURRENT_TIMESTAMP,
+  delete_status VARCHAR(50),
   user_id INTEGER REFERENCES users(id) 
 );
 
