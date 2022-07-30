@@ -5,6 +5,8 @@ import DragAndDrop from './DragAndDrop.tsx';
 import Customization from './customization/Customization.tsx';
 import Preview from './preview/Preview.tsx';
 import Buttons from './Buttons.tsx';
+import Signup from './Signup.tsx';
+import Login from './Signup.tsx';
 
 interface Props{
   elementsArr: string[];
@@ -15,7 +17,7 @@ interface Props{
 }
   
 const App = () => {
-  
+
   //Styling
   const sideBarStyle = { 
     gridArea: 'side',
@@ -84,7 +86,7 @@ const App = () => {
   const [currentElement, setCurrentElement] = React.useState<any>('drag into here');
   const [project, setProject] = React.useState<any>('');
   const [user, setUser] = React.useState<any>('');
-  
+
   //Customization state
   // const [inputText, setInputText] = (React as any).useState('');
   // const [textAlign, setTextAlign] = (React as any).useState('');
@@ -111,7 +113,14 @@ const App = () => {
   const [fontSize, setFontSize] = (React as any).useState('');
   const [className, setClassName] = (React as any).useState('');
 
+  console.log("user", user);
+  // console.log("app session storage:", sessionStorage);
   console.log("elementsArr in app", elementsArr);
+  //set user based on session storage
+  React.useEffect(() => {
+    setUser(sessionStorage.getItem("userId"));
+  }, [user]);
+  // console.log("app userId:", user);
 
   return (
     <div className="app" style={styles}>
@@ -172,14 +181,12 @@ const App = () => {
       /></div>
       {/* <div style={customizationStyle}><Customization elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} /></div> */}
       {/* <div style={previewStyle}><Preview elementsArr={elementsArr} setElementsArr={setElementsArr} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding} */}
-      
       <div style={previewStyle}>
         <Preview 
           elementsArr={elementsArr} 
           setElementsArr={setElementsArr} 
         />
       </div>
-      
       <div style={buttonsStyle}>
         <Buttons 
           elementsArr={elementsArr} 

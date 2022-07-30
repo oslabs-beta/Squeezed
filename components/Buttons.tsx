@@ -57,20 +57,27 @@ function clear(){
 }
 
 async function save(){
+  console.log(sessionStorage);
+  let jwt = sessionStorage.getItem("Authorization");
+  console.log("jwt on front end", jwt);
+  // jwt = jwt.toString();
   const body = {
     project_id: project,
     elementsArr: elementsArr,
     project: project,
-    user: user
+    user: user,
+    authorization: jwt
   }
   await fetch('http://localhost:8080/home', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        // "Authorization": jwt.toString();
+      },
       body: JSON.stringify(body),
-      mode: 'no-cors',
    })
    .then((data) => data.json())
-   .then(data => console.log("I'm on the front end", data))
+  //  .then(data => console.log("I'm on the front end", data))
    .catch((err) => console.log(err));
 
 // try{

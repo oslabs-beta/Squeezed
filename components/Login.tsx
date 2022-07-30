@@ -1,6 +1,15 @@
 import { React } from '../deps.tsx';
 import { Link } from '../deps.tsx'
 import { useNavigate } from '../deps.tsx'
+import { deleteCookie, setCookie, getCookies } from "https://deno.land/std/http/cookie.ts";
+import {
+  Cookie,
+  CookieJar,
+  wrapFetch,
+} from "https://deno.land/x/another_cookiejar@v4.1.4/mod.ts";
+
+
+const cookieJar = new CookieJar();
 
 // import img from ''
 
@@ -15,35 +24,45 @@ import { useNavigate } from '../deps.tsx'
 // what are u doing
 // im trying to get this shit to work 
 const Login = () => {
-  const [username, usernameOnChange] = React.useState('')
-  const [password, passwordOnChange] = React.useState('')
+
+  const [username, setUsername] = React.useState('')
+  const [password, setPassword] = React.useState('')
+
+  // const {username, setUsername, password, setPassword} = props;
 
   const navigate = useNavigate()
   const navigateToHome = () => {
-    navigate('http://localhost:8000/home')
+    navigate('/home')
   }
 
   const handleClick =  (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
     const body = {
       username: username,
       password: password
     }
+      // Now use this fetch and any cookie that is set will be sent with your next requests automatically
+    // const fetch = wrapFetch({ cookieJar });
     fetch('http://localhost:8080/login',{
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Connection': 'keep-alive',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Max-Age': '86400',
+        'Access-Control-Allow-Credentials': 'true'
+      },
       body: JSON.stringify(body),
-      mode: 'no-cors',
     })
     .then((data) => {
-      // console.log('res: ', data)
       return data.json();
     })
     .then((data) => {
-      console.log('res on front end: ', data)
-      if (data === true) {
-        console.log(data)
-        navigateToHome()
+      if (data.result === true) {
+        // console.log(data)
+        sessionStorage.setItem("userId", data.userId);        
+        sessionStorage.setItem("Authorization", data.token);        
+        navigateToHome();
       } else {
         alert('Wrong username and password combination')
       }
@@ -59,10 +78,15 @@ const Login = () => {
     <div className="login_box">
       <div className="left">
         <div className="contact">
-          <form method='POST' action='/login'>
+          <form action='/login'>
             <h3>LOG IN</h3>
-            <input type="text" placeholder="Username" name="username" required></input>
-            <input type="password" placeholder="Password" name="password"required></input>
+            <input 
+              type="text" 
+              placeholder="Username" 
+              name="username" 
+              onChange={(e:any) => setUsername(e.target.value)}
+              required />
+            <input type="password" placeholder="Password" name="password" onChange={(e: any )=> setPassword(e.target.value)} required></input>
             <button onClick={handleClick} className="submit">LOG IN</button> <br/>
            <Link to='/signup' id='signuplink'>
             <p>Need an account? Sign up!</p>
