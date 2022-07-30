@@ -1,5 +1,4 @@
 import { React, Link } from '../deps.tsx';
-// import { Link } from '../deps.tsx'
 import SideBar from './SideBar.tsx';
 import DragAndDrop from './DragAndDrop.tsx';
 import Customization from './customization/Customization.tsx';
