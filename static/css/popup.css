@@ -6,28 +6,27 @@
     height: 100vh;
     top: 0;
     left: 0;
-  }
+}
    
   .box {
     position: relative;
-    width: 70%;
+    width: 12%;
     margin: 0 auto;
     height: auto;
     max-height: 70vh;
     margin-top: calc(100vh - 85vh - 20px);
-    background: #fff;
+    background-image: linear-gradient(#68eda7, #ffe958);
     border-radius: 4px;
     padding: 20px;
-    border: 1px solid #999;
-    overflow: auto;
+    border: 1px solid #2d3033;
+overflow:scroll;
+
   }
    
   .close-icon {
     content: 'x';
     cursor: pointer;
-    position: fixed;
-    right: calc(15% - 30px);
-    top: calc(100vh - 85vh - 33px);
+    float: right;
     background: #ededed;
     width: 25px;
     height: 25px;
@@ -36,4 +35,6 @@
     text-align: center;
     border: 1px solid #999;
     font-size: 20px;
+    overflow:scroll;
+    max-width: 50px;
   }

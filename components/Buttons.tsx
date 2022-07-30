@@ -1,7 +1,8 @@
 //import statements
-import { React } from "../deps.tsx";
+import { Link, React } from "../deps.tsx";
 import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
 import Popup from "./popup.tsx";
+import Popup2 from"./Popup2.tsx"
 
 
 export default function Buttons(props: any) {
@@ -9,48 +10,62 @@ export default function Buttons(props: any) {
   // const [isLoaded, setIsLoaded] = useState(false);
   // const [items, setItems] = useState([]);
   const [isOpen, setIsOpen] = React.useState(false);
-  const [data, setData] = React.useState('');
+  const [isOpen2, setIsOpen2] = React.useState(false);
+  const [saveName, setSaveName] = React.useState("");
   const {
     elementsArr,
     setElementsArr,
     currentElement,
     setCurrentElement,
-    project,
-    setProject,
+    projectId,
+    setProjectId,
     user,
     setUser,
+    projectList,
+    setProjectList,
+    loadProj,
+    setLoadProj
   } = props;
 
   async function togglePopup() {
+    setIsOpen(!isOpen);
+  }
+  async function togglePopup2() {
+    if (!projectId) {
+      setIsOpen2(!isOpen2);
+    } else {
+      alert('Project Saved')
+      save();
+    }
+  }
 
-    const data = await fetch("http://localhost:8080/home/get", {
+  async function load() {
+    await fetch("http://localhost:8080/home/get", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({user_id: 1}),
-      mode: "no-cors",
+      body: JSON.stringify({ user_id: 1 }),
     })
+      
       .then((data) => data.json())
-      .then((data) => console.log("I'm on the front end", data))
+      .then((data) => {
+        setProjectList(data)
+      })
       .catch((err) => console.log(err));
       
-      console.log(data)
-    setIsOpen(!isOpen);
-
-
+      console.log(projectList)
   }
 
   async function save(){
     const body = {
-      project_id: project,
+      project_id: projectId,
       elementsArr: elementsArr,
-      project: project,
-      user_id: user
+      project_name: saveName,
+      user_id: 1
     }
     await fetch('http://localhost:8080/home/save', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(body),
-        mode: 'no-cors',
     })
     .then((data) => data.json())
     .then(data => console.log("I'm on the front end", data))
@@ -58,42 +73,75 @@ export default function Buttons(props: any) {
   }
 
   async function deleteData(){
-    await fetch('http://localhost:8080/home', {
-        method: 'DELETE',
+    console.log('deleting', projectId)
+    await fetch('http://localhost:8080/home/delete', {
+        method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ project_id: project }),
-        mode: 'no-cors',
+        body: JSON.stringify({ project_id: projectId }),
     })
     .then((data) => data.json())
     .catch((err) => console.log(err));
-    // setElementsArr([]);
-    // setCurrentElement('');
+    setElementsArr([]);
+    setCurrentElement('');
   }
+// function logOut {
 
+// }
   function clear(){
     //clears front end
     setElementsArr([]);
     setCurrentElement('');
   }
-    
-
-  function exportFunc() {
-    // this should open up the window directory with deno ???
-    // Deno.readDir
-    // handle = await window.showDirectoryPicker()({mode: 'read' })
+  
+  function startNew(){
+    //clears front end
+    setProjectId('')
+    setElementsArr([]);
+    setCurrentElement('');
+    setProjectList([]);
+    setLoadProj('');
   }
 
-  // const buttonsStyle = {
-  //   gridArea: 'buttons',
-  //   backgroundColor: 'rgb(225, 0, 255)',
-  //   border: '2px solid white',
-  //   fontSize: '30px'
-  // } as const;
+  function selectProject(id: any) {
+    setLoadProj(id)
+  }
+
+
+  async function loadProject(id: any) {
+    await fetch('http://localhost:8080/home/load', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ project_id: id }),
+    })
+    .then((data) => data.json())
+    .then((data) => {
+      setElementsArr(data)
+      console.log('data is here', data)
+    })
+    .catch((err) => console.log(err));
+
+    setProjectId(id)
+  }
+
+
+  const projs = projectList.map((elements: any, index: any) => { 
+    return (
+      <div>
+      <link rel={"stylesheet"} href={"./static/css/buttons.css"} />
+      <div id='test' style={{ backgroundColor: '#2d3033', color: 'white',fontWeight: 'bolder',borderRadius: '5px', width: '100%', overflow: 'auto', marginTop: '10px'}} onClick={()=> { setLoadProj(elements.id)}}>
+          <div id='test' style={{ padding: '15px'}}> {elements.name} </div>
+      </div>
+      </div>
+    )})
+
+
+
 
   return (
     <main>
       <link rel={"stylesheet"} href={"./static/css/sideBarStyle.css"} />
-      <div id="buttonContainer">
+      <link rel={"stylesheet"} href={"./static/css/buttons.css"} />
+      <div id="buttonContainer" style={{ maxHeight: '300px', overflow: 'scroll'}}>
         <button
           style={{
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
@@ -123,13 +171,36 @@ export default function Buttons(props: any) {
           }}
           id="saveBtn"
           onClick={() => {
-            // serve(save);
-            save();
-            console.log("clicked");
+            togglePopup2();
           }}
         >
           Save Progress
         </button>
+        {isOpen2 && (
+            <Popup2
+              content={
+                <>
+                  <div id="inputName">
+                    <form onSubmit={() => {
+                      save();
+                      togglePopup2();
+                    }}>
+                      <input
+                        value={saveName}
+                        onChange={(e) => setSaveName(e.target.value)}
+                        type="text"
+                        style={{border:'black', color: 'black'}}
+                        placeholder="Enter Name"
+                        required
+                      ></input>                      
+                      <button id='SaveProject' type="submit">Save project</button>
+                    </form>
+                  </div>
+                </>
+              }
+              handleClose={togglePopup2}
+            />
+          )}
         <button
           id="loadBtn"
           style={{
@@ -151,7 +222,10 @@ export default function Buttons(props: any) {
 
         <div>
           <button
-            onClick={togglePopup}
+            onClick={() => {
+              load();
+              togglePopup()
+            }}
             style={{
               backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
               color: "#2D3033",
@@ -168,22 +242,63 @@ export default function Buttons(props: any) {
             <Popup
               content={
                 <>
-                <div id="search">
                   <div id="tableDiv">
                       <table>
                         <tbody>
-                          {data}
+                          <div id='tableEle' >
+                          {projs}
+                          </div>
                         </tbody>
                       </table>
                   </div>
-                  <button type="submit" id='loadButton'>Load project</button>
-                </div>
+                  <button style={{backgroundColor: '#2d3033', color: '#68EDA7', marginLeft: '20%'}} id='loadButton' onClick={() =>{
+                    loadProject(loadProj);
+                    togglePopup();
+                  }}>Load project</button>
                 </>
               }
               handleClose={togglePopup}
             />
           )}
-        </div>
+        </div> 
+        <button
+            onClick={() => {
+              startNew();
+
+            }}
+            style={{
+              backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+              color: "#2D3033",
+              width: "90%",
+              fontSize: "20px",
+              fontWeight: "bolder",
+              marginTop: "15px",
+              marginLeft: "7px",
+            }}
+          >
+            New Project
+          </button>
+        <button
+          id="loadBtn"
+          style={{
+            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+            color: "#2D3033",
+            width: "90%",
+            fontSize: "20px",
+            fontWeight: "bolder",
+            marginTop: "15px",
+            marginLeft: "7px",
+          }}
+          onClick={() => {
+            alert("Logged out");
+            
+          }}
+        >
+        <Link to='/' id='logOutLink'>
+            <p>Log Out</p>
+            </Link>
+        </button>
+
       </div>
     </main>
   );

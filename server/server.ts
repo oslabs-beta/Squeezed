@@ -17,6 +17,8 @@ router
   });
 })
 
+app.use(oakCors({origin: "http://localhost:8000", methods: "POST, GET, DELETE"}));
+
 app.use(async (ctx, next) => {
   try {
     await next();
