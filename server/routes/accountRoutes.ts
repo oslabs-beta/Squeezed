@@ -6,7 +6,7 @@ import { oakCors } from "https://deno.land/x/cors/mod.ts";
 const router = new Router();
 
 router
-  .post("/account", oakCors(),accountController.createAccount)
+  .post("/account", oakCors(), accountController.createAccount)
   .post('/login', oakCors(), accountController.loginCheck)
   // .get('/account', accountController.getAll);
   // .post('/userInfo', accountController.getUserInfo);

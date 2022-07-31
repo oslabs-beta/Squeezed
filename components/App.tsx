@@ -194,6 +194,8 @@ const App = () => {
         <Buttons 
           elementsArr={elementsArr} 
           setElementsArr={setElementsArr} 
+          currentElement={currentElement} 
+          setCurrentElement={setCurrentElement} 
           projectId={projectId}
           setProjectId={setProjectId}
           user={user}

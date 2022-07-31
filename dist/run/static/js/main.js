@@ -8135,10 +8135,10 @@ function Buttons(props) {
     const [isOpen2, setIsOpen2] = mod.useState(false);
     const [saveName, setSaveName] = mod.useState("");
     const { elementsArr , setElementsArr , currentElement , setCurrentElement , projectId , setProjectId , user , setUser , projectList , setProjectList , loadProj , setLoadProj  } = props;
-    async function togglePopup() {
+    function togglePopup() {
         setIsOpen(!isOpen);
     }
-    async function togglePopup2() {
+    function togglePopup2() {
         if (!projectId) {
             setIsOpen2(!isOpen2);
         } else {
@@ -8146,26 +8146,14 @@ function Buttons(props) {
             save();
         }
     }
-    async function load() {
-        await fetch("http://localhost:8080/home/get", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                user_id: 1
-            })
-        }).then((data)=>data.json()).then((data)=>{
-            setProjectList(data);
-        }).catch((err)=>console.log(err));
-        console.log(projectList);
-    }
     async function save() {
+        let jwt = sessionStorage.getItem("Authorization");
         const body = {
             project_id: projectId,
             elementsArr: elementsArr,
             project_name: saveName,
-            user_id: 1
+            user_id: user,
+            authorization: jwt
         };
         await fetch('http://localhost:8080/home/save', {
             method: 'POST',
@@ -8173,17 +8161,38 @@ function Buttons(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(body)
-        }).then((data)=>data.json()).then((data)=>console.log("I'm on the front end", data)).catch((err)=>console.log(err));
+        }).then((data)=>data.json()).then((data)=>{
+            console.log("save data", data);
+        }).catch((err)=>console.log(err));
+    }
+    async function load() {
+        let jwt = sessionStorage.getItem("Authorization");
+        await fetch("http://localhost:8080/home/get", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                user_id: user,
+                authorization: jwt
+            })
+        }).then((data)=>data.json()).then((data)=>{
+            console.log("load data", data);
+            setProjectList(data);
+            console.log(projectList);
+        }).catch((err)=>console.log(err));
+        console.log(projectList);
     }
     async function deleteData() {
-        console.log('deleting', projectId);
+        let jwt = sessionStorage.getItem("Authorization");
         await fetch('http://localhost:8080/home/delete', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                project_id: projectId
+                project_id: projectId,
+                authorization: jwt
             })
         }).then((data)=>data.json()).catch((err)=>console.log(err));
         setElementsArr([]);
@@ -8193,20 +8202,6 @@ function Buttons(props) {
         setElementsArr([]);
         setCurrentElement('');
     }
-<<<<<<< HEAD
-    async function save() {
-        console.log(sessionStorage);
-        let jwt = sessionStorage.getItem("Authorization");
-        console.log("jwt on front end", jwt);
-        const body = {
-            project_id: project,
-            elementsArr: elementsArr,
-            project: project,
-            user: user,
-            authorization: jwt
-        };
-        await fetch('http://localhost:8080/home', {
-=======
     function startNew() {
         setProjectId('');
         setElementsArr([]);
@@ -8215,15 +8210,21 @@ function Buttons(props) {
         setLoadProj('');
     }
     async function loadProject(id) {
+        let jwt = sessionStorage.getItem("Authorization");
         await fetch('http://localhost:8080/home/load', {
->>>>>>> dev
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-<<<<<<< HEAD
-            body: JSON.stringify(body)
-        }).then((data)=>data.json()).catch((err)=>console.log(err));
+            body: JSON.stringify({
+                project_id: id,
+                authorization: jwt
+            })
+        }).then((data)=>data.json()).then((data)=>{
+            setElementsArr(data);
+            console.log('data is here', data);
+        }).catch((err)=>console.log(err));
+        setProjectId(id);
     }
     const navigate = he1();
     const navigateToLogin = ()=>{
@@ -8232,16 +8233,6 @@ function Buttons(props) {
     function logout() {
         sessionStorage.clear();
         navigateToLogin();
-    }
-=======
-            body: JSON.stringify({
-                project_id: id
-            })
-        }).then((data)=>data.json()).then((data)=>{
-            setElementsArr(data);
-            console.log('data is here', data);
-        }).catch((err)=>console.log(err));
-        setProjectId(id);
     }
     const projs = projectList.map((elements, index)=>{
         return mod.createElement("div", null, mod.createElement("link", {
@@ -8268,7 +8259,6 @@ function Buttons(props) {
             }
         }, " ", elements.name, " ")));
     });
->>>>>>> dev
     return mod.createElement("main", null, mod.createElement("link", {
         rel: "stylesheet",
         href: "./static/css/sideBarStyle.css"
@@ -8356,30 +8346,6 @@ function Buttons(props) {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
             width: "90%",
-<<<<<<< HEAD
-            fontSize: '20px',
-            fontWeight: 'bolder',
-            marginTop: '15px',
-            marginLeft: '7px'
-        },
-        id: "exportBtn",
-        onClick: (event)=>{}
-    }, "Load Project"), mod.createElement("button", {
-        style: {
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            width: "90%",
-            fontSize: '20px',
-            fontWeight: 'bolder',
-            marginTop: '15px',
-            marginLeft: '7px'
-        },
-        id: "logoutBtn",
-        onClick: (event)=>{
-            logout();
-        }
-    }, "Logout")));
-=======
             fontSize: "20px",
             fontWeight: "bolder",
             marginTop: "15px",
@@ -8417,7 +8383,6 @@ function Buttons(props) {
             marginLeft: "7px"
         }
     }, "New Project"), mod.createElement("button", {
-        id: "loadBtn",
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
@@ -8427,14 +8392,11 @@ function Buttons(props) {
             marginTop: "15px",
             marginLeft: "7px"
         },
-        onClick: ()=>{
-            alert("Logged out");
+        id: "logoutBtn",
+        onClick: (event)=>{
+            logout();
         }
-    }, mod.createElement(T1, {
-        to: "/",
-        id: "logOutLink"
-    }, mod.createElement("p", null, "Log Out")))));
->>>>>>> dev
+    }, "Logout")));
 }
 const App = ()=>{
     const sideBarStyle = {
@@ -8590,6 +8552,8 @@ const App = ()=>{
     }, mod.createElement(Buttons, {
         elementsArr: elementsArr,
         setElementsArr: setElementsArr,
+        currentElement: currentElement,
+        setCurrentElement: setCurrentElement,
         projectId: projectId,
         setProjectId: setProjectId,
         user: user,

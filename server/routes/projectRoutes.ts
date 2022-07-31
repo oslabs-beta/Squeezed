@@ -6,14 +6,9 @@ import {authorize} from '../controllers/authorize.ts';
 const router = new Router();
 
 router
-<<<<<<< HEAD
-  .post('/home', authorize, projectController.saveProject)
-  .delete('/home', authorize, projectController.deleteProject)
-=======
-  .post('/home/get', projectController.getproject)
-  .post('/home/load', projectController.loadProject)
-  .post('/home/save', projectController.saveProject)
-  .post('/home/delete', projectController.deleteProject)
->>>>>>> dev
+  .post('/home/get', authorize, projectController.getproject)
+  .post('/home/load', authorize, projectController.loadProject)
+  .post('/home/save', authorize, projectController.saveProject)
+  .post('/home/delete', authorize, projectController.deleteProject)
 
-  export default router
+  export default router;

@@ -31,6 +31,7 @@ export default function Buttons(props: any) {
   }
 
   function togglePopup2() {
+
     if (!projectId) {
       setIsOpen2(!isOpen2);
     } else {
@@ -53,14 +54,8 @@ export default function Buttons(props: any) {
 //   setUser(data.user);
 // }
 
-  function clear(){
-    //clears front end
-    setElementsArr([]);
-    setCurrentElement('');
-  }
-
   async function save(){
-    console.log(sessionStorage);
+    // console.log(sessionStorage);
     let jwt = sessionStorage.getItem("Authorization");
     // console.log("jwt on front end", jwt);
     // jwt = jwt.toString();
@@ -68,46 +63,56 @@ export default function Buttons(props: any) {
       project_id: projectId,
       elementsArr: elementsArr,
       project_name: saveName,
-      user: user,
+      user_id: user,
       authorization: jwt
     }
-    await fetch('http://localhost:8080/home', {
+    await fetch('http://localhost:8080/home/save', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           // "Authorization": jwt.toString();
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify(body)
     })
-    .then((data) => data.json())
-    //  .then(data => console.log("I'm on the front end", data))
-    .catch((err) => console.log(err));
-  
+    .then(data => data.json())
+    .then(data => {
+      console.log("save data", data);
+    })
+    .catch(err => console.log(err));
   }
 
   async function load() {
+    let jwt = sessionStorage.getItem("Authorization");
     await fetch("http://localhost:8080/home/get", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user_id: 1 }),
+      body: JSON.stringify({ 
+        user_id: user,
+        authorization: jwt
+       })
     })
-      
-      .then((data) => data.json())
-      .then((data) => {
-        setProjectList(data)
-      })
-      .catch((err) => console.log(err));
-      
-      console.log(projectList)
+    .then((data) => data.json())
+    .then((data) => {
+      console.log("load data", data);
+      //cinditional: if user not authenticated, send alert
+      setProjectList(data);
+      console.log(projectList);
+    })
+    .catch((err) => console.log(err));
+    console.log(projectList)
   }
 
 
   async function deleteData(){
     // console.log('deleting', projectId)
+    let jwt = sessionStorage.getItem("Authorization");
     await fetch('http://localhost:8080/home/delete', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ project_id: projectId }),
+        body: JSON.stringify({ 
+          project_id: projectId,
+          authorization: jwt
+        })
     })
     .then((data) => data.json())
     .catch((err) => console.log(err));
@@ -132,10 +137,14 @@ export default function Buttons(props: any) {
 
 
   async function loadProject(id: any) {
+    let jwt = sessionStorage.getItem("Authorization");
     await fetch('http://localhost:8080/home/load', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ project_id: id }),
+        body: JSON.stringify({ 
+          project_id: id,
+          authorization: jwt
+        }),
     })
     .then((data) => data.json())
     .then((data) => {
