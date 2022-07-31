@@ -20,6 +20,8 @@ const App = () => {
   //Styling
   const sideBarStyle = { 
     gridArea: 'side',
+    overflow: 'scroll',
+    maxHeight: '500px'
   } as const;
   
   const customizationStyle = { 
@@ -83,9 +85,11 @@ const App = () => {
   //State
   const [elementsArr, setElementsArr] = React.useState<any[]>([]);
   const [currentElement, setCurrentElement] = React.useState<any>('drag into here');
-  const [project, setProject] = React.useState<any>('');
+  const [projectId, setProjectId] = React.useState<any>('');
   const [user, setUser] = React.useState<any>('');
-
+  const [projectList, setProjectList] = React.useState([]);
+  const [loadProj, setLoadProj] = React.useState('');
+  
   //Customization state
   // const [inputText, setInputText] = (React as any).useState('');
   // const [textAlign, setTextAlign] = (React as any).useState('');
@@ -190,10 +194,14 @@ const App = () => {
         <Buttons 
           elementsArr={elementsArr} 
           setElementsArr={setElementsArr} 
-          project={project}
-          setProject={setProject}
+          projectId={projectId}
+          setProjectId={setProjectId}
           user={user}
           setUser={setUser}
+          projectList={projectList}
+          setProjectList={setProjectList}
+          loadProj={loadProj}
+          setLoadProj={setLoadProj}
         />
       </div>
     </div>
