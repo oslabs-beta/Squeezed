@@ -395,20 +395,20 @@ var b;
 var R = function(e) {
     return e;
 };
-var M1 = "beforeunload", Y = "popstate";
-function K(e) {
+var M1 = "beforeunload", q1 = "hashchange", Y = "popstate";
+function U1(e) {
     e === void 0 && (e = {});
     var y = e, s = y.window, i1 = s === void 0 ? document.defaultView : s, h = i1.history;
     function f() {
-        var r = i1.location, n = r.pathname, t = r.search, c = r.hash, l = h.state || {};
+        var n = J(i1.location.hash.substr(1)), t = n.pathname, c = t === void 0 ? "/" : t, l = n.search, w = l === void 0 ? "" : l, m = n.hash, P = m === void 0 ? "" : m, N = h.state || {};
         return [
-            l.idx,
+            N.idx,
             R({
-                pathname: n,
-                search: t,
-                hash: c,
-                state: l.usr || null,
-                key: l.key || "default"
+                pathname: c,
+                search: w,
+                hash: P,
+                state: N.usr || null,
+                key: N.key || "default"
             })
         ];
     }
@@ -416,120 +416,131 @@ function K(e) {
     function L() {
         if (u) v.call(u), u = null;
         else {
-            var r = b.Pop, n = f(), t = n[0], c = n[1];
+            var n = b.Pop, t = f(), c = t[0], l = t[1];
             if (v.length) {
-                if (t != null) {
-                    var l = p - t;
-                    l && (u = {
-                        action: r,
-                        location: c,
+                if (c != null) {
+                    var w = p - c;
+                    w && (u = {
+                        action: n,
+                        location: l,
                         retry: function() {
-                            d(l * -1);
+                            g(w * -1);
                         }
-                    }, d(l));
+                    }, g(w));
                 }
-            } else T(r);
+            } else a(n);
         }
     }
-    i1.addEventListener(Y, L);
+    i1.addEventListener(Y, L), i1.addEventListener(q1, function() {
+        var n = f(), t = n[1];
+        D(t) !== D(k) && L();
+    });
     var x = b.Pop, O = f(), p = O[0], k = O[1], _ = $1(), v = $1();
     p == null && (p = 0, h.replaceState(i({}, h.state, {
         idx: p
     }), ""));
-    function A(r) {
-        return typeof r == "string" ? r : D(r);
+    function A() {
+        var n = document.querySelector("base"), t = "";
+        if (n && n.getAttribute("href")) {
+            var c = i1.location.href, l = c.indexOf("#");
+            t = l === -1 ? c : c.slice(0, l);
+        }
+        return t;
     }
-    function S(r, n) {
-        return n === void 0 && (n = null), R(i({
+    function S(n) {
+        return A() + "#" + (typeof n == "string" ? n : D(n));
+    }
+    function H(n, t) {
+        return t === void 0 && (t = null), R(i({
             pathname: k.pathname,
             hash: "",
             search: ""
-        }, typeof r == "string" ? J(r) : r, {
-            state: n,
+        }, typeof n == "string" ? J(n) : n, {
+            state: t,
             key: j()
         }));
     }
-    function H(r, n) {
+    function E(n, t) {
         return [
             {
-                usr: r.state,
-                key: r.key,
-                idx: n
+                usr: n.state,
+                key: n.key,
+                idx: t
             },
-            A(r)
+            S(n)
         ];
     }
-    function E(r, n, t) {
+    function T(n, t, c) {
         return !v.length || (v.call({
-            action: r,
-            location: n,
-            retry: t
+            action: n,
+            location: t,
+            retry: c
         }), !1);
     }
-    function T(r) {
-        x = r;
-        var n = f();
-        p = n[0], k = n[1], _.call({
+    function a(n) {
+        x = n;
+        var t = f();
+        p = t[0], k = t[1], _.call({
             action: x,
             location: k
         });
     }
-    function a(r, n) {
-        var t = b.Push, c = S(r, n);
-        function l() {
-            a(r, n);
+    function o(n, t) {
+        var c = b.Push, l = H(n, t);
+        function w() {
+            o(n, t);
         }
-        if (E(t, c, l)) {
-            var w = H(c, p + 1), m = w[0], P = w[1];
+        if (T(c, l, w)) {
+            var m = E(l, p + 1), P = m[0], N = m[1];
             try {
-                h.pushState(m, "", P);
+                h.pushState(P, "", N);
             } catch  {
-                i1.location.assign(P);
+                i1.location.assign(N);
             }
-            T(t);
+            a(c);
         }
     }
-    function o(r, n) {
-        var t = b.Replace, c = S(r, n);
-        function l() {
-            o(r, n);
+    function d(n, t) {
+        var c = b.Replace, l = H(n, t);
+        function w() {
+            d(n, t);
         }
-        if (E(t, c, l)) {
-            var w = H(c, p), m = w[0], P = w[1];
-            h.replaceState(m, "", P), T(t);
+        if (T(c, l, w)) {
+            var m = E(l, p), P = m[0], N = m[1];
+            h.replaceState(P, "", N), a(c);
         }
     }
-    function d(r) {
-        h.go(r);
+    function g(n) {
+        h.go(n);
     }
-    var g = {
+    var r = {
         get action () {
             return x;
         },
         get location () {
             return k;
         },
-        createHref: A,
-        push: a,
-        replace: o,
-        go: d,
+        createHref: S,
+        push: o,
+        replace: d,
+        go: g,
         back: function() {
-            d(-1);
+            g(-1);
         },
         forward: function() {
-            d(1);
+            g(1);
         },
-        listen: function(n) {
-            return _.push(n);
+        listen: function(t) {
+            return _.push(t);
         },
-        block: function(n) {
-            var t = v.push(n);
+        block: function(t) {
+            var c = v.push(t);
             return v.length === 1 && i1.addEventListener(M1, B1), function() {
-                t(), v.length || i1.removeEventListener(M1, B1);
+                c(), v.length || i1.removeEventListener(M1, B1);
             };
         }
     };
-    return g;
+    return r;
 }
 function B1(e) {
     e.preventDefault(), e.returnValue = "";
@@ -611,10 +622,10 @@ function W(e, t, n, a) {
 function G(e) {
     e.sort((t, n)=>t.score !== n.score ? n.score - t.score : ne(t.routesMeta.map((a)=>a.childrenIndex), n.routesMeta.map((a)=>a.childrenIndex)));
 }
-var q1 = /^:\w+$/, K1 = 3, Q = 2, X = 1, Z = 10, ee = -2, S = (e)=>e === "*";
+var q2 = /^:\w+$/, K = 3, Q = 2, X = 1, Z = 10, ee = -2, S = (e)=>e === "*";
 function te(e, t) {
     let n = e.split("/"), a = n.length;
-    return n.some(S) && (a += ee), t && (a += Q), n.filter((o)=>!S(o)).reduce((o, s)=>o + (q1.test(s) ? K1 : s === "" ? X : Z), a);
+    return n.some(S) && (a += ee), t && (a += Q), n.filter((o)=>!S(o)).reduce((o, s)=>o + (q2.test(s) ? K : s === "" ? X : Z), a);
 }
 function ne(e, t) {
     return e.length === t.length && e.slice(0, -1).every((a, o)=>a === t[o]) ? e[e.length - 1] - t[t.length - 1] : 0;
@@ -898,7 +909,7 @@ var I1 = [
     "state",
     "target",
     "to"
-], K2 = [
+], K1 = [
     "aria-current",
     "caseSensitive",
     "className",
@@ -907,9 +918,9 @@ var I1 = [
     "to",
     "children"
 ];
-function Y1(e) {
+function q3(e) {
     let { basename: n , children: r , window: t  } = e, o = Me();
-    o.current == null && (o.current = K({
+    o.current == null && (o.current = U1({
         window: t
     }));
     let a = o.current, [i, s] = ze({
@@ -945,7 +956,7 @@ var T1 = we(function(n, r) {
         target: s
     }));
 }), G1 = we(function(n, r) {
-    let { "aria-current": t = "page" , caseSensitive: o = !1 , className: a = "" , end: i = !1 , style: s , to: l , children: u  } = n, m = x(n, K2), y = O(), v = de1(l), c = y.pathname, f = v.pathname;
+    let { "aria-current": t = "page" , caseSensitive: o = !1 , className: a = "" , end: i = !1 , style: s , to: l , children: u  } = n, m = x(n, K1), y = O(), v = de1(l), c = y.pathname, f = v.pathname;
     o || (c = c.toLowerCase(), f = f.toLowerCase());
     let h = c === f || !i && c.startsWith(f) && c.charAt(f.length) === "/", A = h ? t : void 0, g;
     typeof a == "function" ? g = a({
@@ -989,7 +1000,7 @@ function F1(e, n) {
     ]);
 }
 var __setImmediate$ = (cb, ...args)=>setTimeout(cb, 0, ...args);
-var U1 = Object.create;
+var U2 = Object.create;
 var $3 = Object.defineProperty;
 var X1 = Object.getOwnPropertyDescriptor;
 var Z1 = Object.getOwnPropertyNames;
@@ -1004,11 +1015,11 @@ var te1 = (e, n, t, l)=>{
     });
     return e;
 };
-var D1 = (e, n, t)=>(t = e != null ? U1(ee1(e)) : {}, te1(n || !e || !e.__esModule ? $3(t, "default", {
+var D1 = (e, n, t)=>(t = e != null ? U2(ee1(e)) : {}, te1(n || !e || !e.__esModule ? $3(t, "default", {
         value: e,
         enumerable: !0
     }) : t, e));
-var K3 = B3((r)=>{
+var K2 = B3((r)=>{
     "use strict";
     function T(e, n) {
         var t = e.length;
@@ -1221,7 +1232,7 @@ var K3 = B3((r)=>{
 });
 var R1 = B3((oe, Q)=>{
     "use strict";
-    Q.exports = K3();
+    Q.exports = K2();
 });
 var S1 = D1(R1()), V = D1(R1()), { unstable_now: se1 , unstable_IdlePriority: ce2 , unstable_ImmediatePriority: fe1 , unstable_LowPriority: be1 , unstable_NormalPriority: pe1 , unstable_Profiling: _e1 , unstable_UserBlockingPriority: de2 , unstable_cancelCallback: ve2 , unstable_continueExecution: ye1 , unstable_forceFrameRate: me2 , unstable_getCurrentPriorityLevel: ge1 , unstable_getFirstCallbackNode: he2 , unstable_next: ke1 , unstable_pauseExecution: Pe1 , unstable_requestPaint: we1 , unstable_runWithPriority: xe1 , unstable_scheduleCallback: Ie1 , unstable_shouldYield: Ce1 , unstable_wrapCallback: Ee2  } = V, { default: le1 , ...ie2 } = V, Te1 = (S1.default ?? le1) ?? ie2;
 var Sa = Object.create;
@@ -7098,6 +7109,103 @@ const mod1 = {
     unstable_renderSubtreeIntoContainer: Hf,
     version: Wf
 };
+const elementsList = [
+    {
+        id: 'div',
+        element: 'DIV',
+        backgroundColor: 'rgb(142,233,172)'
+    },
+    {
+        id: 'paragraph',
+        element: 'PARAGRAPH',
+        backgroundColor: 'rgb(148,233,168)'
+    },
+    {
+        id: 'button',
+        element: 'BUTTON',
+        backgroundColor: 'rgb(152,233,166)'
+    },
+    {
+        id: 'img',
+        element: 'IMAGE',
+        backgroundColor: 'rgb(158,233,163)'
+    },
+    {
+        id: 'h1',
+        element: 'HEADER 1',
+        backgroundColor: 'rgb(163,233,160)'
+    },
+    {
+        id: 'h2',
+        element: 'HEADER 2',
+        backgroundColor: 'rgb(168,233,158)'
+    },
+    {
+        id: 'h3',
+        element: 'HEADER 3',
+        backgroundColor: 'rgb(173,233,155)'
+    },
+    {
+        id: 'footer',
+        element: 'FOOTER',
+        backgroundColor: 'rgb(178,233,152)'
+    },
+    {
+        id: 'ol',
+        element: 'LIST (OL)',
+        backgroundColor: 'rgb(187,233,147)'
+    },
+    {
+        id: 'ul',
+        element: 'LIST (UL)',
+        backgroundColor: 'rgb(196,233,143)'
+    },
+    {
+        id: 'input',
+        element: 'INPUT',
+        backgroundColor: 'rgb(202,233,139)'
+    },
+    {
+        id: 'link',
+        element: 'LINK',
+        backgroundColor: 'rgb(207,233,137)'
+    },
+    {
+        id: 'label',
+        element: 'LABEL',
+        backgroundColor: 'rgb(212,233,134)'
+    },
+    {
+        id: 'span',
+        element: 'SPAN',
+        backgroundColor: 'rgb(218,233,131)'
+    },
+    {
+        id: 'button',
+        element: 'LIST (UL)',
+        backgroundColor: 'rgb(220,233,129)'
+    },
+    {
+        id: 'form',
+        element: 'FORM',
+        backgroundColor: 'rgb(222,233,128)'
+    },
+    {
+        id: 'menu',
+        element: 'MENU',
+        backgroundColor: 'rgb(227,233,126)'
+    },
+    {
+        id: 'title',
+        element: 'TITLE',
+        backgroundColor: 'rgb(232,233,123)'
+    },
+    {
+        id: 'area',
+        element: 'AREA',
+        backgroundColor: 'rgb(238,233,120)'
+    }
+];
 const SideBar = (props)=>{
     const { elementsArr , setElementsArr , currentElement , setCurrentElement  } = props;
     const { setInputText , setTextAlign , setTextDecoration , setBackgroundColor , setColor , setMargin , setWidth , setHeight , setPadding , setFontSize , setClassName  } = props;
@@ -7134,7 +7242,7 @@ const SideBar = (props)=>{
             const newElement = {
                 id: elementsArr.length,
                 element: id,
-                text: "",
+                inputText: "",
                 texAlign: "",
                 textDecoration: "",
                 backgroundColor: "",
@@ -7144,16 +7252,14 @@ const SideBar = (props)=>{
                 height: "",
                 padding: "",
                 fontSize: "",
-                fontWeight: ""
+                className: ""
             };
             newElementsArr.push(newElement);
             setElementsArr(newElementsArr);
             setCurrentElement(newElement);
         } else if (area === "dropArea") {
             const dragItemContent = newElementsArr[dragItem.current];
-            const dragItemEnterContent = newElementsArr[dragOverItem.current];
-            console.log("handleDrop selected item:", dragItemContent);
-            console.log("handleDrop drager over item:", dragItemEnterContent);
+            newElementsArr[dragOverItem.current];
             newElementsArr.splice(dragItem.current, 1);
             newElementsArr.splice(dragOverItem.current, 0, dragItemContent);
             dragItem.current = null;
@@ -7162,15 +7268,9 @@ const SideBar = (props)=>{
             setElementsArr(newElementsArr);
         }
     };
-    const reorderElArr = (arr)=>{
-        arr.forEach((el, ind)=>{
-            el.id = ind;
-        });
-    };
     const handleClick = (id)=>{
-        setCurrentElement(elementsArr[id]);
-        const a = elementsArr[id].text;
-        const b = elementsArr[id].textAlign;
+        const a = elementsArr[id].inputText;
+        const b = elementsArr[id].texAlign;
         const c = elementsArr[id].textDecoration;
         const d = elementsArr[id].backgroundColor;
         const e = elementsArr[id].color;
@@ -7178,8 +7278,9 @@ const SideBar = (props)=>{
         const g = elementsArr[id].width;
         const h = elementsArr[id].height;
         const i = elementsArr[id].padding;
-        const j = elementsArr[id].setFontSize;
-        const k = elementsArr[id].setClassName;
+        const j = elementsArr[id].fontSize;
+        const k = elementsArr[id].className;
+        setCurrentElement(elementsArr[id]);
         setInputText(a);
         setTextAlign(b);
         setTextDecoration(c);
@@ -7193,113 +7294,20 @@ const SideBar = (props)=>{
         setClassName(k);
     };
     const deleteElement = (id)=>{
-        if (elementsArr.length === 1) {
-            setElementsArr([]);
-            setCurrentElement('');
-        } else {
-            const filteredElementsArr = elementsArr.filter((element)=>element.id !== id);
-            console.log('filtered', filteredElementsArr);
-            setElementsArr(filteredElementsArr);
-            setCurrentElement('');
-        }
+        const newElementsArr = [
+            ...elementsArr
+        ];
+        newElementsArr.splice(id, 1);
+        console.log("elementsArr after delete", newElementsArr);
+        reorderElArr(newElementsArr);
+        setElementsArr(newElementsArr);
     };
-    const elementsList = [
-        {
-            id: 'div',
-            element: 'DIV',
-            backgroundColor: 'rgb(142,233,172)'
-        },
-        {
-            id: 'paragraph',
-            element: 'PARAGRAPH',
-            backgroundColor: 'rgb(148,233,168)'
-        },
-        {
-            id: 'button',
-            element: 'BUTTON',
-            backgroundColor: 'rgb(152,233,166)'
-        },
-        {
-            id: 'img',
-            element: 'IMAGE',
-            backgroundColor: 'rgb(158,233,163)'
-        },
-        {
-            id: 'h1',
-            element: 'HEADER 1',
-            backgroundColor: 'rgb(163,233,160)'
-        },
-        {
-            id: 'h2',
-            element: 'HEADER 2',
-            backgroundColor: 'rgb(168,233,158)'
-        },
-        {
-            id: 'h3',
-            element: 'HEADER 3',
-            backgroundColor: 'rgb(173,233,155)'
-        },
-        {
-            id: 'footer',
-            element: 'FOOTER',
-            backgroundColor: 'rgb(178,233,152)'
-        },
-        {
-            id: 'ol',
-            element: 'LIST (OL)',
-            backgroundColor: 'rgb(187,233,147)'
-        },
-        {
-            id: 'ul',
-            element: 'LIST (UL)',
-            backgroundColor: 'rgb(196,233,143)'
-        },
-        {
-            id: 'input',
-            element: 'INPUT',
-            backgroundColor: 'rgb(202,233,139)'
-        },
-        {
-            id: 'link',
-            element: 'LINK',
-            backgroundColor: 'rgb(207,233,137)'
-        },
-        {
-            id: 'label',
-            element: 'LABEL',
-            backgroundColor: 'rgb(212,233,134)'
-        },
-        {
-            id: 'span',
-            element: 'SPAN',
-            backgroundColor: 'rgb(218,233,131)'
-        },
-        {
-            id: 'button',
-            element: 'LIST (UL)',
-            backgroundColor: 'rgb(220,233,129)'
-        },
-        {
-            id: 'form',
-            element: 'FORM',
-            backgroundColor: 'rgb(222,233,128)'
-        },
-        {
-            id: 'menu',
-            element: 'MENU',
-            backgroundColor: 'rgb(227,233,126)'
-        },
-        {
-            id: 'title',
-            element: 'TITLE',
-            backgroundColor: 'rgb(232,233,123)'
-        },
-        {
-            id: 'area',
-            element: 'AREA',
-            backgroundColor: 'rgb(238,233,120)'
-        }
-    ];
+    const reorderElArr = (arr)=>{
+        arr.forEach((el, ind)=>{
+            console.log('reorder:', el, ind);
+            el.id = ind;
+        });
+    };
     const renderElementsList = elementsList.map((el)=>{
         return mod.createElement("div", {
             id: el.id,
@@ -7315,7 +7323,7 @@ const SideBar = (props)=>{
             draggable: "true"
         }, " ", el.element));
     });
-    const createdElements = elementsArr.map((elements, index)=>{
+    const createdElements = elementsArr.map((el, index)=>{
         return mod.createElement("div", {
             draggable: "true",
             onDrop: handleDrop,
@@ -7326,7 +7334,7 @@ const SideBar = (props)=>{
             className: "draggedTags",
             onDragOver: enableDropping,
             onClick: ()=>handleClick(index),
-            id: index
+            id: index.toString()
         }, elementsArr[index].element, mod.createElement("button", {
             id: "delete-btn",
             style: {
@@ -7350,7 +7358,7 @@ const SideBar = (props)=>{
         href: './static/css/sideBarStyle.css'
     }), mod.createElement("div", {
         className: "app"
-    }), mod.createElement("div", {
+    }, mod.createElement("div", {
         id: "side"
     }, renderElementsList), mod.createElement("div", {
         id: "drop",
@@ -7360,20 +7368,18 @@ const SideBar = (props)=>{
         onDragLeave: handleDragOverEnd
     }, mod.createElement("div", {
         id: "hov"
-    }, createdElements)));
+    }, createdElements))));
 };
-const Routing = (props)=>{
-    return mod.createElement("div", null, "Routing page in react router");
-};
-const Styling = (props)=>{
+const Customization = (props)=>{
     const { elementsArr , setElementsArr , currentElement , setCurrentElement , inputText , setInputText , textAlign , setTextAlign , textDecoration , setTextDecoration , backgroundColor , setBackgroundColor , color , setColor , margin , setMargin , width , setWidth , height , setHeight , padding , setPadding , fontSize , setFontSize , className , setClassName ,  } = props;
+    const [customizationPage, setCustomizationPage] = mod.useState('styling');
     const handleSubmit = async (e)=>{
         e.preventDefault();
         const updateCurrentElement = {
             id: currentElement.id,
             element: currentElement.element,
-            text: inputText,
-            textAlign: textAlign,
+            inputText: inputText,
+            texAlign: textAlign,
             textDecoration: textDecoration,
             backgroundColor: backgroundColor,
             color: color,
@@ -7530,87 +7536,6 @@ const Styling = (props)=>{
         }
     }, "Submit"));
 };
-const MainContainer = (props)=>{
-    const { elementsArr , setElementsArr , currentElement , setCurrentElement , inputText , setInputText , textAlign , setTextAlign , textDecoration , setTextDecoration , backgroundColor , setBackgroundColor , color , setColor , margin , setMargin , width , setWidth , height , setHeight , padding , setPadding , fontSize , setFontSize , className , setClassName ,  } = props;
-    const { customizationPage , setCustomizationPage  } = props;
-    let page;
-    if (customizationPage === 'styling') page = mod.createElement(Styling, {
-        elementsArr: elementsArr,
-        setElementsArr: setElementsArr,
-        currentElement: currentElement,
-        setCurrentElement: setCurrentElement,
-        inputText: inputText,
-        setInputText: setInputText,
-        textAlign: textAlign,
-        setTextAlign: setTextAlign,
-        textDecoration: textDecoration,
-        setTextDecoration: setTextDecoration,
-        backgroundColor: backgroundColor,
-        setBackgroundColor: setBackgroundColor,
-        color: color,
-        setColor: setColor,
-        margin: margin,
-        setMargin: setMargin,
-        width: width,
-        setWidth: setWidth,
-        height: height,
-        setHeight: setHeight,
-        padding: padding,
-        setPadding: setPadding,
-        fontSize: fontSize,
-        setFontSize: setFontSize,
-        className: className,
-        setClassName: setClassName
-    });
-    if (customizationPage === 'routing') page = mod.createElement(Routing, null);
-    return mod.createElement("div", {
-        className: "customizationPage"
-    }, page);
-};
-const Navbar = (props)=>{
-    const { setCustomizationPage  } = props;
-    return mod.createElement("div", {
-        className: "navBar"
-    });
-};
-const Customization = (props)=>{
-    const { elementsArr , setElementsArr , currentElement , setCurrentElement , inputText , setInputText , textAlign , setTextAlign , textDecoration , setTextDecoration , backgroundColor , setBackgroundColor , color , setColor , margin , setMargin , width , setWidth , height , setHeight , padding , setPadding , fontSize , setFontSize , className , setClassName ,  } = props;
-    const [customizationPage, setCustomizationPage] = mod.useState('styling');
-    return mod.createElement("div", {
-        className: "container"
-    }, mod.createElement(Navbar, {
-        setCustomizationPage: setCustomizationPage
-    }), mod.createElement(MainContainer, {
-        elementsArr: elementsArr,
-        setElementsArr: setElementsArr,
-        customizationPage: customizationPage,
-        setCustomizationPage: setCustomizationPage,
-        currentElement: currentElement,
-        setCurrentElement: setCurrentElement,
-        inputText: inputText,
-        setInputText: setInputText,
-        textAlign: textAlign,
-        setTextAlign: setTextAlign,
-        textDecoration: textDecoration,
-        setTextDecoration: setTextDecoration,
-        backgroundColor: backgroundColor,
-        setBackgroundColor: setBackgroundColor,
-        color: color,
-        setColor: setColor,
-        margin: margin,
-        setMargin: setMargin,
-        width: width,
-        setWidth: setWidth,
-        height: height,
-        setHeight: setHeight,
-        padding: padding,
-        setPadding: setPadding,
-        fontSize: fontSize,
-        setFontSize: setFontSize,
-        className: className,
-        setClassName: setClassName
-    }));
-};
 const CodePreview = (props)=>{
     const { elementsArr , setElementsArr  } = props;
     let testArray = [];
@@ -7713,7 +7638,7 @@ const CodePreview = (props)=>{
         let bracket2 = '';
         let tw = '';
         let slash = '';
-        if (elementsArr[index].padding !== '' || elementsArr[index].textAlign !== undefined || elementsArr[index].backgroundColor !== '' || elementsArr[index].color !== '' || elementsArr[index].margin !== '' || elementsArr[index].height !== '' || elementsArr[index].height !== '' || elementsArr[index].padding !== '' || elementsArr[index].width !== '') {
+        if (elementsArr[index].padding !== '' || elementsArr[index].texAlign !== undefined || elementsArr[index].backgroundColor !== '' || elementsArr[index].color !== '' || elementsArr[index].margin !== '' || elementsArr[index].height !== '' || elementsArr[index].height !== '' || elementsArr[index].padding !== '' || elementsArr[index].width !== '') {
             classTag = `class=`;
             bracket = '{';
             tw = 'tw`';
@@ -7721,7 +7646,7 @@ const CodePreview = (props)=>{
             bracket2 = '}';
         }
         let text1 = '';
-        if (elementsArr[index].textAlign !== '' && elementsArr[index].textAlign !== undefined) {
+        if (elementsArr[index].texAlign !== '' && elementsArr[index].texAlign !== undefined) {
             text1 = 'text-';
         }
         let bg = '';
@@ -7752,19 +7677,15 @@ const CodePreview = (props)=>{
         if (elementsArr[index].fontSize !== '') {
             fs = 'text-';
         }
-        let fw = '';
-        if (elementsArr[index].fontWeight !== '') {
-            fw = 'font-';
-        }
         let cn = '';
         if (elementsArr[index].className !== undefined && elementsArr[index].className !== '') {
             cn = 'className=';
         } else {
-            elementsArr[index].className = index;
+            elementsArr[index].className = index.toString();
         }
-        testArray.push(`${eleFirst} ${cn}"${elementsArr[index].className}" ${classTag}${bracket}${tw}${bg}${elementsArr[index].backgroundColor}${color}${elementsArr[index].color}${m}${elementsArr[index].margin}${w}${elementsArr[index].width}${h}${elementsArr[index].height}${p}${elementsArr[index].padding}${fs}${elementsArr[index].fontSize}${text1}${fw}${elementsArr[index].fontWeight}${elementsArr[index].textDecoration}${text1}${elementsArr[index].textAlign}${slash}${bracket2} id="${index}"${endBr} ${elementsArr[index].text} ${eleSecond}`);
+        testArray.push(`${eleFirst} ${cn}"${elementsArr[index].className}" ${classTag}${bracket}${tw}${bg}${elementsArr[index].backgroundColor}${color}${elementsArr[index].color}${m}${elementsArr[index].margin}${w}${elementsArr[index].width}${h}${elementsArr[index].height}${p}${elementsArr[index].padding}${fs}${elementsArr[index].fontSize}${text1}${elementsArr[index].textDecoration}${text1}${elementsArr[index].texAlign}${slash}${bracket2} id="${index}"${endBr} ${elementsArr[index].inputText} ${eleSecond}`);
         return mod.createElement("div", {
-            id: index
+            id: index.toString()
         }, mod.createElement("span", {
             style: {
                 color: '#5FD389'
@@ -7785,7 +7706,7 @@ const CodePreview = (props)=>{
             style: {
                 color: '#37CFE0'
             }
-        }, " ", elementsArr[index].textDecoration, " ", bg, " ", elementsArr[index].backgroundColor, " ", color, elementsArr[index].color, " ", m, elementsArr[index].margin, "  ", w, elementsArr[index].width, " ", h, elementsArr[index].height, " ", p, elementsArr[index].padding, " ", fs, elementsArr[index].fontSize, " ", text1, elementsArr[index].textAlign, " ", fw, elementsArr[index].fontWeight, " "), mod.createElement("span", {
+        }, " ", elementsArr[index].textDecoration, " ", bg, " ", elementsArr[index].backgroundColor, " ", color, elementsArr[index].color, " ", m, elementsArr[index].margin, "  ", w, elementsArr[index].width, " ", h, elementsArr[index].height, " ", p, elementsArr[index].padding, " ", fs, elementsArr[index].fontSize, " ", text1, elementsArr[index].texAlign, " "), mod.createElement("span", {
             style: {
                 color: '#5FD389'
             }
@@ -7805,7 +7726,7 @@ const CodePreview = (props)=>{
             style: {
                 color: 'white'
             }
-        }, " ", elementsArr[index].text), " ", mod.createElement("span", {
+        }, " ", elementsArr[index].inputText), " ", mod.createElement("span", {
             style: {
                 color: '#5FD389'
             }
@@ -7980,7 +7901,6 @@ const IslandPreview = (props)=>{
     let htmlHeight;
     let htmlPadding;
     let htmlFontSize;
-    let htmlFontWeight;
     const testArray = [];
     elementsArr.forEach((ele)=>{
         for(let key in ele){
@@ -7995,13 +7915,10 @@ const IslandPreview = (props)=>{
             htmlHeight = Object.values(ele)[9];
             htmlPadding = Object.values(ele)[10];
             htmlFontSize = Object.values(ele)[11];
-            htmlFontWeight = Object.values(ele)[12];
         }
-        testArray.push(`<${htmlElement} style='color:${htmlColor};background-color:${htmlBackground};height:${htmlHeight};width:${htmlWidth};text-align:${htmlTextAlign};margin:${htmlMargin};text-decoration:${htmlTextDecoration};padding:${htmlPadding};font-size:${htmlFontSize};font-weight:${htmlFontWeight}'>${htmlText}</${htmlElement}>`);
+        testArray.push(`<${htmlElement} style='color:${htmlColor};background-color:${htmlBackground};height:${htmlHeight};width:${htmlWidth};text-align:${htmlTextAlign};margin:${htmlMargin};text-decoration:${htmlTextDecoration};padding:${htmlPadding};font-size:${htmlFontSize};'>${htmlText}</${htmlElement}>`);
     });
-    console.log(73, testArray);
     let html = testArray.map((e, i)=>e).join(' ');
-    console.log(74, html);
     return mod.createElement("div", {
         style: {
             height: '100%',
@@ -8014,9 +7931,8 @@ const IslandPreview = (props)=>{
         srcDoc: html
     }));
 };
-const MainContainer1 = (props)=>{
-    const { previewPage , setPreviewPage  } = props;
-    const { elementsArr , setElementsArr  } = props;
+const MainContainer = (props)=>{
+    const { previewPage , setPreviewPage , elementsArr , setElementsArr  } = props;
     let page;
     if (previewPage === 'codePreview') page = mod.createElement(CodePreview, {
         elementsArr: elementsArr,
@@ -8030,7 +7946,7 @@ const MainContainer1 = (props)=>{
         className: "previewPage"
     }, page);
 };
-const Navbar1 = (props)=>{
+const Navbar = (props)=>{
     const { setPreviewPage  } = props;
     return mod.createElement("div", {
         className: "navBar",
@@ -8084,9 +8000,9 @@ const Preview = (props)=>{
     const [previewPage, setPreviewPage] = mod.useState('codePreview');
     return mod.createElement("div", {
         className: "preview"
-    }, mod.createElement(Navbar1, {
+    }, mod.createElement(Navbar, {
         setPreviewPage: setPreviewPage
-    }), mod.createElement(MainContainer1, {
+    }), mod.createElement(MainContainer, {
         previewPage: previewPage,
         setPreviewPage: setPreviewPage,
         elementsArr: elementsArr,
@@ -8124,10 +8040,10 @@ function Buttons(props) {
     const [isOpen2, setIsOpen2] = mod.useState(false);
     const [saveName, setSaveName] = mod.useState("");
     const { elementsArr , setElementsArr , currentElement , setCurrentElement , projectId , setProjectId , user , setUser , projectList , setProjectList , loadProj , setLoadProj  } = props;
-    async function togglePopup() {
+    function togglePopup() {
         setIsOpen(!isOpen);
     }
-    async function togglePopup2() {
+    function togglePopup2() {
         if (!projectId) {
             setIsOpen2(!isOpen2);
         } else {
@@ -8135,26 +8051,14 @@ function Buttons(props) {
             save();
         }
     }
-    async function load() {
-        await fetch("http://localhost:8080/home/get", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                user_id: 1
-            })
-        }).then((data)=>data.json()).then((data)=>{
-            setProjectList(data);
-        }).catch((err)=>console.log(err));
-        console.log(projectList);
-    }
     async function save() {
+        let jwt = sessionStorage.getItem("Authorization");
         const body = {
             project_id: projectId,
             elementsArr: elementsArr,
             project_name: saveName,
-            user_id: 1
+            user_id: user,
+            authorization: jwt
         };
         await fetch('http://localhost:8080/home/save', {
             method: 'POST',
@@ -8162,17 +8066,38 @@ function Buttons(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(body)
-        }).then((data)=>data.json()).then((data)=>console.log("I'm on the front end", data)).catch((err)=>console.log(err));
+        }).then((data)=>data.json()).then((data)=>{
+            console.log("save data", data);
+        }).catch((err)=>console.log(err));
+    }
+    async function load() {
+        let jwt = sessionStorage.getItem("Authorization");
+        await fetch("http://localhost:8080/home/get", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                user_id: user,
+                authorization: jwt
+            })
+        }).then((data)=>data.json()).then((data)=>{
+            console.log("load data", data);
+            setProjectList(data);
+            console.log(projectList);
+        }).catch((err)=>console.log(err));
+        console.log(projectList);
     }
     async function deleteData() {
-        console.log('deleting', projectId);
+        let jwt = sessionStorage.getItem("Authorization");
         await fetch('http://localhost:8080/home/delete', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                project_id: projectId
+                project_id: projectId,
+                authorization: jwt
             })
         }).then((data)=>data.json()).catch((err)=>console.log(err));
         setElementsArr([]);
@@ -8190,19 +8115,29 @@ function Buttons(props) {
         setLoadProj('');
     }
     async function loadProject(id) {
+        let jwt = sessionStorage.getItem("Authorization");
         await fetch('http://localhost:8080/home/load', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                project_id: id
+                project_id: id,
+                authorization: jwt
             })
         }).then((data)=>data.json()).then((data)=>{
             setElementsArr(data);
             console.log('data is here', data);
         }).catch((err)=>console.log(err));
         setProjectId(id);
+    }
+    const navigate = he1();
+    const navigateToLogin = ()=>{
+        navigate('/');
+    };
+    function logout() {
+        sessionStorage.clear();
+        navigateToLogin();
     }
     const projs = projectList.map((elements, index)=>{
         return mod.createElement("div", null, mod.createElement("link", {
@@ -8353,7 +8288,6 @@ function Buttons(props) {
             marginLeft: "7px"
         }
     }, "New Project"), mod.createElement("button", {
-        id: "loadBtn",
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
@@ -8363,13 +8297,11 @@ function Buttons(props) {
             marginTop: "15px",
             marginLeft: "7px"
         },
-        onClick: ()=>{
-            alert("Logged out");
+        id: "logoutBtn",
+        onClick: (event)=>{
+            logout();
         }
-    }, mod.createElement(T1, {
-        to: "/",
-        id: "logOutLink"
-    }, mod.createElement("p", null, "Log Out")))));
+    }, "Logout")));
 }
 const App = ()=>{
     const sideBarStyle = {
@@ -8431,9 +8363,9 @@ const App = ()=>{
         height: '100%'
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
-    const [currentElement, setCurrentElement] = mod.useState('drag into here');
-    const [projectId, setProjectId] = mod.useState('');
+    const [currentElement, setCurrentElement] = mod.useState({});
     const [user, setUser] = mod.useState('');
+    const [projectId, setProjectId] = mod.useState('');
     const [projectList, setProjectList] = mod.useState([]);
     const [loadProj, setLoadProj] = mod.useState('');
     const [inputText, setInputText] = mod.useState('');
@@ -8448,6 +8380,11 @@ const App = ()=>{
     const [fontSize, setFontSize] = mod.useState('');
     const [className, setClassName] = mod.useState('');
     console.log("elementsArr in app", elementsArr);
+    mod.useEffect(()=>{
+        setUser(sessionStorage.getItem('userId'));
+    }, [
+        user
+    ]);
     return mod.createElement("div", {
         className: "app",
         style: styles
@@ -8458,27 +8395,16 @@ const App = ()=>{
         setElementsArr: setElementsArr,
         currentElement: currentElement,
         setCurrentElement: setCurrentElement,
-        inputText: inputText,
         setInputText: setInputText,
-        textAlign: textAlign,
         setTextAlign: setTextAlign,
-        textDecoration: textDecoration,
         setTextDecoration: setTextDecoration,
-        backgroundColor: backgroundColor,
         setBackgroundColor: setBackgroundColor,
-        color: color,
         setColor: setColor,
-        margin: margin,
         setMargin: setMargin,
-        width: width,
         setWidth: setWidth,
-        height: height,
         setHeight: setHeight,
-        padding: padding,
         setPadding: setPadding,
-        fontSize: fontSize,
         setFontSize: setFontSize,
-        className: className,
         setClassName: setClassName
     })), mod.createElement("div", {
         style: customizationStyle
@@ -8519,6 +8445,8 @@ const App = ()=>{
     }, mod.createElement(Buttons, {
         elementsArr: elementsArr,
         setElementsArr: setElementsArr,
+        currentElement: currentElement,
+        setCurrentElement: setCurrentElement,
         projectId: projectId,
         setProjectId: setProjectId,
         user: user,
@@ -8529,12 +8457,494 @@ const App = ()=>{
         setLoadProj: setLoadProj
     })));
 };
+const CONTROL_CHARS = /[\x00-\x1F\x7F]/;
+const COOKIE_NAME_BLOCKED = /[()<>@,;:\\"/[\]?={}]/;
+const COOKIE_OCTET_BLOCKED = /[\s",;\\]/;
+const COOKIE_OCTET = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/;
+const TERMINATORS = [
+    "\n",
+    "\r",
+    "\0"
+];
+function isSameDomainOrSubdomain(domainA, domainB) {
+    if (!domainA || !domainB) {
+        return false;
+    }
+    let longerDomain;
+    let shorterDomain;
+    if (domainB.length > domainA.length) {
+        longerDomain = domainB;
+        shorterDomain = domainA;
+    } else {
+        longerDomain = domainA;
+        shorterDomain = domainB;
+    }
+    const indexOfDomain = longerDomain.indexOf(shorterDomain);
+    if (indexOfDomain === -1) {
+        return false;
+    } else if (indexOfDomain > 0) {
+        if (longerDomain.charAt(indexOfDomain - 1) !== ".") {
+            return false;
+        }
+    }
+    return true;
+}
+function trimTerminator(str) {
+    if (str === undefined || str === "") return str;
+    for(let t = 0; t < TERMINATORS.length; t++){
+        const terminatorIdx = str.indexOf(TERMINATORS[t]);
+        if (terminatorIdx !== -1) {
+            str = str.substr(0, terminatorIdx);
+        }
+    }
+    return str;
+}
+function isValidName(name) {
+    if (!name) {
+        return false;
+    }
+    if (CONTROL_CHARS.test(name) || COOKIE_NAME_BLOCKED.test(name)) {
+        return false;
+    }
+    return true;
+}
+function trimWrappingDoubleQuotes(val) {
+    if (val.length >= 2 && val.at(0) === '"' && val.at(-1) === '"') {
+        return val.slice(1, -1);
+    }
+    return val;
+}
+function isValidValue(val) {
+    if (val === "") {
+        return true;
+    }
+    if (!val) {
+        return false;
+    }
+    if (CONTROL_CHARS.test(val) || COOKIE_OCTET_BLOCKED.test(val) || !COOKIE_OCTET.test(val)) {
+        return false;
+    }
+    return true;
+}
+function parseURL(input) {
+    let copyUrl;
+    if (input instanceof Request) {
+        copyUrl = input.url;
+    } else if (input instanceof URL) {
+        copyUrl = input.toString();
+    } else {
+        copyUrl = input;
+    }
+    copyUrl = copyUrl.replace(/^\./, "");
+    if (!copyUrl.includes("://")) {
+        copyUrl = "http://" + copyUrl;
+    }
+    return new URL(copyUrl);
+}
+class Cookie {
+    name;
+    value;
+    path;
+    domain;
+    expires;
+    maxAge;
+    secure;
+    httpOnly;
+    sameSite;
+    creationDate = Date.now();
+    creationIndex;
+    static cookiesCreated = 0;
+    constructor(options){
+        if (options) {
+            this.name = options.name;
+            this.value = options.value;
+            this.path = options.path;
+            this.domain = options.domain;
+            this.expires = options.expires;
+            this.maxAge = options.maxAge;
+            this.secure = options.secure;
+            this.httpOnly = options.httpOnly;
+            this.sameSite = options.sameSite;
+            if (options.creationDate) {
+                this.creationDate = options.creationDate;
+            }
+        }
+        Object.defineProperty(this, "creationIndex", {
+            configurable: false,
+            enumerable: false,
+            writable: true,
+            value: ++Cookie.cookiesCreated
+        });
+    }
+    static from(cookieStr) {
+        const options = {
+            name: undefined,
+            value: undefined,
+            path: undefined,
+            domain: undefined,
+            expires: undefined,
+            maxAge: undefined,
+            secure: undefined,
+            httpOnly: undefined,
+            sameSite: undefined,
+            creationDate: Date.now()
+        };
+        const unparsed = cookieStr.slice().trim();
+        const attrAndValueList = unparsed.split(";");
+        const keyValuePairString = trimTerminator(attrAndValueList.shift() || "").trim();
+        const keyValuePairEqualsIndex = keyValuePairString.indexOf("=");
+        if (keyValuePairEqualsIndex < 0) {
+            return new Cookie();
+        }
+        const name = keyValuePairString.slice(0, keyValuePairEqualsIndex);
+        const value = trimWrappingDoubleQuotes(keyValuePairString.slice(keyValuePairEqualsIndex + 1));
+        if (!(isValidName(name) && isValidValue(value))) {
+            return new Cookie();
+        }
+        options.name = name;
+        options.value = value;
+        while(attrAndValueList.length){
+            const cookieAV = attrAndValueList.shift()?.trim();
+            if (!cookieAV) {
+                continue;
+            }
+            const avSeperatorIndex = cookieAV.indexOf("=");
+            let attrKey, attrValue;
+            if (avSeperatorIndex === -1) {
+                attrKey = cookieAV;
+                attrValue = "";
+            } else {
+                attrKey = cookieAV.substr(0, avSeperatorIndex);
+                attrValue = cookieAV.substr(avSeperatorIndex + 1);
+            }
+            attrKey = attrKey.trim().toLowerCase();
+            if (attrValue) {
+                attrValue = attrValue.trim();
+            }
+            switch(attrKey){
+                case "expires":
+                    if (attrValue) {
+                        const expires = new Date(attrValue).getTime();
+                        if (expires && !isNaN(expires)) {
+                            options.expires = expires;
+                        }
+                    }
+                    break;
+                case "max-age":
+                    if (attrValue) {
+                        const maxAge = parseInt(attrValue, 10);
+                        if (!isNaN(maxAge)) {
+                            options.maxAge = maxAge;
+                        }
+                    }
+                    break;
+                case "domain":
+                    if (attrValue) {
+                        const domain = parseURL(attrValue).host;
+                        if (domain) {
+                            options.domain = domain;
+                        }
+                    }
+                    break;
+                case "path":
+                    if (attrValue) {
+                        options.path = attrValue.startsWith("/") ? attrValue : "/" + attrValue;
+                    }
+                    break;
+                case "secure":
+                    options.secure = true;
+                    break;
+                case "httponly":
+                    options.httpOnly = true;
+                    break;
+                case "samesite":
+                    {
+                        const lowerCasedSameSite = attrValue.toLowerCase();
+                        switch(lowerCasedSameSite){
+                            case "strict":
+                                options.sameSite = "Strict";
+                                break;
+                            case "lax":
+                                options.sameSite = "Lax";
+                                break;
+                            case "none":
+                                options.sameSite = "None";
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                    }
+                default:
+                    break;
+            }
+        }
+        return new Cookie(options);
+    }
+    isValid() {
+        return isValidName(this.name) && isValidValue(this.value);
+    }
+    canSendTo(url) {
+        const urlObj = parseURL(url);
+        if (this.secure && urlObj.protocol !== "https:") {
+            return false;
+        }
+        if (this.sameSite === "None" && !this.secure) return false;
+        if (this.path) {
+            if (this.path === urlObj.pathname) {
+                return true;
+            }
+            if (urlObj.pathname.startsWith(this.path) && this.path[this.path.length - 1] === "/") {
+                return true;
+            }
+            if (this.path.length < urlObj.pathname.length && urlObj.pathname.startsWith(this.path) && urlObj.pathname[this.path.length] === "/") {
+                return true;
+            }
+            return false;
+        }
+        if (this.domain) {
+            const host = urlObj.host;
+            if (isSameDomainOrSubdomain(this.domain, host)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    getCookieString() {
+        return `${this.name || ""}=${this.value || ""}`;
+    }
+    setDomain(url) {
+        this.domain = parseURL(url).host;
+    }
+    setPath(url) {
+        const uriPath = parseURL(url).pathname;
+        if (!uriPath || uriPath[0] !== "/") {
+            this.path = "/";
+        } else {
+            const rightmostSlashIdx = uriPath.lastIndexOf("/");
+            if (rightmostSlashIdx <= 0) {
+                this.path = "/";
+            } else {
+                this.path = uriPath.slice(0, rightmostSlashIdx);
+            }
+        }
+    }
+    setExpires(exp) {
+        if (exp instanceof Date) {
+            this.expires = exp.getTime();
+        } else if (typeof exp === "number" && exp >= 0) {
+            this.expires = exp;
+        }
+    }
+    isExpired() {
+        if (this.maxAge !== undefined) {
+            if (Date.now() - this.creationDate >= this.maxAge * 1000) {
+                return true;
+            }
+        }
+        if (this.expires !== undefined) {
+            if (Date.now() - this.expires >= 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+    toString() {
+        let str = this.getCookieString();
+        if (this.expires && this.expires !== Infinity) {
+            str += "; Expires=" + new Date(this.expires).toUTCString();
+        }
+        if (this.maxAge && this.maxAge !== Infinity) {
+            str += `; Max-Age=${this.maxAge}`;
+        }
+        if (this.domain) {
+            str += `; Domain=${this.domain}`;
+        }
+        if (this.path) {
+            str += `; Path=${this.path}`;
+        }
+        if (this.secure) {
+            str += "; Secure";
+        }
+        if (this.httpOnly) {
+            str += "; HttpOnly";
+        }
+        if (this.sameSite) {
+            str += `; SameSite=${this.sameSite}`;
+        }
+        return str;
+    }
+    clone() {
+        return new Cookie(JSON.parse(JSON.stringify(this)));
+    }
+}
+const strictMatchProps = [
+    "value",
+    "secure",
+    "httpOnly",
+    "maxAge",
+    "expires",
+    "sameSite", 
+];
+function cookieMatches(options, comparedWith, strictMatch = false) {
+    if (options.path !== undefined && !comparedWith.path?.startsWith(options.path)) {
+        return false;
+    }
+    if (options.domain) {
+        if (!isSameDomainOrSubdomain(options.domain, comparedWith.domain)) {
+            return false;
+        }
+    }
+    if (options.name !== undefined && options.name !== comparedWith.name) {
+        return false;
+    }
+    if (strictMatch && strictMatchProps.some((propKey)=>options[propKey] !== undefined && options[propKey] !== comparedWith[propKey])) {
+        return false;
+    }
+    return true;
+}
+function cookieCompare(a, b) {
+    let cmp = 0;
+    const aPathLen = a.path?.length || 0;
+    const bPathLen = b.path?.length || 0;
+    cmp = bPathLen - aPathLen;
+    if (cmp !== 0) {
+        return cmp;
+    }
+    const aTime = a.creationDate || 2147483647000;
+    const bTime = b.creationDate || 2147483647000;
+    cmp = aTime - bTime;
+    if (cmp !== 0) {
+        return cmp;
+    }
+    cmp = a.creationIndex - b.creationIndex;
+    return cmp;
+}
+class CookieJar {
+    cookies = Array();
+    constructor(cookies){
+        this.replaceCookies(cookies);
+    }
+    setCookie(cookie, url) {
+        let cookieObj;
+        if (typeof cookie === "string") {
+            cookieObj = Cookie.from(cookie);
+        } else {
+            cookieObj = cookie;
+        }
+        if (url) {
+            if (!cookieObj.domain) {
+                cookieObj.setDomain(url);
+            }
+            if (!cookieObj.path) {
+                cookieObj.setPath(url);
+            }
+        }
+        if (!cookieObj.isValid()) {
+            return;
+        }
+        const foundCookie = this.getCookie(cookieObj);
+        if (foundCookie) {
+            const indexOfCookie = this.cookies.indexOf(foundCookie);
+            if (!cookieObj.isExpired()) {
+                this.cookies.splice(indexOfCookie, 1, cookieObj);
+            } else {
+                this.cookies.splice(indexOfCookie, 1);
+            }
+        } else if (!cookieObj.isExpired()) {
+            this.cookies.push(cookieObj);
+        }
+        this.cookies.sort(cookieCompare);
+    }
+    getCookie(options) {
+        const strictMatch = typeof options.isValid !== "function";
+        for (const [index, cookie] of this.cookies.entries()){
+            if (cookieMatches(options, cookie, strictMatch)) {
+                if (!cookie.isExpired()) {
+                    return cookie;
+                } else {
+                    this.cookies.splice(index, 1);
+                    return undefined;
+                }
+            }
+        }
+    }
+    getCookies(options) {
+        if (options) {
+            const matchedCookies = [];
+            const removeCookies = [];
+            for (const cookie of this.cookies){
+                if (cookieMatches(options, cookie)) {
+                    if (!cookie.isExpired()) {
+                        matchedCookies.push(cookie);
+                    } else {
+                        removeCookies.push(cookie);
+                    }
+                }
+            }
+            if (removeCookies.length) {
+                this.cookies = this.cookies.filter((cookie)=>!removeCookies.includes(cookie));
+            }
+            return matchedCookies;
+        } else {
+            return this.cookies;
+        }
+    }
+    getCookieString(url) {
+        const searchCookie = new Cookie();
+        searchCookie.setDomain(url);
+        const cookiesToSend = this.getCookies(searchCookie).filter((cookie)=>{
+            return cookie.canSendTo(parseURL(url));
+        }).map((c)=>c.getCookieString()).join("; ");
+        return cookiesToSend;
+    }
+    toJSON() {
+        return this.cookies;
+    }
+    removeCookie(options) {
+        for (const [index, cookie] of this.cookies.entries()){
+            if (cookieMatches(options, cookie)) {
+                return this.cookies.splice(index, 1)[0];
+            }
+        }
+    }
+    removeCookies(options) {
+        if (options) {
+            const deletedCookies = [];
+            this.cookies = this.cookies.filter((cookie)=>{
+                if (cookieMatches(options, cookie)) {
+                    deletedCookies.push(cookie);
+                    return false;
+                }
+                return true;
+            });
+            return deletedCookies.length ? deletedCookies : undefined;
+        } else {
+            this.cookies = [];
+        }
+    }
+    replaceCookies(cookies) {
+        if (cookies?.length) {
+            if (typeof cookies[0].isValid === "function") {
+                this.cookies = cookies;
+            } else {
+                this.cookies = [];
+                for (const option of cookies){
+                    this.cookies.push(new Cookie(option));
+                }
+            }
+        } else {
+            this.cookies = [];
+        }
+    }
+}
+new CookieJar();
 const Login = ()=>{
-    const [username, usernameOnChange] = mod.useState('');
-    const [password, passwordOnChange] = mod.useState('');
+    const [username, setUsername] = mod.useState('');
+    const [password, setPassword] = mod.useState('');
     const navigate = he1();
     const navigateToHome = ()=>{
-        navigate('http://localhost:8000/home');
+        navigate('/home');
     };
     const handleClick = (e)=>{
         e.preventDefault();
@@ -8545,16 +8955,19 @@ const Login = ()=>{
         fetch('http://localhost:8080/login', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Connection': 'keep-alive',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Methods': 'POST',
+                'Access-Control-Max-Age': '86400',
+                'Access-Control-Allow-Credentials': 'true'
             },
-            body: JSON.stringify(body),
-            mode: 'no-cors'
+            body: JSON.stringify(body)
         }).then((data)=>{
             return data.json();
         }).then((data)=>{
-            console.log('res on front end: ', data);
-            if (data === true) {
-                console.log(data);
+            if (data.result === true) {
+                sessionStorage.setItem("userId", data.userId);
+                sessionStorage.setItem("Authorization", data.token);
                 navigateToHome();
             } else {
                 alert('Wrong username and password combination');
@@ -8573,17 +8986,18 @@ const Login = ()=>{
     }, mod.createElement("div", {
         className: "contact"
     }, mod.createElement("form", {
-        method: "POST",
         action: "/login"
     }, mod.createElement("h3", null, "LOG IN"), mod.createElement("input", {
         type: "text",
         placeholder: "Username",
         name: "username",
+        onChange: (e)=>setUsername(e.target.value),
         required: true
     }), mod.createElement("input", {
         type: "password",
         placeholder: "Password",
         name: "password",
+        onChange: (e)=>setPassword(e.target.value),
         required: true
     }), mod.createElement("button", {
         onClick: handleClick,
@@ -8598,6 +9012,30 @@ const Login = ()=>{
     }))));
 };
 const Signup = ()=>{
+    const [username, setUsername] = mod.useState('');
+    const [password, setPassword] = mod.useState('');
+    const [email, setEmail] = mod.useState('');
+    const navigate = he1();
+    const navigateToLogin = ()=>{
+        navigate('/');
+    };
+    const handleClick = (e)=>{
+        e.preventDefault();
+        const body = {
+            username: username,
+            password: password,
+            email: email
+        };
+        fetch('http://localhost:8080/account', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        }).then((data)=>data.json()).then((data)=>{
+            navigateToLogin();
+        }).catch((err)=>console.log(err));
+    };
     return mod.createElement("div", null, mod.createElement("link", {
         rel: 'stylesheet',
         href: './static/css/signup.css'
@@ -8615,22 +9053,24 @@ const Signup = ()=>{
         type: "text",
         placeholder: "Email",
         name: "email",
+        onChange: (e)=>setEmail(e.target.value),
         required: true
     }), mod.createElement("input", {
         type: "text",
         placeholder: "Username",
         name: "username",
+        onChange: (e)=>setUsername(e.target.value),
         required: true
     }), mod.createElement("input", {
         type: "password",
         placeholder: "Password",
         name: "password",
+        onChange: (e)=>setPassword(e.target.value),
         required: true
-    }), mod.createElement(T1, {
-        to: "/home"
-    }, mod.createElement("button", {
+    }), mod.createElement("button", {
+        onClick: handleClick,
         className: "submit"
-    }, "SIGN UP"), " "), mod.createElement("br", null), mod.createElement(T1, {
+    }, "SIGN UP"), mod.createElement(T1, {
         to: "/",
         id: "loginlink"
     }, mod.createElement("p", null, "Have an account? Log in!"))))), mod.createElement("div", {
@@ -8639,7 +9079,7 @@ const Signup = ()=>{
         className: "right-text"
     }))));
 };
-mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(Y1, null, mod.createElement(Ve1, null, mod.createElement(me1, {
+mod1.render(mod.createElement(mod.StrictMode, null, mod.createElement(q3, null, mod.createElement(Ve1, null, mod.createElement(me1, {
     path: "/",
     element: mod.createElement(Login, null)
 }), mod.createElement(me1, {

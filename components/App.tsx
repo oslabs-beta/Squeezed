@@ -1,21 +1,22 @@
 import { React, Link } from '../deps.tsx';
-// import { Link } from '../deps.tsx'
 import SideBar from './SideBar.tsx';
 import DragAndDrop from './DragAndDrop.tsx';
 import Customization from './customization/Customization.tsx';
 import Preview from './preview/Preview.tsx';
 import Buttons from './Buttons.tsx';
+import Signup from './Signup.tsx';
+import Login from './Signup.tsx';
+import { IHtmlElement, IProps} from './../utils/types.ts';
 
-interface Props{
-  elementsArr: string[];
-  setElementsArr: React.Dispatch<React.SetStateAction<string>>;
-  content: string;
-  setContent: React.Dispatch<React.SetStateAction<string>>;
-  // currentElement: string;
-}
+// interface appProps{
+//   elementsArr: string[];
+//   setElementsArr: React.Dispatch<React.SetStateAction<string>>;
+//   content: string;
+//   setContent: React.Dispatch<React.SetStateAction<string>>;
+// }
   
-const App = () => {
-  
+const App: React.FC = () => {
+
   //Styling
   const sideBarStyle = { 
     gridArea: 'side',
@@ -82,112 +83,111 @@ const App = () => {
   } as const;
 
   //State
-  const [elementsArr, setElementsArr] = React.useState<any[]>([]);
-  const [currentElement, setCurrentElement] = React.useState<any>('drag into here');
-  const [projectId, setProjectId] = React.useState<any>('');
-  const [user, setUser] = React.useState<any>('');
-  const [projectList, setProjectList] = React.useState([]);
-  const [loadProj, setLoadProj] = React.useState('');
-  
-  //Customization state
-  // const [inputText, setInputText] = (React as any).useState('');
-  // const [textAlign, setTextAlign] = (React as any).useState('');
-  // const [textDecoration, setTextDecoration] = (React as any).useState('');
-  // const [backgroundColor, setBackgroundColor] = (React as any).useState('');
-  // const [color, setColor] = (React as any).useState('');
-  // const [margin, setMargin] = (React as any).useState('');
-  // const [width, setWidth] = (React as any).useState('');
-  // const [height, setHeight] = (React as any).useState('');
-  // const [padding, setPadding] = (React as any).useState('');
-  // const [fontSize, setFontSize] = (React as any).useState('');
-  // const [className, setClassName] = (React as any).useState('');
-  // const [border, setBorder] = (React as any).useState('');
+  const [elementsArr, setElementsArr] = React.useState<IHtmlElement[]>([] as IHtmlElement[]);
+  const [currentElement, setCurrentElement] = React.useState<IHtmlElement>({} as IHtmlElement);
+  const [user, setUser] = React.useState<string>('');
+  const [projectId, setProjectId] = React.useState<string>('');
+  const [projectList, setProjectList] = React.useState<any>([]);
+  const [loadProj, setLoadProj] = React.useState<string>('');
 
-  const [inputText, setInputText] = (React as any).useState('');
-  const [textAlign, setTextAlign] = (React as any).useState('');
-  const [textDecoration, setTextDecoration] = (React as any).useState('');
-  const [backgroundColor, setBackgroundColor] = (React as any).useState('');
-  const [color, setColor] = (React as any).useState('');
-  const [margin, setMargin] = (React as any).useState('');
-  const [width, setWidth] = (React as any).useState('');
-  const [height, setHeight] = (React as any).useState('');
-  const [padding, setPadding] = (React as any).useState('');
-  const [fontSize, setFontSize] = (React as any).useState('');
-  const [className, setClassName] = (React as any).useState('');
+  //Styling State
+  const [inputText, setInputText] = React.useState<string>('');
+  const [textAlign, setTextAlign] = React.useState<string>('');
+  const [textDecoration, setTextDecoration] = React.useState<string>('');
+  const [backgroundColor, setBackgroundColor] = React.useState<string>('');
+  const [color, setColor] = React.useState<string>('');
+  const [margin, setMargin] = React.useState<string>('');
+  const [width, setWidth] = React.useState<string>('');
+  const [height, setHeight] = React.useState<string>('');
+  const [padding, setPadding] = React.useState<string>('');
+  const [fontSize, setFontSize] = React.useState<string>('');
+  const [className, setClassName] = React.useState<string>('');
 
+  // console.log("user", user);
+  // console.log("app session storage:", sessionStorage);
   console.log("elementsArr in app", elementsArr);
+  //set user based on session storage
+  React.useEffect(() => {
+    setUser(sessionStorage.getItem('userId') as string);
+  }, [user]);
 
   return (
     <div className="app" style={styles}>
-      <div style={sideBarStyle}><SideBar elementsArr={elementsArr} 
-      setElementsArr={setElementsArr} 
-      currentElement={currentElement} 
-      setCurrentElement={setCurrentElement} 
-      inputText={inputText} 
-      setInputText={setInputText} 
-      textAlign={textAlign} 
-      setTextAlign={setTextAlign} 
-      textDecoration={textDecoration} 
-      setTextDecoration={setTextDecoration} 
-      backgroundColor={backgroundColor} 
-      setBackgroundColor={setBackgroundColor} 
-      color={color} setColor={setColor} 
-      margin={margin} 
-      setMargin={setMargin} 
-      width={width} 
-      setWidth={setWidth} 
-      height={height} 
-      setHeight={setHeight} 
-      padding={padding} 
-      setPadding={setPadding}
-      fontSize = {fontSize}
-      setFontSize = {setFontSize}
-      className = {className}
-      setClassName = {setClassName}
-      /></div>
+      <div style={sideBarStyle}>
+        <SideBar 
+          elementsArr={elementsArr} 
+          setElementsArr={setElementsArr} 
+          currentElement={currentElement} 
+          setCurrentElement={setCurrentElement} 
+          // inputText={inputText} 
+          setInputText={setInputText} 
+          // textAlign={textAlign} 
+          setTextAlign={setTextAlign} 
+          // textDecoration={textDecoration} 
+          setTextDecoration={setTextDecoration} 
+          // backgroundColor={backgroundColor} 
+          setBackgroundColor={setBackgroundColor} 
+          // color={color} 
+          setColor={setColor} 
+          // margin={margin} 
+          setMargin={setMargin} 
+          // width={width} 
+          setWidth={setWidth} 
+          // height={height} 
+          setHeight={setHeight} 
+          // padding={padding} 
+          setPadding={setPadding}
+          // fontSize={fontSize}
+          setFontSize={setFontSize}
+          // className={className}
+          setClassName={setClassName}
+        />
+      </div>
 
-      <div style={customizationStyle}><Customization 
-      elementsArr={elementsArr} 
-      setElementsArr={setElementsArr} 
-      currentElement={currentElement} 
-      setCurrentElement={setCurrentElement} 
-      inputText={inputText} 
-      setInputText={setInputText} 
-      textAlign={textAlign} 
-      setTextAlign={setTextAlign} 
-      textDecoration={textDecoration} 
-      setTextDecoration={setTextDecoration} 
-      backgroundColor={backgroundColor} 
-      setBackgroundColor={setBackgroundColor} 
-      color={color} 
-      setColor={setColor} 
-      margin={margin} 
-      setMargin={setMargin} 
-      width={width} 
-      setWidth={setWidth} 
-      height={height}
-      setHeight={setHeight} 
-      padding={padding} 
-      setPadding={setPadding}
-      fontSize = {fontSize}
-      setFontSize = {setFontSize}
-      className = {className}
-      setClassName = {setClassName}
-      /></div>
-      {/* <div style={customizationStyle}><Customization elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} /></div> */}
-      {/* <div style={previewStyle}><Preview elementsArr={elementsArr} setElementsArr={setElementsArr} inputText={inputText} setInputText={setInputText} textAlign={textAlign} setTextAlign={setTextAlign} textDecoration={textDecoration} setTextDecoration={setTextDecoration} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor} color={color} setColor={setColor} margin={margin} setMargin={setMargin} width={width} setWidth={setWidth} height={height} setHeight={setHeight} padding={padding} setPadding={setPadding} */}
-      
+      <div style={customizationStyle}>
+        <Customization 
+          elementsArr={elementsArr} 
+          setElementsArr={setElementsArr} 
+          currentElement={currentElement} 
+          setCurrentElement={setCurrentElement} 
+          inputText={inputText} 
+          setInputText={setInputText} 
+          textAlign={textAlign} 
+          setTextAlign={setTextAlign} 
+          textDecoration={textDecoration} 
+          setTextDecoration={setTextDecoration} 
+          backgroundColor={backgroundColor} 
+          setBackgroundColor={setBackgroundColor} 
+          color={color} 
+          setColor={setColor} 
+          margin={margin} 
+          setMargin={setMargin} 
+          width={width} 
+          setWidth={setWidth} 
+          height={height}
+          setHeight={setHeight} 
+          padding={padding} 
+          setPadding={setPadding}
+          fontSize={fontSize}
+          setFontSize={setFontSize}
+          className={className}
+          setClassName={setClassName}
+        />
+      </div>
+
       <div style={previewStyle}>
         <Preview 
           elementsArr={elementsArr} 
           setElementsArr={setElementsArr} 
         />
       </div>
-      
+
       <div style={buttonsStyle}>
         <Buttons 
           elementsArr={elementsArr} 
           setElementsArr={setElementsArr} 
+          currentElement={currentElement} 
+          setCurrentElement={setCurrentElement} 
           projectId={projectId}
           setProjectId={setProjectId}
           user={user}
@@ -203,8 +203,5 @@ const App = () => {
 };
 
 export default App;
-
-// green #68EDA7
-//yellow #FFE958
  
 

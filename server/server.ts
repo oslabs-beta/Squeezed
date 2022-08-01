@@ -44,6 +44,8 @@ app.use(async (ctx, next) => {
 //     await next();
 //   }
 // });
+// app.use(oakCors()); 
+app.use(oakCors({origin: "http://localhost:8000", methods: "POST, GET"})); 
 
 app.use(router.routes());
 app.use(router.allowedMethods());
@@ -59,7 +61,6 @@ ctx.response.status = 200;
 });
 
 
-app.use(oakCors()); 
 
 app.addEventListener("error", (evt) => {
 console.log(evt.error);

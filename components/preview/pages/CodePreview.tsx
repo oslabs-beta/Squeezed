@@ -1,8 +1,7 @@
 import { React } from '../../../deps.tsx';
+import { IHtmlElement, IPreviewProps } from './../../../utils/types.ts';
 
-
-
-const CodePreview: any = (props: any) => {
+const CodePreview: any = (props: IPreviewProps) => {
 const {elementsArr, setElementsArr} = props;
 // const [copySuccess, setCopySuccess] = React.useState('');
 //   const textAreaRef = React.useRef('');
@@ -17,8 +16,8 @@ const {elementsArr, setElementsArr} = props;
 //   };
 // const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
 // console.log("elementsArr inside code preview", elementsArr);
-let testArray: string[]= [];
-const htmlTags = elementsArr.map((elements: any, index: any) =>{
+let testArray: string[] = [];
+const htmlTags = elementsArr.map((elements: IHtmlElement, index: number) =>{
   let eleFirst:any;
   let eleSecond:any;
   let midText: any;
@@ -120,7 +119,7 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
   let bracket2 =''
   let tw=''
   let slash = ''
-  if (elementsArr[index].padding !== '' || elementsArr[index].textAlign !== undefined || elementsArr[index].backgroundColor !== '' || elementsArr[index].color !== '' || elementsArr[index].margin !== '' || elementsArr[index].height !== '' || elementsArr[index].height !== '' || elementsArr[index].padding !== '' || elementsArr[index].width !== ''){
+  if (elementsArr[index].padding !== '' || elementsArr[index].texAlign !== undefined || elementsArr[index].backgroundColor !== '' || elementsArr[index].color !== '' || elementsArr[index].margin !== '' || elementsArr[index].height !== '' || elementsArr[index].height !== '' || elementsArr[index].padding !== '' || elementsArr[index].width !== ''){
     classTag = `class=`
     bracket='{'
     tw= 'tw`'
@@ -129,7 +128,7 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
   }
 
   let text1= ''
-  if (elementsArr[index].textAlign !== '' && elementsArr[index].textAlign !== undefined){
+  if (elementsArr[index].texAlign !== '' && elementsArr[index].texAlign !== undefined){
     text1= 'text-'
   }
 
@@ -165,24 +164,25 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
   if (elementsArr[index].fontSize !== ''){
     fs = 'text-'
   }
-  let fw = ''
-  if (elementsArr[index].fontWeight !== ''){
-    fw = 'font-'
-  }
+  // let fw = ''
+  // if (elementsArr[index].fontWeight !== ''){
+  //   fw = 'font-'
+  // }
   let cn = ''
   // console.log(1000, elementsArr[index].className)
   if (elementsArr[index].className !== undefined && elementsArr[index].className !== ''){
     cn = 'className='
   } else {
-    elementsArr[index].className= index
+    elementsArr[index].className = index.toString();
   
   }
-  testArray.push(`${eleFirst} ${cn}"${elementsArr[index].className}" ${classTag}${bracket}${tw}${bg}${elementsArr[index].backgroundColor}${color}${elementsArr[index].color}${m}${elementsArr[index].margin}${w}${elementsArr[index].width}${h}${elementsArr[index].height}${p}${elementsArr[index].padding}${fs}${elementsArr[index].fontSize}${text1}${fw}${elementsArr[index].fontWeight}${elementsArr[index].textDecoration}${text1}${elementsArr[index].textAlign}${slash}${bracket2} id="${index}"${endBr} ${elementsArr[index].text} ${eleSecond}`)
+  testArray.push(`${eleFirst} ${cn}"${elementsArr[index].className}" ${classTag}${bracket}${tw}${bg}${elementsArr[index].backgroundColor}${color}${elementsArr[index].color}${m}${elementsArr[index].margin}${w}${elementsArr[index].width}${h}${elementsArr[index].height}${p}${elementsArr[index].padding}${fs}${elementsArr[index].fontSize}${text1}${elementsArr[index].textDecoration}${text1}${elementsArr[index].texAlign}${slash}${bracket2} id="${index}"${endBr} ${elementsArr[index].inputText} ${eleSecond}`)
+  // testArray.push(`${eleFirst} ${cn}"${elementsArr[index].className}" ${classTag}${bracket}${tw}${bg}${elementsArr[index].backgroundColor}${color}${elementsArr[index].color}${m}${elementsArr[index].margin}${w}${elementsArr[index].width}${h}${elementsArr[index].height}${p}${elementsArr[index].padding}${fs}${elementsArr[index].fontSize}${text1}${fw}${elementsArr[index].fontWeight}${elementsArr[index].textDecoration}${text1}${elementsArr[index].texAlign}${slash}${bracket2} id="${index}"${endBr} ${elementsArr[index].text} ${eleSecond}`)
 
 
   
   return (
-    <div id={index}><span style={{color: '#5FD389'}}>{eleFirst} {cn}{elementsArr[index].className} </span><span style={{color:'#37CFE0'}}>{classTag}</span> <span style={{color:'white'}}>{bracket}</span><span style={{color:'#5FD389'}}> {tw}</span><span style={{color:'#37CFE0'}}> {elementsArr[index].textDecoration} {bg} {elementsArr[index].backgroundColor} {color}{elementsArr[index].color} {m}{elementsArr[index].margin}  {w}{elementsArr[index].width} {h}{elementsArr[index].height} {p}{elementsArr[index].padding} {fs}{elementsArr[index].fontSize} {text1}{elementsArr[index].textAlign} {fw}{elementsArr[index].fontWeight} </span><span style={{color: '#5FD389'}}> {slash}</span> <span style={{color:'white'}}> {bracket2}</span> <span style={{color: '#FDE086'}}> id='{index}'</span><span style={{color: '#5FD389'}}>{endBr}</span><span style={{color: 'white'}}> {elementsArr[index].text}</span> <span style={{color: '#5FD389'}}>{eleSecond}</span></div>
+    <div id={index.toString()}><span style={{color: '#5FD389'}}>{eleFirst} {cn}{elementsArr[index].className} </span><span style={{color:'#37CFE0'}}>{classTag}</span> <span style={{color:'white'}}>{bracket}</span><span style={{color:'#5FD389'}}> {tw}</span><span style={{color:'#37CFE0'}}> {elementsArr[index].textDecoration} {bg} {elementsArr[index].backgroundColor} {color}{elementsArr[index].color} {m}{elementsArr[index].margin}  {w}{elementsArr[index].width} {h}{elementsArr[index].height} {p}{elementsArr[index].padding} {fs}{elementsArr[index].fontSize} {text1}{elementsArr[index].texAlign} </span><span style={{color: '#5FD389'}}> {slash}</span> <span style={{color:'white'}}> {bracket2}</span> <span style={{color: '#FDE086'}}> id='{index}'</span><span style={{color: '#5FD389'}}>{endBr}</span><span style={{color: 'white'}}> {elementsArr[index].inputText}</span> <span style={{color: '#5FD389'}}>{eleSecond}</span></div>
     )
     
   })

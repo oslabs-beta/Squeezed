@@ -1,8 +1,7 @@
-//import statements
-// import React from 'react';
 import { React } from '../../deps.tsx';
 import MainContainer from './MainContainer.tsx';
 import Navbar from './Navbar.tsx';
+import { IPreviewProps } from './../../utils/types.ts';
 
 // declare global {
 //   namespace JSX {
@@ -18,7 +17,7 @@ import Navbar from './Navbar.tsx';
 //   }
 // }
 
-const Preview = (props:any) => {
+const Preview = (props: IPreviewProps) => {
 
   // const customizationStyle = { 
   //   gridArea: 'dd',
@@ -29,7 +28,7 @@ const Preview = (props:any) => {
   const {elementsArr, setElementsArr} = props;
   // const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
 
-  const [previewPage, setPreviewPage] = (React as any).useState('codePreview');
+  const [previewPage, setPreviewPage] = React.useState<string>('codePreview');
 
   return (
     <div className="preview">

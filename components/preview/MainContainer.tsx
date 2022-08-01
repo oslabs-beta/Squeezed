@@ -1,11 +1,11 @@
 import { React } from '../../deps.tsx';
 import CodePreview from './pages/CodePreview.tsx';
 import IslandPreview from './pages/IslandPreview.tsx';
+import { IPreviewProps, IPreviewMainContainerProps } from './../../utils/types.ts';
 
-const MainContainer: any = (props: any) => {
+const MainContainer: any = (props: (IPreviewProps & IPreviewMainContainerProps)) => {
 
-  const { previewPage, setPreviewPage } = props;
-  const {elementsArr, setElementsArr} = props;
+  const { previewPage, setPreviewPage, elementsArr, setElementsArr } = props;
   // const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
 
   let page: any;

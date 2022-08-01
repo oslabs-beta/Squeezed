@@ -30,7 +30,7 @@ projectController.loadProject = async (ctx: any) => {
     let loadQuery = dex.select().from("elements").where({project_id: project_id}).toString();
     const data = await db.queryObject(loadQuery);
     ctx.response.status = 200; 
-    ctx.response.body = data.rows
+    ctx.response.body = data.rows;
     return;
   } catch (err) {
       ctx.response.body = { status: false, data: null};

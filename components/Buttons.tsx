@@ -1,14 +1,10 @@
-//import statements
-import { Link, React } from "../deps.tsx";
-import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
+import { Link, React, useNavigate, serve } from "../deps.tsx";
 import Popup from "./popup.tsx";
 import Popup2 from"./Popup2.tsx"
 
 
 export default function Buttons(props: any) {
-  // const [error, setError] = useState(null);
-  // const [isLoaded, setIsLoaded] = useState(false);
-  // const [items, setItems] = useState([]);
+
   const [isOpen, setIsOpen] = React.useState(false);
   const [isOpen2, setIsOpen2] = React.useState(false);
   const [saveName, setSaveName] = React.useState("");
@@ -27,10 +23,12 @@ export default function Buttons(props: any) {
     setLoadProj
   } = props;
 
-  async function togglePopup() {
+  function togglePopup() {
     setIsOpen(!isOpen);
   }
-  async function togglePopup2() {
+
+  function togglePopup2() {
+
     if (!projectId) {
       setIsOpen2(!isOpen2);
     } else {
@@ -38,56 +36,87 @@ export default function Buttons(props: any) {
       save();
     }
   }
+// async function loadProject() {
+//   //fetch request to load project -> need to 
+//   await fetch('http://localhost:8080/home', {
+//       method: 'GET',
+//       mode: 'no-cors',
+//   })
+//   .then((data) => data.json())
+//   .then((data) => console.log(data))
+//   .catch((err) => console.log(err));
 
-  async function load() {
-    await fetch("http://localhost:8080/home/get", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user_id: 1 }),
-    })
-      
-      .then((data) => data.json())
-      .then((data) => {
-        setProjectList(data)
-      })
-      .catch((err) => console.log(err));
-      
-      console.log(projectList)
-  }
+//   // set user and project state to the info pulled from backend
+//   setProject(data.project);
+//   setUser(data.user);
+// }
 
   async function save(){
+    // console.log(sessionStorage);
+    let jwt = sessionStorage.getItem("Authorization");
+    // console.log("jwt on front end", jwt);
+    // jwt = jwt.toString();
     const body = {
       project_id: projectId,
       elementsArr: elementsArr,
       project_name: saveName,
-      user_id: 1
+      user_id: user,
+      authorization: jwt
     }
     await fetch('http://localhost:8080/home/save', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json',
+          // "Authorization": jwt.toString();
+        },
+        body: JSON.stringify(body)
     })
-    .then((data) => data.json())
-    .then(data => console.log("I'm on the front end", data))
-    .catch((err) => console.log(err));
-  
+    .then(data => data.json())
+    .then(data => {
+      console.log("save data", data);
+    })
+    .catch(err => console.log(err));
   }
 
+  async function load() {
+    let jwt = sessionStorage.getItem("Authorization");
+    await fetch("http://localhost:8080/home/get", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ 
+        user_id: user,
+        authorization: jwt
+       })
+    })
+    .then((data) => data.json())
+    .then((data) => {
+      console.log("load data", data);
+      //cinditional: if user not authenticated, send alert
+      setProjectList(data);
+      console.log(projectList);
+    })
+    .catch((err) => console.log(err));
+    console.log(projectList)
+  }
+
+
   async function deleteData(){
-    console.log('deleting', projectId)
+    // console.log('deleting', projectId)
+    let jwt = sessionStorage.getItem("Authorization");
     await fetch('http://localhost:8080/home/delete', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ project_id: projectId }),
+        body: JSON.stringify({ 
+          project_id: projectId,
+          authorization: jwt
+        })
     })
     .then((data) => data.json())
     .catch((err) => console.log(err));
     setElementsArr([]);
     setCurrentElement('');
   }
-// function logOut {
 
-// }
   function clear(){
     //clears front end
     setElementsArr([]);
@@ -103,16 +132,16 @@ export default function Buttons(props: any) {
     setLoadProj('');
   }
 
-  function selectProject(id: any) {
-    setLoadProj(id)
-  }
-
 
   async function loadProject(id: any) {
+    let jwt = sessionStorage.getItem("Authorization");
     await fetch('http://localhost:8080/home/load', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ project_id: id }),
+        body: JSON.stringify({ 
+          project_id: id,
+          authorization: jwt
+        }),
     })
     .then((data) => data.json())
     .then((data) => {
@@ -122,6 +151,16 @@ export default function Buttons(props: any) {
     .catch((err) => console.log(err));
 
     setProjectId(id)
+  }
+
+  const navigate = useNavigate();
+  const navigateToLogin = () => {
+    navigate('/');
+  }
+
+  function logout(){
+    sessionStorage.clear();
+    navigateToLogin();
   }
 
 
@@ -137,96 +176,29 @@ export default function Buttons(props: any) {
 
 
 
-
-  return (
-    <main>
-      <link rel={"stylesheet"} href={"./static/css/sideBarStyle.css"} />
-      <link rel={"stylesheet"} href={"./static/css/buttons.css"} />
-      <div id="buttonContainer" style={{ maxHeight: '300px', overflow: 'scroll'}}>
-        <button
-          style={{
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            width: "90%",
-            fontSize: "20px",
-            fontWeight: "bolder",
-            marginTop: "10px",
-            marginLeft: "7px",
-          }}
-          id="clearBtn"
-          onClick={() => {
-            clear();
-          }}
-        >
-          Clear Project
-        </button>
-        <button
-          style={{
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            width: "90%",
-            fontSize: "20px",
-            fontWeight: "bolder",
-            marginTop: "15px",
-            marginLeft: "7px",
-          }}
-          id="saveBtn"
-          onClick={() => {
-            togglePopup2();
-          }}
-        >
-          Save Progress
-        </button>
-        {isOpen2 && (
-            <Popup2
-              content={
-                <>
-                  <div id="inputName">
-                    <form onSubmit={() => {
-                      save();
-                      togglePopup2();
-                    }}>
-                      <input
-                        value={saveName}
-                        onChange={(e) => setSaveName(e.target.value)}
-                        type="text"
-                        style={{border:'black', color: 'black'}}
-                        placeholder="Enter Name"
-                        required
-                      ></input>                      
-                      <button id='SaveProject' type="submit">Save project</button>
-                    </form>
-                  </div>
-                </>
-              }
-              handleClose={togglePopup2}
-            />
-          )}
-        <button
-          id="loadBtn"
-          style={{
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            width: "90%",
-            fontSize: "20px",
-            fontWeight: "bolder",
-            marginTop: "15px",
-            marginLeft: "7px",
-          }}
-          onClick={() => {
-            alert("Project deleted");
-            deleteData();
-          }}
-        >
-          Delete Project
-        </button>
-
-        <div>
+    return (
+      <main>
+        <link rel={"stylesheet"} href={"./static/css/sideBarStyle.css"} />
+        <link rel={"stylesheet"} href={"./static/css/buttons.css"} />
+        <div id="buttonContainer" style={{ maxHeight: '300px', overflow: 'scroll'}}>
           <button
-            onClick={() => {
-              load();
-              togglePopup()
+            style={{
+              backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+              color: "#2D3033",
+              width: "90%",
+              fontSize: "20px",
+              fontWeight: "bolder",
+              marginTop: "10px",
+              marginLeft: "7px",
             }}
+            id="clearBtn"
+            onClick={() => {
+              clear();
+            }}
+          >
+            Clear Project
+          </button>
+          <button
             style={{
               backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
               color: "#2D3033",
@@ -236,37 +208,40 @@ export default function Buttons(props: any) {
               marginTop: "15px",
               marginLeft: "7px",
             }}
-          >
-            Load Project
-          </button>
-          {isOpen && (
-            <Popup
-              content={
-                <>
-                  <div id="tableDiv">
-                      <table>
-                        <tbody>
-                          <div id='tableEle' >
-                          {projs}
-                          </div>
-                        </tbody>
-                      </table>
-                  </div>
-                  <button style={{backgroundColor: '#2d3033', color: '#68EDA7', marginLeft: '20%'}} id='loadButton' onClick={() =>{
-                    loadProject(loadProj);
-                    togglePopup();
-                  }}>Load project</button>
-                </>
-              }
-              handleClose={togglePopup}
-            />
-          )}
-        </div> 
-        <button
+            id="saveBtn"
             onClick={() => {
-              startNew();
-
+              togglePopup2();
             }}
+          >
+            Save Progress
+          </button>
+          {isOpen2 && (
+              <Popup2
+                content={
+                  <>
+                    <div id="inputName">
+                      <form onSubmit={() => {
+                        save();
+                        togglePopup2();
+                      }}>
+                        <input
+                          value={saveName}
+                          onChange={(e) => setSaveName(e.target.value)}
+                          type="text"
+                          style={{border:'black', color: 'black'}}
+                          placeholder="Enter Name"
+                          required
+                        ></input>                      
+                        <button id='SaveProject' type="submit">Save project</button>
+                      </form>
+                    </div>
+                  </>
+                }
+                handleClose={togglePopup2}
+              />
+            )}
+          <button
+            id="loadBtn"
             style={{
               backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
               color: "#2D3033",
@@ -276,31 +251,322 @@ export default function Buttons(props: any) {
               marginTop: "15px",
               marginLeft: "7px",
             }}
+            onClick={() => {
+              alert("Project deleted");
+              deleteData();
+            }}
           >
-            New Project
+            Delete Project
           </button>
-        <button
-          id="loadBtn"
-          style={{
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            width: "90%",
-            fontSize: "20px",
-            fontWeight: "bolder",
-            marginTop: "15px",
-            marginLeft: "7px",
-          }}
-          onClick={() => {
-            alert("Logged out");
-            
-          }}
-        >
-        <Link to='/' id='logOutLink'>
-            <p>Log Out</p>
-            </Link>
-        </button>
-
-      </div>
-    </main>
-  );
+  
+          <div>
+            <button
+              onClick={() => {
+                load();
+                togglePopup()
+              }}
+              style={{
+                backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+                color: "#2D3033",
+                width: "90%",
+                fontSize: "20px",
+                fontWeight: "bolder",
+                marginTop: "15px",
+                marginLeft: "7px",
+              }}
+            >
+              Load Project
+            </button>
+            {isOpen && (
+              <Popup
+                content={
+                  <>
+                    <div id="tableDiv">
+                        <table>
+                          <tbody>
+                            <div id='tableEle' >
+                            {projs}
+                            </div>
+                          </tbody>
+                        </table>
+                    </div>
+                    <button style={{backgroundColor: '#2d3033', color: '#68EDA7', marginLeft: '20%'}} id='loadButton' onClick={() =>{
+                      loadProject(loadProj);
+                      togglePopup();
+                    }}>Load project</button>
+                  </>
+                }
+                handleClose={togglePopup}
+              />
+            )}
+          </div> 
+          <button
+              onClick={() => {
+                startNew();
+  
+              }}
+              style={{
+                backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+                color: "#2D3033",
+                width: "90%",
+                fontSize: "20px",
+                fontWeight: "bolder",
+                marginTop: "15px",
+                marginLeft: "7px",
+              }}
+            >
+              New Project
+            </button>
+          <button
+            style={{
+              backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+              color: "#2D3033",
+              width: "90%",
+              fontSize: "20px",
+              fontWeight: "bolder",
+              marginTop: "15px",
+              marginLeft: "7px",
+            }}
+            id="logoutBtn"
+            onClick={(event: React.MouseEvent<HTMLElement>) => {
+              logout();
+            }}
+          >
+          Logout
+          </button>
+  
+        </div>
+      </main>
+    );
 };
+  
+//   return (
+//     <main>
+//       <link rel={"stylesheet"} href={"./static/css/sideBarStyle.css"} />
+//       <link rel={"stylesheet"} href={"./static/css/buttons.css"} />
+//       <div id="buttonContainer" style={{ maxHeight: '300px', overflow: 'scroll'}}>
+//         <button
+//           style={{
+//             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+//             color: "#2D3033",
+//             width: "90%",
+//             fontSize: "20px",
+//             fontWeight: "bolder",
+//             marginTop: "10px",
+//             marginLeft: "7px",
+//           }}
+//           id="clearBtn"
+//           onClick={() => {
+//             clear();
+//           }}
+//         >
+//           Clear Project
+//         </button>
+//         <button
+//           style={{
+//             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+//             color: "#2D3033",
+//             width: "90%",
+//             fontSize: "20px",
+//             fontWeight: "bolder",
+//             marginTop: "15px",
+//             marginLeft: "7px",
+//           }}
+//           id="saveBtn"
+//           onClick={() => {
+//             togglePopup2();
+//           }}
+//         >
+//           Save Progress
+//         </button>
+//         {isOpen2 && (
+//             <Popup2
+//               content={
+//                 <>
+//                   <div id="inputName">
+//                     <form onSubmit={() => {
+//                       save();
+//                       togglePopup2();
+//                     }}>
+//                       <input
+//                         value={saveName}
+//                         onChange={(e) => setSaveName(e.target.value)}
+//                         type="text"
+//                         style={{border:'black', color: 'black'}}
+//                         placeholder="Enter Name"
+//                         required
+//                       ></input>                      
+//                       <button id='SaveProject' type="submit">Save project</button>
+//                     </form>
+//                   </div>
+//                 </>
+//               }
+//               handleClose={togglePopup2}
+//             />
+//           )}
+//         <button
+//           id="loadBtn"
+//           style={{
+//             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+//             color: "#2D3033",
+//             width: "90%",
+//             fontSize: "20px",
+//             fontWeight: "bolder",
+//             marginTop: "15px",
+//             marginLeft: "7px",
+//           }}
+//           onClick={() => {
+//             alert("Project deleted");
+//             deleteData();
+//           }}
+//         >
+//           Delete Project
+//         </button>
+
+//         <div>
+//           <button
+//             onClick={() => {
+//               load();
+//               togglePopup()
+//             }}
+//             style={{
+//               backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+//               color: "#2D3033",
+//               width: "90%",
+//               fontSize: "20px",
+//               fontWeight: "bolder",
+//               marginTop: "15px",
+//               marginLeft: "7px",
+//             }}
+//           >
+//             Load Project
+//           </button>
+//           {isOpen && (
+//             <Popup
+//               content={
+//                 <>
+//                   <div id="tableDiv">
+//                       <table>
+//                         <tbody>
+//                           <div id='tableEle' >
+//                           {projs}
+//                           </div>
+//                         </tbody>
+//                       </table>
+//                   </div>
+//                   <button style={{backgroundColor: '#2d3033', color: '#68EDA7', marginLeft: '20%'}} id='loadButton' onClick={() =>{
+//                     loadProject(loadProj);
+//                     togglePopup();
+//                   }}>Load project</button>
+//                 </>
+//               }
+//               handleClose={togglePopup}
+//             />
+//           )}
+//         </div> 
+//         <button
+//             onClick={() => {
+//               startNew();
+
+//             }}
+//             style={{
+//               backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+//               color: "#2D3033",
+//               width: "90%",
+//               fontSize: "20px",
+//               fontWeight: "bolder",
+//               marginTop: "15px",
+//               marginLeft: "7px",
+//             }}
+//           >
+//             New Project
+//           </button>
+//         <button
+//           id="loadBtn"
+//           style={{
+//             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
+//             color: "#2D3033",
+//             width: "90%",
+//             fontSize: "20px",
+//             fontWeight: "bolder",
+//             marginTop: "15px",
+//             marginLeft: "7px",
+//           }}
+//           onClick={() => {
+//             alert("Logged out");
+//           }}
+//         >
+//           Load Project
+//         </button>
+//         <button 
+//           style={{
+//             backgroundImage: "linear-gradient(#68EDA7, #FFE958)", 
+//             color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px', marginLeft: '7px'}}
+//           id="logoutBtn"
+//           onClick={(event: React.MouseEvent<HTMLElement>) => {
+//             logout();
+//           }}
+//         >
+//           Logout
+//         </button>
+
+//       </div>
+//     </main>
+//   );
+// };
+
+
+
+
+// return (
+//   <main>
+//         <link rel={'stylesheet'} href={'./static/css/sideBarStyle.css'} />
+//     <div id="buttonContainer">
+//       <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '10px', marginLeft: '7px'}}
+//         id="clearBtn"
+//         onClick={() => {
+//           clear();
+//         }}
+//       >
+//         Clear Project
+//       </button>
+//       <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px' , marginLeft: '7px'}}
+//         id="saveBtn"
+//         onClick={() => {
+//           // serve(save);
+//           save();
+//           console.log('clicked');
+//         }}
+//       >
+//         Save Progress
+//       </button>
+//       <button
+//         id="loadBtn" style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px', marginLeft: '7px'}}
+//         onClick={() => {
+//           alert("Project deleted");
+//           deleteData();
+//         }}
+//       >
+//         Delete Project
+//       </button>
+//       <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px', marginLeft: '7px'}}
+//         id="exportBtn"
+//         onClick={(event: React.MouseEvent<HTMLElement>) => {
+//           // alert("Project Exported");
+//           // exportFunc();
+//         }}
+//       >
+//         Load Project
+//       </button>
+//       <button style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", width: "90%", fontSize: '20px', fontWeight: 'bolder', marginTop: '15px', marginLeft: '7px'}}
+//         id="logoutBtn"
+//         onClick={(event: React.MouseEvent<HTMLElement>) => {
+//             logout();
+//         }}
+//       >
+//         Logout
+//       </button>
+//     </div>
+//   </main>
+// );
+
