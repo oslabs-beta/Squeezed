@@ -1,27 +1,18 @@
 import { React } from '../../../deps.tsx';
-import { IHtmlElement, IPreviewProps } from './../../../utils/types.ts';
+import { IHtmlElement, IPreviewProps } from './../../utils/types.ts';
 
+//generates code preview 
 const CodePreview: any = (props: IPreviewProps) => {
 const {elementsArr, setElementsArr} = props;
-// const [copySuccess, setCopySuccess] = React.useState('');
-//   const textAreaRef = React.useRef('');
 
-//   function copyToClipboard(e) {
-//     textAreaRef.current.select();
-//     document.execCommand('copy');
-//     // This is just personal preference.
-//     // I prefer to not show the whole text area selected.
-//     e.target.focus();
-//     setCopySuccess('Copied!');
-//   };
-// const {inputText, setInputText, textAlign, setTextAlign, textDecoration, setTextDecoration, backgroundColor, setBackgroundColor, color, setColor, margin, setMargin,width, setWidth, height, setHeight, padding, setPadding, }= props;
-// console.log("elementsArr inside code preview", elementsArr);
 let testArray: string[] = [];
-const htmlTags = elementsArr.map((elements: IHtmlElement, index: number) =>{
+
+const htmlTags = elementsArr.map((elements: IHtmlElement, index: number) => {
   let eleFirst:any;
   let eleSecond:any;
   let midText: any;
   let endBr: any;
+
   if(elementsArr[index].element === 'div') {
     eleFirst = `<div `
     endBr = '>'
@@ -113,82 +104,74 @@ const htmlTags = elementsArr.map((elements: IHtmlElement, index: number) =>{
     endBr = '>'
    eleSecond = `</area>`
   }
-  // console.log(1, elementsArr[index].textAlign)
-  let bracket = ''
-  let classTag = ''
-  let bracket2 =''
-  let tw=''
-  let slash = ''
+
+  let bracket = '';
+  let classTag = '';
+  let bracket2 ='';
+  let tw = '';
+  let slash = '';
   if (elementsArr[index].padding !== '' || elementsArr[index].texAlign !== undefined || elementsArr[index].backgroundColor !== '' || elementsArr[index].color !== '' || elementsArr[index].margin !== '' || elementsArr[index].height !== '' || elementsArr[index].height !== '' || elementsArr[index].padding !== '' || elementsArr[index].width !== ''){
-    classTag = `class=`
-    bracket='{'
-    tw= 'tw`'
-    slash= '`'
-    bracket2='}'
+    classTag = `class=`;
+    bracket='{';
+    tw= 'tw`';
+    slash= '`';
+    bracket2='}';
   }
 
-  let text1= ''
+  let text1= '';
   if (elementsArr[index].texAlign !== '' && elementsArr[index].texAlign !== undefined){
-    text1= 'text-'
-  }
+    text1= 'text-';
+  };
 
-  let bg= ''
+  let bg = '';
   if (elementsArr[index].backgroundColor !== ''){
-    bg= 'bg-'
+    bg= 'bg-';
   }
 
-  let color= ''
+  let color = '';
   if (elementsArr[index].color !== ''){
-    color= 'text-'
+    color = 'text-';
   }
 
-  let m = ''
+  let m = '';
   if (elementsArr[index].margin !== ''){
-    m = 'm-'
+    m = 'm-';
   }
 
-  let h = ''
+  let h = '';
   if (elementsArr[index].height !== ''){
-    h = 'h-'
+    h = 'h-';
   }
-  let w = ''
+  let w = '';
   if (elementsArr[index].width !== ''){
-    w = 'w-'
+    w = 'w-';
   }
 
-  let p = ''
+  let p = '';
   if (elementsArr[index].padding !== ''){
-    p = 'p-'
+    p = 'p-';
   }
-  let fs = ''
+  let fs = '';
   if (elementsArr[index].fontSize !== ''){
-    fs = 'text-'
+    fs = 'text-';
   }
-  // let fw = ''
-  // if (elementsArr[index].fontWeight !== ''){
-  //   fw = 'font-'
-  // }
-  let cn = ''
-  // console.log(1000, elementsArr[index].className)
+  let cn = '';
   if (elementsArr[index].className !== undefined && elementsArr[index].className !== ''){
-    cn = 'className='
-  } else {
+    cn = 'className=';
+  } 
+  else {
     elementsArr[index].className = index.toString();
-  
   }
+  
   testArray.push(`${eleFirst} ${cn}"${elementsArr[index].className}" ${classTag}${bracket}${tw}${bg}${elementsArr[index].backgroundColor}${color}${elementsArr[index].color}${m}${elementsArr[index].margin}${w}${elementsArr[index].width}${h}${elementsArr[index].height}${p}${elementsArr[index].padding}${fs}${elementsArr[index].fontSize}${text1}${elementsArr[index].textDecoration}${text1}${elementsArr[index].texAlign}${slash}${bracket2} id="${index}"${endBr} ${elementsArr[index].inputText} ${eleSecond}`)
-  // testArray.push(`${eleFirst} ${cn}"${elementsArr[index].className}" ${classTag}${bracket}${tw}${bg}${elementsArr[index].backgroundColor}${color}${elementsArr[index].color}${m}${elementsArr[index].margin}${w}${elementsArr[index].width}${h}${elementsArr[index].height}${p}${elementsArr[index].padding}${fs}${elementsArr[index].fontSize}${text1}${fw}${elementsArr[index].fontWeight}${elementsArr[index].textDecoration}${text1}${elementsArr[index].texAlign}${slash}${bracket2} id="${index}"${endBr} ${elementsArr[index].text} ${eleSecond}`)
-
-
   
   return (
     <div id={index.toString()}><span style={{color: '#5FD389'}}>{eleFirst} {cn}{elementsArr[index].className} </span><span style={{color:'#37CFE0'}}>{classTag}</span> <span style={{color:'white'}}>{bracket}</span><span style={{color:'#5FD389'}}> {tw}</span><span style={{color:'#37CFE0'}}> {elementsArr[index].textDecoration} {bg} {elementsArr[index].backgroundColor} {color}{elementsArr[index].color} {m}{elementsArr[index].margin}  {w}{elementsArr[index].width} {h}{elementsArr[index].height} {p}{elementsArr[index].padding} {fs}{elementsArr[index].fontSize} {text1}{elementsArr[index].texAlign} </span><span style={{color: '#5FD389'}}> {slash}</span> <span style={{color:'white'}}> {bracket2}</span> <span style={{color: '#FDE086'}}> id='{index}'</span><span style={{color: '#5FD389'}}>{endBr}</span><span style={{color: 'white'}}> {elementsArr[index].inputText}</span> <span style={{color: '#5FD389'}}>{eleSecond}</span></div>
-    )
+  )
     
-  })
+  });
   let html = testArray.map((e,i) => (e)).join('\n');
   
-  // console.log('testtt', Array)
   return (
     <div id='codePreview'>
       
@@ -205,153 +188,45 @@ const htmlTags = elementsArr.map((elements: IHtmlElement, index: number) =>{
       <p id='paren'>);</p>
       <p id='endingCurly'>{'}'};</p>
       <div className="tooltip">
-      <button  id='btn'
-    onClick={() => 
+      <button  
+        id='btn'
+        onClick={() => 
       
-      navigator.clipboard.writeText(`
-      import { h } from 'preact';
-      
-      import { PageProps } from '$fresh/server.ts' ;
-      
-      import { useEffect, useState } from 'preact/hooks';
-      
-      import { tw } from 'twind';
-      
-      export default function App (props: PageProps) {
-      
-        return (
-      
-          <main>
-      
-              ${html} 
-       
-          </main>
+        navigator.clipboard.writeText(`
+          import { h } from 'preact';
+          
+          import { PageProps } from '$fresh/server.ts' ;
+          
+          import { useEffect, useState } from 'preact/hooks';
+          
+          import { tw } from 'twind';
+          
+          export default function App (props: PageProps) {
+          
+            return (
+          
+              <main>
+          
+                  ${html} 
+          
+              </main>
 
-        );
-       
-       };`
-       )}
-  >
+            );
+          
+          };`
+        )}
+      >
 
-  <p id='clip'>&#128203;</p>
-  </button>
+      <p id='clip'>&#128203;</p>
+      </button>
   
-  <span className="tooltiptext">Click to copy!</span>
-</div>
+      <span className="tooltiptext">Click to copy!</span>
+    </div>
       </div>
   )
-  }
- export default CodePreview;
- 
-// import { h } from "preact";
+}
 
-// import { PageProps } from "$fresh/server.ts";
-
-// import { useEffect, useState } from "preact/hooks";
-
-// import { tw } from "twind";
-
-// export default function App(props: PageProps) {
-
-// return (
-
-// <main>
-
-// <h2 id=0> </h2>
-// <img id=1 />
-// <img class = { tw` bg-r text-r m-r w-r h-r p-r `} id=2 frrrr />
-// </main>
-
-// );
-
-// }
-
-
-// pink: #FF5581
-// GREEB: #5FD389
-// YELLOW: #FDE086
-// BLYE: #37CFE0
-// PURPLE: #8B7FDA
-
-
-
-
-
-
-
-
-
-// import { h } from 'preact';
-      
-// import { PageProps } from '$fresh/server.ts' ;
-
-// import { useEffect, useState } from 'preact/hooks';
-
-// import { tw } from 'twind';
-
-// export default function App (props: PageProps) {
-
-//   return (
-
-//     <main>
-
-//         <img  "undefined"  id="0" src=  />
-// <h2  "undefined"  id="1">  </h2> 
- 
-//     </main>
-
-//   );
- 
-//  };
-
-
-// import { h } from 'preact';
-      
-// import { PageProps } from '$fresh/server.ts' ;
-
-// import { useEffect, useState } from 'preact/hooks';
-
-// import { tw } from 'twind';
-
-// export default function App (props: PageProps) {
-
-//   return (
-
-//     <main>
-
-//         <img  "undefined"  id="0" src=  /> 
-// <h2  "undefined"  id="1">  </h2> 
- 
-//     </main>
-
-//   );
- 
-//  };
-
-
-// import { h } from 'preact';
-      
-// import { PageProps } from '$fresh/server.ts' ;
-
-// import { useEffect, useState } from 'preact/hooks';
-
-// import { tw } from 'twind';
-
-// export default function App (props: PageProps) {
-
-//   return (
-
-//     <main>
-
-//         <img  "undefined"  id="0" src=  />
-// <h2  "undefined"  id="1">  </h2> 
- 
-//     </main>
-
-//   );
- 
-//  };
-
+export default CodePreview;
 
 
 

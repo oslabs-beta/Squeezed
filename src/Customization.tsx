@@ -1,78 +1,5 @@
-import { React } from '../../deps.tsx';
-// import MainContainer from './MainContainer.tsx';
-// import Navbar from './Navbar.tsx';
-import { IHtmlElement, IProps, ICustomizationProps } from './../../utils/types.ts';
-
-// const Customization = (props: ICustomizationProps) => {
-
-//   const { elementsArr, 
-//     setElementsArr, 
-//     currentElement, 
-//     setCurrentElement, 
-//     inputText, 
-//     setInputText, 
-//     textAlign, 
-//     setTextAlign, 
-//     textDecoration, 
-//     setTextDecoration, 
-//     backgroundColor,
-//     setBackgroundColor,
-//     color,
-//     setColor,
-//     margin,
-//     setMargin,
-//     width,
-//     setWidth,
-//     height,
-//     setHeight,
-//     padding,
-//     setPadding,
-//     fontSize,
-//     setFontSize,
-//     className,
-//     setClassName,
-//    } = props;
-  
-//   const [customizationPage, setCustomizationPage] = (React as any).useState('styling');
-
-//   return (
-//     <div className="container">
-//       <Navbar setCustomizationPage={setCustomizationPage} />
-//       <MainContainer 
-//         elementsArr={elementsArr} 
-//         setElementsArr={setElementsArr}
-//         customizationPage={customizationPage} 
-//         setCustomizationPage={setCustomizationPage} 
-//         currentElement={currentElement} 
-//         setCurrentElement={setCurrentElement} 
-//         inputText={inputText} 
-//         setInputText={setInputText} 
-//         textAlign={textAlign} 
-//         setTextAlign={setTextAlign} 
-//         textDecoration={textDecoration} 
-//         setTextDecoration={setTextDecoration} 
-//         backgroundColor={backgroundColor} 
-//         setBackgroundColor={setBackgroundColor} 
-//         color={color} 
-//         setColor={setColor} 
-//         margin={margin} 
-//         setMargin={setMargin} 
-//         width={width} 
-//         setWidth={setWidth} 
-//         height={height} 
-//         setHeight={setHeight} 
-//         padding={padding} 
-//         setPadding={setPadding}
-//         fontSize = {fontSize}
-//         setFontSize = {setFontSize}
-//         className = {className}
-//         setClassName = {setClassName} />
-//       {/* <MainContainer customizationPage={customizationPage} setCustomizationPage={setCustomizationPage} elementsArr={elementsArr} setElementsArr={setElementsArr} currentElement={currentElement} setCurrentElement={setCurrentElement} /> */}
-//     </div>
-//   );
-// };
-
-// export default Customization;
+import { React } from '../deps.tsx';
+import { IHtmlElement, IProps, ICustomizationProps } from './utils/types.ts';
 
 type submitForm = {
   text: string;
@@ -106,13 +33,14 @@ const Customization = (props: ICustomizationProps) => {
     setFontSize,
     className,
     setClassName,
-   } = props;
+  } = props;
   
-  const [customizationPage, setCustomizationPage] = (React as any).useState('styling');
+  const [customizationPage, setCustomizationPage] = React.useState<string>('styling');
 
+  // updates current element and elementsArr
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log("currentElement: ", currentElement)
+
     const updateCurrentElement = {
       id: currentElement.id,
       element: currentElement.element,
@@ -128,14 +56,8 @@ const Customization = (props: ICustomizationProps) => {
       fontSize: fontSize,
       className: className
     };
-    // console.log("updateCurrentElement: ", updateCurrentElement)
     setCurrentElement(updateCurrentElement);
-    // console.log('styling page current element: ', currentElement)
-    // const newElementsArr = [...elementsArr];
-    // newElementsArr.push(updateCurrentElement);
-    // setElementsArr(newElementsArr);
     elementsArr[currentElement.id] = updateCurrentElement;
-    // console.log('styling page elements array: ', elementsArr);
 
     setInputText('');
     setTextAlign('');
@@ -206,16 +128,6 @@ const Customization = (props: ICustomizationProps) => {
           className="input"
         /> 
         <br />
-
-        {/* <label htmlFor="border">Border </label>  
-        <input
-          value={fontWeight}
-          onChange={(e) => setFontWeight(e.target.value)}
-          type="text"
-          placeholder="Enter Font Weight"
-          className="input"
-
-        />  */}
       </div>
 
       <div style={{float: 'right', marginTop: '-175px', marginRight: '40px'}}>

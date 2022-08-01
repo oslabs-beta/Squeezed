@@ -1,19 +1,11 @@
 import { React, Link } from '../deps.tsx';
 import SideBar from './SideBar.tsx';
-import DragAndDrop from './DragAndDrop.tsx';
-import Customization from './customization/Customization.tsx';
+import Customization from './Customization.tsx';
 import Preview from './preview/Preview.tsx';
 import Buttons from './Buttons.tsx';
 import Signup from './Signup.tsx';
 import Login from './Signup.tsx';
-import { IHtmlElement, IProps} from './../utils/types.ts';
-
-// interface appProps{
-//   elementsArr: string[];
-//   setElementsArr: React.Dispatch<React.SetStateAction<string>>;
-//   content: string;
-//   setContent: React.Dispatch<React.SetStateAction<string>>;
-// }
+import { IHtmlElement, IProps} from './utils/types.ts';
   
 const App: React.FC = () => {
 
@@ -102,11 +94,8 @@ const App: React.FC = () => {
   const [padding, setPadding] = React.useState<string>('');
   const [fontSize, setFontSize] = React.useState<string>('');
   const [className, setClassName] = React.useState<string>('');
-
-  // console.log("user", user);
-  // console.log("app session storage:", sessionStorage);
-  console.log("elementsArr in app", elementsArr);
-  //set user based on session storage
+  
+  //update user state after user has logged in
   React.useEffect(() => {
     setUser(sessionStorage.getItem('userId') as string);
   }, [user]);
@@ -119,27 +108,16 @@ const App: React.FC = () => {
           setElementsArr={setElementsArr} 
           currentElement={currentElement} 
           setCurrentElement={setCurrentElement} 
-          // inputText={inputText} 
           setInputText={setInputText} 
-          // textAlign={textAlign} 
           setTextAlign={setTextAlign} 
-          // textDecoration={textDecoration} 
           setTextDecoration={setTextDecoration} 
-          // backgroundColor={backgroundColor} 
           setBackgroundColor={setBackgroundColor} 
-          // color={color} 
           setColor={setColor} 
-          // margin={margin} 
           setMargin={setMargin} 
-          // width={width} 
           setWidth={setWidth} 
-          // height={height} 
           setHeight={setHeight} 
-          // padding={padding} 
           setPadding={setPadding}
-          // fontSize={fontSize}
           setFontSize={setFontSize}
-          // className={className}
           setClassName={setClassName}
         />
       </div>

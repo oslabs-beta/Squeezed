@@ -1,6 +1,6 @@
 import { React } from '../deps.tsx';
-import { IHtmlElement, IProps, ISideBarProps } from './../utils/types.ts';
-import elementsList from './../utils/elementsList.js';
+import { IHtmlElement, IProps, ISideBarProps } from './utils/types.ts';
+import elementsList from './utils/elementsList.js';
 
 const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps) => {
   const { elementsArr, setElementsArr, currentElement, setCurrentElement } = props;
@@ -11,11 +11,10 @@ const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps) => {
   const handleDragOverStart = () => setDragOver(true);
   const handleDragOverEnd = () => setDragOver(false);
 
-  // const dragItem = React.useRef<number>(-1);
-  // const dragOverItem = React.useRef<number>(-1);
   const dragItem = React.useRef<any>(null);
   const dragOverItem = React.useRef<any>(null);
 
+  //when drag start, stores data for drag event
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>, area: string) => {
     if(area === "dragArea"){
       event.dataTransfer.setData("id", event.currentTarget.id);
@@ -26,16 +25,19 @@ const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps) => {
     event.dataTransfer.setData("area", area);
   };
 
+  //when dragging over a element, stores data for drag event
   const dragEnter = (e: React.DragEvent<HTMLDivElement>, position: number) => {
     dragOverItem.current = position;
   };
   
+  //enables drop
   const enableDropping = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     const id = event.dataTransfer.getData("id");
     setContent(id);
   };
 
+  //on drop, adds to or reorders elements array depending on drag start area 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     const area = event.dataTransfer.getData("area");
     const newElementsArr = [...elementsArr];
@@ -47,7 +49,7 @@ const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps) => {
         id: elementsArr.length,      
         element: id,
         inputText: "",
-        texAlign: "", // dont change this to textAlign  
+        texAlign: "", 
         textDecoration: "",
         backgroundColor: "",
         color: "",
@@ -69,12 +71,12 @@ const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps) => {
       newElementsArr.splice(dragOverItem.current, 0, dragItemContent);
       dragItem.current = null;
       dragOverItem.current = null;
-      // console.log("new arr after drop:", newElementsArr);
       reorderElArr(newElementsArr);
       setElementsArr(newElementsArr);
     }
   };
  
+  //restores styling information
   const handleClick = (id: number) => {
     const a = elementsArr[id].inputText;
     const b = elementsArr[id].texAlign;
@@ -102,24 +104,23 @@ const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps) => {
     setClassName(k);
   };
 
+  //removes element
   const deleteElement = (id: number) => {
-    // console.log("before delete", elementsArr, id)
-    // console.log("splice", elementsArr.splice(id, 1))
     const newElementsArr = [...elementsArr];
     newElementsArr.splice(id, 1);
-    console.log("elementsArr after delete", newElementsArr);
     reorderElArr(newElementsArr);
     setElementsArr(newElementsArr);
-    // setCurrentElement({} as IHtmlElement);
+    setCurrentElement({} as IHtmlElement);
   }
 
+  //reassigns element ids to match array index
   const reorderElArr = (arr: IHtmlElement[]) => {
     arr.forEach((el: IHtmlElement, ind: number) => {
-      console.log('reorder:', el, ind);
       el.id = ind;
     })
   }
 
+  //on drag start, stores element information
   function onDragStart(event: any) {
     event
       .dataTransfer
@@ -131,39 +132,41 @@ const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps) => {
       .backgroundColor = 'yellow';
   }
     
-    const renderElementsList = elementsList.map((el: { id: string, element: string, backgroundColor: string}) => {
-      return (
-        <div id={el.id} onDragStart={(e) => handleDragStart(e, 'dragArea')}>
-          <button style={{ backgroundColor: el.backgroundColor, color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
-            {" "}
-            {el.element}
-          </button>
-        </div>
-      )
-    });
+  //reads elementList constant and renders onto page
+  const renderElementsList = elementsList.map((el: { id: string, element: string, backgroundColor: string}) => {
+    return (
+      <div id={el.id} onDragStart={(e) => handleDragStart(e, 'dragArea')}>
+        <button style={{ backgroundColor: el.backgroundColor, color: "#2d3033", width: "100%", fontSize: '20px',fontWeight: 'bolder'}} draggable="true">
+          {" "}
+          {el.element}
+        </button>
+      </div>
+    )
+  });
   
-    const createdElements = elementsArr.map((el: IHtmlElement, index: number) => {
-      return (
-        <div 
-          draggable='true'
-          onDrop={handleDrop}
-          onDragStart={(e) => handleDragStart(e, 'dropArea')}
-          onDragEnter={(e) => {dragEnter(e, index)}}
-          className="draggedTags"
-          onDragOver={enableDropping}
-          onClick={() => handleClick(index)} 
-          id={index.toString()}>
-          {elementsArr[index].element}
+  //reads elementsArr and renders onto page
+  const createdElements = elementsArr.map((el: IHtmlElement, index: number) => {
+    return (
+      <div 
+        draggable='true'
+        onDrop={handleDrop}
+        onDragStart={(e) => handleDragStart(e, 'dropArea')}
+        onDragEnter={(e) => {dragEnter(e, index)}}
+        className="draggedTags"
+        onDragOver={enableDropping}
+        onClick={() => handleClick(index)} 
+        id={index.toString()}>
+        {elementsArr[index].element}
 
-          <button 
-            id='delete-btn'
-            style={{backgroundImage:"linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", float: 'right', marginTop: '0px', marginRight: '-1px', height: '3px',}} 
-            onClick={()=> deleteElement(index) }
-          >
-            X
-          </button>
-        </div>
-      )})
+        <button 
+          id='delete-btn'
+          style={{backgroundImage:"linear-gradient(#68EDA7, #FFE958)", color: "#2D3033", float: 'right', marginTop: '0px', marginRight: '-1px', height: '3px',}} 
+          onClick={()=> deleteElement(index) }
+        >
+          X
+        </button>
+      </div>
+    )})
 
   return (
     <div id="scroll">

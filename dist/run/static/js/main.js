@@ -7298,13 +7298,12 @@ const SideBar = (props)=>{
             ...elementsArr
         ];
         newElementsArr.splice(id, 1);
-        console.log("elementsArr after delete", newElementsArr);
         reorderElArr(newElementsArr);
         setElementsArr(newElementsArr);
+        setCurrentElement({});
     };
     const reorderElArr = (arr)=>{
         arr.forEach((el, ind)=>{
-            console.log('reorder:', el, ind);
             el.id = ind;
         });
     };
@@ -7861,27 +7860,27 @@ const CodePreview = (props)=>{
     }, mod.createElement("button", {
         id: "btn",
         onClick: ()=>navigator.clipboard.writeText(`
-      import { h } from 'preact';
-      
-      import { PageProps } from '$fresh/server.ts' ;
-      
-      import { useEffect, useState } from 'preact/hooks';
-      
-      import { tw } from 'twind';
-      
-      export default function App (props: PageProps) {
-      
-        return (
-      
-          <main>
-      
-              ${html} 
-       
-          </main>
+          import { h } from 'preact';
+          
+          import { PageProps } from '$fresh/server.ts' ;
+          
+          import { useEffect, useState } from 'preact/hooks';
+          
+          import { tw } from 'twind';
+          
+          export default function App (props: PageProps) {
+          
+            return (
+          
+              <main>
+          
+                  ${html} 
+          
+              </main>
 
-        );
-       
-       };`)
+            );
+          
+          };`)
     }, mod.createElement("p", {
         id: "clip"
     }, "\u{1F4CB}")), mod.createElement("span", {
@@ -8127,7 +8126,6 @@ function Buttons(props) {
             })
         }).then((data)=>data.json()).then((data)=>{
             setElementsArr(data);
-            console.log('data is here', data);
         }).catch((err)=>console.log(err));
         setProjectId(id);
     }
@@ -8379,7 +8377,6 @@ const App = ()=>{
     const [padding, setPadding] = mod.useState('');
     const [fontSize, setFontSize] = mod.useState('');
     const [className, setClassName] = mod.useState('');
-    console.log("elementsArr in app", elementsArr);
     mod.useEffect(()=>{
         setUser(sessionStorage.getItem('userId'));
     }, [
@@ -8457,488 +8454,6 @@ const App = ()=>{
         setLoadProj: setLoadProj
     })));
 };
-const CONTROL_CHARS = /[\x00-\x1F\x7F]/;
-const COOKIE_NAME_BLOCKED = /[()<>@,;:\\"/[\]?={}]/;
-const COOKIE_OCTET_BLOCKED = /[\s",;\\]/;
-const COOKIE_OCTET = /^[\x21\x23-\x2B\x2D-\x3A\x3C-\x5B\x5D-\x7E]+$/;
-const TERMINATORS = [
-    "\n",
-    "\r",
-    "\0"
-];
-function isSameDomainOrSubdomain(domainA, domainB) {
-    if (!domainA || !domainB) {
-        return false;
-    }
-    let longerDomain;
-    let shorterDomain;
-    if (domainB.length > domainA.length) {
-        longerDomain = domainB;
-        shorterDomain = domainA;
-    } else {
-        longerDomain = domainA;
-        shorterDomain = domainB;
-    }
-    const indexOfDomain = longerDomain.indexOf(shorterDomain);
-    if (indexOfDomain === -1) {
-        return false;
-    } else if (indexOfDomain > 0) {
-        if (longerDomain.charAt(indexOfDomain - 1) !== ".") {
-            return false;
-        }
-    }
-    return true;
-}
-function trimTerminator(str) {
-    if (str === undefined || str === "") return str;
-    for(let t = 0; t < TERMINATORS.length; t++){
-        const terminatorIdx = str.indexOf(TERMINATORS[t]);
-        if (terminatorIdx !== -1) {
-            str = str.substr(0, terminatorIdx);
-        }
-    }
-    return str;
-}
-function isValidName(name) {
-    if (!name) {
-        return false;
-    }
-    if (CONTROL_CHARS.test(name) || COOKIE_NAME_BLOCKED.test(name)) {
-        return false;
-    }
-    return true;
-}
-function trimWrappingDoubleQuotes(val) {
-    if (val.length >= 2 && val.at(0) === '"' && val.at(-1) === '"') {
-        return val.slice(1, -1);
-    }
-    return val;
-}
-function isValidValue(val) {
-    if (val === "") {
-        return true;
-    }
-    if (!val) {
-        return false;
-    }
-    if (CONTROL_CHARS.test(val) || COOKIE_OCTET_BLOCKED.test(val) || !COOKIE_OCTET.test(val)) {
-        return false;
-    }
-    return true;
-}
-function parseURL(input) {
-    let copyUrl;
-    if (input instanceof Request) {
-        copyUrl = input.url;
-    } else if (input instanceof URL) {
-        copyUrl = input.toString();
-    } else {
-        copyUrl = input;
-    }
-    copyUrl = copyUrl.replace(/^\./, "");
-    if (!copyUrl.includes("://")) {
-        copyUrl = "http://" + copyUrl;
-    }
-    return new URL(copyUrl);
-}
-class Cookie {
-    name;
-    value;
-    path;
-    domain;
-    expires;
-    maxAge;
-    secure;
-    httpOnly;
-    sameSite;
-    creationDate = Date.now();
-    creationIndex;
-    static cookiesCreated = 0;
-    constructor(options){
-        if (options) {
-            this.name = options.name;
-            this.value = options.value;
-            this.path = options.path;
-            this.domain = options.domain;
-            this.expires = options.expires;
-            this.maxAge = options.maxAge;
-            this.secure = options.secure;
-            this.httpOnly = options.httpOnly;
-            this.sameSite = options.sameSite;
-            if (options.creationDate) {
-                this.creationDate = options.creationDate;
-            }
-        }
-        Object.defineProperty(this, "creationIndex", {
-            configurable: false,
-            enumerable: false,
-            writable: true,
-            value: ++Cookie.cookiesCreated
-        });
-    }
-    static from(cookieStr) {
-        const options = {
-            name: undefined,
-            value: undefined,
-            path: undefined,
-            domain: undefined,
-            expires: undefined,
-            maxAge: undefined,
-            secure: undefined,
-            httpOnly: undefined,
-            sameSite: undefined,
-            creationDate: Date.now()
-        };
-        const unparsed = cookieStr.slice().trim();
-        const attrAndValueList = unparsed.split(";");
-        const keyValuePairString = trimTerminator(attrAndValueList.shift() || "").trim();
-        const keyValuePairEqualsIndex = keyValuePairString.indexOf("=");
-        if (keyValuePairEqualsIndex < 0) {
-            return new Cookie();
-        }
-        const name = keyValuePairString.slice(0, keyValuePairEqualsIndex);
-        const value = trimWrappingDoubleQuotes(keyValuePairString.slice(keyValuePairEqualsIndex + 1));
-        if (!(isValidName(name) && isValidValue(value))) {
-            return new Cookie();
-        }
-        options.name = name;
-        options.value = value;
-        while(attrAndValueList.length){
-            const cookieAV = attrAndValueList.shift()?.trim();
-            if (!cookieAV) {
-                continue;
-            }
-            const avSeperatorIndex = cookieAV.indexOf("=");
-            let attrKey, attrValue;
-            if (avSeperatorIndex === -1) {
-                attrKey = cookieAV;
-                attrValue = "";
-            } else {
-                attrKey = cookieAV.substr(0, avSeperatorIndex);
-                attrValue = cookieAV.substr(avSeperatorIndex + 1);
-            }
-            attrKey = attrKey.trim().toLowerCase();
-            if (attrValue) {
-                attrValue = attrValue.trim();
-            }
-            switch(attrKey){
-                case "expires":
-                    if (attrValue) {
-                        const expires = new Date(attrValue).getTime();
-                        if (expires && !isNaN(expires)) {
-                            options.expires = expires;
-                        }
-                    }
-                    break;
-                case "max-age":
-                    if (attrValue) {
-                        const maxAge = parseInt(attrValue, 10);
-                        if (!isNaN(maxAge)) {
-                            options.maxAge = maxAge;
-                        }
-                    }
-                    break;
-                case "domain":
-                    if (attrValue) {
-                        const domain = parseURL(attrValue).host;
-                        if (domain) {
-                            options.domain = domain;
-                        }
-                    }
-                    break;
-                case "path":
-                    if (attrValue) {
-                        options.path = attrValue.startsWith("/") ? attrValue : "/" + attrValue;
-                    }
-                    break;
-                case "secure":
-                    options.secure = true;
-                    break;
-                case "httponly":
-                    options.httpOnly = true;
-                    break;
-                case "samesite":
-                    {
-                        const lowerCasedSameSite = attrValue.toLowerCase();
-                        switch(lowerCasedSameSite){
-                            case "strict":
-                                options.sameSite = "Strict";
-                                break;
-                            case "lax":
-                                options.sameSite = "Lax";
-                                break;
-                            case "none":
-                                options.sameSite = "None";
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    }
-                default:
-                    break;
-            }
-        }
-        return new Cookie(options);
-    }
-    isValid() {
-        return isValidName(this.name) && isValidValue(this.value);
-    }
-    canSendTo(url) {
-        const urlObj = parseURL(url);
-        if (this.secure && urlObj.protocol !== "https:") {
-            return false;
-        }
-        if (this.sameSite === "None" && !this.secure) return false;
-        if (this.path) {
-            if (this.path === urlObj.pathname) {
-                return true;
-            }
-            if (urlObj.pathname.startsWith(this.path) && this.path[this.path.length - 1] === "/") {
-                return true;
-            }
-            if (this.path.length < urlObj.pathname.length && urlObj.pathname.startsWith(this.path) && urlObj.pathname[this.path.length] === "/") {
-                return true;
-            }
-            return false;
-        }
-        if (this.domain) {
-            const host = urlObj.host;
-            if (isSameDomainOrSubdomain(this.domain, host)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    getCookieString() {
-        return `${this.name || ""}=${this.value || ""}`;
-    }
-    setDomain(url) {
-        this.domain = parseURL(url).host;
-    }
-    setPath(url) {
-        const uriPath = parseURL(url).pathname;
-        if (!uriPath || uriPath[0] !== "/") {
-            this.path = "/";
-        } else {
-            const rightmostSlashIdx = uriPath.lastIndexOf("/");
-            if (rightmostSlashIdx <= 0) {
-                this.path = "/";
-            } else {
-                this.path = uriPath.slice(0, rightmostSlashIdx);
-            }
-        }
-    }
-    setExpires(exp) {
-        if (exp instanceof Date) {
-            this.expires = exp.getTime();
-        } else if (typeof exp === "number" && exp >= 0) {
-            this.expires = exp;
-        }
-    }
-    isExpired() {
-        if (this.maxAge !== undefined) {
-            if (Date.now() - this.creationDate >= this.maxAge * 1000) {
-                return true;
-            }
-        }
-        if (this.expires !== undefined) {
-            if (Date.now() - this.expires >= 0) {
-                return true;
-            }
-        }
-        return false;
-    }
-    toString() {
-        let str = this.getCookieString();
-        if (this.expires && this.expires !== Infinity) {
-            str += "; Expires=" + new Date(this.expires).toUTCString();
-        }
-        if (this.maxAge && this.maxAge !== Infinity) {
-            str += `; Max-Age=${this.maxAge}`;
-        }
-        if (this.domain) {
-            str += `; Domain=${this.domain}`;
-        }
-        if (this.path) {
-            str += `; Path=${this.path}`;
-        }
-        if (this.secure) {
-            str += "; Secure";
-        }
-        if (this.httpOnly) {
-            str += "; HttpOnly";
-        }
-        if (this.sameSite) {
-            str += `; SameSite=${this.sameSite}`;
-        }
-        return str;
-    }
-    clone() {
-        return new Cookie(JSON.parse(JSON.stringify(this)));
-    }
-}
-const strictMatchProps = [
-    "value",
-    "secure",
-    "httpOnly",
-    "maxAge",
-    "expires",
-    "sameSite", 
-];
-function cookieMatches(options, comparedWith, strictMatch = false) {
-    if (options.path !== undefined && !comparedWith.path?.startsWith(options.path)) {
-        return false;
-    }
-    if (options.domain) {
-        if (!isSameDomainOrSubdomain(options.domain, comparedWith.domain)) {
-            return false;
-        }
-    }
-    if (options.name !== undefined && options.name !== comparedWith.name) {
-        return false;
-    }
-    if (strictMatch && strictMatchProps.some((propKey)=>options[propKey] !== undefined && options[propKey] !== comparedWith[propKey])) {
-        return false;
-    }
-    return true;
-}
-function cookieCompare(a, b) {
-    let cmp = 0;
-    const aPathLen = a.path?.length || 0;
-    const bPathLen = b.path?.length || 0;
-    cmp = bPathLen - aPathLen;
-    if (cmp !== 0) {
-        return cmp;
-    }
-    const aTime = a.creationDate || 2147483647000;
-    const bTime = b.creationDate || 2147483647000;
-    cmp = aTime - bTime;
-    if (cmp !== 0) {
-        return cmp;
-    }
-    cmp = a.creationIndex - b.creationIndex;
-    return cmp;
-}
-class CookieJar {
-    cookies = Array();
-    constructor(cookies){
-        this.replaceCookies(cookies);
-    }
-    setCookie(cookie, url) {
-        let cookieObj;
-        if (typeof cookie === "string") {
-            cookieObj = Cookie.from(cookie);
-        } else {
-            cookieObj = cookie;
-        }
-        if (url) {
-            if (!cookieObj.domain) {
-                cookieObj.setDomain(url);
-            }
-            if (!cookieObj.path) {
-                cookieObj.setPath(url);
-            }
-        }
-        if (!cookieObj.isValid()) {
-            return;
-        }
-        const foundCookie = this.getCookie(cookieObj);
-        if (foundCookie) {
-            const indexOfCookie = this.cookies.indexOf(foundCookie);
-            if (!cookieObj.isExpired()) {
-                this.cookies.splice(indexOfCookie, 1, cookieObj);
-            } else {
-                this.cookies.splice(indexOfCookie, 1);
-            }
-        } else if (!cookieObj.isExpired()) {
-            this.cookies.push(cookieObj);
-        }
-        this.cookies.sort(cookieCompare);
-    }
-    getCookie(options) {
-        const strictMatch = typeof options.isValid !== "function";
-        for (const [index, cookie] of this.cookies.entries()){
-            if (cookieMatches(options, cookie, strictMatch)) {
-                if (!cookie.isExpired()) {
-                    return cookie;
-                } else {
-                    this.cookies.splice(index, 1);
-                    return undefined;
-                }
-            }
-        }
-    }
-    getCookies(options) {
-        if (options) {
-            const matchedCookies = [];
-            const removeCookies = [];
-            for (const cookie of this.cookies){
-                if (cookieMatches(options, cookie)) {
-                    if (!cookie.isExpired()) {
-                        matchedCookies.push(cookie);
-                    } else {
-                        removeCookies.push(cookie);
-                    }
-                }
-            }
-            if (removeCookies.length) {
-                this.cookies = this.cookies.filter((cookie)=>!removeCookies.includes(cookie));
-            }
-            return matchedCookies;
-        } else {
-            return this.cookies;
-        }
-    }
-    getCookieString(url) {
-        const searchCookie = new Cookie();
-        searchCookie.setDomain(url);
-        const cookiesToSend = this.getCookies(searchCookie).filter((cookie)=>{
-            return cookie.canSendTo(parseURL(url));
-        }).map((c)=>c.getCookieString()).join("; ");
-        return cookiesToSend;
-    }
-    toJSON() {
-        return this.cookies;
-    }
-    removeCookie(options) {
-        for (const [index, cookie] of this.cookies.entries()){
-            if (cookieMatches(options, cookie)) {
-                return this.cookies.splice(index, 1)[0];
-            }
-        }
-    }
-    removeCookies(options) {
-        if (options) {
-            const deletedCookies = [];
-            this.cookies = this.cookies.filter((cookie)=>{
-                if (cookieMatches(options, cookie)) {
-                    deletedCookies.push(cookie);
-                    return false;
-                }
-                return true;
-            });
-            return deletedCookies.length ? deletedCookies : undefined;
-        } else {
-            this.cookies = [];
-        }
-    }
-    replaceCookies(cookies) {
-        if (cookies?.length) {
-            if (typeof cookies[0].isValid === "function") {
-                this.cookies = cookies;
-            } else {
-                this.cookies = [];
-                for (const option of cookies){
-                    this.cookies.push(new Cookie(option));
-                }
-            }
-        } else {
-            this.cookies = [];
-        }
-    }
-}
-new CookieJar();
 const Login = ()=>{
     const [username, setUsername] = mod.useState('');
     const [password, setPassword] = mod.useState('');

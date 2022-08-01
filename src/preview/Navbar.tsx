@@ -1,5 +1,5 @@
 import { React } from '../../deps.tsx';
-import { IPreviewProps } from './../../utils/types.ts';
+import { IPreviewProps } from './../utils/types.ts';
 
 type IPreviewNavBarProps = {
   setPreviewPage: (previewPage: string) => void;

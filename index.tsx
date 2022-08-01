@@ -1,8 +1,8 @@
 import { React, ReactDOM } from './deps.tsx';
 import { BrowserRouter, HashRouter, Routes, Route} from './deps.tsx';
-import App from './components/App.tsx';
-import Login from './components/Login.tsx';
-import Signup from './components/Signup.tsx';
+import App from './src/App.tsx';
+import Login from './src/Login.tsx';
+import Signup from './src/Signup.tsx';
 
 ReactDOM.render(
   <React.StrictMode>
