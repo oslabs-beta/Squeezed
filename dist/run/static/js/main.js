@@ -7116,13 +7116,13 @@ const SideBar = (props)=>{
     const [content, setContent] = mod.useState('drag into here');
     const handleDragOverStart = ()=>setDragOver(true);
     const handleDragOverEnd = ()=>setDragOver(false);
-    const dragItem = mod.useRef(-1);
-    const dragOverItem = mod.useRef(-1);
+    const dragItem = mod.useRef(null);
+    const dragOverItem = mod.useRef(null);
     const handleDragStart = (event, area)=>{
         if (area === "dragArea") {
             event.dataTransfer.setData("id", event.currentTarget.id);
         } else if (area === "dropArea") {
-            dragItem.current = parseInt(event.currentTarget.id);
+            dragItem.current = event.currentTarget.id;
         }
         event.dataTransfer.setData("area", area);
     };
@@ -7141,8 +7141,6 @@ const SideBar = (props)=>{
         ];
         if (area === "dragArea") {
             const id = event.dataTransfer.getData("id");
-            console.log('new el', id);
-            console.log('new el elArr length', elementsArr.length);
             setContent(id);
             const newElement = {
                 id: elementsArr.length,
@@ -7167,17 +7165,12 @@ const SideBar = (props)=>{
             newElementsArr[dragOverItem.current];
             newElementsArr.splice(dragItem.current, 1);
             newElementsArr.splice(dragOverItem.current, 0, dragItemContent);
-            dragItem.current = -1;
-            dragOverItem.current = -1;
+            dragItem.current = null;
+            dragOverItem.current = null;
+            console.log("new arr after drop:", newElementsArr);
             reorderElArr(newElementsArr);
             setElementsArr(newElementsArr);
-            console.log("after drop:", elementsArr);
         }
-    };
-    const reorderElArr = (arr)=>{
-        arr.forEach((el, ind)=>{
-            el.id = ind;
-        });
     };
     const handleClick = (id)=>{
         const a = elementsArr[id].inputText;
@@ -7205,9 +7198,19 @@ const SideBar = (props)=>{
         setClassName(k);
     };
     const deleteElement = (id)=>{
-        elementsArr.splice(id, 1);
-        reorderElArr(elementsArr);
-        setElementsArr(elementsArr);
+        const newElementsArr = [
+            ...elementsArr
+        ];
+        newElementsArr.splice(id, 1);
+        console.log("elementsArr after delete", newElementsArr);
+        reorderElArr(newElementsArr);
+        setElementsArr(newElementsArr);
+    };
+    const reorderElArr = (arr)=>{
+        arr.forEach((el, ind)=>{
+            console.log('reorder:', el, ind);
+            el.id = ind;
+        });
     };
     const elementsList = [
         {

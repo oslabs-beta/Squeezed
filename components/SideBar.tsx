@@ -10,15 +10,17 @@ const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps) => {
   const handleDragOverStart = () => setDragOver(true);
   const handleDragOverEnd = () => setDragOver(false);
 
-  const dragItem = React.useRef<number>(-1);
-  const dragOverItem = React.useRef<number>(-1);
+  // const dragItem = React.useRef<number>(-1);
+  // const dragOverItem = React.useRef<number>(-1);
+  const dragItem = React.useRef<any>(null);
+  const dragOverItem = React.useRef<any>(null);
 
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>, area: string) => {
     if(area === "dragArea"){
       event.dataTransfer.setData("id", event.currentTarget.id);
     }
     else if(area === "dropArea"){
-      dragItem.current = parseInt(event.currentTarget.id);
+      dragItem.current = event.currentTarget.id;
     }
     event.dataTransfer.setData("area", area);
   };
@@ -40,8 +42,8 @@ const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps) => {
  
     if(area === "dragArea"){
       const id = event.dataTransfer.getData("id");
-      console.log('new el', id)
-      console.log('new el elArr length', elementsArr.length);
+      // console.log('new el', id)
+      // console.log('new el elArr length', elementsArr.length);
       setContent(id);
       const newElement = {
         id: elementsArr.length,      
@@ -67,54 +69,57 @@ const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps) => {
       const dragItemEnterContent = newElementsArr[dragOverItem.current];
       newElementsArr.splice(dragItem.current, 1);
       newElementsArr.splice(dragOverItem.current, 0, dragItemContent);
-      dragItem.current = -1;
-      dragOverItem.current = -1;
+      dragItem.current = null;
+      dragOverItem.current = null;
+      console.log("new arr after drop:", newElementsArr);
       reorderElArr(newElementsArr);
       setElementsArr(newElementsArr);
-      console.log("after drop:", elementsArr);
     }
   };
-
-  const reorderElArr = (arr: IHtmlElement[]) => {
-    arr.forEach((el: IHtmlElement, ind: number) => {
-      el.id = ind;
-    })
-  }
  
-  // const handleClick = (id: number) => {
-  //   const a = elementsArr[id].inputText;
-  //   const b = elementsArr[id].texAlign;
-  //   const c = elementsArr[id].textDecoration;
-  //   const d = elementsArr[id].backgroundColor;
-  //   const e = elementsArr[id].color;
-  //   const f = elementsArr[id].margin; 
-  //   const g = elementsArr[id].width;
-  //   const h = elementsArr[id].height; 
-  //   const i = elementsArr[id].padding; 
-  //   const j = elementsArr[id].fontSize;
-  //   const k = elementsArr[id].className;
+  const handleClick = (id: number) => {
+    const a = elementsArr[id].inputText;
+    const b = elementsArr[id].texAlign;
+    const c = elementsArr[id].textDecoration;
+    const d = elementsArr[id].backgroundColor;
+    const e = elementsArr[id].color;
+    const f = elementsArr[id].margin; 
+    const g = elementsArr[id].width;
+    const h = elementsArr[id].height; 
+    const i = elementsArr[id].padding; 
+    const j = elementsArr[id].fontSize;
+    const k = elementsArr[id].className;
     
-  //   setCurrentElement(elementsArr[id]);
-  //   setInputText(a);
-  //   setTextAlign(b);
-  //   setTextDecoration(c);
-  //   setBackgroundColor(d);
-  //   setColor(e);
-  //   setMargin(f);
-  //   setWidth(g);
-  //   setHeight(h);
-  //   setPadding(i);
-  //   setFontSize(j);
-  //   setClassName(k);
-  // };
+    setCurrentElement(elementsArr[id]);
+    setInputText(a);
+    setTextAlign(b);
+    setTextDecoration(c);
+    setBackgroundColor(d);
+    setColor(e);
+    setMargin(f);
+    setWidth(g);
+    setHeight(h);
+    setPadding(i);
+    setFontSize(j);
+    setClassName(k);
+  };
 
   const deleteElement = (id: number) => {
     // console.log("before delete", elementsArr, id)
     // console.log("splice", elementsArr.splice(id, 1))
-    elementsArr.splice(id, 1);
-    reorderElArr(elementsArr);
-    // console.log("elementsArr after delete", elementsArr)
-    setElementsArr(elementsArr);
+    const newElementsArr = [...elementsArr];
+    newElementsArr.splice(id, 1);
+    console.log("elementsArr after delete", newElementsArr);
+    reorderElArr(newElementsArr);
+    setElementsArr(newElementsArr);
+    // setCurrentElement({} as IHtmlElement);
+  }
+
+  const reorderElArr = (arr: IHtmlElement[]) => {
+    arr.forEach((el: IHtmlElement, ind: number) => {
+      console.log('reorder:', el, ind);
+      el.id = ind;
+    })
   }
 
   function onDragStart(event: any) {
