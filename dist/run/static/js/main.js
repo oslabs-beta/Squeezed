@@ -7116,13 +7116,13 @@ const SideBar = (props)=>{
     const [content, setContent] = mod.useState('drag into here');
     const handleDragOverStart = ()=>setDragOver(true);
     const handleDragOverEnd = ()=>setDragOver(false);
-    const dragItem = mod.useRef(null);
-    const dragOverItem = mod.useRef(null);
+    const dragItem = mod.useRef(-1);
+    const dragOverItem = mod.useRef(-1);
     const handleDragStart = (event, area)=>{
         if (area === "dragArea") {
             event.dataTransfer.setData("id", event.currentTarget.id);
         } else if (area === "dropArea") {
-            dragItem.current = event.currentTarget.id;
+            dragItem.current = parseInt(event.currentTarget.id);
         }
         event.dataTransfer.setData("area", area);
     };
@@ -7141,11 +7141,13 @@ const SideBar = (props)=>{
         ];
         if (area === "dragArea") {
             const id = event.dataTransfer.getData("id");
+            console.log('new el', id);
+            console.log('new el elArr length', elementsArr.length);
             setContent(id);
             const newElement = {
                 id: elementsArr.length,
                 element: id,
-                text: "",
+                inputText: "",
                 texAlign: "",
                 textDecoration: "",
                 backgroundColor: "",
@@ -7155,22 +7157,21 @@ const SideBar = (props)=>{
                 height: "",
                 padding: "",
                 fontSize: "",
-                fontWeight: ""
+                className: ""
             };
             newElementsArr.push(newElement);
             setElementsArr(newElementsArr);
             setCurrentElement(newElement);
         } else if (area === "dropArea") {
             const dragItemContent = newElementsArr[dragItem.current];
-            const dragItemEnterContent = newElementsArr[dragOverItem.current];
-            console.log("handleDrop selected item:", dragItemContent);
-            console.log("handleDrop drager over item:", dragItemEnterContent);
+            newElementsArr[dragOverItem.current];
             newElementsArr.splice(dragItem.current, 1);
             newElementsArr.splice(dragOverItem.current, 0, dragItemContent);
-            dragItem.current = null;
-            dragOverItem.current = null;
+            dragItem.current = -1;
+            dragOverItem.current = -1;
             reorderElArr(newElementsArr);
             setElementsArr(newElementsArr);
+            console.log("after drop:", elementsArr);
         }
     };
     const reorderElArr = (arr)=>{
@@ -7179,9 +7180,8 @@ const SideBar = (props)=>{
         });
     };
     const handleClick = (id)=>{
-        setCurrentElement(elementsArr[id]);
-        const a = elementsArr[id].text;
-        const b = elementsArr[id].textAlign;
+        const a = elementsArr[id].inputText;
+        const b = elementsArr[id].texAlign;
         const c = elementsArr[id].textDecoration;
         const d = elementsArr[id].backgroundColor;
         const e = elementsArr[id].color;
@@ -7189,8 +7189,9 @@ const SideBar = (props)=>{
         const g = elementsArr[id].width;
         const h = elementsArr[id].height;
         const i = elementsArr[id].padding;
-        const j = elementsArr[id].setFontSize;
-        const k = elementsArr[id].setClassName;
+        const j = elementsArr[id].fontSize;
+        const k = elementsArr[id].className;
+        setCurrentElement(elementsArr[id]);
         setInputText(a);
         setTextAlign(b);
         setTextDecoration(c);
@@ -7204,15 +7205,9 @@ const SideBar = (props)=>{
         setClassName(k);
     };
     const deleteElement = (id)=>{
-        if (elementsArr.length === 1) {
-            setElementsArr([]);
-            setCurrentElement('');
-        } else {
-            const filteredElementsArr = elementsArr.filter((element)=>element.id !== id);
-            console.log('filtered', filteredElementsArr);
-            setElementsArr(filteredElementsArr);
-            setCurrentElement('');
-        }
+        elementsArr.splice(id, 1);
+        reorderElArr(elementsArr);
+        setElementsArr(elementsArr);
     };
     const elementsList = [
         {
@@ -7326,7 +7321,7 @@ const SideBar = (props)=>{
             draggable: "true"
         }, " ", el.element));
     });
-    const createdElements = elementsArr.map((elements, index)=>{
+    const createdElements = elementsArr.map((el, index)=>{
         return mod.createElement("div", {
             draggable: "true",
             onDrop: handleDrop,
@@ -7337,7 +7332,7 @@ const SideBar = (props)=>{
             className: "draggedTags",
             onDragOver: enableDropping,
             onClick: ()=>handleClick(index),
-            id: index
+            id: index.toString()
         }, elementsArr[index].element, mod.createElement("button", {
             id: "delete-btn",
             style: {
@@ -7361,7 +7356,7 @@ const SideBar = (props)=>{
         href: './static/css/sideBarStyle.css'
     }), mod.createElement("div", {
         className: "app"
-    }), mod.createElement("div", {
+    }, mod.createElement("div", {
         id: "side"
     }, renderElementsList), mod.createElement("div", {
         id: "drop",
@@ -7371,7 +7366,7 @@ const SideBar = (props)=>{
         onDragLeave: handleDragOverEnd
     }, mod.createElement("div", {
         id: "hov"
-    }, createdElements)));
+    }, createdElements))));
 };
 const Routing = (props)=>{
     return mod.createElement("div", null, "Routing page in react router");
@@ -8458,9 +8453,9 @@ const App = ()=>{
         height: '100%'
     };
     const [elementsArr, setElementsArr] = mod.useState([]);
-    const [currentElement, setCurrentElement] = mod.useState('drag into here');
-    const [projectId, setProjectId] = mod.useState('');
+    const [currentElement, setCurrentElement] = mod.useState({});
     const [user, setUser] = mod.useState('');
+    const [projectId, setProjectId] = mod.useState('');
     const [projectList, setProjectList] = mod.useState([]);
     const [loadProj, setLoadProj] = mod.useState('');
     const [inputText, setInputText] = mod.useState('');
@@ -8474,10 +8469,9 @@ const App = ()=>{
     const [padding, setPadding] = mod.useState('');
     const [fontSize, setFontSize] = mod.useState('');
     const [className, setClassName] = mod.useState('');
-    console.log("user", user);
     console.log("elementsArr in app", elementsArr);
     mod.useEffect(()=>{
-        setUser(sessionStorage.getItem("userId"));
+        setUser(sessionStorage.getItem('userId'));
     }, [
         user
     ]);
@@ -8491,27 +8485,16 @@ const App = ()=>{
         setElementsArr: setElementsArr,
         currentElement: currentElement,
         setCurrentElement: setCurrentElement,
-        inputText: inputText,
         setInputText: setInputText,
-        textAlign: textAlign,
         setTextAlign: setTextAlign,
-        textDecoration: textDecoration,
         setTextDecoration: setTextDecoration,
-        backgroundColor: backgroundColor,
         setBackgroundColor: setBackgroundColor,
-        color: color,
         setColor: setColor,
-        margin: margin,
         setMargin: setMargin,
-        width: width,
         setWidth: setWidth,
-        height: height,
         setHeight: setHeight,
-        padding: padding,
         setPadding: setPadding,
-        fontSize: fontSize,
         setFontSize: setFontSize,
-        className: className,
         setClassName: setClassName
     })), mod.createElement("div", {
         style: customizationStyle

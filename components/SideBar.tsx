@@ -1,69 +1,52 @@
 import { React } from '../deps.tsx';
+import { IHtmlElement, IProps, ISideBarProps } from './../utils/types.ts';
 
-
-
-const SideBar = (props:any) => {
-  const {elementsArr, setElementsArr, currentElement, setCurrentElement} = props;
-  const { setInputText, setTextAlign, setTextDecoration, setBackgroundColor, setColor, setMargin, setWidth, setHeight, setPadding, setFontSize, setClassName }= props;
-  const [dragOver, setDragOver] = React.useState(false);
+const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps) => {
+  const { elementsArr, setElementsArr, currentElement, setCurrentElement } = props;
+  const { setInputText, setTextAlign, setTextDecoration, setBackgroundColor, setColor, setMargin, setWidth, setHeight, setPadding, setFontSize, setClassName } = props;
+  const [dragOver, setDragOver] = React.useState<boolean>(false);
   const [content, setContent] = React.useState<string>('drag into here');
 
   const handleDragOverStart = () => setDragOver(true);
   const handleDragOverEnd = () => setDragOver(false);
 
-  // const dragItem = React.useRef<HTMLDivElement | null>(null);
-  // const dragOverItem = React.useRef<HTMLDivElement | null>(null);
-  const dragItem = React.useRef<any>(null);
-  const dragOverItem = React.useRef<any>(null);
+  const dragItem = React.useRef<number>(-1);
+  const dragOverItem = React.useRef<number>(-1);
 
-  const handleDragStart = (event: React.DragEvent<HTMLDivElement>, area:string) => {
-    // console.log("handleDragStart area:", area)
-    // console.log("current event target: ", event.currentTarget);
+  const handleDragStart = (event: React.DragEvent<HTMLDivElement>, area: string) => {
     if(area === "dragArea"){
       event.dataTransfer.setData("id", event.currentTarget.id);
     }
     else if(area === "dropArea"){
-      // console.log("dragItem.current type:", typeof dragItem.current)
-      dragItem.current = event.currentTarget.id;
-      // console.log("handleDragStart current: ", dragItem.current)
-      // console.log("handleDragStart: ", dragItem)
+      dragItem.current = parseInt(event.currentTarget.id);
     }
     event.dataTransfer.setData("area", area);
   };
 
-  const dragEnter = (e, position) => {
+  const dragEnter = (e: React.DragEvent<HTMLDivElement>, position: number) => {
     dragOverItem.current = position;
-    // console.log("drag enter id: ", dragItem.current)
   };
   
   const enableDropping = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     const id = event.dataTransfer.getData("id");
     setContent(id);
-
-    // const area = event.dataTransfer.getData("area");
-    // if(area === "dragArea"){
-    //   const id = event.dataTransfer.getData("id");
-    //   setContent(id);
-    //   console.log("enableDropping after set content", content)
-    // }
-    // else if(area === "dropArea"){
-    //   // const oldId = event.dataTransfer.getData("oldId");
-    //   // console.log("enable dropping old id: ", oldId)
-    // }
   };
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     const area = event.dataTransfer.getData("area");
     const newElementsArr = [...elementsArr];
+    // console.log("before if statement", newElementsArr);
  
     if(area === "dragArea"){
       const id = event.dataTransfer.getData("id");
+      console.log('new el', id)
+      console.log('new el elArr length', elementsArr.length);
       setContent(id);
       const newElement = {
         id: elementsArr.length,      
         element: id,
-        text: "",
+        inputText: "",
         texAlign: "", // dont change this to textAlign  
         textDecoration: "",
         backgroundColor: "",
@@ -73,89 +56,66 @@ const SideBar = (props:any) => {
         height: "",
         padding: "",
         fontSize: "",
-        fontWeight: ""   
+        className: ""
       };
       newElementsArr.push(newElement);
       setElementsArr(newElementsArr);
       setCurrentElement(newElement);
-      // console.log("handleDrop from dragArea:", id); 
     }
     else if(area === "dropArea"){
       const dragItemContent = newElementsArr[dragItem.current];
       const dragItemEnterContent = newElementsArr[dragOverItem.current];
-      console.log("handleDrop selected item:", dragItemContent); 
-      console.log("handleDrop drager over item:", dragItemEnterContent); 
-
-      // //reassign ids to match order of elementsArr
-      // const tempId = dragItemContent.id;
-      // dragItemContent.id = dragItemEnterContent.id;
-      // dragItemEnterContent.id = tempId;
-
-      // console.log("dragItemContent:", dragItemContent)
       newElementsArr.splice(dragItem.current, 1);
       newElementsArr.splice(dragOverItem.current, 0, dragItemContent);
-      dragItem.current = null;
-      dragOverItem.current = null;
+      dragItem.current = -1;
+      dragOverItem.current = -1;
       reorderElArr(newElementsArr);
       setElementsArr(newElementsArr);
-      // console.log("handleDrop from dropArea", elementsArr)
+      console.log("after drop:", elementsArr);
     }
   };
 
-  const reorderElArr = (arr) => {
-    arr.forEach((el, ind) => {
+  const reorderElArr = (arr: IHtmlElement[]) => {
+    arr.forEach((el: IHtmlElement, ind: number) => {
       el.id = ind;
     })
   }
  
-  const handleClick = (id: any) => {
-    setCurrentElement(elementsArr[id]);
-
-    const a = elementsArr[id].text;
-    const b = elementsArr[id].textAlign;
-    const c = elementsArr[id].textDecoration;
-    const d = elementsArr[id].backgroundColor;
-    const e = elementsArr[id].color;
-    const f = elementsArr[id].margin; 
-    const g = elementsArr[id].width;
-    const h = elementsArr[id].height; 
-    const i = elementsArr[id].padding; 
-    const j = elementsArr[id].setFontSize;
-    const k = elementsArr[id].setClassName;
+  // const handleClick = (id: number) => {
+  //   const a = elementsArr[id].inputText;
+  //   const b = elementsArr[id].texAlign;
+  //   const c = elementsArr[id].textDecoration;
+  //   const d = elementsArr[id].backgroundColor;
+  //   const e = elementsArr[id].color;
+  //   const f = elementsArr[id].margin; 
+  //   const g = elementsArr[id].width;
+  //   const h = elementsArr[id].height; 
+  //   const i = elementsArr[id].padding; 
+  //   const j = elementsArr[id].fontSize;
+  //   const k = elementsArr[id].className;
     
-    setInputText(a);
-    setTextAlign(b)
-    setTextDecoration(c)
-    setBackgroundColor(d)
-    setColor(e)
-    setMargin(f)
-    setWidth(g)
-    setHeight(h)
-    setPadding(i)
-    setFontSize(j)
-    setClassName(k)
-  };
+  //   setCurrentElement(elementsArr[id]);
+  //   setInputText(a);
+  //   setTextAlign(b);
+  //   setTextDecoration(c);
+  //   setBackgroundColor(d);
+  //   setColor(e);
+  //   setMargin(f);
+  //   setWidth(g);
+  //   setHeight(h);
+  //   setPadding(i);
+  //   setFontSize(j);
+  //   setClassName(k);
+  // };
 
-const deleteElement = (id:any) => {
-  // console.log('before', id)
-  if (elementsArr.length===1){
-    setElementsArr([]);
-    setCurrentElement('');
-  } else {
-    const filteredElementsArr = elementsArr.filter((element: any)=> element.id !== id);
-    console.log('filtered',filteredElementsArr)
-    setElementsArr(filteredElementsArr);
-    setCurrentElement('');
+  const deleteElement = (id: number) => {
+    // console.log("before delete", elementsArr, id)
+    // console.log("splice", elementsArr.splice(id, 1))
+    elementsArr.splice(id, 1);
+    reorderElArr(elementsArr);
+    // console.log("elementsArr after delete", elementsArr)
+    setElementsArr(elementsArr);
   }
-}
-  //  elementsArr = elementsArr.splice(id, 1)
-  //  console.log('after',newArr)
-
-  //  const filteredElementsArr = elementsArr.filter((element: any) => element[id] !== elementsArr[id]);
-  // //  console.log(11,filteredElementsArr)
-  // setElementsArr(filteredElementsArr);
-  // setCurrentElement('');
-
 
   function onDragStart(event: any) {
     event
@@ -167,14 +127,6 @@ const deleteElement = (id:any) => {
       .style
       .backgroundColor = 'yellow';
   }
-
-  // function addNesting(index: any) {
-  // }
-
-
-  // function removeNesting(index: any) {
-  // }
-
 
   const elementsList = 
     [
@@ -275,7 +227,7 @@ const deleteElement = (id:any) => {
       }
     ];
     
-    const renderElementsList = elementsList.map((el: any) => {
+    const renderElementsList = elementsList.map((el: { id: string, element: string, backgroundColor: string}) => {
       // console.log(el, ind);
       return (
         <div id={el.id} onDragStart={(e) => handleDragStart(e, 'dragArea')}>
@@ -287,9 +239,8 @@ const deleteElement = (id:any) => {
       )
     });
   
-    const createdElements = elementsArr.map((elements: any, index: any) => {
+    const createdElements = elementsArr.map((el: IHtmlElement, index: number) => {
       // console.log("html tags: ", elementsArr[index], index);
-      
       return (
         <div 
           draggable='true'
@@ -301,7 +252,7 @@ const deleteElement = (id:any) => {
           className="draggedTags"
           onDragOver={enableDropping}
           onClick={() => handleClick(index)} 
-          id={index}>
+          id={index.toString()}>
           {elementsArr[index].element}
 
           <button 
@@ -315,25 +266,23 @@ const deleteElement = (id:any) => {
       )})
 
   return (
-
     <div id="scroll">
       <link rel={'stylesheet'} href={'./static/css/App.css'} />
       <link rel={'stylesheet'} href={'./static/css/sideBarStyle.css'} />
-      <div className="app" ></div>
-      <div id='side'>
-        {renderElementsList}
-      </div>
+      <div className="app">
+        <div id='side'>
+          {renderElementsList}
+        </div>
 
-      <div 
-    
-        id='drop'
-        onDragOver={enableDropping}
-        onDrop={handleDrop}
-        onDragEnter={handleDragOverStart}
-        onDragLeave={handleDragOverEnd}
-
-      >
-        <div id='hov'>{createdElements}</div>
+        <div 
+          id='drop'
+          onDragOver={enableDropping}
+          onDrop={handleDrop}
+          onDragEnter={handleDragOverStart}
+          onDragLeave={handleDragOverEnd}
+        >
+          <div id='hov'>{createdElements}</div>
+        </div>
       </div>
     </div>
   );

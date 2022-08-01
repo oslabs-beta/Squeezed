@@ -1,7 +1,4 @@
-//import statements
-import { Link, React } from "../deps.tsx";
-import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
-import { useNavigate } from '../deps.tsx'
+import { Link, React, useNavigate, serve } from "../deps.tsx";
 import Popup from "./popup.tsx";
 import Popup2 from"./Popup2.tsx"
 
