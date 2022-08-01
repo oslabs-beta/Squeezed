@@ -1,6 +1,11 @@
 import { React } from '../../deps.tsx';
+import { IPreviewProps } from './../utils/types.ts';
 
-const Navbar: any = (props: any) => {
+type IPreviewNavBarProps = {
+  setPreviewPage: (previewPage: string) => void;
+}
+
+const Navbar: any = (props: IPreviewNavBarProps) => {
   const { setPreviewPage } = props;
 
   return (

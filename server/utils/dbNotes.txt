@@ -33,6 +33,7 @@ CREATE TABLE elements
   project_id INTEGER REFERENCES projects(id)
 );
 
+//table insert examples 
 INSERT INTO users (username, password, email)
 VALUES ('username', 'password', 'user@user.com');
 
