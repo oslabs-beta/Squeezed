@@ -168,10 +168,10 @@ const App: React.FC = () => {
           setHeight={setHeight} 
           padding={padding} 
           setPadding={setPadding}
-          fontSize = {fontSize}
-          setFontSize = {setFontSize}
-          className = {className}
-          setClassName = {setClassName}
+          fontSize={fontSize}
+          setFontSize={setFontSize}
+          className={className}
+          setClassName={setClassName}
         />
       </div>
 
