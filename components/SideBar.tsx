@@ -249,8 +249,8 @@ const deleteElement = (id:any) => {
         backgroundColor: 'rgb(218,233,131)'
       },
       {
-        id: 'button',
-        element: 'LIST (UL)',
+        id: 'a',
+        element: 'a',
         backgroundColor: 'rgb(220,233,129)'
       },
       {
@@ -269,8 +269,18 @@ const deleteElement = (id:any) => {
         backgroundColor: 'rgb(232,233,123)'
       },
       {
+        id: 'break',
+        element: 'BR',
+        backgroundColor: 'rgb(238,233,120)'
+      }, 
+      {
         id: 'area',
         element: 'AREA',
+        backgroundColor: 'rgb(238,233,120)'
+      },
+      {
+        id: 'body',
+        element: 'BODY',
         backgroundColor: 'rgb(238,233,120)'
       }
     ];

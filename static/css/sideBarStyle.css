@@ -4,19 +4,6 @@
     
 }
 
-#side::-webkit-scrollbar {
-    width: 10px; 
- }
-
-#side::-webkit-scrollbar-track {
-  background-color: black;
-}
-
-#side::-webkit-scrollbar-thumb {
-  background: #4e4e4e;
-  border-radius: 25px;
-} */
-
 /* #scroll{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -39,50 +26,84 @@
 } */
 
 
-#clearBtn{
-    color: rgb(255, 0, 221);
- }
+
 #scroll {
     /* width: 1005px; */
-    margin: 0 auto;
+    /* margin: 0 auto;
     background-image: linear-gradient(#68eda7, #ffe958);
     
     width: 100%;
     height: 500px;
-    overflow: scroll;
+    overflow: scroll; */
+display: grid;
+grid-template-areas: 
+'sd dr dr dr dr dr dr dr dr dr'
+'sd dr dr dr dr dr dr dr dr dr'
+'sd dr dr dr dr dr dr dr dr dr';
 
 }
 #side,
 #drop {
-    float: left;
+    /* float: left;
     min-height: 450px;
     height: 70%;
     overflow: scroll;
-    height: 500px;
-
+    height: 500px; */
+    max-height: 600px;
+    border-bottom:3px solid #68eda7;
 }
 #side {
     /* width: 250px; */
-    width: 12%;
+    /* width: 12%;
     background-image: linear-gradient(#68eda7, #ffe958);
     height: 500px;
     border: 3px solid #68eda7;
     overflow: scroll;
-    
+     */
+     grid-area: sd;
+     background-color: #ffe958;
+     overflow-y: scroll;
 
 }
 
+#side::-webkit-scrollbar {
+    width: 10px; 
+ }
 
+#side::-webkit-scrollbar-track {
+  background-color: black;
+}
+
+#side::-webkit-scrollbar-thumb {
+  background: #4e4e4e;
+  border-radius: 25px;
+}
 #drop {
     /* width: 750px; */
-    width: 87%;
+    /* width: 87%;
     border-top: 3px solid #68EDA7;
     background-color: #2D3033;
     height: 500px;
     text-align: center;
     font-weight: bolder;
     overflow: scroll;
-    
+     */
+     grid-area: dr;
+     background-color:#2D3033;
+     overflow-y: scroll;
+     border:3px solid #68eda7;
+}
+#drop::-webkit-scrollbar {
+    width: 10px; 
+ }
+
+#drop::-webkit-scrollbar-track {
+  background-color: black;
+}
+
+#drop::-webkit-scrollbar-thumb {
+  background: #4e4e4e;
+  border-radius: 25px;
 }
 button {
     font-size: 20px;

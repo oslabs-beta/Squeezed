@@ -1,5 +1,5 @@
 import { React } from '../../deps.tsx';
-import Routing from './pages/Routing.tsx';
+
 import Styling from './pages/Styling.tsx';
 
 const MainContainer: any = (props:any) => {
@@ -64,7 +64,7 @@ const MainContainer: any = (props:any) => {
   className = {className}
   setClassName = {setClassName} />
   // if (customizationPage === 'styling') page = <Styling currentElement={currentElement} setCurrentElement={setCurrentElement} elementsArr={elementsArr} setElementsArr={setElementsArr} />;
-  if (customizationPage === 'routing') page = <Routing />;
+  // if (customizationPage === 'routing') page = <Routing />;
   
   return <div className="customizationPage">{page}</div>;
 };

@@ -141,12 +141,12 @@ export default function Buttons(props: any) {
     <main>
       <link rel={"stylesheet"} href={"./static/css/sideBarStyle.css"} />
       <link rel={"stylesheet"} href={"./static/css/buttons.css"} />
-      <div id="buttonContainer" style={{ maxHeight: '300px', overflow: 'scroll'}}>
+      <div id="buttonContainer" style={{ maxHeight: '100%', width:'100%', marginLeft: '12%', marginRight: '12%'}}>
         <button
           style={{
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            width: "90%",
+            width: "100%",
             fontSize: "20px",
             fontWeight: "bolder",
             marginTop: "10px",
@@ -163,7 +163,7 @@ export default function Buttons(props: any) {
           style={{
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            width: "90%",
+            width: "100%",
             fontSize: "20px",
             fontWeight: "bolder",
             marginTop: "15px",
@@ -206,7 +206,7 @@ export default function Buttons(props: any) {
           style={{
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            width: "90%",
+            width: "100%",
             fontSize: "20px",
             fontWeight: "bolder",
             marginTop: "15px",
@@ -229,7 +229,7 @@ export default function Buttons(props: any) {
             style={{
               backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
               color: "#2D3033",
-              width: "90%",
+              width: "100%",
               fontSize: "20px",
               fontWeight: "bolder",
               marginTop: "15px",
@@ -269,7 +269,7 @@ export default function Buttons(props: any) {
             style={{
               backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
               color: "#2D3033",
-              width: "90%",
+              width: "100%",
               fontSize: "20px",
               fontWeight: "bolder",
               marginTop: "15px",
@@ -283,7 +283,7 @@ export default function Buttons(props: any) {
           style={{
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            width: "90%",
+            width: "100%",
             fontSize: "20px",
             fontWeight: "bolder",
             marginTop: "15px",

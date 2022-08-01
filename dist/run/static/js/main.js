@@ -7275,8 +7275,8 @@ const SideBar = (props)=>{
             backgroundColor: 'rgb(218,233,131)'
         },
         {
-            id: 'button',
-            element: 'LIST (UL)',
+            id: 'a',
+            element: 'a',
             backgroundColor: 'rgb(220,233,129)'
         },
         {
@@ -7295,8 +7295,18 @@ const SideBar = (props)=>{
             backgroundColor: 'rgb(232,233,123)'
         },
         {
+            id: 'break',
+            element: 'BR',
+            backgroundColor: 'rgb(238,233,120)'
+        },
+        {
             id: 'area',
             element: 'AREA',
+            backgroundColor: 'rgb(238,233,120)'
+        },
+        {
+            id: 'body',
+            element: 'BODY',
             backgroundColor: 'rgb(238,233,120)'
         }
     ];
@@ -7362,9 +7372,6 @@ const SideBar = (props)=>{
         id: "hov"
     }, createdElements)));
 };
-const Routing = (props)=>{
-    return mod.createElement("div", null, "Routing page in react router");
-};
 const Styling = (props)=>{
     const { elementsArr , setElementsArr , currentElement , setCurrentElement , inputText , setInputText , textAlign , setTextAlign , textDecoration , setTextDecoration , backgroundColor , setBackgroundColor , color , setColor , margin , setMargin , width , setWidth , height , setHeight , padding , setPadding , fontSize , setFontSize , className , setClassName ,  } = props;
     const handleSubmit = async (e)=>{
@@ -7399,25 +7406,14 @@ const Styling = (props)=>{
         setClassName('');
     };
     return mod.createElement("form", {
-        onSubmit: handleSubmit,
-        style: {
-            fontSize: '20px',
-            color: 'white'
-        }
+        onSubmit: handleSubmit
     }, mod.createElement("link", {
         rel: 'stylesheet',
         href: './static/css/customizationStyles.css'
     }), mod.createElement("div", {
-        style: {
-            fontSize: '26px',
-            textAlign: 'center',
-            marginTop: '20px'
-        },
         id: "selectedEle"
     }, "Element selected: ", currentElement.element), mod.createElement("br", null), mod.createElement("div", {
-        style: {
-            marginLeft: '40px'
-        }
+        id: "lft"
     }, mod.createElement("label", {
         htmlFor: "inputText"
     }, "Input Text "), mod.createElement("input", {
@@ -7425,11 +7421,7 @@ const Styling = (props)=>{
         onChange: (e)=>setInputText(e.target.value),
         type: "text",
         placeholder: "Enter text",
-        className: "input",
-        style: {
-            backgroundColor: '#68EDA7',
-            color: 'black'
-        }
+        className: "input"
     }), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "fontSize"
     }, "Font Size "), mod.createElement("input", {
@@ -7463,11 +7455,7 @@ const Styling = (props)=>{
         placeholder: "Enter margin value",
         className: "input"
     }), mod.createElement("br", null)), mod.createElement("div", {
-        style: {
-            float: 'right',
-            marginTop: '-175px',
-            marginRight: '40px'
-        }
+        id: "rt"
     }, mod.createElement("label", {
         htmlFor: "height"
     }, "Height "), mod.createElement("input", {
@@ -7504,30 +7492,15 @@ const Styling = (props)=>{
         htmlFor: "textDecoration"
     }, "Text Decoration "), mod.createElement("select", {
         className: "textDecoration",
-        onChange: (e)=>setTextDecoration(e.target.value),
-        style: {
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033"
-        }
+        onChange: (e)=>setTextDecoration(e.target.value)
     }, mod.createElement("option", null, "default"), mod.createElement("option", null, "overline"), mod.createElement("option", null, "line-through"), mod.createElement("option", null, "underline"), mod.createElement("option", null, "none")), mod.createElement("br", null), mod.createElement("label", {
         htmlFor: "textAlign"
     }, "Text Align "), mod.createElement("select", {
-        onChange: (e)=>setTextAlign(e.target.value),
-        style: {
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033"
-        }
+        className: "textAlign",
+        onChange: (e)=>setTextAlign(e.target.value)
     }, mod.createElement("option", null, "default"), mod.createElement("option", null, "center"), mod.createElement("option", null, "right"), mod.createElement("option", null, "left"), mod.createElement("option", null, "justify")), mod.createElement("br", null), mod.createElement("br", null), mod.createElement("br", null)), mod.createElement("button", {
         type: "submit",
-        className: "btn",
-        style: {
-            marginLeft: '42%',
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            fontSize: '20px',
-            marginBottom: '20px',
-            color: "#2D3033",
-            marginTop: '20px'
-        }
+        className: "btn"
     }, "Submit"));
 };
 const MainContainer = (props)=>{
@@ -7562,7 +7535,6 @@ const MainContainer = (props)=>{
         className: className,
         setClassName: setClassName
     });
-    if (customizationPage === 'routing') page = mod.createElement(Routing, null);
     return mod.createElement("div", {
         className: "customizationPage"
     }, page);
@@ -7708,6 +7680,21 @@ const CodePreview = (props)=>{
             endBr = '>';
             eleSecond = `</area>`;
         }
+        if (elementsArr[index].element === 'break') {
+            eleFirst = `<br `;
+            endBr = '>';
+            eleSecond = `</br>`;
+        }
+        if (elementsArr[index].element === 'body') {
+            eleFirst = `<body `;
+            endBr = '>';
+            eleSecond = `</body>`;
+        }
+        if (elementsArr[index].element === 'a') {
+            eleFirst = `<a `;
+            endBr = '>';
+            eleSecond = `</a>`;
+        }
         let bracket = '';
         let classTag = '';
         let bracket2 = '';
@@ -7813,6 +7800,8 @@ const CodePreview = (props)=>{
     });
     let html = testArray.map((e, i)=>e).join('\n');
     return mod.createElement("div", {
+        id: "outer"
+    }, mod.createElement("div", {
         id: "codePreview"
     }, mod.createElement("link", {
         rel: 'stylesheet',
@@ -7963,9 +7952,7 @@ const CodePreview = (props)=>{
        };`)
     }, mod.createElement("p", {
         id: "clip"
-    }, "\u{1F4CB}")), mod.createElement("span", {
-        className: "tooltiptext"
-    }, "Click to copy!")));
+    }, "\u{1F4CB}")))));
 };
 const IslandPreview = (props)=>{
     const { elementsArr , setElementsArr  } = props;
@@ -8033,51 +8020,30 @@ const MainContainer1 = (props)=>{
 const Navbar1 = (props)=>{
     const { setPreviewPage  } = props;
     return mod.createElement("div", {
-        className: "navBar",
-        style: {
-            width: '100%',
-            padding: '0px',
-            fontSize: '25px',
-            marginTop: '-29px',
-            backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            textAlign: 'center',
-            border: 'none'
-        }
+        className: "navBar"
     }, mod.createElement("button", {
         style: {
             width: '50%',
-            padding: '0px',
+            height: '12%',
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            fontWeight: 'bolder',
-            height: '50px',
-            border: 'none'
+            color: "#2D3033"
         },
         className: "codePreviewBtn",
         onClick: ()=>{
             setPreviewPage('codePreview');
         }
-    }, mod.createElement("h3", {
-        className: "codePreviewBtn"
-    }, "Code Preview")), mod.createElement("button", {
+    }, "Code Preview"), mod.createElement("button", {
         style: {
             width: '50%',
-            padding: '0px',
+            height: '12%',
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
-            color: "#2D3033",
-            fontWeight: 'bolder',
-            height: '50px',
-            border: 'none',
-            borderLeft: '2px solid black'
+            color: "#2D3033"
         },
         className: "islandPreviewBtn",
         onClick: ()=>{
             setPreviewPage('islandPreview');
         }
-    }, mod.createElement("h3", {
-        className: "islandPreviewBtn"
-    }, "Island Preview")));
+    }, "Island Preview"));
 };
 const Preview = (props)=>{
     const { elementsArr , setElementsArr  } = props;
@@ -8238,14 +8204,16 @@ function Buttons(props) {
     }), mod.createElement("div", {
         id: "buttonContainer",
         style: {
-            maxHeight: '300px',
-            overflow: 'scroll'
+            maxHeight: '100%',
+            width: '100%',
+            marginLeft: '12%',
+            marginRight: '12%'
         }
     }, mod.createElement("button", {
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            width: "90%",
+            width: "100%",
             fontSize: "20px",
             fontWeight: "bolder",
             marginTop: "10px",
@@ -8259,7 +8227,7 @@ function Buttons(props) {
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            width: "90%",
+            width: "100%",
             fontSize: "20px",
             fontWeight: "bolder",
             marginTop: "15px",
@@ -8297,7 +8265,7 @@ function Buttons(props) {
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            width: "90%",
+            width: "100%",
             fontSize: "20px",
             fontWeight: "bolder",
             marginTop: "15px",
@@ -8315,7 +8283,7 @@ function Buttons(props) {
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            width: "90%",
+            width: "100%",
             fontSize: "20px",
             fontWeight: "bolder",
             marginTop: "15px",
@@ -8346,7 +8314,7 @@ function Buttons(props) {
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            width: "90%",
+            width: "100%",
             fontSize: "20px",
             fontWeight: "bolder",
             marginTop: "15px",
@@ -8357,7 +8325,7 @@ function Buttons(props) {
         style: {
             backgroundImage: "linear-gradient(#68EDA7, #FFE958)",
             color: "#2D3033",
-            width: "90%",
+            width: "100%",
             fontSize: "20px",
             fontWeight: "bolder",
             marginTop: "15px",
@@ -8372,64 +8340,6 @@ function Buttons(props) {
     }, mod.createElement("p", null, "Log Out")))));
 }
 const App = ()=>{
-    const sideBarStyle = {
-        gridArea: 'side',
-        overflow: 'scroll',
-        maxHeight: '500px'
-    };
-    const customizationStyle = {
-        gridArea: 'cust',
-        backgroundColor: "#2D3033",
-        borderColor: "rgb(250,224,66)",
-        borderWidth: '3px',
-        borderStyle: 'solid',
-        fontSize: '30px'
-    };
-    const previewStyle = {
-        gridArea: 'prev',
-        backgroundColor: "#2D3033",
-        fontSize: '30px',
-        borderRight: "3px solid #68EDA7",
-        borderButtom: "3px solid #FFE958"
-    };
-    const buttonsStyle = {
-        gridArea: 'buttons',
-        backgroundColor: "#2D3033",
-        borderLeft: "3px solid #FFE958",
-        borderButtom: "3px solid #FFE958",
-        fontSize: '30px'
-    };
-    const styles = {
-        display: 'grid',
-        backgroundColor: 'black',
-        borderButtom: "3px solid #FFE958",
-        color: '#68EDA7',
-        gridTemplate: 'auto / repeat(15, 1fr)',
-        gridTemplateAreas: `"side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"`,
-        width: '100%',
-        height: '100%'
-    };
     const [elementsArr, setElementsArr] = mod.useState([]);
     const [currentElement, setCurrentElement] = mod.useState('drag into here');
     const [projectId, setProjectId] = mod.useState('');
@@ -8449,10 +8359,14 @@ const App = ()=>{
     const [className, setClassName] = mod.useState('');
     console.log("elementsArr in app", elementsArr);
     return mod.createElement("div", {
-        className: "app",
-        style: styles
+        className: "app"
+    }, mod.createElement("link", {
+        rel: 'stylesheet',
+        href: './static/css/App.css'
+    }), mod.createElement("div", {
+        id: "top"
     }, mod.createElement("div", {
-        style: sideBarStyle
+        id: "sid"
     }, mod.createElement(SideBar, {
         elementsArr: elementsArr,
         setElementsArr: setElementsArr,
@@ -8481,7 +8395,27 @@ const App = ()=>{
         className: className,
         setClassName: setClassName
     })), mod.createElement("div", {
-        style: customizationStyle
+        id: "pr"
+    }, mod.createElement(Preview, {
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr
+    }))), mod.createElement("div", {
+        id: "btmLeft"
+    }, mod.createElement("div", {
+        id: "btns"
+    }, mod.createElement(Buttons, {
+        elementsArr: elementsArr,
+        setElementsArr: setElementsArr,
+        projectId: projectId,
+        setProjectId: setProjectId,
+        user: user,
+        setUser: setUser,
+        projectList: projectList,
+        setProjectList: setProjectList,
+        loadProj: loadProj,
+        setLoadProj: setLoadProj
+    })), mod.createElement("div", {
+        id: "cu"
     }, mod.createElement(Customization, {
         elementsArr: elementsArr,
         setElementsArr: setElementsArr,
@@ -8509,25 +8443,7 @@ const App = ()=>{
         setFontSize: setFontSize,
         className: className,
         setClassName: setClassName
-    })), mod.createElement("div", {
-        style: previewStyle
-    }, mod.createElement(Preview, {
-        elementsArr: elementsArr,
-        setElementsArr: setElementsArr
-    })), mod.createElement("div", {
-        style: buttonsStyle
-    }, mod.createElement(Buttons, {
-        elementsArr: elementsArr,
-        setElementsArr: setElementsArr,
-        projectId: projectId,
-        setProjectId: setProjectId,
-        user: user,
-        setUser: setUser,
-        projectList: projectList,
-        setProjectList: setProjectList,
-        loadProj: loadProj,
-        setLoadProj: setLoadProj
-    })));
+    }))));
 };
 const Login = ()=>{
     const [username, usernameOnChange] = mod.useState('');

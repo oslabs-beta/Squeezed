@@ -76,3 +76,7 @@
   .tooltip:hover .tooltiptext {
     visibility: visible;
   }
+
+  #outer {
+    height: 100%
+  }

@@ -52,7 +52,7 @@ const Login = () => {
   }
 
     return (
-<div>
+<div >
 <link rel={'stylesheet'} href={'./static/css/login.css'} />
 
   <div className="login"/>

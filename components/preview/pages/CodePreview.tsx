@@ -114,6 +114,21 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
     endBr = '>'
    eleSecond = `</area>`
   }
+  if(elementsArr[index].element === 'break') {
+    eleFirst = `<br `
+    endBr = '>'
+   eleSecond = `</br>`
+  }
+  if(elementsArr[index].element === 'body') {
+    eleFirst = `<body `
+    endBr = '>'
+   eleSecond = `</body>`
+  }
+  if(elementsArr[index].element === 'a') {
+    eleFirst = `<a `
+    endBr = '>'
+   eleSecond = `</a>`
+  }
   // console.log(1, elementsArr[index].textAlign)
   let bracket = ''
   let classTag = ''
@@ -190,6 +205,7 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
   
   // console.log('testtt', Array)
   return (
+    <div id='outer'>
     <div id='codePreview'>
       
       <link rel={'stylesheet'} href={'./static/css/codePreview.css'} />
@@ -236,8 +252,9 @@ const htmlTags = elementsArr.map((elements: any, index: any) =>{
   <p id='clip'>&#128203;</p>
   </button>
   
-  <span className="tooltiptext">Click to copy!</span>
+  {/* <span className="tooltiptext">Click to copy!</span> */}
 </div>
+      </div>
       </div>
   )
   }

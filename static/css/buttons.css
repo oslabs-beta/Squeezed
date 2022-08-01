@@ -8,7 +8,7 @@ width: 100%
     border: 1px solid black;
   }  */
 
-  #tableEle {
+  /* #tableEle {
     display: inline-block;
     padding-left: 20px;
   overflow-y: auto;
@@ -17,7 +17,7 @@ width: 100%
   max-width: 180px;
   overflow: scroll;
 
-  }
+  } */
  
   #test:hover {
     background-color: #f4df54;
