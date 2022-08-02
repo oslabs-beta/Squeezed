@@ -71,8 +71,8 @@ const elementsList =
         backgroundColor: 'rgb(218,233,131)'
       },
       {
-        id: 'button',
-        element: 'LIST (UL)',
+        id: 'a',
+        element: 'A',
         backgroundColor: 'rgb(220,233,129)'
       },
       {
@@ -93,6 +93,16 @@ const elementsList =
       {
         id: 'area',
         element: 'AREA',
+        backgroundColor: 'rgb(238,233,120)'
+      },
+      {
+        id: 'body',
+        element: 'BODY',
+        backgroundColor: 'rgb(238,233,120)'
+      },
+      {
+        id: 'break',
+        element: 'BR',
         backgroundColor: 'rgb(238,233,120)'
       }
     ];

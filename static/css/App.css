@@ -1,152 +1,43 @@
-
- .draggedTags:hover {
-    background-color: green;
-} 
-/* .draggedTags:hover{
-    background-color: black;
-    -webkit-user-drag: element;
-    user-select: none;
-}  */
-
-/* a:visited{
-color: aquamarine;
-} */
-
-.draggedTags:active{
-    background: rgb(184, 225, 187);
-    
+.app {
+  height: 100%;
+  width: 100%;
+  background-color: #2d3033;
+  display: inline-block;
 }
 
-/* div.draggedTags.active{
-    background: blue;
-} */
+#sid {
+  grid-area: sid;
+  width: 65%;
+  float: left;
+}
 
-/* .draggedTags:focus{
-    background-color: red;
-} */
+#cu {
+  width: 70%;
+  border-left: 2px solid #68eda7;
+  margin-left: 13.5%;
+}
+#pr {
+  grid-area: pr;
+  background-color: #2d3033;
+  width: 34.889%;
+  float: right;
+  margin-top: 0%;
+  height: 930px;
+  overflow-y: scroll;
+  border-left: 2px solid #68eda7;
+}
 
-/* .draggedTags:focus, .draggedTags:active{
-    background-color: rgb(0, 0, 0);
- } */
+#btns {
+  width: 10%;
+  float: left;
+}
 
-
-/* 
- const sideBarStyle = { 
-    gridArea: 'side',
-  } as const;
-  
-  const customizationStyle = { 
-    gridArea: 'cust',
-    backgroundColor: "#2D3033",
-    borderColor: "rgb(250,224,66)",
-    borderWidth: '3px',
-    borderStyle: 'solid',    
-    fontSize: '30px',
-    position: 'relative'
-    
-  } as const;
-  
-  const previewStyle = { 
-    gridArea: 'prev',
-    backgroundColor: "#2D3033",
-    fontSize: '30px',
-    borderRight: "3px solid #68EDA7",
-    borderButtom: "3px solid #FFE958",  
-    
-  } as const;
-  
-  const buttonsStyle = { 
-    gridArea: 'buttons',
-    backgroundColor: "#2D3033",
-    borderLeft: "3px solid #FFE958",
-    borderButtom: "3px solid #FFE958",
-    fontSize: '30px',
-   
-
-  } as const;
-  
-  const styles = {
-    display: 'grid',
-    backgroundColor: 'black',
-    borderButtom: "3px solid #FFE958",
-    color: '#68EDA7',
-
-    gridTemplateAreas:
-    `"side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"`,
-    width: '100%',
-    height: '100%'
-  } as const;
- */
-
-  .app {
-/* display: grid;
-grid-template: repeat(4, 1fr) / repeat(4, 1fr);
-grid-template-areas: 
-'sid sid sid pr'
-'sid sid sid pr'
-'sid sid sid pr'
-'btns cust cust pr';
-min-height: 0;  /* NEW */
-/* min-width: 0;  */ 
-height: 100%;
-width: 100%;
-background-color: #2D3033;
-display: inline-block;
-  }
-
-
-
-  #sid{
-grid-area: sid;
-/* background-color: aqua;
-overflow: hidden;
-min-width: 0px;
-max-height: 500px; */
-width: 65%;
-float: left;
-  }
-
-  #cu{
-
-width: 70%;
-  border-left:3px solid #68eda7;
-
-margin-left: 13.5%;
-
-  }
-  #pr{
-grid-area: pr;
-background-color: #2D3033;
-width: 34.889%;
-float: right;
-margin-top: 0%;
-/* min-height: 1000px; */
-/* max-height: ; */
-height:930px;
-overflow-y: scroll;
-border-left: 2px solid #FFE958;
-  }
-
-  #btns {
- 
-
-width: 10%;
-float: left;
-
-  }
-
-
-  /* backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033" */
-  #pr::-webkit-scrollbar {
-    width: 10px; 
- }
+#pr::-webkit-scrollbar {
+  width: 10px;
+}
 
 #pr::-webkit-scrollbar-track {
-  background-color: black;
+  background-color: #2d3033;
 }
 
 #pr::-webkit-scrollbar-thumb {

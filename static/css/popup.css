@@ -6,6 +6,8 @@
     height: 100vh;
     top: 0;
     left: 0;
+    align-content: center;
+
 }
    
   .box {
@@ -20,6 +22,7 @@
     padding: 20px;
     border: 1px solid #2d3033;
 overflow:scroll;
+align-content: center;
 
   }
    
@@ -27,14 +30,19 @@ overflow:scroll;
     content: 'x';
     cursor: pointer;
     float: right;
-    background: #ededed;
+    background: #2d3033;
     width: 25px;
     height: 25px;
     border-radius: 50%;
     line-height: 20px;
     text-align: center;
-    border: 1px solid #999;
+    border: 1px solid #68eda7;
     font-size: 20px;
     overflow:scroll;
     max-width: 50px;
+    color:#68eda7;
   }
+
+  
+
+ 

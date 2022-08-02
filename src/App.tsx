@@ -40,9 +40,10 @@ const App: React.FC = () => {
   }, [user]);
 
   return (
-    <div className="app" >
-      <div>
-        <SideBar 
+    <div className="app">
+    <link rel={'stylesheet'} href={'./static/css/App.css'} />
+<div id='top'>
+    <div id='sid'><SideBar 
           elementsArr={elementsArr} 
           setElementsArr={setElementsArr} 
           currentElement={currentElement} 
@@ -60,8 +61,31 @@ const App: React.FC = () => {
           setClassName={setClassName}
         />
       </div>
-
-      <div>
+      <div id='pr'>
+        <Preview 
+          elementsArr={elementsArr} 
+          setElementsArr={setElementsArr} 
+        />
+      </div>
+      </div>
+      <div id='btmLeft'>
+      <div id='btns'>
+        <Buttons 
+          elementsArr={elementsArr} 
+          setElementsArr={setElementsArr} 
+          currentElement={currentElement} 
+          setCurrentElement={setCurrentElement} 
+          projectId={projectId}
+          setProjectId={setProjectId}
+          user={user}
+          setUser={setUser}
+          projectList={projectList}
+          setProjectList={setProjectList}
+          loadProj={loadProj}
+          setLoadProj={setLoadProj}
+        />
+      </div>
+      <div id='cu'>
         <Customization 
           elementsArr={elementsArr} 
           setElementsArr={setElementsArr} 
@@ -92,29 +116,9 @@ const App: React.FC = () => {
         />
       </div>
 
-      <div >
-        <Preview 
-          elementsArr={elementsArr} 
-          setElementsArr={setElementsArr} 
-        />
       </div>
 
-      <div>
-        <Buttons 
-          elementsArr={elementsArr} 
-          setElementsArr={setElementsArr} 
-          currentElement={currentElement} 
-          setCurrentElement={setCurrentElement} 
-          projectId={projectId}
-          setProjectId={setProjectId}
-          user={user}
-          setUser={setUser}
-          projectList={projectList}
-          setProjectList={setProjectList}
-          loadProj={loadProj}
-          setLoadProj={setLoadProj}
-        />
-      </div>
+     
     </div>
   );
 };

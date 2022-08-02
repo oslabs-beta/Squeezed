@@ -73,11 +73,12 @@ const Customization = (props: ICustomizationProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{fontSize: '20px', color: 'white'}}>
+    <div id='styling'>
+    <form onSubmit={handleSubmit}>
       <link rel={'stylesheet'} href={'./static/css/customizationStyles.css'} />
-      <div style={{fontSize: '26px',textAlign:'center' , marginTop: '20px'}} id='selectedEle'>Element selected: {currentElement.element}</div>  
+      <div id='selectedEle'>Element selected: {currentElement.element}</div>  
       <br />
-      <div style={{marginLeft: '40px'}}>
+      <div id='lft'>
         <label htmlFor="inputText">Input Text </label>  
         <input
           value={inputText}
@@ -85,7 +86,6 @@ const Customization = (props: ICustomizationProps) => {
           type="text"
           placeholder="Enter text"
           className="input"
-          style={{backgroundColor: '#68EDA7', color: 'black'}}
         /> 
         <br />
 
@@ -130,7 +130,7 @@ const Customization = (props: ICustomizationProps) => {
         <br />
       </div>
 
-      <div style={{float: 'right', marginTop: '-175px', marginRight: '40px'}}>
+      <div id='rt'>
      
         <label htmlFor="height">Height </label>  
         <input
@@ -173,7 +173,7 @@ const Customization = (props: ICustomizationProps) => {
         <br/>
 
         <label htmlFor="textDecoration">Text Decoration </label>
-        <select className="textDecoration" onChange={e => setTextDecoration(e.target.value)} style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033"}}>
+        <select className="textDecoration" onChange={e => setTextDecoration(e.target.value)}>
           <option>default</option>
           <option>overline</option>
           <option>line-through</option>
@@ -183,7 +183,7 @@ const Customization = (props: ICustomizationProps) => {
         <br />
       
         <label htmlFor="textAlign">Text Align </label>
-        <select onChange={e => setTextAlign(e.target.value)} style={{backgroundImage: "linear-gradient(#68EDA7, #FFE958)", color: "#2D3033"}}>
+        <select className='textAlign' onChange={e => setTextAlign(e.target.value)}>
           <option>default</option>
           <option>center</option>
           <option>right</option>
@@ -195,10 +195,11 @@ const Customization = (props: ICustomizationProps) => {
         <br/>
       </div>
 
-      <button type="submit" className="btn"  style={{marginLeft: '42%', backgroundImage: "linear-gradient(#68EDA7, #FFE958)", fontSize: '20px', marginBottom: '20px',color: "#2D3033", marginTop:'20px'}}>
+      <button type="submit" className="btn"  >
         Submit
       </button>
     </form>
+    </div>
   );
 };
 

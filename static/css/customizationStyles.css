@@ -11,9 +11,7 @@ margin-top: 4%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
-    /* border: 2px solid;
-    border-image: linear-gradient(45deg, #68eda7, #ffe958) 1;
-    border-radius:10px; */
+ 
   }
 
   input[type=text]{
@@ -24,7 +22,7 @@ margin-top: 4%;
   color: pink;
 }
 
-input {
+#styling input {
   font-size: 15px;
   background: -webkit-linear-gradient(#68eda7, #ffe958);
   -webkit-background-clip: text;
