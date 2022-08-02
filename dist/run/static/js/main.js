@@ -8016,7 +8016,7 @@ function Buttons(props) {
             },
             body: JSON.stringify(body)
         }).then((data)=>data.json()).then((data)=>{
-            console.log("save data", data);
+            if (!projectId) setProjectId(data.project_id);
         }).catch((err)=>console.log(err));
     }
     async function load() {
@@ -8031,11 +8031,8 @@ function Buttons(props) {
                 authorization: jwt
             })
         }).then((data)=>data.json()).then((data)=>{
-            console.log("load data", data);
             setProjectList(data);
-            console.log(projectList);
         }).catch((err)=>console.log(err));
-        console.log(projectList);
     }
     async function deleteData() {
         let jwt = sessionStorage.getItem("Authorization");
@@ -8076,8 +8073,8 @@ function Buttons(props) {
             })
         }).then((data)=>data.json()).then((data)=>{
             setElementsArr(data);
+            setProjectId(id);
         }).catch((err)=>console.log(err));
-        setProjectId(id);
     }
     const navigate = he1();
     const navigateToLogin = ()=>{

@@ -52,7 +52,7 @@ export default function Buttons(props: any) {
     })
       .then((data) => data.json())
       .then((data) => {
-        console.log("save data", data);
+        if(!projectId) setProjectId(data.project_id);
       })
       .catch((err) => console.log(err));
   }
@@ -69,12 +69,9 @@ export default function Buttons(props: any) {
     })
       .then((data) => data.json())
       .then((data) => {
-        console.log("load data", data);
         setProjectList(data);
-        console.log(projectList);
       })
       .catch((err) => console.log(err));
-    console.log(projectList);
   }
 
   async function deleteData() {
@@ -119,10 +116,9 @@ export default function Buttons(props: any) {
       .then((data) => data.json())
       .then((data) => {
         setElementsArr(data);
+        setProjectId(id);
       })
       .catch((err) => console.log(err));
-
-    setProjectId(id);
   }
 
   const navigate = useNavigate();

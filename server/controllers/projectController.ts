@@ -47,10 +47,8 @@ projectController.deleteProject = async (ctx: any) => {
     const { value } = await ctx.request.body({type: 'json'});
     const obj = await value;
     let { project_id } = obj;
-    console.log('before', project_id)
     let deleteProjQuery = dex("projects").where({id: project_id}).update({delete_status: "true"}).toString();
     await db.queryArray(deleteProjQuery);
-    console.log('after')
     return ctx.response.status = 200;
   } catch (err) {
     ctx.response.body = { status: false, data: null};
