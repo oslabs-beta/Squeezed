@@ -1,0 +1,44 @@
+Create Table Queries
+
+CREATE TABLE users
+(
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(15) NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  email VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE projects
+(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(50),
+  date TIMESTAMP default CURRENT_TIMESTAMP,
+  delete_status VARCHAR(50),
+  user_id INTEGER REFERENCES users(id) 
+);
+
+CREATE TABLE elements
+(
+  id INTEGER NOT NULL,
+  element VARCHAR(100) NOT NULL,
+  text VARCHAR(100),
+  textAlign VARCHAR(100),
+  textDecoration VARCHAR(100),
+  backgroundColor VARCHAR(100),
+  color VARCHAR(100),
+  margin VARCHAR(100),
+  width VARCHAR(100),
+  height VARCHAR(100),  
+  padding VARCHAR(100),
+  project_id INTEGER REFERENCES projects(id)
+);
+
+//table insert examples 
+INSERT INTO users (username, password, email)
+VALUES ('username', 'password', 'user@user.com');
+
+INSERT INTO projects (name, user_id)
+VALUES ('fresh', 1);
+
+INSERT INTO elements (id, element, text, textAlign, textDecoration, backgroundColor, color, margin, width, height, padding, project_id)
+VALUES (1, 'div', 'text', 'textAlign', 'textDecoration', 'backgroundColor', 'color', 'margin', 'width', 'height', 'padding', 1);

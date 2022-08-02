@@ -1,11 +1,14 @@
 {
   "tasks": {
-    "start": "deno run -A --watch=static/,routes/ dev.ts"
+    "start": "deno run -A --watch=static/,routes/ dev.ts",
+    "dev": "deno-create-react-app run & denon run --allow-net --allow-env --allow-read ./server/server.ts"
   },
   "compilerOptions": {
     "allowJs": true,
-    "lib": ["deno.window"],
-    "strict": true
+    "lib": ["deno.window", "es6", "dom"],
+    "strict": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "https://esm.sh/react"
   },
   "importMap": "./import_map.json",
   "lint": {

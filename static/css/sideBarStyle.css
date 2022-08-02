@@ -1,0 +1,96 @@
+
+ .draggedTags:hover {
+    background-color: green;
+} 
+
+.draggedTags:active{
+    background: rgb(184, 225, 187);
+}
+
+#scroll {
+  display: grid;
+  grid-template-areas:
+    "sd dr dr dr dr dr dr dr dr dr"
+    "sd dr dr dr dr dr dr dr dr dr"
+    "sd dr dr dr dr dr dr dr dr dr";
+}
+#side,
+#drop {
+  max-height: 600px;
+  border-bottom: 2px solid #68eda7;
+}
+#side {
+  grid-area: sd;
+  background-color: #ffe958;
+  overflow-y: scroll;
+}
+
+#side::-webkit-scrollbar {
+  width: 10px;
+}
+
+#side::-webkit-scrollbar-track {
+  background-color: #2d3033;
+}
+
+#side::-webkit-scrollbar-thumb {
+  background: #4e4e4e;
+  border-radius: 25px;
+}
+#drop {
+  grid-area: dr;
+  background-color: #2d3033;
+  overflow-y: scroll;
+  border: 2px solid #68eda7;
+}
+#drop::-webkit-scrollbar {
+  width: 10px;
+}
+
+#drop::-webkit-scrollbar-track {
+  background-color: #2d3033;
+}
+
+#drop::-webkit-scrollbar-thumb {
+  background: #4e4e4e;
+  border-radius: 25px;
+}
+button {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.draggedTags {
+  text-align: center;
+  font-weight: bold;
+  width: 97%;
+  margin-left: 1%;
+  margin-bottom: 8px;
+  margin-top: 5px;
+  font-size: 20px;
+  background: -webkit-linear-gradient(#68eda7, #ffe958);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border: 3px solid;
+  border-image: linear-gradient(45deg, #68eda7, #ffe958) 1;
+  border-radius: 10px;
+}
+
+.draggedTags:hover {
+  background-color: #68eda7;
+}
+
+#delete-btn {
+  background-image: linear-gradient(#68eda7, #ffe958);
+  color: #2d3033;
+  float: right;
+  margin-top: 0px;
+  margin-right: -1px;
+  height: 3px;
+}
+#draggedButton {
+  color: #2d3033;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bolder;
+}

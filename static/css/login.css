@@ -1,0 +1,116 @@
+img{
+	width: 100%;
+}
+.login {
+    height: 1300px;
+    width: 100%;
+    background-image: linear-gradient(rgb(161, 215, 161), rgb(254, 247, 104));
+    position: relative;
+}
+.login_box {
+    width: 50%;
+    height: 55%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+   
+    border-radius: 10px;
+    box-shadow: 1px 4px 22px -8px #0004;
+    display: flex;
+    overflow: hidden;
+}
+.login_box .left{
+  width: 41%;
+  height: 100%;
+  padding: 5px 25px;
+  
+}
+.login_box .right{
+  width: 59%;
+  height: 100%  
+}
+
+.left .contact{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    height: 100%;
+    width: 73%;
+    margin: auto;
+}
+.left h3{
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 35px;
+  color:#EEECE1
+}
+.left input {
+    border: none;
+    width: 80%;
+    margin: 15px 0px;
+    border-bottom: 1px solid #ffffff;
+    padding: 7px 9px;
+    width: 100%;
+    overflow: hidden;
+    background: transparent;
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+}
+.left{
+	background-color: #2d3033;
+}
+.submit {
+    border: none;
+    padding: 15px 70px;
+    border-radius: 8px;
+    display: block;
+    margin: auto;
+    margin-top: 120px;
+    background-image: linear-gradient(rgb(161, 215, 161), rgb(254, 247, 104));
+    color:#2d3033;
+    font-weight: bold;
+    -webkit-box-shadow: 0px 9px 15px -11px rgb(140, 196, 88);
+    -moz-box-shadow: 0px 9px 15px -11px rgb(71, 161, 75);
+    box-shadow: 0px 9px 15px -11px rgb(55, 109, 53);
+}
+
+
+
+.right {
+  background: url("../images/Finallogo.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+	color: #fff;
+	position: relative;
+  width: 120%;
+  background-color: #fefcf6;
+}
+
+.right .right-text{
+  height: 100%;
+  position: relative;
+  transform: translate(0%, 45%);
+}
+
+
+.right .right-inductor{
+  position: absolute;
+  width: 70px;
+  height: 7px;
+  background: #fff0;
+  left: 50%;
+  bottom: 70px;
+  transform: translate(-50%, 0%);
+}
+
+
+#signuplink {
+  text-align: center;
+  color:#EEECE1;
+  padding-top: 30px;
+}
+
+

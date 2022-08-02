@@ -1,0 +1,74 @@
+#codePreview {
+    margin-left: 4%;
+    font-size: 23px;
+    color: rgb(255, 255, 255);
+    width: 70%;
+}
+
+#return {
+    margin-left: 7%;
+}
+
+#mainOpeningTag {
+    margin-left: 9%;
+}
+
+#htmlTags {
+    margin-left: 15%;
+}
+
+#mainClosingTag {
+    margin-left: 9%;
+}
+
+#paren {
+    margin-left: 7%;
+}
+
+#endingCurly {
+    margin-left: 4%;
+}
+
+#btn {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    float: right;
+    height: 75px;
+
+}
+#clip {
+    font-size: 30px;
+   
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-image: linear-gradient(#68eda7, #ffe958);
+    color: #2d3033;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-weight: bolder;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 70%;
+    margin-left: -60px;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  #outer {
+    height: 100%
+  }
