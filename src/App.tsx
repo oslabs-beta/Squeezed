@@ -3,15 +3,9 @@ import SideBar from './SideBar.tsx';
 import Customization from './Customization.tsx';
 import Preview from './preview/Preview.tsx';
 import Buttons from './Buttons.tsx';
-import Signup from './Signup.tsx';
-import Login from './Signup.tsx';
 import { IHtmlElement, IProps} from './utils/types.ts';
   
 const App: React.FC = () => {
-
-  //Styling
-
-  
 
   //State
   const [elementsArr, setElementsArr] = React.useState<IHtmlElement[]>([] as IHtmlElement[]);
@@ -42,8 +36,9 @@ const App: React.FC = () => {
   return (
     <div className="app">
     <link rel={'stylesheet'} href={'./static/css/App.css'} />
-<div id='top'>
-    <div id='sid'><SideBar 
+    <div id='top'>
+      <div id='sid'>
+        <SideBar 
           elementsArr={elementsArr} 
           setElementsArr={setElementsArr} 
           currentElement={currentElement} 
@@ -67,24 +62,24 @@ const App: React.FC = () => {
           setElementsArr={setElementsArr} 
         />
       </div>
-      </div>
+    </div>
       <div id='btmLeft'>
-      <div id='btns'>
-        <Buttons 
-          elementsArr={elementsArr} 
-          setElementsArr={setElementsArr} 
-          currentElement={currentElement} 
-          setCurrentElement={setCurrentElement} 
-          projectId={projectId}
-          setProjectId={setProjectId}
-          user={user}
-          setUser={setUser}
-          projectList={projectList}
-          setProjectList={setProjectList}
-          loadProj={loadProj}
-          setLoadProj={setLoadProj}
-        />
-      </div>
+        <div id='btns'>
+          <Buttons 
+            elementsArr={elementsArr} 
+            setElementsArr={setElementsArr} 
+            currentElement={currentElement} 
+            setCurrentElement={setCurrentElement} 
+            projectId={projectId}
+            setProjectId={setProjectId}
+            user={user}
+            setUser={setUser}
+            projectList={projectList}
+            setProjectList={setProjectList}
+            loadProj={loadProj}
+            setLoadProj={setLoadProj}
+          />
+        </div>
       <div id='cu'>
         <Customization 
           elementsArr={elementsArr} 
@@ -115,10 +110,7 @@ const App: React.FC = () => {
           setClassName={setClassName}
         />
       </div>
-
-      </div>
-
-     
+    </div>
     </div>
   );
 };

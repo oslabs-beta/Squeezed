@@ -1,5 +1,5 @@
 import { React, ReactDOM } from './deps.tsx';
-import { BrowserRouter, HashRouter, Routes, Route} from './deps.tsx';
+import { HashRouter, Routes, Route} from './deps.tsx';
 import App from './src/App.tsx';
 import Login from './src/Login.tsx';
 import Signup from './src/Signup.tsx';

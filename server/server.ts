@@ -21,17 +21,16 @@ app.use(projectRoutes.allowedMethods());
         
 //Request Body parser
 app.use(async (ctx) => {
-const reqBody = await ctx.request.body().value;
-console.log(reqBody, typeof reqBody);
-ctx.response.status = 200;
+  const reqBody = await ctx.request.body().value;
+  ctx.response.status = 200;
 });
 
 app.addEventListener("error", (evt) => {
-console.log(evt.error);
+  console.log(evt.error);
 });
 
 app.use((ctx: any) => {
-ctx.throw(500);
+  ctx.throw(500);
 });
 
 app.use(async (ctx, next) => {
