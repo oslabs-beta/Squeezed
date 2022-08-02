@@ -2,9 +2,9 @@ img{
 	width: 100%;
 }
 .login {
-    height: 1000px;
+    height: 1300px;
     width: 100%;
-    background-image: linear-gradient(rgb(129, 174, 120), rgb(231, 218, 72));
+    background-image: linear-gradient(rgb(161, 215, 161), rgb(254, 247, 104));
     position: relative;
 }
 .login_box {
@@ -44,7 +44,7 @@ img{
   text-align: center;
   margin-bottom: 40px;
   font-size: 35px;
-  color:#f1f3f5
+  color:#EEECE1
 }
 .left input {
     border: none;
@@ -69,7 +69,7 @@ img{
     display: block;
     margin: auto;
     margin-top: 120px;
-    background-image: linear-gradient(rgb(129, 174, 120), rgb(231, 218, 72));
+    background-image: linear-gradient(rgb(161, 215, 161), rgb(254, 247, 104));
     color:#2d3033;
     font-weight: bold;
     -webkit-box-shadow: 0px 9px 15px -11px rgb(140, 196, 88);
@@ -85,7 +85,8 @@ img{
   background-size: cover;
 	color: #fff;
 	position: relative;
-  width: 120%
+  width: 120%;
+  background-color: #fefcf6;
 }
 
 .right .right-text{
@@ -108,6 +109,8 @@ img{
 
 #signuplink {
   text-align: center;
-  color:#f3f5f6;
+  color:#EEECE1;
   padding-top: 30px;
 }
+
+

@@ -5,14 +5,6 @@
     width: 70%;
 }
 
-#import {
-    /* margin-right: 200px */
-}
-
-#export {
-    /* margin-right: 200px */
-}
-
 #return {
     margin-left: 7%;
 }
@@ -75,4 +67,8 @@
   
   .tooltip:hover .tooltiptext {
     visibility: visible;
+  }
+
+  #outer {
+    height: 100%
   }

@@ -1,0 +1,13 @@
+.codePreviewBtn {
+  width: 50%;
+  height: 12%;
+  background-image: linear-gradient(#68eda7, #ffe958);
+  color: #2d3033;
+}
+
+.islandPreviewBtn {
+  width: 50%;
+  height: 12%;
+  background-image: linear-gradient(#68eda7, #ffe958);
+  color: #2d3033;
+}

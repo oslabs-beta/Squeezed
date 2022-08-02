@@ -1,19 +1,17 @@
 
   #selectedEle {
 
-    width: 50%;
-    margin-left: 20%;
+margin-top: 4%;
+ text-align: center;
   display:flex;
   justify-content: center;
   align-items: center;
-    font-size: 20px;
+    font-size: 25px;
     background: -webkit-linear-gradient(#68eda7, #ffe958);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
-    /* border: 2px solid;
-    border-image: linear-gradient(45deg, #68eda7, #ffe958) 1;
-    border-radius:10px; */
+ 
   }
 
   input[type=text]{
@@ -24,7 +22,7 @@
   color: pink;
 }
 
-input {
+#styling input {
   font-size: 15px;
   background: -webkit-linear-gradient(#68eda7, #ffe958);
   -webkit-background-clip: text;
@@ -33,14 +31,43 @@ input {
   border: 2px solid;
   border-image: linear-gradient(45deg, #68eda7, #ffe958) 1;
   border-radius:4px;
-  width: 200px;
+
   margin-top: 10px;
 
 }
 
-.textAlign{
-
-
-.textDecoration{
+form {
+  display: inline-block;
+  color: white;
+  align-items: center;
+  margin-left: 10%;
+  font-weight: bolder;
+  font-size: 20px;
 
 }
+
+#lft {
+float: left
+}
+
+#rt {
+float: right
+}
+
+.btn {
+  margin-top: 27%;
+  background-image: linear-gradient(45deg, #68eda7, #ffe958);
+  color: #2D3033;
+
+}
+
+.textDecoration {
+  background-image: linear-gradient(45deg, #68eda7, #ffe958);
+  color: #2D3033;
+}
+
+.textAlign {
+  background-image: linear-gradient(45deg, #68eda7, #ffe958);
+  color: #2D3033;
+}
+

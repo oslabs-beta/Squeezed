@@ -1,35 +1,118 @@
- /* #tableDiv {
-width: 100%
-  }
+#projectPopUp:hover {
+  background-color: #f4df54;
+  color: #68eda7;
+}
 
-  /* #tableDiv #tableEle {
-    flex: 1 0 33%;
-    height: 50px;
-    border: 1px solid black;
-  }  */
+#projectPopUp:focus {
+  background-color: #54b7f4;
+  color: #ed68d9;
+}
 
-  #tableEle {
-    display: inline-block;
-    padding-left: 20px;
-  overflow-y: auto;
-  max-height: 300px;
-  color:blue;
-  max-width: 180px;
-  overflow: scroll;
+#projectPopUp:active {
+  background-color: #ffffff;
+  color: #313131;
+}
 
-  }
- 
-  #test:hover {
-    background-color: #f4df54;
-    color:  #68eda7;
-  }
+#projectPopUp {
+  align-content: center;
+  background-color: #2d3033;
+  color: white;
+  font-weight: bolder;
+  border-radius: 5px;
+  overflow: auto;
+  margin-top: 10px;
+}
 
-  #test:focus {
-    background-color: #54b7f4;
-    color:  #ed68d9;
-  }
+#projNames {
+  padding: 15px;
+  width: 195px;
+}
 
-  #test:active {
-    background-color: #ffffff;
-    color:  #313131;
-  }
+#buttonContainer {
+  max-height: 100%;
+  width: 100%;
+  margin-left: 12%;
+  margin-right: 12%;
+}
+
+#clearBtn {
+  background-image: linear-gradient(#68eda7, #ffe958);
+  color: #2d3033;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-top: 10px;
+  margin-left: 7px;
+}
+
+#saveBtn {
+  background-image: linear-gradient(#68eda7, #ffe958);
+  color: #2d3033;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-top: 10px;
+  margin-left: 7px;
+}
+
+#loadBtn {
+  background-image: linear-gradient(#68eda7, #ffe958);
+  color: #2d3033;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-top: 10px;
+  margin-left: 7px;
+}
+
+#logoutBtn {
+  background-image: linear-gradient(#68eda7, #ffe958);
+  color: #2d3033;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-top: 10px;
+  margin-left: 7px;
+}
+
+#newProjectBtn {
+  background-image: linear-gradient(#68eda7, #ffe958);
+  color: #2d3033;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-top: 10px;
+  margin-left: 7px;
+}
+
+#loadButton {
+  background-color: #2d3033;
+  color: #68eda7;
+  margin-left: 20%;
+  margin-top: 5%;
+}
+
+#loadProjectButton {
+  background-image: linear-gradient(#68eda7, #ffe958);
+  color: #2d3033;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-top: 15px;
+  margin-left: 7px;
+}
+
+#SaveProject {
+  background-image: linear-gradient(#68eda7, #ffe958);
+  color: #2d3033;
+  border-radius: 5px;
+  margin-top: 5%;
+  margin-left: 13%;
+}
+
+#inputFields {
+  background-color: #2d3033;
+  color: #68eda7;
+  border-radius: 5px;
+  width: 88%;
+}

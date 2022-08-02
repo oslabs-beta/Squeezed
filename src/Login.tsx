@@ -1,35 +1,11 @@
-import { React } from '../deps.tsx';
-import { Link } from '../deps.tsx'
-import { useNavigate } from '../deps.tsx'
-import { deleteCookie, setCookie, getCookies } from "https://deno.land/std/http/cookie.ts";
-import {
-  Cookie,
-  CookieJar,
-  wrapFetch,
-} from "https://deno.land/x/another_cookiejar@v4.1.4/mod.ts";
+import { React, Link, useNavigate } from '../deps.tsx';
 
-
-const cookieJar = new CookieJar();
-
-// import img from ''
-
-// const useInput = (initial:any) => {
-//   const [value, setValue] = React.useState(initial)
-//   const onChange = (e:any) => {
-//     setValue(e.target.value)
-//   }
-//   return [value, onChange]
-// }
-
-// what are u doing
-// im trying to get this shit to work 
 const Login = () => {
 
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
 
-  // const {username, setUsername, password, setPassword} = props;
-
+  //navigates to /home
   const navigate = useNavigate()
   const navigateToHome = () => {
     navigate('/home')
@@ -41,8 +17,7 @@ const Login = () => {
       username: username,
       password: password
     }
-      // Now use this fetch and any cookie that is set will be sent with your next requests automatically
-    // const fetch = wrapFetch({ cookieJar });
+   
     fetch('http://localhost:8080/login',{
       method: 'POST',
       headers: {
@@ -59,7 +34,7 @@ const Login = () => {
     })
     .then((data) => {
       if (data.result === true) {
-        // console.log(data)
+        // stores userId and jwt token in session storage
         sessionStorage.setItem("userId", data.userId);        
         sessionStorage.setItem("Authorization", data.token);        
         navigateToHome();
@@ -71,7 +46,7 @@ const Login = () => {
   }
 
     return (
-<div>
+<div >
 <link rel={'stylesheet'} href={'./static/css/login.css'} />
 
   <div className="login"/>
