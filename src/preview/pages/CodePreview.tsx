@@ -104,7 +104,22 @@ const htmlTags = elementsArr.map((elements: IHtmlElement, index: number) => {
     endBr = '>'
    eleSecond = `</area>`
   }
-
+  if(elementsArr[index].element === 'break') {
+    eleFirst = `<br `
+    endBr = '>'
+   eleSecond = `</br>`
+  }
+  if(elementsArr[index].element === 'body') {
+    eleFirst = `<body `
+    endBr = '>'
+   eleSecond = `</body>`
+  }
+  if(elementsArr[index].element === 'a') {
+    eleFirst = `<a `
+    endBr = '>'
+   eleSecond = `</a>`
+  }
+  
   let bracket = '';
   let classTag = '';
   let bracket2 ='';
@@ -177,7 +192,7 @@ const htmlTags = elementsArr.map((elements: IHtmlElement, index: number) => {
       
       <link rel={'stylesheet'} href={'./static/css/codePreview.css'} />
       <p id='import'><span style={{color: '#FF5581'}}>import</span> {'{'}<span style={{color:'#ffff76'}}> h</span> {'}'} <span style={{color: '#FF5581'}}> from</span> <span style={{color:'#ffff76'}}>'preact'</span>;</p>
-      <p id='import'><span style={{color: '#FF5581'}}>import</span> {'{'}<span style={{color:'#ffff76'}}> PageProps </span> {'}'} <span style={{color: '#FF5581'}}> from</span> <span style={{color:'#ffff76'}}>'$fresh/server.ts'</span> ;</p>
+      <p id='import'><span style={{color: '#FF5581'}}>import</span> {'{'}<span style={{color:'#ffff76'}}> PageProps </span> {'}'} <span style={{color: '#FF5581'}}> from</span> <span style={{color:'#ffff76'}}>'$fresh/server.ts'</span>;</p>
       <p id='import'><span style={{color: '#FF5581'}}>import</span> {'{'}<span style={{color:'#ffff76'}}> useEffect, useState </span> {'}'} <span style={{color: '#FF5581'}}> from</span> <span style={{color:'#ffff76'}}>'preact/hooks'</span>;</p>
       <p id='import'><span style={{color: '#FF5581'}}>import</span> {'{'}<span style={{color:'#ffff76'}}> tw </span> {'}'} <span style={{color: '#FF5581'}}> from</span> <span style={{color:'#ffff76'}}>'twind'</span>;</p>
       <p id='export'><span style={{color: '#FF5581'}}>export default function </span> <span style={{color: '#37CFE0'}}>App </span>(<span style={{color: '#8B7FDA'}}>props: PageProps</span>) <span style={{color:'white'}} >{'{'}</span></p>

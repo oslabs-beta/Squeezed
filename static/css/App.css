@@ -1,30 +1,46 @@
-
- .draggedTags:hover {
-    background-color: green;
-} 
-/* .draggedTags:hover{
-    background-color: black;
-    -webkit-user-drag: element;
-    user-select: none;
-}  */
-
-/* a:visited{
-color: aquamarine;
-} */
-
-.draggedTags:active{
-    background: pink;
-    
+.app {
+  height: 100%;
+  width: 100%;
+  background-color: #2d3033;
+  display: inline-block;
 }
 
-/* div.draggedTags.active{
-    background: blue;
-} */
+#sid {
+  grid-area: sid;
+  width: 65%;
+  float: left;
+}
 
-/* .draggedTags:focus{
-    background-color: red;
-} */
+#cu {
+  width: 70%;
+  border-left: 2px solid #68eda7;
+  margin-left: 13.5%;
+}
+#pr {
+  grid-area: pr;
+  background-color: #2d3033;
+  width: 34.889%;
+  float: right;
+  margin-top: 0%;
+  height: 930px;
+  overflow-y: scroll;
+  border-left: 2px solid #68eda7;
+}
 
-/* .draggedTags:focus, .draggedTags:active{
-    background-color: rgb(0, 0, 0);
- } */
+#btns {
+  width: 10%;
+  float: left;
+}
+
+#pr::-webkit-scrollbar {
+  width: 10px;
+}
+
+#pr::-webkit-scrollbar-track {
+  background-color: #2d3033;
+}
+
+#pr::-webkit-scrollbar-thumb {
+  background: #4e4e4e;
+  border-radius: 25px;
+}

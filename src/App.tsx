@@ -3,76 +3,9 @@ import SideBar from './SideBar.tsx';
 import Customization from './Customization.tsx';
 import Preview from './preview/Preview.tsx';
 import Buttons from './Buttons.tsx';
-import Signup from './Signup.tsx';
-import Login from './Signup.tsx';
 import { IHtmlElement, IProps} from './utils/types.ts';
   
 const App: React.FC = () => {
-
-  //Styling
-  const sideBarStyle = { 
-    gridArea: 'side',
-    overflow: 'scroll',
-    maxHeight: '500px'
-  } as const;
-  
-  const customizationStyle = { 
-    gridArea: 'cust',
-    backgroundColor: "#2D3033",
-    borderColor: "rgb(250,224,66)",
-    borderWidth: '3px',
-    borderStyle: 'solid',    
-    fontSize: '30px',
-  } as const;
-  
-  const previewStyle = { 
-    gridArea: 'prev',
-    backgroundColor: "#2D3033",
-    fontSize: '30px',
-    borderRight: "3px solid #68EDA7",
-    borderButtom: "3px solid #FFE958",  
-  } as const;
-  
-  const buttonsStyle = { 
-    gridArea: 'buttons',
-    backgroundColor: "#2D3033",
-    borderLeft: "3px solid #FFE958",
-    borderButtom: "3px solid #FFE958",
-    fontSize: '30px'
-  } as const;
-  
-  const styles = {
-    display: 'grid',
-    backgroundColor: 'black',
-    borderButtom: "3px solid #FFE958",
-    color: '#68EDA7',
-    gridTemplate: 'auto / repeat(15, 1fr)',
-    gridTemplateAreas:
-    `"side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "side side side side side side side side prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"
-    "buttons cust cust cust cust cust cust cust prev prev prev prev prev prev prev"`,
-    width: '100%',
-    height: '100%'
-  } as const;
 
   //State
   const [elementsArr, setElementsArr] = React.useState<IHtmlElement[]>([] as IHtmlElement[]);
@@ -101,8 +34,10 @@ const App: React.FC = () => {
   }, [user]);
 
   return (
-    <div className="app" style={styles}>
-      <div style={sideBarStyle}>
+    <div className="app">
+    <link rel={'stylesheet'} href={'./static/css/App.css'} />
+    <div id='top'>
+      <div id='sid'>
         <SideBar 
           elementsArr={elementsArr} 
           setElementsArr={setElementsArr} 
@@ -121,8 +56,31 @@ const App: React.FC = () => {
           setClassName={setClassName}
         />
       </div>
-
-      <div style={customizationStyle}>
+      <div id='pr'>
+        <Preview 
+          elementsArr={elementsArr} 
+          setElementsArr={setElementsArr} 
+        />
+      </div>
+    </div>
+      <div id='btmLeft'>
+        <div id='btns'>
+          <Buttons 
+            elementsArr={elementsArr} 
+            setElementsArr={setElementsArr} 
+            currentElement={currentElement} 
+            setCurrentElement={setCurrentElement} 
+            projectId={projectId}
+            setProjectId={setProjectId}
+            user={user}
+            setUser={setUser}
+            projectList={projectList}
+            setProjectList={setProjectList}
+            loadProj={loadProj}
+            setLoadProj={setLoadProj}
+          />
+        </div>
+      <div id='cu'>
         <Customization 
           elementsArr={elementsArr} 
           setElementsArr={setElementsArr} 
@@ -152,30 +110,7 @@ const App: React.FC = () => {
           setClassName={setClassName}
         />
       </div>
-
-      <div style={previewStyle}>
-        <Preview 
-          elementsArr={elementsArr} 
-          setElementsArr={setElementsArr} 
-        />
-      </div>
-
-      <div style={buttonsStyle}>
-        <Buttons 
-          elementsArr={elementsArr} 
-          setElementsArr={setElementsArr} 
-          currentElement={currentElement} 
-          setCurrentElement={setCurrentElement} 
-          projectId={projectId}
-          setProjectId={setProjectId}
-          user={user}
-          setUser={setUser}
-          projectList={projectList}
-          setProjectList={setProjectList}
-          loadProj={loadProj}
-          setLoadProj={setLoadProj}
-        />
-      </div>
+    </div>
     </div>
   );
 };
