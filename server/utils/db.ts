@@ -7,3 +7,4 @@ const client = await new Client(`${env.POSTGRES_URI}`);
 await client.connect();
 
 export default client;
+
