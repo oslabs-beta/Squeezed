@@ -47,7 +47,7 @@ You should see your HTML elements update inside the code preview!
 You can also see what that code will render by clicking on island preview at the top right.
 To use the code that is produced, just click on the clipboard at the bottom of the code preview window and paste the code wherever it is needed!	
 
-#Future Tasks: 
+# Future Tasks: 
 Adding drag and drop nesting functionality for html elements
 Squeezed currently relies on a third-party library and requires a local download to ensure full functionality. Future plans including updating the codebase to ensure compatibility when deploying
 We hope to migrate from a browser application to a desktop application once a  tool that supports Deno browser applications in javascript is released
