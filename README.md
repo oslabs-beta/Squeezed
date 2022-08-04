@@ -1,4 +1,4 @@
-<img width="490" alt="Screen Shot 2022-08-04 at 11 51 22 AM" src="https://user-images.githubusercontent.com/29562751/182930645-d1f00e16-7668-453d-9d44-c18874b7aa38.png">
+![squeezed](https://user-images.githubusercontent.com/29562751/182937867-42d393fc-654d-4f30-895e-dbd5255de30a.png)
 
 # squeezed
 A prototyping tool for the Freshest Deno framework
