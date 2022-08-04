@@ -54,13 +54,13 @@ We hope to migrate from a browser application to a desktop application once a  t
 
 If you’d like to contribute to squeezed or have any feedback, please let us know!
 
-#Tech Stack:
+# Tech Stack:
 Deno, TypeScript, PostgreSQL, React (Hooks and Router), oak, Dex, BCrypt
 
-#License
+# License
 Distributed under the MIT License. See LICENSE for more information.
 
-#The Engineers
+# The Engineers
 Alexa Roberts: GitHub | Linkedin
 
 Carol Xia: GitHub | Linkedin
