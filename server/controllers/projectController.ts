@@ -83,7 +83,7 @@ projectController.saveProject = async (ctx: any) => {
             .returning('id', 'element').toString();
         const elementData = await db.queryObject(elementQuery);
         
-        const { id, element, text, textAlign, textDecoration, backgroundColor, color, margin, height, padding } = el;
+        const { id, element, inputText, texAlign, textDecoration, backgroundColor, color, margin, width, height, padding, fontSize, className } = el;
         if(elementData.rows.length > 0){
           const updateQuery = 
             dex
@@ -91,14 +91,17 @@ projectController.saveProject = async (ctx: any) => {
               .where({id: id})
               .update({
                 element: element,
-                text: text,
-                textalign: textAlign,
+                text: inputText,
+                textalign: texAlign,
                 textdecoration: textDecoration,
                 backgroundcolor: backgroundColor,
                 color: color,
                 margin: margin,
+                width: width,
                 height: height,
-                padding: padding
+                padding: padding,
+                fontsize: fontSize,
+                classname: className
               })
               .returning('id', 'element').toString();
           const updateData = await db.queryObject(updateQuery);
@@ -109,14 +112,16 @@ projectController.saveProject = async (ctx: any) => {
           dex("elements").insert({
             id: id, 
             element: element,
-            text: text,
-            textalign: textAlign,
+            text: inputText,
+            textalign: texAlign,
             textdecoration: textDecoration,
             backgroundcolor: backgroundColor,
             color: color,
             margin: margin,
             height: height,
             padding: padding, 
+            fontsize: fontSize,
+            classname: className,
             project_id: project_id
           })
           .returning('id', 'element').toString();

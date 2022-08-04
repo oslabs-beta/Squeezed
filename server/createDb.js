@@ -1,7 +1,7 @@
 import db from './utils/db.ts';
 
 // create user table
-const users_result = await db.queryObject(
+await db.queryObject(
   `CREATE TABLE IF NOT EXISTS users
   (
     id SERIAL PRIMARY KEY,
@@ -38,6 +38,8 @@ await db.queryObject(
     width VARCHAR(100),
     height VARCHAR(100),  
     padding VARCHAR(100),
+    fontsize VARCHAR(100),
+    classname VARCHAR(100),
     project_id INTEGER REFERENCES projects(id)
   )`
 );
