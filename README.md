@@ -1,5 +1,5 @@
 ![Squeezed logo mark-03](https://user-images.githubusercontent.com/102705687/182752019-090f7375-f0ad-477b-b590-20acb11e73f8.png)
-# Squeezed
+# squeezed
 Prototyping tool for the Freshest Deno framework
 
 Squeezed is a charming web application prototyping tool for rendering the islands of your Fresh app. 
