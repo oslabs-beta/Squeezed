@@ -2,7 +2,7 @@ import db from './utils/db.ts';
 
 // create user table
 const users_result = await db.queryObject(
-  `CREATE TABLE IF NOT EXISTS users_test
+  `CREATE TABLE IF NOT EXISTS users
   (
     id SERIAL PRIMARY KEY,
     username VARCHAR(25) NOT NULL,
@@ -13,7 +13,7 @@ const users_result = await db.queryObject(
 
 // create projects table
 await db.queryObject(
-  `CREATE TABLE IF NOT EXISTS projects_test
+  `CREATE TABLE IF NOT EXISTS projects
   (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50),
@@ -25,7 +25,7 @@ await db.queryObject(
 
 //create entries table
 await db.queryObject(
-  `CREATE TABLE IF NOT EXISTS elements_test
+  `CREATE TABLE IF NOT EXISTS elements
   (
     id INTEGER NOT NULL,
     element VARCHAR(100) NOT NULL,
