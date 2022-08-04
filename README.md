@@ -65,6 +65,8 @@ To use the code that is produced, just click on the clipboard at the bottom of t
 
 If you’d like to contribute to squeezed or have any feedback, please let us know!
 
+Check us out at our [Website](https://www.squeezed.dev/) and our [Linkedin](https://www.linkedin.com/company/squeezed-dev)!
+
 # Tech Stack:
 Deno, TypeScript, Javascript, PostgreSQL, oak, dex, bcrypt, React (Hooks and Router) 
 
