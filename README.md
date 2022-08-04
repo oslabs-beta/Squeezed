@@ -58,15 +58,14 @@ If you’d like to contribute to squeezed or have any feedback, please let us kn
 Deno, TypeScript, PostgreSQL, React (Hooks and Router), oak, Dex, BCrypt
 
 # License
-Distributed under the MIT License. See LICENSE for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/oslabs-beta/squeezed/blob/master/LICENSE) for more information.
 
 # The Engineers
-Alexa Roberts: GitHub | Linkedin
+Alexa Roberts: [GitHub](https://github.com/alexarobertss) | [Linkedin](https://www.linkedin.com/in/alexarobertss/)
 
-Carol Xia: GitHub | Linkedin
+Carol Xia: [GitHub](https://github.com/carol-xia) | [Linkedin](https://www.linkedin.com/in/carol-xia-2bb508134/)
 
-James Bui: GitHub | Linkedin
+James Bui: [GitHub](https://github.com/James-Minh-Bui) | [Linkedin](https://www.linkedin.com/in/jamesminhbui/)
 
-Wayne Tsai: GitHub | Linkedin
-
+Wayne Tsai: [GitHub](https://github.com/WayneTsai45) | [Linkedin](https://www.linkedin.com/in/wayne-tsai45/)
 
