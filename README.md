@@ -1,6 +1,8 @@
-![Squeezed logo mark-03](https://user-images.githubusercontent.com/102705687/182752019-090f7375-f0ad-477b-b590-20acb11e73f8.png)
+![squeezed](https://user-images.githubusercontent.com/102705687/182930284-7f45dff6-08f7-4d67-a48e-ecba86a77d85.png)
+
 # squeezed
-Prototyping tool for the Freshest Deno framework
+Prototyping tool for the F![Uploading squeezed.png…]()
+reshest Deno framework
 
 Squeezed is a charming web application prototyping tool for rendering the islands of your Fresh app. 
 Squeezed uses a drag-and-drop canvas that enables users to see how their codebase is laid out, see the island being rendered dynamically, and edit HTML elements. 
