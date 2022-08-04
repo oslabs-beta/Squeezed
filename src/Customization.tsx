@@ -1,9 +1,5 @@
 import { React } from '../deps.tsx';
-import { IHtmlElement, IProps, ICustomizationProps } from './utils/types.ts';
-
-type submitForm = {
-  text: string;
-};
+import { ICustomizationProps } from './utils/types.ts';
 
 const Customization = (props: ICustomizationProps) => {
 

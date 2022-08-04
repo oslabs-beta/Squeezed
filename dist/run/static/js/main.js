@@ -8192,6 +8192,7 @@ const App = ()=>{
     }, [
         user
     ]);
+    console.log('elementsarr in app', elementsArr);
     return mod.createElement("div", {
         className: "app"
     }, mod.createElement("link", {
