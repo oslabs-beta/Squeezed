@@ -1,6 +1,6 @@
 ![squeezed](https://user-images.githubusercontent.com/29562751/182937867-42d393fc-654d-4f30-895e-dbd5255de30a.png)
 
-# squeezed
+# Squeezed
 A prototyping tool for the Freshest Deno framework
 
 Squeezed is a charming web application prototyping tool for rendering the islands of your Fresh app. 
@@ -63,7 +63,7 @@ To use the code that is produced, just click on the clipboard at the bottom of t
 - Squeezed currently relies on a third-party library and requires a local download to ensure full functionality. Future plans including updating the codebase to ensure compatibility when deploying.
 - We hope to migrate from a browser application to a desktop application once a tool that supports Deno browser applications in javascript is released.
 
-If you’d like to contribute to squeezed or have any feedback, please let us know!
+If you’d like to contribute to Squeezed or have any feedback, please let us know!
 
 Check us out at our [Website](https://www.squeezed.dev/) and our [Linkedin](https://www.linkedin.com/company/squeezed-dev)!
 
