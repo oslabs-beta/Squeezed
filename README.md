@@ -120,3 +120,4 @@ Use one of the functions above and just keep passing the output of one function 
 ## Extension Challenges
 Complete the extension challenges located in `src/js-fundamentals.js`.
 # Commerce
+# Commerce
