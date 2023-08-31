@@ -122,3 +122,4 @@ Complete the extension challenges located in `src/js-fundamentals.js`.
 # Commerce
 # Commerce
 # lindy-ai-practice
+# lindy-ai-practice
