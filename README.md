@@ -121,3 +121,4 @@ Use one of the functions above and just keep passing the output of one function 
 Complete the extension challenges located in `src/js-fundamentals.js`.
 # Commerce
 # Commerce
+# lindy-ai-practice
